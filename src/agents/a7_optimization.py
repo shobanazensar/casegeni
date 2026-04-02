@@ -16,11 +16,14 @@ class A7Optimization(AgentBase):
                 deduped.append(tc)
                 seen.add(key)
 
+        _SCENARIO_ORDER = {"Positive": 0, "Smoke": 0, "Sanity": 1, "Negative": 2, "Edge Case": 3, "Exception Handling": 4}
+        _LAYER_ORDER = {"UI": 0, "API": 1, "Database": 2, "ETL Integration": 3, "E2E": 4}
+
         def rank(tc: dict) -> tuple:
+            scenario_rank = _SCENARIO_ORDER.get(tc.get("scenario_type", ""), 5)
+            layer_rank = _LAYER_ORDER.get(tc.get("test_case_layer", ""), 5)
             priority_rank = {"P1": 0, "P2": 1, "P3": 2, "P4": 3}.get(tc.get("priority", "P3"), 2)
-            suite_rank = 0 if tc.get("functional_test_type") == "Smoke" else 1
-            layer_rank = {"API": 0, "UI": 1, "Database": 2, "E2E": 3, "ETL Integration": 4}.get(tc.get("test_case_layer"), 5)
-            return (tc.get("story_id", ""), tc.get("ac_id", ""), priority_rank, suite_rank, layer_rank, tc.get("title", ""))
+            return (tc.get("story_id", ""), tc.get("ac_id", ""), scenario_rank, layer_rank, priority_rank, tc.get("title", ""))
 
         optimized = sorted(deduped, key=rank)[:max_test_count]
         for tc in optimized:

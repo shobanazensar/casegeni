@@ -76,9 +76,17 @@ class TestCasePipeline:
         state["test_cases"] = apply_schema_guardrail_bulk(review["reviewed_test_cases"])
         state["review_summary"] = review["review_summary"]
 
+        _SCENARIO_ORDER = {"Positive": 0, "Smoke": 0, "Sanity": 1, "Negative": 2, "Edge Case": 3, "Exception Handling": 4}
+        _LAYER_ORDER = {"UI": 0, "API": 1, "Database": 2, "ETL Integration": 3, "E2E": 4}
         state["test_cases"] = sorted(
             state["test_cases"],
-            key=lambda x: (x.get("story_id", ""), x.get("ac_id", ""), x.get("priority", "P3"), x.get("test_case_layer", ""), x.get("test_case_id", "")),
+            key=lambda x: (
+                x.get("story_id", ""),
+                x.get("ac_id", ""),
+                _SCENARIO_ORDER.get(x.get("scenario_type", ""), 5),
+                _LAYER_ORDER.get(x.get("test_case_layer", ""), 5),
+                x.get("test_case_id", ""),
+            ),
         )
 
         dashboard = self.a10.execute(
