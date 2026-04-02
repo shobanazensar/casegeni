@@ -115,14 +115,6 @@ with st.sidebar:
 uploaded = st.file_uploader("Upload story / stories / epic input (.txt, .md, .json)", type=["txt", "md", "json"])
 text_input = st.text_area("Or paste the requirement text", height=240)
 
-with st.expander("Current LLM limitations"):
-    st.markdown("""
-- Long requirement sets can hit model token, timeout, or cost limits depending on provider and settings.
-- Online mode now uses a separate grouped generation path by acceptance criterion, so count/content may differ from offline. If the LLM call fails the app will show the exact failure in run config.
-- Reviewer scoring is currently rules-based and profile-weighted; reviewer mode selection is shown in the run config panel.
-- The pipeline avoids mechanical layer explosion, so the count may stay lower than a naive combinational generator.
-""")
-
 run_clicked = st.button("Generate test assets")
 
 if run_clicked:
