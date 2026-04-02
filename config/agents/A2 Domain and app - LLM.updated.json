@@ -1,0 +1,304 @@
+{
+  "agent": "A2_Domain_And_App",
+  "objective": "Analyze the requirement or product input and identify domain, application, module, roles, process, regulations, and carried-forward project context for downstream requirement analysis, scenario derivation, and test generation. Do not generate test cases.",
+  "input_unit": "document_text_with_optional_project_context_and_optional_a1_state",
+  "allowed_primary_domains": [
+    "healthcare",
+    "financial_services",
+    "ecommerce_retail",
+    "manufacturing_supply_chain",
+    "logistics_transportation",
+    "construction_real_estate",
+    "generic"
+  ],
+  "extract_fields": [
+    "project_state",
+    "state_driven_focus",
+    "primary_domain",
+    "secondary_domain",
+    "confidence_score",
+    "application_or_product",
+    "module_or_submodules",
+    "domain_signals",
+    "business_entities",
+    "user_roles",
+    "likely_process_flows",
+    "applicable_regulations",
+    "domain_test_focus",
+    "reasoning"
+  ],
+  "rules": [
+    "Use evidence from the input text first, and domain inference second.",
+    "Choose one primary domain from the allowed set.",
+    "Assign a secondary domain only when there is meaningful overlapping evidence.",
+    "Use generic only when no strong domain evidence exists.",
+    "Detect application or product name only if explicitly present or strongly implied.",
+    "Detect module or sub-modules from explicit references or repeated workflow/business nouns.",
+    "Extract the most relevant domain terminology and business entities only.",
+    "Infer likely business process flows when workflow language is present; otherwise return an empty list.",
+    "List regulations and standards only when explicitly mentioned or strongly relevant to the detected domain.",
+    "Extract user roles or actors if present or clearly implied.",
+    "Return domain-specific testing focus areas relevant to the detected domain.",
+    "Keep reasoning concise.",
+    "Do not generate test cases, test data, or long explanations.",
+    "If project_state or state_driven_focus is supplied from A1, preserve it unchanged in the output.",
+    "Normalize application and module names for reuse by downstream agents.",
+    "Return module_or_submodules as a stable list of names, not free-form prose."
+  ],
+  "domain_reference": {
+    "healthcare": {
+      "signals": [
+        "patient",
+        "provider",
+        "claim",
+        "prior authorization",
+        "diagnosis",
+        "treatment",
+        "prescription",
+        "ICD-10",
+        "CPT",
+        "HCPCS",
+        "NPI",
+        "HIPAA",
+        "EHR",
+        "EMR",
+        "FHIR",
+        "HL7"
+      ],
+      "regulations": [
+        "HIPAA",
+        "HITECH",
+        "CMS",
+        "Medicare",
+        "Medicaid",
+        "FDA",
+        "21 CFR Part 11"
+      ],
+      "roles": [
+        "Doctor",
+        "Nurse",
+        "Pharmacist",
+        "Biller",
+        "Coder",
+        "Adjuster"
+      ],
+      "test_focus": [
+        "PHI/PII masking",
+        "clinical logic",
+        "insurance verification",
+        "claim adjudication"
+      ]
+    },
+    "financial_services": {
+      "signals": [
+        "account",
+        "transaction",
+        "loan",
+        "mortgage",
+        "interest",
+        "payment",
+        "transfer",
+        "ACH",
+        "wire",
+        "SWIFT",
+        "IBAN",
+        "routing number",
+        "KYC",
+        "AML",
+        "OFAC"
+      ],
+      "regulations": [
+        "SOX",
+        "PCI-DSS",
+        "GLBA",
+        "Basel III",
+        "MiFID II",
+        "KYC",
+        "AML",
+        "OFAC"
+      ],
+      "roles": [
+        "Teller",
+        "Trader",
+        "Analyst",
+        "Compliance Officer",
+        "Auditor"
+      ],
+      "test_focus": [
+        "monetary precision",
+        "currency conversion",
+        "reconciliation",
+        "audit trails"
+      ]
+    },
+    "ecommerce_retail": {
+      "signals": [
+        "cart",
+        "checkout",
+        "order",
+        "inventory",
+        "product",
+        "customer",
+        "shipping",
+        "SKU",
+        "UPC",
+        "discount",
+        "promotion",
+        "refund"
+      ],
+      "regulations": [
+        "PCI-DSS",
+        "tax compliance",
+        "consumer protection",
+        "ADA accessibility"
+      ],
+      "roles": [
+        "Shopper",
+        "Merchant",
+        "Fulfillment",
+        "Customer Service"
+      ],
+      "test_focus": [
+        "pricing calculations",
+        "tax by jurisdiction",
+        "inventory sync",
+        "order fulfillment"
+      ]
+    },
+    "manufacturing_supply_chain": {
+      "signals": [
+        "BOM",
+        "Bill of Materials",
+        "work order",
+        "routing",
+        "production",
+        "assembly",
+        "lot",
+        "batch",
+        "serial number",
+        "warehouse",
+        "supplier"
+      ],
+      "regulations": [
+        "ISO 9001",
+        "OSHA",
+        "GMP",
+        "REACH",
+        "RoHS"
+      ],
+      "roles": [
+        "Planner",
+        "Scheduler",
+        "Operator",
+        "Inspector",
+        "Buyer"
+      ],
+      "test_focus": [
+        "unit conversions",
+        "lot traceability",
+        "quality holds",
+        "inventory valuation"
+      ]
+    },
+    "logistics_transportation": {
+      "signals": [
+        "shipment",
+        "carrier",
+        "tracking",
+        "delivery",
+        "route",
+        "fleet",
+        "driver",
+        "dispatch",
+        "pickup",
+        "dropoff",
+        "POD",
+        "LTL",
+        "FTL"
+      ],
+      "regulations": [
+        "DOT",
+        "FMCSA",
+        "HOS",
+        "ELD",
+        "hazardous materials",
+        "customs"
+      ],
+      "roles": [
+        "Dispatcher",
+        "Driver",
+        "Broker",
+        "Warehouse Manager"
+      ],
+      "test_focus": [
+        "route optimization",
+        "delivery windows",
+        "proof of delivery",
+        "freight calculation"
+      ]
+    },
+    "construction_real_estate": {
+      "signals": [
+        "project",
+        "contract",
+        "change order",
+        "RFI",
+        "submittal",
+        "lien waiver",
+        "lease",
+        "tenant",
+        "rent",
+        "maintenance"
+      ],
+      "regulations": [
+        "OSHA",
+        "building codes",
+        "zoning",
+        "environmental permits"
+      ],
+      "roles": [
+        "GC",
+        "Subcontractor",
+        "Superintendent",
+        "Project Manager",
+        "Inspector"
+      ],
+      "test_focus": [
+        "progress billing",
+        "change order workflows",
+        "compliance documentation"
+      ]
+    },
+    "generic": {
+      "signals": [],
+      "regulations": [],
+      "roles": [],
+      "test_focus": [
+        "CRUD operations",
+        "workflow validation",
+        "explicit business rules"
+      ]
+    }
+  },
+  "output_schema": {
+    "project_state": "",
+    "state_driven_focus": "",
+    "primary_domain": "",
+    "secondary_domain": null,
+    "confidence_score": 0.0,
+    "application_or_product": null,
+    "module_or_submodules": [],
+    "domain_signals": [],
+    "business_entities": [],
+    "user_roles": [],
+    "likely_process_flows": [
+      {
+        "flow_name": "",
+        "steps": []
+      }
+    ],
+    "applicable_regulations": [],
+    "domain_test_focus": [],
+    "reasoning": ""
+  }
+}

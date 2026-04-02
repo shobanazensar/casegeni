@@ -1,0 +1,224 @@
+{
+  "agent": "A7_Optimization",
+  "purpose": "Optimize generated test suites by removing redundancy, controlling suite size, preserving critical and AC-level coverage, and splitting tests into smoke and regression groups.",
+  "input_expected_from_previous_agents": [
+    "test_case_id",
+    "story_id",
+    "story_title",
+    "ac_id",
+    "ac_text",
+    "project_state",
+    "domain",
+    "module",
+    "submodule",
+    "test_case_layer",
+    "scenario_type",
+    "functional_test_type",
+    "non_functional_type",
+    "priority",
+    "automation_hint",
+    "preconditions",
+    "steps",
+    "expected_result",
+    "tags"
+  ],
+  "optimization_inputs": {
+    "story_complexity": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "risk_profile": [
+      "critical",
+      "standard",
+      "minor"
+    ],
+    "timeline": [
+      "urgent",
+      "normal",
+      "flexible"
+    ],
+    "max_test_count": "configurable"
+  },
+  "must_keep_rules": {
+    "always_keep_if": [
+      "priority_P1",
+      "smoke_candidate",
+      "core_workflow",
+      "happy_path",
+      "security",
+      "compliance",
+      "financial_calculation",
+      "data_integrity",
+      "critical_path",
+      "customer_blocking",
+      "regulatory"
+    ],
+    "never_drop_last_test_for_ac_without_replacement": true,
+    "preserve_one_positive_for_core_ac": true,
+    "preserve_negative_or_edge_when_validation_or_boundary_exists": true
+  },
+  "coverage_rules": {
+    "high_risk": {
+      "coverage_target_percent": 100,
+      "sampling_mode": "full"
+    },
+    "medium_risk": {
+      "coverage_target_percent": 80,
+      "sampling_mode": "pairwise"
+    },
+    "low_risk": {
+      "coverage_target_percent": 50,
+      "sampling_mode": "reduced"
+    }
+  },
+  "reduction_rules": {
+    "remove_if": [
+      "duplicate_business_intent",
+      "same_layer_same_scenario_same_expected_outcome",
+      "same_validation_covered_by_stronger_test",
+      "same_boundary_family_with_lower_value_variant",
+      "same_negative_family_with_redundant_data_only_change"
+    ],
+    "prefer_keep_if": [
+      "broader_coverage",
+      "higher_priority",
+      "better_automation_feasibility",
+      "cross_module_coverage",
+      "end_to_end_visibility",
+      "stronger_assertions"
+    ]
+  },
+  "pairwise_rules": {
+    "apply_when_combination_count_exceeds": 6,
+    "candidate_dimensions": [
+      "role",
+      "input_type",
+      "status",
+      "channel",
+      "region",
+      "environment"
+    ],
+    "skip_pairwise_for": [
+      "P1",
+      "security",
+      "compliance",
+      "core_workflow"
+    ]
+  },
+  "equivalence_reduction_rules": {
+    "keep_one_representative_per_partition": true,
+    "never_reduce_below": [
+      "one_valid_case",
+      "one_invalid_case",
+      "one_boundary_case_if_boundary_exists"
+    ]
+  },
+  "regression_impact_rules": {
+    "promote_to_regression_if": [
+      "changed_module",
+      "integration_point",
+      "shared_service_dependency",
+      "state_transition_impact",
+      "database_schema_impact"
+    ],
+    "promote_to_smoke_if": [
+      "critical_path",
+      "build_verification",
+      "basic_api_health",
+      "basic_login_access",
+      "basic_submission_flow"
+    ]
+  },
+  "suite_split_rules": {
+    "smoke_include": [
+      "priority_P1",
+      "critical_path",
+      "happy_path",
+      "basic_security",
+      "basic_access_control",
+      "basic_api_contract",
+      "core_submission_or_approval_flow"
+    ],
+    "regression_include": [
+      "all_smoke_tests",
+      "priority_P2",
+      "integration",
+      "negative",
+      "edge_case",
+      "exception_handling",
+      "broader_role_coverage",
+      "data_validation",
+      "state_transition"
+    ]
+  },
+  "timeline_rules": {
+    "urgent": {
+      "prefer": [
+        "smoke",
+        "P1",
+        "P2",
+        "critical_regression_only"
+      ],
+      "reduce": [
+        "low_value_edge_cases",
+        "rare_path_variants",
+        "broad_compatibility_matrix"
+      ]
+    },
+    "normal": {
+      "prefer": [
+        "balanced_smoke_and_regression"
+      ],
+      "reduce": [
+        "clear_duplicates"
+      ]
+    },
+    "flexible": {
+      "prefer": [
+        "fuller_regression",
+        "broader_negative_coverage",
+        "broader_edge_coverage"
+      ],
+      "reduce": [
+        "only_true_duplicates"
+      ]
+    }
+  },
+  "output_schema": {
+    "optimized_test_suite": {
+      "selected_test_cases": [
+        {
+          "test_case_id": "",
+          "story_id": "",
+          "ac_id": "",
+          "priority": "",
+          "decision": "keep",
+          "optimized_target_suite": "smoke|regression|both",
+          "optimization_reason": "",
+          "coverage_role": "core|important|optional",
+          "replaced_by": ""
+        }
+      ],
+      "dropped_test_cases": [
+        {
+          "test_case_id": "",
+          "story_id": "",
+          "ac_id": "",
+          "decision": "drop",
+          "dropped_reason": "",
+          "replaced_by": ""
+        }
+      ],
+      "summary": {
+        "input_test_count": 0,
+        "output_test_count": 0,
+        "smoke_count": 0,
+        "regression_count": 0,
+        "dropped_count": 0,
+        "ac_preserved_count": 0,
+        "ac_gap_introduced_count": 0
+      }
+    }
+  }
+}

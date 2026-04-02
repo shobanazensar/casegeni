@@ -1,0 +1,70 @@
+{
+  "agent": "A6_Prioritization",
+  "objective": "Assign priority from P1 to P4 and refine automation hints for generated test cases using risk, business value, and project state. Preserve prior fields and do not modify test steps or generate new tests.",
+  "input_unit": "one_generated_test_case_with_project_state",
+  "required_outputs": [
+    "priority",
+    "priority_reason",
+    "risk_score",
+    "value_score",
+    "state_adjustment",
+    "automation_hint",
+    "automation_reason"
+  ],
+  "allowed_priorities": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "allowed_automation_hints": [
+    "Yes",
+    "No",
+    "Maybe"
+  ],
+  "rules": [
+    "Use risk and business value as the primary basis for prioritization.",
+    "Use project state from A1 (New, Existing, Legacy) to adjust priority, not replace risk and value.",
+    "Assign P1 to release-blocking, security-sensitive, compliance-sensitive, revenue-critical, or core workflow tests.",
+    "Assign P2 to high-value and important integration, regression, or major validation tests.",
+    "Assign P3 to useful but non-critical broader coverage tests.",
+    "Assign P4 to low-risk, optional, rare-path, or low-value coverage tests.",
+    "Increase priority for Smoke tests and critical negative or exception scenarios when impact is high.",
+    "Increase priority for Security and Performance tests when they protect critical workflows or compliance obligations.",
+    "Do not assign priority based only on layer.",
+    "Refine automation hint as Yes, No, or Maybe based on repeatability, stability, setup complexity, environment dependency, and need for manual judgment.",
+    "Do not rewrite the test case.",
+    "Keep the reason concise and evidence-based.",
+    "Keep P1 to P4 as the canonical internal priority scale for all downstream agents.",
+    "Preserve story, AC, scenario, and module lineage on every prioritized test case."
+  ],
+  "output_schema": {
+    "prioritized_test_cases": [
+      {
+        "test_case_id": "",
+        "story_id": "",
+        "story_title": "",
+        "ac_id": "",
+        "ac_text": "",
+        "project_state": "",
+        "application_or_product": "",
+        "domain": "",
+        "module": "",
+        "submodule": "",
+        "scenario_id": "",
+        "test_case_layer": "",
+        "scenario_type": "",
+        "functional_test_type": "",
+        "non_functional_type": "",
+        "priority": "",
+        "priority_reason": "",
+        "risk_score": 0,
+        "value_score": 0,
+        "state_adjustment": 0,
+        "automation_hint": "",
+        "automation_reason": "",
+        "tags": []
+      }
+    ]
+  }
+}

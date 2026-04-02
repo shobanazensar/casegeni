@@ -1,0 +1,30 @@
+{
+  "agent": "A10_Test_Intelligence_Dashboard",
+  "purpose": "Generate a concise dashboard summarizing coverage, optimization, quality, and readiness using rule-based aggregation.",
+  "input_expected": [
+    "test_cases",
+    "traceability_summary",
+    "uncovered_items",
+    "review_metrics",
+    "optimization_metrics"
+  ],
+  "calculations": {
+    "reduction_percent": "(before - after) / before * 100",
+    "traceability_coverage": "covered_acs / total_acs * 100",
+    "automation_readiness": "automation_yes / total_tests * 100",
+    "quality_score": "weighted(review_score, coverage, gaps)"
+  },
+  "rules": [
+    "Highlight only top 3 gap categories.",
+    "Mark 'At Risk' if ACs without tests > 0 or coverage < 80%.",
+    "Mark 'Needs Review' if reviewer score < threshold.",
+    "Otherwise mark 'Ready'."
+  ],
+  "output": [
+    "summary",
+    "coverage_snapshot",
+    "optimization_impact",
+    "quality_gaps",
+    "final_verdict"
+  ]
+}

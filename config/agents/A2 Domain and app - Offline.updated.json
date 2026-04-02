@@ -1,0 +1,349 @@
+{
+  "agent": "A2_Domain_And_App",
+  "purpose": "Detect business domain and application context from requirement inputs, preserve A1 project context, and provide normalized domain-aware terminology, process flows, regulations, roles, and testing focus for downstream agents.",
+  "input_expected": [
+    "document_text",
+    "project_context",
+    "project_state",
+    "state_driven_focus"
+  ],
+  "allowed_primary_domains": [
+    "healthcare",
+    "financial_services",
+    "ecommerce_retail",
+    "manufacturing_supply_chain",
+    "logistics_transportation",
+    "construction_real_estate",
+    "generic"
+  ],
+  "domain_detection_rules": {
+    "scoring": {
+      "strong_match": 3,
+      "moderate_match": 2,
+      "weak_match": 1
+    },
+    "choose_primary_domain_by_highest_score": true,
+    "allow_secondary_domain_if_close_match": true,
+    "default_domain_if_no_strong_signal": "generic"
+  },
+  "domain_keywords": {
+    "healthcare": {
+      "primary": [
+        "patient",
+        "provider",
+        "claim",
+        "prior authorization",
+        "diagnosis",
+        "treatment",
+        "prescription"
+      ],
+      "secondary": [
+        "icd-10",
+        "cpt",
+        "hcpcs",
+        "npi",
+        "hipaa",
+        "ehr",
+        "emr",
+        "fhir",
+        "hl7",
+        "subscriber",
+        "policy",
+        "benefit",
+        "deductible",
+        "copay",
+        "coinsurance"
+      ]
+    },
+    "financial_services": {
+      "primary": [
+        "account",
+        "transaction",
+        "loan",
+        "mortgage",
+        "interest",
+        "payment",
+        "transfer"
+      ],
+      "secondary": [
+        "ach",
+        "wire",
+        "swift",
+        "iban",
+        "routing number",
+        "checking",
+        "savings",
+        "portfolio",
+        "trade",
+        "stock",
+        "bond",
+        "dividend",
+        "capital gains"
+      ]
+    },
+    "ecommerce_retail": {
+      "primary": [
+        "cart",
+        "checkout",
+        "order",
+        "inventory",
+        "product",
+        "customer",
+        "shipping"
+      ],
+      "secondary": [
+        "sku",
+        "upc",
+        "catalog",
+        "price",
+        "discount",
+        "promotion",
+        "coupon",
+        "credit card",
+        "paypal",
+        "gift card",
+        "installment",
+        "refund"
+      ]
+    },
+    "manufacturing_supply_chain": {
+      "primary": [
+        "bom",
+        "bill of materials",
+        "work order",
+        "routing",
+        "production",
+        "assembly"
+      ],
+      "secondary": [
+        "lot",
+        "batch",
+        "serial number",
+        "bin location",
+        "warehouse",
+        "fifo",
+        "lifo",
+        "po",
+        "rfq",
+        "vendor",
+        "supplier",
+        "receiving",
+        "inspection"
+      ]
+    },
+    "logistics_transportation": {
+      "primary": [
+        "shipment",
+        "carrier",
+        "tracking",
+        "delivery",
+        "route",
+        "fleet",
+        "driver"
+      ],
+      "secondary": [
+        "dispatch",
+        "pickup",
+        "dropoff",
+        "pod",
+        "ltl",
+        "ftl",
+        "intermodal"
+      ]
+    },
+    "construction_real_estate": {
+      "primary": [
+        "project",
+        "contract",
+        "change order",
+        "rfi",
+        "submittal",
+        "lien waiver"
+      ],
+      "secondary": [
+        "bid",
+        "bond",
+        "retainage",
+        "substantial completion",
+        "punch list",
+        "lease",
+        "tenant",
+        "unit",
+        "rent",
+        "deposit",
+        "maintenance"
+      ]
+    },
+    "generic": {
+      "primary": [],
+      "secondary": []
+    }
+  },
+  "regulations_by_domain": {
+    "healthcare": [
+      "HIPAA",
+      "HITECH",
+      "CMS",
+      "Medicare",
+      "Medicaid",
+      "FDA",
+      "21 CFR Part 11"
+    ],
+    "financial_services": [
+      "SOX",
+      "PCI-DSS",
+      "GLBA",
+      "Basel III",
+      "MiFID II",
+      "KYC",
+      "AML",
+      "OFAC"
+    ],
+    "ecommerce_retail": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "manufacturing_supply_chain": [
+      "ISO 9001",
+      "OSHA",
+      "GMP",
+      "REACH",
+      "RoHS"
+    ],
+    "logistics_transportation": [
+      "DOT",
+      "FMCSA",
+      "HOS",
+      "ELD",
+      "hazardous materials",
+      "customs"
+    ],
+    "construction_real_estate": [
+      "OSHA",
+      "building codes",
+      "zoning",
+      "environmental permits"
+    ],
+    "generic": []
+  },
+  "roles_by_domain": {
+    "healthcare": [
+      "Doctor",
+      "Nurse",
+      "Pharmacist",
+      "Biller",
+      "Coder",
+      "Adjuster"
+    ],
+    "financial_services": [
+      "Teller",
+      "Trader",
+      "Analyst",
+      "Compliance Officer",
+      "Auditor"
+    ],
+    "ecommerce_retail": [
+      "Shopper",
+      "Merchant",
+      "Fulfillment",
+      "Customer Service"
+    ],
+    "manufacturing_supply_chain": [
+      "Planner",
+      "Scheduler",
+      "Operator",
+      "Inspector",
+      "Buyer"
+    ],
+    "logistics_transportation": [
+      "Dispatcher",
+      "Driver",
+      "Broker",
+      "Warehouse Manager"
+    ],
+    "construction_real_estate": [
+      "GC",
+      "Subcontractor",
+      "Superintendent",
+      "Project Manager",
+      "Inspector"
+    ],
+    "generic": []
+  },
+  "test_focus_by_domain": {
+    "healthcare": [
+      "PHI/PII masking",
+      "clinical logic",
+      "insurance verification",
+      "claim adjudication"
+    ],
+    "financial_services": [
+      "monetary precision",
+      "currency conversion",
+      "reconciliation",
+      "audit trails"
+    ],
+    "ecommerce_retail": [
+      "pricing calculations",
+      "tax by jurisdiction",
+      "inventory sync",
+      "order fulfillment"
+    ],
+    "manufacturing_supply_chain": [
+      "unit conversions",
+      "lot traceability",
+      "quality holds",
+      "inventory valuation"
+    ],
+    "logistics_transportation": [
+      "route optimization",
+      "delivery windows",
+      "proof of delivery",
+      "freight calculation"
+    ],
+    "construction_real_estate": [
+      "progress billing",
+      "change order workflows",
+      "compliance documentation"
+    ],
+    "generic": [
+      "CRUD operations",
+      "workflow validation",
+      "explicit business rules"
+    ]
+  },
+  "application_module_detection_rules": {
+    "detect_application_or_product_if_explicit": true,
+    "detect_module_or_submodule_if_explicit_or_repeated": true,
+    "return_null_if_not_clear": true,
+    "preserve_original_and_normalized_module_names": true,
+    "return_primary_module_and_submodules": true
+  },
+  "process_flow_rules": {
+    "infer_from_workflow_language": true,
+    "return_empty_if_unclear": true
+  },
+  "output_schema": {
+    "project_state": "",
+    "state_driven_focus": "",
+    "primary_domain": "",
+    "secondary_domain": null,
+    "confidence_score": 0.0,
+    "application_or_product": null,
+    "module_or_submodules": [],
+    "domain_signals": [],
+    "business_entities": [],
+    "user_roles": [],
+    "likely_process_flows": [
+      {
+        "flow_name": "",
+        "steps": []
+      }
+    ],
+    "applicable_regulations": [],
+    "domain_test_focus": [],
+    "reasoning": ""
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "agent": "A5_Test_Generation",
+  "objective": "Generate complete, execution-ready test cases from scenario blueprints with the required classifications and preserved lineage/context. Do not prioritize; prioritization is handled by a separate agent.",
+  "input_unit": "one_scenario_blueprint_with_domain_context",
+  "required_classifications": {
+    "domain": "required",
+    "module": "required",
+    "test_case_layer": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "scenario_type": [
+      "Positive",
+      "Negative",
+      "Edge Case",
+      "Exception Handling"
+    ],
+    "functional_test_type": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression"
+    ],
+    "non_functional_type": [
+      "Performance",
+      "Security",
+      "Accessibility",
+      "Compatibility"
+    ],
+    "automation_hint_initial": [
+      "Yes",
+      "No",
+      "Maybe"
+    ]
+  },
+  "rules": [
+    "Generate full test cases including title, preconditions, test data, domain-specific validations, steps, and expected result.",
+    "Ensure each test case maps clearly to one scenario blueprint.",
+    "Assign exactly one test case layer: UI, API, Database, ETL Integration, or E2E.",
+    "Assign exactly one scenario type: Positive, Negative, Edge Case, or Exception Handling.",
+    "Assign functional_test_type only when the test is functional in nature; otherwise keep it empty.",
+    "Assign non_functional_type only when the test is non-functional in nature; otherwise keep it empty.",
+    "Use business-readable, execution-ready steps.",
+    "Expected result must validate the business outcome, not only the technical response.",
+    "Use domain-specific terminology, validations, and compliance expectations when the domain is known.",
+    "Use parameterization where applicable, such as {{baseUrl}}, {{authToken}}, {{entityId}}, {{batchDate}}, {{sourceTable}}, {{targetTable}}.",
+    "Avoid duplicate or near-duplicate test cases.",
+    "Set automation_hint_initial to Yes when clearly automatable, No when clearly manual, and Maybe when automation is possible but depends on tooling, environment, or setup complexity.",
+    "Do not assign priority.",
+    "Preserve story_id, story_title, ac_id, ac_text, project_state, application_or_product, module, submodule, scenario_id, base_seed, scenario_family, derived_from, and requirement_gaps from A4.",
+    "Keep exactly one test_case_layer and exactly one normalized scenario_type, but do not drop richer lineage fields from A4.",
+    "Use a5_scenario_type_hint from A4 where available and map boundary to Edge Case."
+  ],
+  "domain_reference": {
+    "healthcare": {
+      "include_validations_like": [
+        "ICD-10 mapping",
+        "CPT validity",
+        "eligibility verification",
+        "NPI validation",
+        "PHI masking",
+        "HIPAA-compatible data handling"
+      ]
+    },
+    "financial_services": {
+      "include_validations_like": [
+        "exchange rate validation",
+        "currency rounding",
+        "SWIFT/BIC format",
+        "audit trail creation",
+        "regulatory reporting trigger",
+        "fee calculation"
+      ]
+    },
+    "ecommerce_retail": {
+      "include_validations_like": [
+        "pricing and discount calculation",
+        "tax by jurisdiction",
+        "inventory sync",
+        "refund calculation",
+        "promotion eligibility",
+        "fulfillment status updates"
+      ]
+    },
+    "manufacturing_supply_chain": {
+      "include_validations_like": [
+        "BOM accuracy",
+        "lot traceability",
+        "quality hold behavior",
+        "unit conversion",
+        "inventory valuation",
+        "inspection outcomes"
+      ]
+    },
+    "logistics_transportation": {
+      "include_validations_like": [
+        "route optimization",
+        "delivery window validation",
+        "proof of delivery",
+        "freight calculation",
+        "carrier assignment",
+        "pickup/dropoff state transition"
+      ]
+    },
+    "construction_real_estate": {
+      "include_validations_like": [
+        "progress billing",
+        "change order workflow",
+        "compliance documentation",
+        "lease/deposit handling",
+        "maintenance flow",
+        "retainage calculation"
+      ]
+    },
+    "generic": {
+      "include_validations_like": [
+        "CRUD validation",
+        "workflow validation",
+        "mandatory field checks",
+        "access control checks"
+      ]
+    }
+  },
+  "output_schema": {
+    "test_cases": [
+      {
+        "test_case_id": "",
+        "story_id": "",
+        "story_title": "",
+        "ac_id": "",
+        "ac_text": "",
+        "project_state": "",
+        "application_or_product": "",
+        "domain": "",
+        "secondary_domain": null,
+        "module": "",
+        "submodule": "",
+        "scenario_id": "",
+        "scenario_title": "",
+        "base_seed": "",
+        "scenario_family": "",
+        "derived_from": {
+          "flow": "",
+          "ep_partition": "",
+          "boundary_variant": "",
+          "state_variant": "",
+          "pairwise_dimensions": [],
+          "domain_variant": ""
+        },
+        "test_case_layer": "",
+        "scenario_type": "",
+        "functional_test_type": "",
+        "non_functional_type": "",
+        "automation_hint_initial": "",
+        "preconditions": [],
+        "test_data": [],
+        "domain_specific_validations": [],
+        "steps": [],
+        "expected_result": "",
+        "expected_outcome_reference": "",
+        "compliance_tags": [],
+        "requirement_gaps_inherited": [],
+        "tags": [],
+        "confidence_score": 0.0
+      }
+    ]
+  }
+}

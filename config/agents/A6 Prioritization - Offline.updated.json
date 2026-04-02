@@ -1,0 +1,242 @@
+{
+  "agent": "A6_Prioritization",
+  "purpose": "Assign test priority (P1 to P4) and refine automation hints using risk, business value, and project state patterns while preserving lineage.",
+  "input_expected_from_previous_agents": [
+    "test_case_id",
+    "story_id",
+    "story_title",
+    "ac_id",
+    "ac_text",
+    "project_state",
+    "application_or_product",
+    "domain",
+    "module",
+    "submodule",
+    "scenario_id",
+    "test_case_layer",
+    "scenario_type",
+    "functional_test_type",
+    "non_functional_type",
+    "automation_hint_initial",
+    "title",
+    "preconditions",
+    "steps",
+    "expected_result",
+    "tags"
+  ],
+  "priority_scale": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "priority_meaning": {
+    "P1": "Critical business risk or release blocker",
+    "P2": "High business importance or significant impact",
+    "P3": "Medium importance or useful broader coverage",
+    "P4": "Low importance, optional, or low-risk coverage"
+  },
+  "scoring_model": {
+    "priority_formula": "priority = risk_score + value_score + state_adjustment",
+    "risk_score_range": [
+      1,
+      5
+    ],
+    "value_score_range": [
+      1,
+      5
+    ],
+    "state_adjustment_range": [
+      -1,
+      1
+    ]
+  },
+  "risk_rules": {
+    "high_risk_signals": [
+      "security",
+      "privacy",
+      "auth",
+      "authorization",
+      "payment",
+      "claim",
+      "order_submission",
+      "financial_calculation",
+      "regulatory",
+      "data_loss",
+      "reconciliation",
+      "core_workflow",
+      "customer_blocking",
+      "downstream_failure",
+      "exception_handling"
+    ],
+    "medium_risk_signals": [
+      "business_rule",
+      "workflow",
+      "role_based",
+      "api",
+      "integration",
+      "etl",
+      "database",
+      "report_validation",
+      "state_transition"
+    ],
+    "low_risk_signals": [
+      "cosmetic",
+      "informational",
+      "optional_flow",
+      "secondary_report",
+      "ui_text"
+    ]
+  },
+  "value_rules": {
+    "high_value_signals": [
+      "frequent_user_path",
+      "customer_facing",
+      "release_gate",
+      "core_path",
+      "revenue_impact",
+      "compliance_impact",
+      "operational_critical",
+      "smoke"
+    ],
+    "medium_value_signals": [
+      "regression",
+      "cross_module",
+      "important_validation",
+      "integration_path",
+      "admin_flow"
+    ],
+    "low_value_signals": [
+      "rare_flow",
+      "backup_path",
+      "optional_feature",
+      "low_usage"
+    ]
+  },
+  "state_rules": {
+    "New": {
+      "increase_priority_for": [
+        "core_workflow",
+        "happy_path",
+        "critical_path",
+        "api_contract",
+        "basic_security",
+        "basic_access_control"
+      ],
+      "decrease_priority_for": [
+        "rare_edge_case",
+        "broad_compatibility_matrix",
+        "deep_regression"
+      ]
+    },
+    "Existing": {
+      "increase_priority_for": [
+        "regression",
+        "integration",
+        "impacted_area",
+        "changed_module",
+        "state_transition",
+        "downstream_validation"
+      ],
+      "decrease_priority_for": [
+        "unchanged_low_usage_area"
+      ]
+    },
+    "Legacy": {
+      "increase_priority_for": [
+        "critical_path",
+        "high_risk_change",
+        "data_integrity",
+        "regression",
+        "stability",
+        "recovery"
+      ],
+      "decrease_priority_for": [
+        "low_value_new_automation",
+        "non_critical_ui_variation"
+      ]
+    }
+  },
+  "layer_weight_rules": {
+    "UI": 0,
+    "API": 1,
+    "Database": 1,
+    "ETL Integration": 1,
+    "E2E": 1
+  },
+  "scenario_weight_rules": {
+    "Positive": 1,
+    "Negative": 2,
+    "Edge Case": 1,
+    "Exception Handling": 2
+  },
+  "functional_type_weight_rules": {
+    "Functional": 1,
+    "Smoke": 2,
+    "Sanity": 1,
+    "Regression": 1
+  },
+  "non_functional_type_weight_rules": {
+    "Performance": 2,
+    "Security": 2,
+    "Accessibility": 1,
+    "Compatibility": 1
+  },
+  "priority_mapping": {
+    "9_to_99": "P1",
+    "7_to_8": "P2",
+    "5_to_6": "P3",
+    "0_to_4": "P4"
+  },
+  "automation_hint_rules": {
+    "prefer_yes_if": [
+      "smoke",
+      "regression",
+      "api",
+      "database",
+      "etl",
+      "repeatable",
+      "stable_data_setup"
+    ],
+    "prefer_maybe_if": [
+      "complex_e2e",
+      "external_dependency",
+      "unstable_environment",
+      "partial_manual_verification",
+      "high_setup_cost"
+    ],
+    "prefer_no_if": [
+      "exploratory",
+      "stakeholder_confirmation_required",
+      "manual_visual_check",
+      "one_time_validation"
+    ],
+    "input_field": "automation_hint_initial",
+    "output_field": "automation_hint"
+  },
+  "output_schema": {
+    "prioritized_test_cases": [
+      {
+        "test_case_id": "",
+        "story_id": "",
+        "story_title": "",
+        "ac_id": "",
+        "ac_text": "",
+        "project_state": "",
+        "application_or_product": "",
+        "domain": "",
+        "module": "",
+        "submodule": "",
+        "scenario_id": "",
+        "priority": "",
+        "priority_reason": "",
+        "risk_score": 0,
+        "value_score": 0,
+        "state_adjustment": 0,
+        "automation_hint": "",
+        "automation_reason": "",
+        "tags": []
+      }
+    ]
+  }
+}

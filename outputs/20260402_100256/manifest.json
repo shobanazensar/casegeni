@@ -1,0 +1,81 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "confidence_score": 0.9166666666666666,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Checkout",
+      "Payment"
+    ],
+    "domain_signals": [
+      "checkout",
+      "customer",
+      "shipping"
+    ],
+    "business_entities": [
+      "Checkout",
+      "Payment"
+    ],
+    "user_roles": [
+      "customer"
+    ],
+    "likely_process_flows": [
+      "I can receive eligible discounts"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=ecommerce_retail using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 0
+  },
+  "run_config": {
+    "execution_mode_requested": "offline",
+    "execution_mode_used": "offline",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "",
+      "api_key": "",
+      "base_url": "",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": false,
+      "used": false,
+      "fallback_reason": "",
+      "generator_source": "offline_rules"
+    },
+    "generator_source": "offline_rules",
+    "max_test_count": 60
+  }
+}

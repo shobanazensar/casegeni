@@ -1,0 +1,340 @@
+{
+  "agent": "A3_Requirements",
+  "purpose": "Extract requirement intelligence and seed scenarios per acceptance criterion for downstream scenario derivation and test generation, while preserving story, domain, application, module, and project-state context.",
+  "atomic_unit": "one_acceptance_criterion_with_parent_context",
+  "extract_fields": [
+    "story_id",
+    "story_title",
+    "ac_id",
+    "ac_text",
+    "project_state",
+    "state_driven_focus",
+    "primary_domain",
+    "secondary_domain",
+    "application_or_product",
+    "module",
+    "submodule",
+    "actor",
+    "action",
+    "business_object",
+    "requirement_intent",
+    "validation_rules",
+    "data_rules",
+    "role_rules",
+    "preconditions",
+    "postconditions",
+    "state_transitions",
+    "events_integrations",
+    "error_conditions",
+    "non_functional_constraints",
+    "compliance_constraints",
+    "scenario_seeds",
+    "gaps",
+    "confidence_score"
+  ],
+  "intent_keywords": {
+    "create": [
+      "create",
+      "add",
+      "submit",
+      "register",
+      "initiate"
+    ],
+    "read_view": [
+      "view",
+      "get",
+      "fetch",
+      "retrieve",
+      "display",
+      "search"
+    ],
+    "update": [
+      "update",
+      "edit",
+      "modify",
+      "change",
+      "patch"
+    ],
+    "delete": [
+      "delete",
+      "remove",
+      "cancel",
+      "deactivate"
+    ],
+    "workflow_process": [
+      "approve",
+      "reject",
+      "assign",
+      "route",
+      "transition",
+      "move"
+    ],
+    "calculation_business_rule": [
+      "calculate",
+      "compute",
+      "derive",
+      "formula",
+      "fee",
+      "tax",
+      "discount"
+    ],
+    "validation": [
+      "validate",
+      "verify",
+      "check",
+      "required",
+      "mandatory",
+      "invalid",
+      "duplicate"
+    ],
+    "integration_event_trigger": [
+      "trigger",
+      "event",
+      "publish",
+      "consume",
+      "sync",
+      "webhook",
+      "queue",
+      "kafka"
+    ],
+    "authorization_access_control": [
+      "role",
+      "permission",
+      "access",
+      "authorized",
+      "unauthorized",
+      "restricted"
+    ],
+    "reporting_export": [
+      "report",
+      "dashboard",
+      "export",
+      "download"
+    ],
+    "data_transformation": [
+      "map",
+      "transform",
+      "convert",
+      "aggregate",
+      "reconcile"
+    ],
+    "scheduling_batch": [
+      "schedule",
+      "batch",
+      "daily",
+      "nightly",
+      "cron",
+      "incremental"
+    ],
+    "notification": [
+      "email",
+      "sms",
+      "alert",
+      "notification"
+    ],
+    "non_functional": [
+      "performance",
+      "latency",
+      "throughput",
+      "security",
+      "availability",
+      "accessibility"
+    ]
+  },
+  "validation_rule_keywords": {
+    "mandatory": [
+      "required",
+      "mandatory",
+      "cannot be blank",
+      "must provide"
+    ],
+    "format": [
+      "format",
+      "pattern",
+      "regex",
+      "alphanumeric"
+    ],
+    "range": [
+      "min",
+      "max",
+      "minimum",
+      "maximum",
+      "less than",
+      "greater than",
+      "between",
+      "limit"
+    ],
+    "uniqueness": [
+      "unique",
+      "duplicate",
+      "already exists"
+    ],
+    "dependency": [
+      "depends on",
+      "only if",
+      "when selected",
+      "conditional"
+    ],
+    "cross_field": [
+      "match",
+      "consistent with",
+      "reconcile"
+    ]
+  },
+  "data_rule_keywords": {
+    "nullability": [
+      "null",
+      "nullable",
+      "not null",
+      "optional",
+      "required"
+    ],
+    "length": [
+      "max length",
+      "min length",
+      "length"
+    ],
+    "precision": [
+      "precision",
+      "scale",
+      "decimal",
+      "rounding"
+    ],
+    "allowed_values": [
+      "enum",
+      "allowed values",
+      "code list",
+      "valid values"
+    ],
+    "mapping": [
+      "source",
+      "target",
+      "mapping",
+      "transformation",
+      "loaded into"
+    ]
+  },
+  "role_keywords": [
+    "admin",
+    "user",
+    "customer",
+    "provider",
+    "patient",
+    "merchant",
+    "operator",
+    "planner",
+    "dispatcher",
+    "driver",
+    "auditor",
+    "approver"
+  ],
+  "state_transition_keywords": [
+    "status",
+    "state",
+    "moves to",
+    "transitions to",
+    "changes from",
+    "lifecycle"
+  ],
+  "integration_keywords": [
+    "api",
+    "endpoint",
+    "event",
+    "kafka",
+    "queue",
+    "webhook",
+    "external system",
+    "upstream",
+    "downstream",
+    "batch",
+    "scheduler"
+  ],
+  "error_keywords": [
+    "error",
+    "invalid",
+    "reject",
+    "denied",
+    "failed",
+    "timeout",
+    "unavailable",
+    "duplicate",
+    "exception"
+  ],
+  "scenario_seed_rules": {
+    "always": [
+      "positive_happy_path"
+    ],
+    "if_validation_rules": [
+      "missing_required_field",
+      "invalid_format",
+      "invalid_value",
+      "out_of_range",
+      "duplicate_value"
+    ],
+    "if_role_rules": [
+      "authorized_access",
+      "unauthorized_access",
+      "restricted_visibility"
+    ],
+    "if_state_transitions": [
+      "valid_state_transition",
+      "invalid_state_transition",
+      "repeated_action"
+    ],
+    "if_integrations": [
+      "downstream_trigger_success",
+      "downstream_trigger_failure",
+      "retry_reprocessing"
+    ],
+    "if_data_rules": [
+      "null_data_handling",
+      "data_mapping_validation"
+    ],
+    "if_non_functional_or_compliance": [
+      "audit_logging",
+      "masking_validation",
+      "performance_check",
+      "concurrency",
+      "recovery_resilience"
+    ]
+  },
+  "output_schema": {
+    "requirement_units": [
+      {
+        "story_id": "",
+        "story_title": "",
+        "ac_id": "",
+        "ac_text": "",
+        "project_state": "",
+        "state_driven_focus": "",
+        "primary_domain": "",
+        "secondary_domain": null,
+        "application_or_product": "",
+        "module": "",
+        "submodule": "",
+        "actor": "",
+        "action": "",
+        "business_object": "",
+        "requirement_intent": [],
+        "validation_rules": [],
+        "data_rules": [],
+        "role_rules": [],
+        "preconditions": [],
+        "postconditions": [],
+        "state_transitions": [
+          {
+            "from": "",
+            "to": ""
+          }
+        ],
+        "events_integrations": [],
+        "error_conditions": [],
+        "non_functional_constraints": [],
+        "compliance_constraints": [],
+        "scenario_seeds": [],
+        "gaps": [],
+        "confidence_score": 0.0
+      }
+    ]
+  }
+}

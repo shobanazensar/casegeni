@@ -1,0 +1,470 @@
+{
+  "agent": "A5_Test_Generation",
+  "purpose": "Generate full test cases from scenario blueprints and apply required classifications for downstream prioritization, optimization, traceability, and review, while preserving lineage and inherited requirement context.",
+  "input_expected_from_a4": [
+    "story_id",
+    "story_title",
+    "ac_id",
+    "ac_text",
+    "project_state",
+    "state_driven_focus",
+    "application_or_product",
+    "domain",
+    "secondary_domain",
+    "module",
+    "submodule",
+    "scenario_id",
+    "scenario_title",
+    "base_seed",
+    "scenario_family",
+    "a5_scenario_type_hint",
+    "derived_from",
+    "actor",
+    "action",
+    "business_object",
+    "preconditions",
+    "test_focus",
+    "domain_test_focus",
+    "input_variants",
+    "expected_outcome",
+    "compliance_tags",
+    "requirement_gaps",
+    "tags"
+  ],
+  "mandatory_classifications": {
+    "domain": "required",
+    "module": "required",
+    "test_case_layer": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "scenario_type": [
+      "Positive",
+      "Negative",
+      "Edge Case",
+      "Exception Handling"
+    ],
+    "functional_test_type": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression"
+    ],
+    "non_functional_type": [
+      "Performance",
+      "Security",
+      "Accessibility",
+      "Compatibility"
+    ],
+    "automation_hint_initial": [
+      "Yes",
+      "No",
+      "Maybe"
+    ]
+  },
+  "classification_rules": {
+    "test_case_layer": {
+      "UI": [
+        "screen",
+        "page",
+        "form",
+        "ui",
+        "frontend",
+        "visible"
+      ],
+      "API": [
+        "api",
+        "endpoint",
+        "request",
+        "response",
+        "service",
+        "auth",
+        "header"
+      ],
+      "Database": [
+        "db",
+        "database",
+        "table",
+        "sql",
+        "query",
+        "stored procedure",
+        "reconciliation query"
+      ],
+      "ETL Integration": [
+        "etl",
+        "mapping",
+        "transformation",
+        "pipeline",
+        "batch",
+        "source",
+        "target",
+        "cdc"
+      ],
+      "E2E": [
+        "workflow",
+        "journey",
+        "approval",
+        "notification",
+        "report",
+        "end_to_end",
+        "downstream"
+      ]
+    },
+    "scenario_type": {
+      "Positive": [
+        "happy_path",
+        "valid",
+        "success",
+        "allowed",
+        "standard_valid_flow"
+      ],
+      "Negative": [
+        "invalid",
+        "missing",
+        "unauthorized",
+        "duplicate",
+        "rejected",
+        "forbidden"
+      ],
+      "Edge Case": [
+        "boundary",
+        "min",
+        "max",
+        "limit",
+        "threshold",
+        "precision",
+        "scale",
+        "length",
+        "boundary_case",
+        "boundary"
+      ],
+      "Exception Handling": [
+        "failure",
+        "timeout",
+        "retry",
+        "error",
+        "exception",
+        "unavailable",
+        "recovery",
+        "integration_failure"
+      ]
+    },
+    "functional_test_type": {
+      "Functional": [
+        "workflow",
+        "business_rule",
+        "validation",
+        "role_based",
+        "functional"
+      ],
+      "Smoke": [
+        "critical_path",
+        "basic_flow",
+        "build_verification",
+        "core_path"
+      ],
+      "Sanity": [
+        "specific_fix",
+        "targeted_validation",
+        "focused_check",
+        "narrow_scope"
+      ],
+      "Regression": [
+        "existing_flow",
+        "repeatable",
+        "broader_coverage",
+        "impacted_area"
+      ]
+    },
+    "non_functional_type": {
+      "Performance": [
+        "latency",
+        "throughput",
+        "load",
+        "stress",
+        "volume",
+        "response_time"
+      ],
+      "Security": [
+        "auth",
+        "authorization",
+        "injection",
+        "masking",
+        "audit",
+        "access_control",
+        "permission"
+      ],
+      "Accessibility": [
+        "wcag",
+        "screen_reader",
+        "keyboard",
+        "contrast",
+        "aria"
+      ],
+      "Compatibility": [
+        "browser",
+        "device",
+        "os",
+        "cross_platform",
+        "resolution"
+      ]
+    }
+  },
+  "test_generation_templates": {
+    "UI": [
+      "Login or access application with the required role",
+      "Navigate to the relevant module or screen",
+      "Perform the business action using the specified input data",
+      "Validate the UI response and business outcome"
+    ],
+    "API": [
+      "Prepare endpoint, method, headers, and authentication",
+      "Set request parameters or payload using test data",
+      "Send the request",
+      "Validate response status, body, headers, and business outcome"
+    ],
+    "Database": [
+      "Prepare prerequisite data in source tables or dependent entities",
+      "Execute the triggering action or query",
+      "Validate stored data, field values, and constraints",
+      "Verify reconciliation or persistence outcome"
+    ],
+    "ETL Integration": [
+      "Prepare source data set with required variations",
+      "Execute batch, pipeline, or triggering integration flow",
+      "Validate transformation, mapping, and target load",
+      "Verify reconciliation, reject handling, and downstream outcome"
+    ],
+    "E2E": [
+      "Prepare end-to-end business preconditions",
+      "Execute the workflow across involved modules or systems",
+      "Validate intermediate state transitions and integrations",
+      "Verify final business outcome in downstream system, notification, or report"
+    ]
+  },
+  "domain_specific_generation": {
+    "healthcare": {
+      "sample_test_data_patterns": [
+        "TEST_PATIENT_HIPAA",
+        "ICD-10 code",
+        "CPT code",
+        "provider NPI",
+        "claim id"
+      ],
+      "extra_validations": [
+        "Verify ICD-10 diagnosis codes mapped correctly",
+        "Confirm CPT procedure codes valid for date of service",
+        "Check patient eligibility at time of service",
+        "Validate NPI numbers for rendering/referring providers",
+        "Ensure PHI not exposed in logs/response",
+        "Confirm claim passes HIPAA-compatible format validation"
+      ],
+      "expected_result_patterns": [
+        "clinical codes validated",
+        "claim status updated correctly",
+        "audit log captured",
+        "PHI masked",
+        "insurance verification outcome reflected"
+      ]
+    },
+    "financial_services": {
+      "sample_test_data_patterns": [
+        "account id",
+        "beneficiary account",
+        "routing number",
+        "SWIFT/BIC",
+        "currency pair"
+      ],
+      "extra_validations": [
+        "Verify exchange rate applied matches rate table",
+        "Check rounding rules for applicable currencies",
+        "Validate SWIFT/BIC or routing number format",
+        "Confirm regulatory reporting triggered for threshold amounts",
+        "Verify audit trail captures all changes",
+        "Check fee calculation including flat and percentage components"
+      ],
+      "expected_result_patterns": [
+        "amount transferred correctly",
+        "balance updated correctly",
+        "audit trail created",
+        "regulatory checks triggered",
+        "precision and rounding rules applied"
+      ]
+    },
+    "ecommerce_retail": {
+      "sample_test_data_patterns": [
+        "SKU",
+        "coupon code",
+        "cart id",
+        "order id",
+        "shipping address"
+      ],
+      "extra_validations": [
+        "Verify price and discount calculations",
+        "Check tax by jurisdiction",
+        "Validate inventory sync after order placement",
+        "Confirm coupon or promotion eligibility logic",
+        "Check refund amount and status updates",
+        "Verify order fulfillment status propagation"
+      ],
+      "expected_result_patterns": [
+        "order total calculated correctly",
+        "inventory updated",
+        "tax applied correctly",
+        "refund processed correctly",
+        "fulfillment status reflected"
+      ]
+    },
+    "manufacturing_supply_chain": {
+      "sample_test_data_patterns": [
+        "BOM id",
+        "work order id",
+        "lot number",
+        "serial number",
+        "warehouse bin"
+      ],
+      "extra_validations": [
+        "Verify BOM accuracy",
+        "Check lot and serial traceability",
+        "Validate unit conversion rules",
+        "Confirm quality hold behavior",
+        "Verify inventory valuation logic",
+        "Check receiving and inspection outcomes"
+      ],
+      "expected_result_patterns": [
+        "material movement reflected correctly",
+        "quality status updated",
+        "traceability preserved",
+        "inventory valuation calculated correctly"
+      ]
+    },
+    "logistics_transportation": {
+      "sample_test_data_patterns": [
+        "shipment id",
+        "carrier id",
+        "tracking number",
+        "route id",
+        "delivery window"
+      ],
+      "extra_validations": [
+        "Verify route optimization output",
+        "Check delivery window boundaries",
+        "Validate proof of delivery capture",
+        "Confirm freight calculation accuracy",
+        "Check pickup/dropoff state transitions",
+        "Verify carrier assignment rules"
+      ],
+      "expected_result_patterns": [
+        "shipment state updated correctly",
+        "carrier assignment reflected",
+        "POD captured",
+        "freight amount calculated correctly"
+      ]
+    },
+    "construction_real_estate": {
+      "sample_test_data_patterns": [
+        "project id",
+        "contract id",
+        "change order id",
+        "lease id",
+        "tenant id"
+      ],
+      "extra_validations": [
+        "Verify progress billing calculations",
+        "Check change order workflow transitions",
+        "Validate compliance documentation attachment requirements",
+        "Confirm lease/deposit handling",
+        "Check maintenance request status flow",
+        "Verify retainage calculation rules"
+      ],
+      "expected_result_patterns": [
+        "billing state updated correctly",
+        "change order approval reflected",
+        "documentation status recorded",
+        "tenant or contract status updated"
+      ]
+    },
+    "generic": {
+      "sample_test_data_patterns": [
+        "entity id",
+        "user id",
+        "request id"
+      ],
+      "extra_validations": [
+        "Verify CRUD behavior",
+        "Check workflow transition rules",
+        "Validate mandatory and optional fields",
+        "Confirm access control behavior"
+      ],
+      "expected_result_patterns": [
+        "record created or updated correctly",
+        "state transition reflected",
+        "validation messages shown appropriately"
+      ]
+    }
+  },
+  "automation_rules": {
+    "default": "Yes",
+    "output_field": "automation_hint_initial",
+    "mark_no_if": [
+      "exploratory",
+      "one_time_validation",
+      "manual_visual_check",
+      "stakeholder_confirmation_required"
+    ],
+    "mark_maybe_if": [
+      "complex_e2e",
+      "external_dependency",
+      "unstable_environment",
+      "high_setup_cost",
+      "partial_manual_verification"
+    ]
+  },
+  "output_schema": {
+    "test_cases": [
+      {
+        "test_case_id": "",
+        "story_id": "",
+        "story_title": "",
+        "ac_id": "",
+        "ac_text": "",
+        "project_state": "",
+        "application_or_product": "",
+        "domain": "",
+        "secondary_domain": null,
+        "module": "",
+        "submodule": "",
+        "scenario_id": "",
+        "scenario_title": "",
+        "base_seed": "",
+        "scenario_family": "",
+        "derived_from": {
+          "flow": "",
+          "ep_partition": "",
+          "boundary_variant": "",
+          "state_variant": "",
+          "pairwise_dimensions": [],
+          "domain_variant": ""
+        },
+        "test_case_layer": "",
+        "scenario_type": "",
+        "functional_test_type": "",
+        "non_functional_type": "",
+        "automation_hint_initial": "",
+        "preconditions": [],
+        "test_data": [],
+        "domain_specific_validations": [],
+        "steps": [],
+        "expected_result": "",
+        "expected_outcome_reference": "",
+        "compliance_tags": [],
+        "requirement_gaps_inherited": [],
+        "tags": [],
+        "confidence_score": 0.0
+      }
+    ]
+  }
+}

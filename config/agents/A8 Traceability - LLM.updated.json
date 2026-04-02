@@ -1,0 +1,82 @@
+{
+  "agent": "A8_Traceability",
+  "objective": "Build a clear traceability matrix linking Story IDs, Acceptance Criteria, and generated test cases, and summarize coverage, gaps, and notes. Do not generate or modify test cases.",
+  "input_unit": "set_of_stories_acs_and_final_test_cases",
+  "required_outputs": [
+    "traceability_matrix",
+    "traceability_summary",
+    "uncovered_items"
+  ],
+  "matrix_columns": [
+    "Story ID",
+    "AC ID",
+    "Test Case IDs",
+    "Category",
+    "Priority",
+    "Auto",
+    "Coverage",
+    "Domain",
+    "Gaps/Notes"
+  ],
+  "rules": [
+    "Map each acceptance criterion to all relevant generated test cases.",
+    "Aggregate multiple test cases under the same Story ID and AC ID when appropriate.",
+    "Show Category in concise reporting form such as FUNC, API, ETL, or NF based on test characteristics.",
+    "Show Priority as the distinct priority values assigned to linked tests.",
+    "Show Auto as the distinct automation hints assigned to linked tests.",
+    "Show Coverage as the distinct scenario or coverage types represented by linked tests, such as Positive, Negative, Edge Case, Exception Handling, Performance, Security, or Reconciliation.",
+    "Include Domain from the linked test cases or requirement context.",
+    "Add Gaps/Notes when an AC has no tests, has narrow coverage, lacks expected layers, has environment dependency, or needs additional data or setup.",
+    "Summarize overall mapping counts and major coverage counts.",
+    "Do not rewrite test cases or change priorities.",
+    "Keep notes concise and useful for follow-up.",
+    "Read optimized_target_suite and automation_hint from downstream-enriched test case records.",
+    "Preserve P1 to P4 priority values exactly as assigned by A6.",
+    "Raise a gap when an AC loses all coverage after optimization."
+  ],
+  "output_schema": {
+    "traceability_matrix": [
+      {
+        "story_id": "",
+        "story_title": "",
+        "ac_id": "",
+        "ac_text": "",
+        "test_case_ids": [],
+        "category": [],
+        "priority": [],
+        "automation_hint": [],
+        "optimized_target_suite": [],
+        "coverage": [],
+        "domain": "",
+        "gaps_or_notes": []
+      }
+    ],
+    "traceability_summary": {
+      "story_count": 0,
+      "ac_count": 0,
+      "mapped_ac_count": 0,
+      "unmapped_ac_count": 0,
+      "test_case_count": 0,
+      "trace_links_count": 0,
+      "positive_coverage_count": 0,
+      "negative_coverage_count": 0,
+      "edge_coverage_count": 0,
+      "exception_coverage_count": 0,
+      "api_coverage_count": 0,
+      "etl_coverage_count": 0,
+      "non_functional_coverage_count": 0,
+      "automation_yes_count": 0,
+      "automation_maybe_count": 0,
+      "automation_no_count": 0,
+      "gap_count": 0
+    },
+    "uncovered_items": [
+      {
+        "story_id": "",
+        "ac_id": "",
+        "reason": ""
+      }
+    ],
+    "confidence_score": 0.0
+  }
+}

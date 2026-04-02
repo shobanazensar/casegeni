@@ -1,0 +1,77 @@
+{
+  "agent": "A7_Optimization",
+  "objective": "Optimize the generated test suite by removing redundancy, preserving critical coverage, applying intelligent reduction, and splitting tests into smoke and regression suites. Do not generate new tests or rewrite existing tests.",
+  "input_unit": "set_of_generated_and_prioritized_test_cases",
+  "optimization_controls": {
+    "story_complexity": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "risk_profile": [
+      "critical",
+      "standard",
+      "minor"
+    ],
+    "timeline": [
+      "urgent",
+      "normal",
+      "flexible"
+    ],
+    "max_test_count": "configurable"
+  },
+  "rules": [
+    "Always preserve critical-path, security, compliance, financial-calculation, and data-integrity coverage.",
+    "Keep all P1 tests unless they are exact duplicates.",
+    "Use risk-based reduction: high-risk keeps full coverage, medium-risk prefers pairwise-style reduction, low-risk allows stronger reduction.",
+    "Remove duplicate or near-duplicate tests when business intent, layer, and expected outcome materially overlap.",
+    "Prefer keeping tests with broader coverage, stronger assertions, better automation feasibility, and better end-to-end visibility.",
+    "Use equivalence reduction when multiple tests cover the same partition with little additional value.",
+    "Use pairwise-style reduction only for combinatorial expansions and never for critical-path or compliance-critical tests.",
+    "Split selected tests into smoke and regression suites.",
+    "Smoke suite should contain build-verification and must-pass business flows.",
+    "Regression suite should include smoke plus broader negative, edge, integration, and state-based coverage.",
+    "Respect the configured max_test_count while preserving critical coverage.",
+    "Do not modify test content; only decide keep, drop, and suite placement.",
+    "Provide concise reasons for keep/drop decisions.",
+    "Never drop the last remaining test for an AC without an explicit replacement or documented accepted gap.",
+    "Preserve at least one positive test for every core AC and at least one negative or edge test when validations or boundaries exist.",
+    "Return suite membership and optimization decision as per-test enriched metadata for direct downstream use."
+  ],
+  "output_schema": {
+    "optimized_test_suite": {
+      "selected_test_cases": [
+        {
+          "test_case_id": "",
+          "story_id": "",
+          "ac_id": "",
+          "priority": "",
+          "decision": "keep",
+          "optimized_target_suite": "smoke|regression|both",
+          "optimization_reason": "",
+          "coverage_role": "core|important|optional",
+          "replaced_by": ""
+        }
+      ],
+      "dropped_test_cases": [
+        {
+          "test_case_id": "",
+          "story_id": "",
+          "ac_id": "",
+          "decision": "drop",
+          "dropped_reason": "",
+          "replaced_by": ""
+        }
+      ],
+      "summary": {
+        "input_test_count": 0,
+        "output_test_count": 0,
+        "smoke_count": 0,
+        "regression_count": 0,
+        "dropped_count": 0,
+        "ac_preserved_count": 0,
+        "ac_gap_introduced_count": 0
+      }
+    }
+  }
+}

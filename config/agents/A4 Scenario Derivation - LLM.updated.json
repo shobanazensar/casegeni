@@ -1,0 +1,204 @@
+{
+  "agent": "A4_Scenario_Derivation",
+  "objective": "Expand requirement intelligence into scenario blueprints using domain/app flows, equivalence partitioning, boundary value analysis, state transitions, pairwise combinations, and domain-specific scenario enrichment. Do not generate full test cases.",
+  "input_unit": "one_a3_requirement_unit_with_a2_domain_context",
+  "allowed_expansion_methods": [
+    "domain_app_flow_expansion",
+    "equivalence_partitioning",
+    "boundary_value_analysis",
+    "state_transition_expansion",
+    "pairwise_combination",
+    "domain_specific_enrichment"
+  ],
+  "allowed_scenario_types": [
+    "positive",
+    "negative",
+    "boundary",
+    "role_based",
+    "state_transition",
+    "integration",
+    "data_quality",
+    "compliance",
+    "non_functional"
+  ],
+  "rules": [
+    "Start from the A3 scenario seeds and expand them into practical scenario variants.",
+    "Use domain and application workflow context when available.",
+    "Apply equivalence partitioning where valid and invalid input classes are implied.",
+    "Apply boundary value analysis where ranges, limits, lengths, precision, or thresholds are implied.",
+    "Apply state transition expansion where statuses or lifecycle changes are present.",
+    "Apply pairwise combinations only when multiple relevant dimensions exist and avoid combinatorial explosion.",
+    "Add domain-specific scenario enrichment based on the detected domain, roles, regulations, business entities, and test focus.",
+    "Prefer scenarios that reflect real domain workflows and domain-specific failure conditions.",
+    "Do not generate redundant or near-duplicate scenarios.",
+    "Keep scenarios atomic and easy for A5 to convert into full tests.",
+    "Do not generate detailed test steps.",
+    "Preserve story, AC, project state, domain, application, and module identity fields from A3 in every scenario blueprint.",
+    "Preserve requirement gaps for downstream caution; do not silently drop ambiguity.",
+    "Include mapping guidance for downstream A5 scenario classification without replacing the richer scenario family."
+  ],
+  "domain_reference": {
+    "healthcare": {
+      "test_focus": [
+        "PHI/PII masking",
+        "clinical logic",
+        "insurance verification",
+        "claim adjudication"
+      ],
+      "suggested_variants": [
+        "missing_diagnosis_code",
+        "invalid_procedure_code",
+        "claim_amount_at_plan_maximum",
+        "role_based_claim_access",
+        "phi_masking_validation",
+        "clinical_code_mapping_validation",
+        "provider_npi_validation",
+        "hipaa_format_validation"
+      ]
+    },
+    "financial_services": {
+      "test_focus": [
+        "monetary precision",
+        "currency conversion",
+        "reconciliation",
+        "audit trails"
+      ],
+      "suggested_variants": [
+        "daily_limit_boundary",
+        "insufficient_balance",
+        "fx_conversion_validation",
+        "rounding_rule_validation",
+        "swift_bic_format_validation",
+        "audit_trail_creation",
+        "regulatory_reporting_trigger",
+        "peak_processing_performance"
+      ]
+    },
+    "ecommerce_retail": {
+      "test_focus": [
+        "pricing calculations",
+        "tax by jurisdiction",
+        "inventory sync",
+        "order fulfillment"
+      ],
+      "suggested_variants": [
+        "discount_coupon_validation",
+        "inventory_sync_failure",
+        "tax_jurisdiction_validation",
+        "refund_amount_validation",
+        "gift_card_payment_flow",
+        "shipping_charge_boundary",
+        "out_of_stock_transition",
+        "order_fulfillment_update"
+      ]
+    },
+    "manufacturing_supply_chain": {
+      "test_focus": [
+        "unit conversions",
+        "lot traceability",
+        "quality holds",
+        "inventory valuation"
+      ],
+      "suggested_variants": [
+        "bom_accuracy_validation",
+        "lot_traceability_check",
+        "quality_hold_transition",
+        "inventory_valuation_calculation",
+        "unit_conversion_validation",
+        "serial_number_uniqueness",
+        "receiving_inspection_failure",
+        "material_shortage_handling"
+      ]
+    },
+    "logistics_transportation": {
+      "test_focus": [
+        "route optimization",
+        "delivery windows",
+        "proof of delivery",
+        "freight calculation"
+      ],
+      "suggested_variants": [
+        "delivery_window_boundary",
+        "route_optimization_validation",
+        "proof_of_delivery_capture",
+        "freight_charge_validation",
+        "carrier_assignment_failure",
+        "pickup_dropoff_transition",
+        "hazmat_compliance_check",
+        "customs_hold_exception"
+      ]
+    },
+    "construction_real_estate": {
+      "test_focus": [
+        "progress billing",
+        "change order workflows",
+        "compliance documentation"
+      ],
+      "suggested_variants": [
+        "change_order_workflow_validation",
+        "progress_billing_calculation",
+        "lease_deposit_handling",
+        "maintenance_ticket_transition",
+        "permit_document_validation",
+        "retainage_calculation",
+        "tenant_access_restriction",
+        "inspection_rejection_path"
+      ]
+    },
+    "generic": {
+      "test_focus": [
+        "CRUD operations",
+        "workflow validation",
+        "explicit business rules"
+      ],
+      "suggested_variants": [
+        "crud_happy_path",
+        "mandatory_field_validation",
+        "access_control_validation",
+        "workflow_transition_validation"
+      ]
+    }
+  },
+  "output_schema": {
+    "scenario_blueprints": [
+      {
+        "story_id": "",
+        "story_title": "",
+        "ac_id": "",
+        "ac_text": "",
+        "project_state": "",
+        "state_driven_focus": "",
+        "application_or_product": "",
+        "domain": "",
+        "secondary_domain": null,
+        "module": "",
+        "submodule": "",
+        "scenario_id": "",
+        "scenario_title": "",
+        "base_seed": "",
+        "scenario_family": "",
+        "a5_scenario_type_hint": "",
+        "derived_from": {
+          "flow": "",
+          "ep_partition": "",
+          "boundary_variant": "",
+          "state_variant": "",
+          "pairwise_dimensions": [],
+          "domain_variant": ""
+        },
+        "actor": "",
+        "action": "",
+        "business_object": "",
+        "preconditions": [],
+        "test_focus": [],
+        "domain_test_focus": [],
+        "input_variants": [],
+        "expected_outcome": "",
+        "compliance_tags": [],
+        "requirement_gaps": [],
+        "tags": [],
+        "confidence_score": 0.0
+      }
+    ]
+  }
+}

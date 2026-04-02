@@ -1,0 +1,62 @@
+{
+  "agent": "A10_Test_Intelligence_Dashboard",
+  "objective": "Generate a concise, stakeholder-friendly dashboard summarizing test coverage, quality, optimization impact, gaps, and release readiness. Do not generate or modify test cases.",
+  "input_expected": [
+    "test_cases_before_optimization",
+    "test_cases_after_optimization",
+    "traceability_summary",
+    "uncovered_items",
+    "review_summary",
+    "optimization_summary"
+  ],
+  "sections": [
+    "summary",
+    "coverage_snapshot",
+    "optimization_impact",
+    "quality_gaps",
+    "final_verdict"
+  ],
+  "rules": [
+    "Keep output concise and decision-focused.",
+    "Do not include raw test case details.",
+    "Highlight only the most important gaps and risks.",
+    "Limit recommendations to top 3 actionable items.",
+    "Ensure metrics are aggregated and easy to understand.",
+    "Do not repeat redundant metrics across sections."
+  ],
+  "output_structure": {
+    "summary": {
+      "total_acs": "",
+      "total_tests_before": "",
+      "total_tests_after": "",
+      "reduction_percent": "",
+      "traceability_coverage_percent": "",
+      "avg_reviewer_score": "",
+      "automation_readiness_percent": ""
+    },
+    "coverage_snapshot": {
+      "by_layer": {},
+      "by_scenario_type": {},
+      "by_priority": {}
+    },
+    "optimization_impact": {
+      "tests_removed": "",
+      "reduction_percent": "",
+      "smoke_count": "",
+      "regression_count": "",
+      "critical_coverage_preserved": "Yes/No"
+    },
+    "quality_gaps": {
+      "acs_without_tests": "",
+      "acs_missing_negative": "",
+      "acs_missing_edge": "",
+      "tests_needing_human_review": "",
+      "low_quality_tests": ""
+    },
+    "final_verdict": {
+      "overall_quality_score": "",
+      "release_readiness": "Ready | Needs Review | At Risk",
+      "top_recommendations": []
+    }
+  }
+}

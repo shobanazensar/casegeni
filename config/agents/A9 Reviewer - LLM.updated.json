@@ -1,0 +1,215 @@
+{
+  "agent": "A9_Reviewer",
+  "objective": "Perform final review of generated test cases, validate schema and classification correctness, score quality using the appropriate review profile, apply only minor safe corrections, and emit final review feedback. Do not generate new tests.",
+  "input_unit": "one_generated_test_case_with_traceability_context",
+  "required_classifications": {
+    "project_state": [
+      "Legacy",
+      "Existing",
+      "New"
+    ],
+    "domain": "required",
+    "module": "required",
+    "test_case_layer": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "scenario_type": [
+      "Positive",
+      "Negative",
+      "Edge Case",
+      "Exception Handling"
+    ],
+    "functional_test_type": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression"
+    ],
+    "non_functional_type": [
+      "Performance",
+      "Security",
+      "Accessibility",
+      "Compatibility"
+    ],
+    "priority": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "automation_hint": [
+      "Yes",
+      "No",
+      "Maybe"
+    ]
+  },
+  "project_state_rules": {
+    "Legacy": [
+      "legacy",
+      "existing system",
+      "migrate",
+      "migration",
+      "modernization"
+    ],
+    "Existing": [
+      "enhancement",
+      "change request",
+      "modify",
+      "update existing"
+    ],
+    "New": [
+      "new",
+      "state_driven_focus: discovery"
+    ]
+  },
+  "review_profiles": {
+    "UI_Business": [
+      "traceability",
+      "clarity",
+      "correctness",
+      "completeness",
+      "business_outcome_focus",
+      "defect_detection",
+      "actionability",
+      "maintainability"
+    ],
+    "API": [
+      "correctness",
+      "defect_detection",
+      "completeness",
+      "diagnostic_value",
+      "security_awareness",
+      "maintainability",
+      "reusability",
+      "traceability"
+    ],
+    "Database": [
+      "data_integrity",
+      "correctness",
+      "completeness",
+      "diagnostic_value",
+      "defect_detection",
+      "maintainability",
+      "reusability",
+      "traceability"
+    ],
+    "ETL_Integration": [
+      "data_integrity",
+      "transformation_accuracy",
+      "completeness",
+      "defect_detection",
+      "diagnostic_value",
+      "maintainability",
+      "reusability",
+      "traceability"
+    ],
+    "E2E_BusinessFlow": [
+      "traceability",
+      "correctness",
+      "completeness",
+      "business_outcome_focus",
+      "risk_coverage",
+      "defect_detection",
+      "diagnostic_value",
+      "maintainability"
+    ],
+    "NonFunctional": [
+      "correctness",
+      "risk_coverage",
+      "measurement_clarity",
+      "environment_readiness",
+      "diagnostic_value",
+      "maintainability",
+      "reusability",
+      "traceability"
+    ]
+  },
+  "rules": [
+    "Choose review profile using explicit precedence: if non_functional_type is populated use NonFunctional; otherwise choose the profile by test_case_layer.",
+    "Validate required fields and classification values before scoring.",
+    "Check that project_state, domain, module, layer, scenario type, functional/non-functional type, priority, and automation_hint values are valid and internally consistent.",
+    "Check that the test steps and expected result are appropriate for the assigned layer.",
+    "Check that the test remains traceable to story and acceptance criteria context.",
+    "Score each review dimension from 0 to 5 with concise reasons.",
+    "Compute a weighted overall score and assign a grade.",
+    "Apply only minor safe corrections such as enum normalization, blank optional type cleanup, minor classification normalization, or harmless consistency fixes.",
+    "Do not rewrite the entire test case.",
+    "Flag human intervention when the issue is material, ambiguous, or unsafe to auto-correct.",
+    "Keep feedback specific and actionable."
+  ],
+  "allowed_outputs": {
+    "grades": [
+      "Excellent",
+      "Good",
+      "Acceptable",
+      "Poor"
+    ],
+    "project_states": [
+      "Legacy",
+      "Existing",
+      "New"
+    ],
+    "priorities": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "automation_values": [
+      "Yes",
+      "No",
+      "Maybe"
+    ],
+    "test_case_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "scenario_types": [
+      "Positive",
+      "Negative",
+      "Edge Case",
+      "Exception Handling"
+    ]
+  },
+  "output_schema": {
+    "reviewed_test_cases": [
+      {
+        "test_case_id": "",
+        "story_id": "",
+        "ac_id": "",
+        "project_state": "",
+        "review_profile": "",
+        "scores": {
+          "dimension_name": {
+            "score": 0,
+            "reason": ""
+          }
+        },
+        "total_weighted_score": 0.0,
+        "grade": "",
+        "summary_feedback": "",
+        "improvement_areas": [],
+        "minor_corrections_applied": [],
+        "human_intervention_needed": false,
+        "intervention_reason": "",
+        "confidence_score": 0.0
+      }
+    ],
+    "review_summary": {
+      "total_test_cases_reviewed": 0,
+      "excellent_count": 0,
+      "good_count": 0,
+      "acceptable_count": 0,
+      "poor_count": 0,
+      "human_intervention_count": 0,
+      "major_common_issues": []
+    }
+  }
+}

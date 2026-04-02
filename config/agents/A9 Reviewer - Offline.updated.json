@@ -1,0 +1,301 @@
+{
+  "agent": "A9_Reviewer",
+  "purpose": "Perform final quality review of generated test cases, validate schema and classifications, score quality using explicit profile precedence, apply minor safe corrections, and emit final review summary.",
+  "input_expected_from_previous_agents": [
+    "project_state",
+    "test_case_id",
+    "story_id",
+    "story_title",
+    "ac_id",
+    "ac_text",
+    "title",
+    "domain",
+    "module",
+    "submodule",
+    "test_case_layer",
+    "scenario_type",
+    "functional_test_type",
+    "non_functional_type",
+    "priority",
+    "automation_hint",
+    "preconditions",
+    "test_data",
+    "steps",
+    "expected_result",
+    "tags",
+    "traceability_matrix",
+    "traceability_summary"
+  ],
+  "project_state_rules": {
+    "Legacy": [
+      "legacy",
+      "existing system",
+      "migrate",
+      "migration",
+      "modernization"
+    ],
+    "Existing": [
+      "enhancement",
+      "change request",
+      "modify",
+      "update existing"
+    ],
+    "New": [
+      "new",
+      "state_driven_focus: discovery"
+    ]
+  },
+  "review_scopes": [
+    "schema_validation",
+    "classification_validation",
+    "content_quality_review",
+    "traceability_review",
+    "coverage_review",
+    "minor_correction"
+  ],
+  "schema_rules": {
+    "required_fields": [
+      "test_case_id",
+      "story_id",
+      "ac_id",
+      "title",
+      "domain",
+      "module",
+      "test_case_layer",
+      "scenario_type",
+      "priority",
+      "automation_hint",
+      "preconditions",
+      "steps",
+      "expected_result"
+    ],
+    "allowed_project_states": [
+      "Legacy",
+      "Existing",
+      "New"
+    ],
+    "allowed_test_case_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "allowed_scenario_types": [
+      "Positive",
+      "Negative",
+      "Edge Case",
+      "Exception Handling"
+    ],
+    "allowed_functional_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      ""
+    ],
+    "allowed_non_functional_types": [
+      "Performance",
+      "Security",
+      "Accessibility",
+      "Compatibility",
+      ""
+    ],
+    "allowed_priorities": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "allowed_automation_values": [
+      "Yes",
+      "No",
+      "Maybe"
+    ]
+  },
+  "classification_consistency_rules": {
+    "domain_required": true,
+    "module_required": true,
+    "project_state_required": true,
+    "api_layer_should_not_have_ui_only_steps": true,
+    "database_layer_should_include_data_validation_focus": true,
+    "etl_integration_should_reference_data_flow_mapping_or_pipeline_behavior": true,
+    "e2e_should_cover_cross_module_or_end_to_end_business_flow": true,
+    "functional_test_type_should_be_present_only_for_functional_tests": true,
+    "non_functional_type_should_be_present_only_for_non_functional_tests": true,
+    "scenario_type_should_match_test_intent": true,
+    "priority_should_match_business_risk_and_coverage_context": true,
+    "domain_and_module_should_align_with_story_and_ac_context": true,
+    "review_profile_precedence": "non_functional_type_overrides_layer_profile",
+    "priority_scale_should_remain_p1_to_p4": true
+  },
+  "review_profiles": {
+    "UI_Business": {
+      "applies_to_layers": [
+        "UI"
+      ],
+      "dimensions": {
+        "traceability": 20,
+        "clarity": 15,
+        "correctness": 15,
+        "completeness": 10,
+        "business_outcome_focus": 15,
+        "defect_detection": 10,
+        "actionability": 10,
+        "maintainability": 5
+      }
+    },
+    "API": {
+      "applies_to_layers": [
+        "API"
+      ],
+      "dimensions": {
+        "correctness": 20,
+        "defect_detection": 20,
+        "completeness": 15,
+        "diagnostic_value": 15,
+        "security_awareness": 10,
+        "maintainability": 10,
+        "reusability": 5,
+        "traceability": 5
+      }
+    },
+    "Database": {
+      "applies_to_layers": [
+        "Database"
+      ],
+      "dimensions": {
+        "data_integrity": 20,
+        "correctness": 15,
+        "completeness": 15,
+        "diagnostic_value": 15,
+        "defect_detection": 10,
+        "maintainability": 10,
+        "reusability": 5,
+        "traceability": 10
+      }
+    },
+    "ETL_Integration": {
+      "applies_to_layers": [
+        "ETL Integration"
+      ],
+      "dimensions": {
+        "data_integrity": 25,
+        "transformation_accuracy": 20,
+        "completeness": 15,
+        "defect_detection": 15,
+        "diagnostic_value": 10,
+        "maintainability": 5,
+        "reusability": 5,
+        "traceability": 5
+      }
+    },
+    "E2E_BusinessFlow": {
+      "applies_to_layers": [
+        "E2E"
+      ],
+      "dimensions": {
+        "traceability": 15,
+        "correctness": 15,
+        "completeness": 15,
+        "business_outcome_focus": 15,
+        "risk_coverage": 10,
+        "defect_detection": 10,
+        "diagnostic_value": 10,
+        "maintainability": 10
+      }
+    },
+    "NonFunctional": {
+      "applies_to_non_functional_types": [
+        "Performance",
+        "Security",
+        "Accessibility",
+        "Compatibility"
+      ],
+      "dimensions": {
+        "correctness": 15,
+        "risk_coverage": 20,
+        "measurement_clarity": 15,
+        "environment_readiness": 10,
+        "diagnostic_value": 10,
+        "maintainability": 10,
+        "reusability": 10,
+        "traceability": 10
+      }
+    }
+  },
+  "grading_rules": {
+    "score_scale": "0_to_5",
+    "grade_mapping": {
+      "4.5_to_5.0": "Excellent",
+      "3.5_to_4.49": "Good",
+      "2.5_to_3.49": "Acceptable",
+      "0_to_2.49": "Poor"
+    }
+  },
+  "correction_rules": {
+    "allow_minor_fixes": [
+      "normalize_project_state_value",
+      "normalize_classification_values",
+      "remove_invalid_enum_value",
+      "fix_misaligned_layer_type_combo",
+      "deduplicate_tags",
+      "normalize_priority_value",
+      "normalize_automation_value",
+      "normalize_scenario_type_spelling",
+      "normalize_automation_hint_field_name"
+    ],
+    "do_not_change": [
+      "business_intent",
+      "traceability_links",
+      "core_test_steps_meaning",
+      "expected_business_outcome"
+    ]
+  },
+  "human_intervention_rules": {
+    "require_human_if": [
+      "domain_uncertain",
+      "module_uncertain",
+      "project_state_uncertain",
+      "ac_unmapped",
+      "critical_test_has_low_score",
+      "classification_conflict_cannot_be_auto_fixed",
+      "expected_result_not_testable",
+      "missing_core_test_data_for_critical_flow"
+    ]
+  },
+  "output_schema": {
+    "reviewed_test_cases": [
+      {
+        "test_case_id": "",
+        "story_id": "",
+        "ac_id": "",
+        "project_state": "",
+        "review_profile": "",
+        "scores": {
+          "dimension_name": {
+            "score": 0,
+            "reason": ""
+          }
+        },
+        "total_weighted_score": 0.0,
+        "grade": "",
+        "summary_feedback": "",
+        "improvement_areas": [],
+        "minor_corrections_applied": [],
+        "human_intervention_needed": false,
+        "intervention_reason": "",
+        "confidence_score": 0.0
+      }
+    ],
+    "review_summary": {
+      "total_test_cases_reviewed": 0,
+      "excellent_count": 0,
+      "good_count": 0,
+      "acceptable_count": 0,
+      "poor_count": 0,
+      "human_intervention_count": 0,
+      "major_common_issues": []
+    }
+  }
+}
