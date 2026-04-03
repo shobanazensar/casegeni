@@ -1,0 +1,92 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "financial_services",
+    "secondary_domain": "",
+    "confidence_score": 0.5833333333333334,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Account",
+      "Audit",
+      "Profile",
+      "Notification"
+    ],
+    "domain_signals": [
+      "account",
+      "transaction"
+    ],
+    "business_entities": [
+      "Account",
+      "Audit",
+      "Profile",
+      "Notification"
+    ],
+    "user_roles": [
+      "Admin",
+      "Teller",
+      "user"
+    ],
+    "likely_process_flows": [
+      "only authorized personnel can access the banking platform",
+      "my session and data remain protected",
+      "only active users can access the system",
+      "I can maintain account security",
+      "unauthorized access is prevented"
+    ],
+    "applicable_regulations": [
+      "SOX",
+      "PCI-DSS",
+      "GLBA",
+      "Basel III",
+      "MiFID II",
+      "KYC"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=financial_services using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 28,
+    "ac_count": 168
+  },
+  "run_config": {
+    "execution_mode_requested": "offline",
+    "execution_mode_used": "offline",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "",
+      "api_key": "",
+      "base_url": "",
+      "temperature": 0.2,
+      "max_tokens": 8000,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": false,
+      "used": false,
+      "fallback_reason": "",
+      "generator_source": "offline_rules"
+    },
+    "generator_source": "offline_rules",
+    "max_test_count": 300
+  }
+}

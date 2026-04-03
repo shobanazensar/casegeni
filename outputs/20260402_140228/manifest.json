@@ -1,0 +1,84 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "confidence_score": 0.5,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "General"
+    ],
+    "domain_signals": [
+      "product",
+      "customer"
+    ],
+    "business_entities": [
+      "General"
+    ],
+    "user_roles": [
+      "Zensar employee "
+    ],
+    "likely_process_flows": [
+      "I can submit the trip for approval and booking by the Travel Desk"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=ecommerce_retail using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 7
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "llama3:8b",
+      "api_key": "***",
+      "base_url": "http://localhost:11434/v1",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "llama3:8b",
+      "base_url": "http://localhost:11434/v1",
+      "batch_count": 7,
+      "response_time_sec": 462.9,
+      "raw_preview": "{\"test_cases\": [{\"title\": \"Login & Access: SSO login and ZenTravel homepage display\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"functional_test_type\": \"\", \"non_functional_type\": \"Accessibility\", \"preconditions\": [\"General module is available in a stable test environment.\", \"Keyboard and screen-reader checks can be performed.\"], \"test_data\": [\"Domain: ecommerce_retail\", \"Requirement: ST1-AC1\"], \"steps\": [\"Navigate to the ZenTravel login page.\", \"Enter valid SSO credentials.\", \"Verify the ZenTravel homepage is displayed with expected sections (Create New Trip, Draft Trips, etc.).\"], \"expected_result\": \"User successfully logs in and lands on the ZenTravel homepage with expected sections displayed.\"}, {\"title\": \"Login & Access: SSO login and ZenTravel homepage display with error\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Negative\", \"functional_test_type\": \"\", \"non_functional_type\": \"Accessibility\", \"preconditions\": [\"General module is available in a stable test environment.\", \"Keyboard and screen-reader checks can be performed.\"], \"test_data\": [\"Domain: ecommerce_retail\", \"Requirement: ST1-AC1\"], \"steps\": [\"Navigate to the ZenTravel login page.\", \"Enter invalid SSO crede",
+      "strategy": "grouped_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 60
+  }
+}

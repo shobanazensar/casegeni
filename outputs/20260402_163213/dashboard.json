@@ -1,0 +1,48 @@
+{
+  "summary": {
+    "total_acs": 30,
+    "total_tests_before": 34,
+    "total_tests_after": 34,
+    "reduction_percent": 0.0,
+    "traceability_coverage_percent": 96.67,
+    "avg_reviewer_score": 3.83,
+    "automation_readiness_percent": 23.53
+  },
+  "coverage_snapshot": {
+    "by_layer": {
+      "UI": 26,
+      "API": 8
+    },
+    "by_scenario_type": {
+      "Positive": 28,
+      "Negative": 6
+    },
+    "by_priority": {
+      "P4": 31,
+      "P3": 3
+    }
+  },
+  "optimization_impact": {
+    "tests_removed": 0,
+    "reduction_percent": 0.0,
+    "smoke_count": 0,
+    "regression_count": 34,
+    "critical_coverage_preserved": "Yes"
+  },
+  "quality_gaps": {
+    "acs_without_tests": 1,
+    "acs_missing_negative": 23,
+    "acs_missing_edge": 29,
+    "tests_needing_human_review": 0,
+    "low_quality_tests": 0
+  },
+  "final_verdict": {
+    "overall_quality_score": 77.62,
+    "release_readiness": "At Risk",
+    "top_recommendations": [
+      "Add tests for uncovered acceptance criteria first.",
+      "Strengthen negative-path coverage for uncovered AC patterns.",
+      "Increase edge/boundary coverage for critical validations."
+    ]
+  }
+}

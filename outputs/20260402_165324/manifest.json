@@ -1,0 +1,99 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "financial_services",
+    "secondary_domain": "",
+    "confidence_score": 0.99,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Account",
+      "Audit",
+      "Payment",
+      "Notification"
+    ],
+    "domain_signals": [
+      "account",
+      "transaction",
+      "loan",
+      "interest",
+      "payment",
+      "transfer"
+    ],
+    "business_entities": [
+      "Account",
+      "Audit",
+      "Payment",
+      "Notification"
+    ],
+    "user_roles": [
+      "Admin",
+      "Auditor",
+      "Checker",
+      "Customer",
+      "Loan Officer",
+      "Loan Officer (Maker)"
+    ],
+    "likely_process_flows": [
+      "the bank can offer various loan options",
+      "I can request financial assistance",
+      "only eligible applications proceed",
+      "only valid loans are disbursed",
+      "customers receive their funds"
+    ],
+    "applicable_regulations": [
+      "SOX",
+      "PCI-DSS",
+      "GLBA",
+      "Basel III",
+      "MiFID II",
+      "KYC"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=financial_services using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 45,
+    "ac_count": 270
+  },
+  "run_config": {
+    "execution_mode_requested": "offline",
+    "execution_mode_used": "offline",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "",
+      "api_key": "",
+      "base_url": "",
+      "temperature": 0.2,
+      "max_tokens": 8000,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": false,
+      "used": false,
+      "fallback_reason": "",
+      "generator_source": "offline_rules"
+    },
+    "generator_source": "offline_rules",
+    "max_test_count": 300
+  }
+}

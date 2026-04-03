@@ -1,0 +1,2195 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Login & Access - User must be able to log in via SSO and land on the ZenTravel homepage. - Homepage must show: Create New Trip, Draft Trips, Submitted Trips, Active Requests, Approvals, Cancelled/Closed Trips.",
+    "title": "Login & Access: SSO login and ZenTravel homepage display",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "",
+    "non_functional_type": "Accessibility",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Keyboard and screen-reader checks can be performed."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC1"
+    ],
+    "steps": [
+      "Navigate to the ZenTravel login page.",
+      "Enter valid SSO credentials.",
+      "Verify the ZenTravel homepage is displayed with expected sections (Create New Trip, Draft Trips, etc.)."
+    ],
+    "expected_result": "User successfully logs in and lands on the ZenTravel homepage with expected sections displayed.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "non_functional",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "risk_coverage: Risk coverage is moderate",
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.81,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 3.2,
+        "reason": "Risk coverage is moderate",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Login & Access - User must be able to log in via SSO and land on the ZenTravel homepage. - Homepage must show: Create New Trip, Draft Trips, Submitted Trips, Active Requests, Approvals, Cancelled/Closed Trips.",
+    "title": "Login & Access: SSO login and ZenTravel homepage display with error",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "functional_test_type": "",
+    "non_functional_type": "Accessibility",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Keyboard and screen-reader checks can be performed."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC1"
+    ],
+    "steps": [
+      "Navigate to the ZenTravel login page.",
+      "Enter invalid SSO credentials.",
+      "Verify an error message is displayed indicating invalid login credentials."
+    ],
+    "expected_result": "User fails to log in due to invalid SSO credentials and an error message is displayed.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "non_functional",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Travel Type Selection - User must select Domestic or International travel. - If International, GMP Request ID must be mandatory and validated.",
+    "title": "Update succeeds with all required fields populated",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "User has edit access.",
+      "An existing record is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC2",
+      "Use values relevant to the visible fields and validation messages."
+    ],
+    "steps": [
+      "Open the editable profile screen.",
+      "Enter valid values for all mandatory fields.",
+      "Save the change."
+    ],
+    "expected_result": "Update succeeds and saved values are visible in the UI.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Travel Type Selection - User must select Domestic or International travel. - If International, GMP Request ID must be mandatory and validated.",
+    "title": "Blank required field is blocked with inline validation",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "User has edit access."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC2",
+      "Use values relevant to the visible fields and validation messages."
+    ],
+    "steps": [
+      "Open the editable form.",
+      "Leave one required field blank and keep the others valid.",
+      "Attempt to save."
+    ],
+    "expected_result": "Field-specific validation is shown and the update is blocked without saving partial data.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Travel Type Selection - User must select Domestic or International travel. - If International, GMP Request ID must be mandatory and validated.",
+    "title": "API rejects request with missing required field",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Authorized API client is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC2",
+      "Use request payloads and tokens aligned to the scenario."
+    ],
+    "steps": [
+      "Prepare an update payload with a missing required field.",
+      "Invoke the update API.",
+      "Inspect status code and validation payload."
+    ],
+    "expected_result": "API returns a validation or business-rule error and no data update is committed.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Smoke",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Travel Type Selection - User must select Domestic or International travel. - If International, GMP Request ID must be mandatory and validated.",
+    "title": "Rejected request does not persist partial data",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "A rejected update scenario is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC2",
+      "Use record identifiers that allow before/after comparison in persistence or audit storage."
+    ],
+    "steps": [
+      "Trigger the invalid update through the appropriate entry point.",
+      "Query the affected record and related audit/history tables.",
+      "Compare persisted values with the pre-update state."
+    ],
+    "expected_result": "No partial or unintended persistence is observed after the rejected request.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Negative",
+      "data_integrity",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "data_integrity"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.68,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Mandatory Header Fields -Travel Policy (Domestic/International) -Type of Travel (Business/Relocation/Training/Family/Guest/etc.) -Booking Type (Zensar Travel Team / Self-Booked / Egencia) -Reason for Travel -Purpose of Travel -From Country, To Country, Project Details (from Zen Fulcrum) -Forex Required (Yes/No), Advance Required (conditional) -Accommodation Type selection rules must apply. -System must prevent submission if any mandatory field is missing.",
+    "title": "Update succeeds and saved values are visible in the UI.",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "User has edit access."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC3",
+      "Use values relevant to the visible fields and validation messages."
+    ],
+    "steps": [
+      "Open the editable profile screen.",
+      "Enter valid values for all mandatory fields.",
+      "Save the change."
+    ],
+    "expected_result": "Update succeeds and saved values are visible in the UI.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Mandatory Header Fields -Travel Policy (Domestic/International) -Type of Travel (Business/Relocation/Training/Family/Guest/etc.) -Booking Type (Zensar Travel Team / Self-Booked / Egencia) -Reason for Travel -Purpose of Travel -From Country, To Country, Project Details (from Zen Fulcrum) -Forex Required (Yes/No), Advance Required (conditional) -Accommodation Type selection rules must apply. -System must prevent submission if any mandatory field is missing.",
+    "title": "Form remains keyboard accessible with clear labels.",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "",
+    "non_functional_type": "Accessibility",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Keyboard and screen-reader checks can be performed."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC3"
+    ],
+    "steps": [
+      "Navigate the form using keyboard-only interaction.",
+      "Check labels, focus order, and actionable controls.",
+      "Attempt key success and validation paths."
+    ],
+    "expected_result": "Core form interactions remain accessible with clear labels, focus behavior, and feedback.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "non_functional",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "risk_coverage: Risk coverage is moderate",
+      "measurement_clarity: Measurement criteria are vague",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.77,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 3.2,
+        "reason": "Risk coverage is moderate",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Mandatory Header Fields -Travel Policy (Domestic/International) -Type of Travel (Business/Relocation/Training/Family/Guest/etc.) -Booking Type (Zensar Travel Team / Self-Booked / Egencia) -Reason for Travel -Purpose of Travel -From Country, To Country, Project Details (from Zen Fulcrum) -Forex Required (Yes/No), Advance Required (conditional) -Accommodation Type selection rules must apply. -System must prevent submission if any mandatory field is missing.",
+    "title": "Blank required field is blocked with inline validation.",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "User has edit access."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC3",
+      "Use values relevant to the visible fields and validation messages."
+    ],
+    "steps": [
+      "Open the editable form.",
+      "Leave one required field blank and keep the others valid.",
+      "Attempt to save."
+    ],
+    "expected_result": "Field-specific validation is shown and the update is blocked without saving partial data.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00009",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Mandatory Header Fields -Travel Policy (Domestic/International) -Type of Travel (Business/Relocation/Training/Family/Guest/etc.) -Booking Type (Zensar Travel Team / Self-Booked / Egencia) -Reason for Travel -Purpose of Travel -From Country, To Country, Project Details (from Zen Fulcrum) -Forex Required (Yes/No), Advance Required (conditional) -Accommodation Type selection rules must apply. -System must prevent submission if any mandatory field is missing.",
+    "title": "API rejects request with missing required field.",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Authorized API client is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC3",
+      "Use request payloads and tokens aligned to the scenario."
+    ],
+    "steps": [
+      "Prepare an update payload with a missing required field.",
+      "Invoke the update API.",
+      "Inspect status code and validation payload."
+    ],
+    "expected_result": "API returns a validation or business-rule error and no data update is committed.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Smoke",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00010",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Mandatory Header Fields -Travel Policy (Domestic/International) -Type of Travel (Business/Relocation/Training/Family/Guest/etc.) -Booking Type (Zensar Travel Team / Self-Booked / Egencia) -Reason for Travel -Purpose of Travel -From Country, To Country, Project Details (from Zen Fulcrum) -Forex Required (Yes/No), Advance Required (conditional) -Accommodation Type selection rules must apply. -System must prevent submission if any mandatory field is missing.",
+    "title": "Rejected request does not persist partial data.",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "A rejected update scenario is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC3",
+      "Use record identifiers that allow before/after comparison in persistence or audit storage."
+    ],
+    "steps": [
+      "Trigger the invalid update through the appropriate entry point.",
+      "Query the affected record and related audit/history tables.",
+      "Compare persisted values with the pre-update state."
+    ],
+    "expected_result": "No partial or unintended persistence is observed after the rejected request.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Negative",
+      "data_integrity",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "data_integrity"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.68,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00012",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Accommodation Type Validation -If Company Provided or Booked by Customer – Paid by Self → Hotel product mandatory. -If Not Required → Show tooltip “No hotel booking needed…” -If Booked by Self → Hotel under self-booked product mandatory.",
+    "title": "Update succeeds with all required fields populated",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "User has edit access.",
+      "An existing record is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC4",
+      "Use values relevant to the visible fields and validation messages."
+    ],
+    "steps": [
+      "Open the editable profile screen.",
+      "Enter valid values for all mandatory fields.",
+      "Save the change."
+    ],
+    "expected_result": "Update succeeds and saved values are visible in the UI.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Accommodation Type Validation -If Company Provided or Booked by Customer – Paid by Self → Hotel product mandatory. -If Not Required → Show tooltip “No hotel booking needed…” -If Booked by Self → Hotel under self-booked product mandatory.",
+    "title": "Form remains keyboard accessible with clear labels",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "",
+    "non_functional_type": "Accessibility",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Keyboard and screen-reader checks can be performed."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC4"
+    ],
+    "steps": [
+      "Navigate the form using keyboard-only interaction.",
+      "Check labels, focus order, and actionable controls.",
+      "Attempt key success and validation paths."
+    ],
+    "expected_result": "Core form interactions remain accessible with clear labels, focus behavior, and feedback.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "non_functional",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "risk_coverage: Risk coverage is moderate",
+      "measurement_clarity: Measurement criteria are vague",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.77,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 3.2,
+        "reason": "Risk coverage is moderate",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Accommodation Type Validation -If Company Provided or Booked by Customer – Paid by Self → Hotel product mandatory. -If Not Required → Show tooltip “No hotel booking needed…” -If Booked by Self → Hotel under self-booked product mandatory.",
+    "title": "Blank required field is blocked with inline validation",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "User has edit access."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC4",
+      "Use values relevant to the visible fields and validation messages."
+    ],
+    "steps": [
+      "Open the editable form.",
+      "Leave one required field blank and keep the others valid.",
+      "Attempt to save."
+    ],
+    "expected_result": "Field-specific validation is shown and the update is blocked without saving partial data.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00014",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Accommodation Type Validation -If Company Provided or Booked by Customer – Paid by Self → Hotel product mandatory. -If Not Required → Show tooltip “No hotel booking needed…” -If Booked by Self → Hotel under self-booked product mandatory.",
+    "title": "API rejects request with missing required field",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Authorized API client is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC4",
+      "Use request payloads and tokens aligned to the scenario."
+    ],
+    "steps": [
+      "Prepare an update payload with a missing required field.",
+      "Invoke the update API.",
+      "Inspect status code and validation payload."
+    ],
+    "expected_result": "API returns a validation or business-rule error and no data update is committed.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Smoke",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00015",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Accommodation Type Validation -If Company Provided or Booked by Customer – Paid by Self → Hotel product mandatory. -If Not Required → Show tooltip “No hotel booking needed…” -If Booked by Self → Hotel under self-booked product mandatory.",
+    "title": "Rejected request does not persist partial data",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "A rejected update scenario is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC4",
+      "Use record identifiers that allow before/after comparison in persistence or audit storage."
+    ],
+    "steps": [
+      "Trigger the invalid update through the appropriate entry point.",
+      "Query the affected record and related audit/history tables.",
+      "Compare persisted values with the pre-update state."
+    ],
+    "expected_result": "No partial or unintended persistence is observed after the rejected request.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Negative",
+      "data_integrity",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "data_integrity"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.68,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00017",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Soft Block Logic - International travel < 15 days → Show deviation warning. - Domestic travel < 10 days → Show deviation warning.",
+    "title": "Validate ST1-AC5: International travel < 15 days",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Valid business context exists."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC5"
+    ],
+    "steps": [
+      "Create a new travel request with international travel duration < 15 days.",
+      "Observe the system behavior and warning message.",
+      "Verify the deviation warning is displayed."
+    ],
+    "expected_result": "The system shows a deviation warning for international travel < 15 days.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.41,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00018",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Soft Block Logic - International travel < 15 days → Show deviation warning. - Domestic travel < 10 days → Show deviation warning.",
+    "title": "Validate ST1-AC5: Domestic travel < 10 days",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Valid business context exists."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC5"
+    ],
+    "steps": [
+      "Create a new travel request with domestic travel duration < 10 days.",
+      "Observe the system behavior and warning message.",
+      "Verify the deviation warning is displayed."
+    ],
+    "expected_result": "The system shows a deviation warning for domestic travel < 10 days.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.41,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00019",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Soft Block Logic - International travel < 15 days → Show deviation warning. - Domestic travel < 10 days → Show deviation warning.",
+    "title": "Reject invalid processing for ST1-AC5: International travel < 15 days",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "An invalid or risky input variant is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC5",
+      "Use request payloads and tokens aligned to the scenario."
+    ],
+    "steps": [
+      "Send a request with international travel duration < 15 days and invalid data.",
+      "Observe the response and persistence behavior.",
+      "Verify the error message and rollback or non-persistence."
+    ],
+    "expected_result": "Invalid processing is rejected cleanly without unintended side effects.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00020",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Submit Without Segment -System should allow request creation but prevent submission unless at least one travel product (Flight/Hotel/Train/etc.) is added. -Show hard stop on submission if no product added.",
+    "title": "Validate ST1-AC6: Create a new travel request with at least one travel product",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Valid business context exists."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC6"
+    ],
+    "steps": [
+      "Log in to the ZenTravel homepage using valid credentials.",
+      "Click on the 'Create New Trip' button.",
+      "Select 'Domestic' or 'International' travel type.",
+      "Add at least one travel product (Flight, Hotel, Train, etc.).",
+      "Verify the system prevents submission if no product is added.",
+      "Observe the system behavior and outcome."
+    ],
+    "expected_result": "The system allows request creation and submission with at least one travel product added.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic",
+      "maintainability: Could be simplified"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.34,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 3.2,
+        "reason": "Could be simplified",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00021",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Submit Without Segment -System should allow request creation but prevent submission unless at least one travel product (Flight/Hotel/Train/etc.) is added. -Show hard stop on submission if no product added.",
+    "title": "Reject invalid processing for ST1-AC6: Create a new travel request without travel products",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "An invalid or risky input variant is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC6",
+      "Use request payloads and tokens aligned to the scenario."
+    ],
+    "steps": [
+      "Send a request to create a new travel request without adding any travel products.",
+      "Verify the system returns an error message indicating that at least one travel product is required.",
+      "Observe the system behavior and outcome."
+    ],
+    "expected_result": "The system rejects the request and returns an error message due to missing travel products.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00022",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC7",
+    "ac_text": "Approval Flow -Once submitted, approval hierarchy must follow ZenFulcrum logic. -Special rule: Annual Leave (SA Payroll) must route to SA HR first.",
+    "title": "Validate ST1-AC7: Approval Flow",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "Valid business context exists."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC7"
+    ],
+    "steps": [
+      "Execute the flow using valid data.",
+      "Observe system behavior.",
+      "Verify the outcome."
+    ],
+    "expected_result": "The business rule is satisfied successfully.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC7"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00023",
+    "story_id": "ST1",
+    "story_title": "Create a New Travel Request (Domestic/International)",
+    "ac_id": "ST1-AC7",
+    "ac_text": "Approval Flow -Once submitted, approval hierarchy must follow ZenFulcrum logic. -Special rule: Annual Leave (SA Payroll) must route to SA HR first.",
+    "title": "Reject invalid processing for ST1-AC7",
+    "domain": "ecommerce_retail",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "functional_test_type": "Functional",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "General module is available in a stable test environment.",
+      "An invalid or risky input variant is available."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Requirement: ST1-AC7",
+      "Use request payloads and tokens aligned to the scenario."
+    ],
+    "steps": [
+      "Execute the flow using invalid or conflicting data.",
+      "Observe response and persistence behavior.",
+      "Verify errors and rollback or non-persistence."
+    ],
+    "expected_result": "Invalid processing is rejected cleanly without unintended side effects.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC7"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Regression",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  }
+]

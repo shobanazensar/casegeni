@@ -1,0 +1,114 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create a New Travel Request (Domestic/International)",
+      "ac_id": "ST1-AC1",
+      "ac_text": "User must be able to log in via SSO and land on the ZenTravel homepage.  Homepage must show: Create New Trip, Draft Trips, Submitted Trips, Active Requests, Approvals, Cancelled/Closed Trips.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Create a New Travel Request (Domestic/International)",
+      "ac_id": "ST1-AC2",
+      "ac_text": "User must select Domestic or International travel and If International, GMP Request ID must be mandatory and validated.",
+      "mapped_test_cases": [
+        "TC00003",
+        "TC00004"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Create a New Travel Request (Domestic/International)",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Mandatory Header Fields - Travel Policy (Domestic/International), Type of Travel (Business/Relocation/Training/Family/Guest/etc.) ,Booking Type (Zensar Travel Team / Self-Booked / Egencia) , Reason for Travel , Purpose of Travel , From Country, To Country, Project Details (from Zen Fulcrum) , Forex Required (Yes/No), Advance Required (conditional), Accommodation Type selection rules must apply, System must prevent submission if any mandatory field is missing.",
+      "mapped_test_cases": [
+        "TC00009",
+        "TC00005",
+        "TC00006",
+        "TC00007",
+        "TC00008"
+      ],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 3,
+    "covered_acs": 3,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00001, TC00002",
+      "category": "🔴 NF",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Accessibility",
+      "domain": "construction_real_estate",
+      "gapsNotes": "Missing negative or risk-focused coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00003, TC00004",
+      "category": "🔵 FUNC",
+      "priority": "P2/P3",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "construction_real_estate",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00009",
+      "category": "🔴 NF",
+      "priority": "P3",
+      "auto": "⚠️",
+      "coverage": "Accessibility",
+      "domain": "construction_real_estate",
+      "gapsNotes": "Missing negative or risk-focused coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00005, TC00006",
+      "category": "🔵 FUNC",
+      "priority": "P2/P3",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "construction_real_estate",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00007",
+      "category": "🟢 API",
+      "priority": "P1",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "construction_real_estate",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00008",
+      "category": "🟣 DB",
+      "priority": "P2",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "construction_real_estate",
+      "gapsNotes": "Missing edge coverage"
+    }
+  ]
+}

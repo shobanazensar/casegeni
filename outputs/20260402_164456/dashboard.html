@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Test Intelligence Dashboard</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f7faff; color:#0f2640; margin:0; padding:24px; }
+h1, h2 { color:#0f3d75; }
+.grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom:24px; }
+.card { background:white; border:1px solid #d7e4f7; border-radius:14px; padding:16px; box-shadow:0 2px 8px rgba(15,61,117,0.06); }
+.label { font-size:12px; color:#4a6280; text-transform:uppercase; }
+.value { font-size:28px; font-weight:700; margin-top:8px; }
+ul { margin-top:8px; }
+pre { background:white; border:1px solid #d7e4f7; padding:12px; border-radius:12px; }
+</style>
+</head>
+<body>
+<h1>Test Intelligence Dashboard</h1>
+<div class="grid">
+  <div class="card"><div class="label">Tests After Optimization</div><div class="value">100</div></div>
+  <div class="card"><div class="label">Coverage %</div><div class="value">24.4</div></div>
+  <div class="card"><div class="label">Reviewer Score</div><div class="value">4.32</div></div>
+  <div class="card"><div class="label">Automation Readiness %</div><div class="value">52.0</div></div>
+</div>
+<div class="card">
+<h2>Release Readiness: At Risk</h2>
+<p><strong>Quality Score:</strong> -567.2</p>
+<ul><li>Add tests for uncovered acceptance criteria first.</li><li>Strengthen negative-path coverage for uncovered AC patterns.</li><li>Increase edge/boundary coverage for critical validations.</li></ul>
+</div>
+<div class="card"><h2>Dashboard JSON</h2><pre>{'summary': {'total_acs': 168, 'total_tests_before': 378, 'total_tests_after': 100, 'reduction_percent': 73.54, 'traceability_coverage_percent': 24.4, 'avg_reviewer_score': 4.32, 'automation_readiness_percent': 52.0}, 'coverage_snapshot': {'by_layer': {'UI': 42, 'API': 35, 'ETL Integration': 13, 'Database': 4, 'E2E': 6}, 'by_scenario_type': {'Positive': 44, 'Negative': 45, 'Exception Handling': 7, 'Edge Case': 4}, 'by_priority': {'P4': 51, 'P3': 41, 'P2': 8}}, 'optimization_impact': {'tests_removed': 278, 'reduction_percent': 73.54, 'smoke_count': 0, 'regression_count': 100, 'critical_coverage_preserved': 'No'}, 'quality_gaps': {'acs_without_tests': 127, 'acs_missing_negative': 6, 'acs_missing_edge': 37, 'tests_needing_human_review': 0, 'low_quality_tests': 0}, 'final_verdict': {'overall_quality_score': -567.2, 'release_readiness': 'At Risk', 'top_recommendations': ['Add tests for uncovered acceptance criteria first.', 'Strengthen negative-path coverage for uncovered AC patterns.', 'Increase edge/boundary coverage for critical validations.']}}</pre></div>
+</body></html>

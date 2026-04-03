@@ -5,6 +5,17 @@ from typing import Any
 import yaml
 
 
+def extract_docx_text(file_bytes: bytes) -> str:
+    """
+    Extract plain text from a .docx binary payload.
+    Each paragraph becomes one line; blank paragraphs become blank lines.
+    """
+    import io
+    import docx  # python-docx
+    doc = docx.Document(io.BytesIO(file_bytes))
+    return "\n".join(para.text for para in doc.paragraphs)
+
+
 def ensure_dir(path: str | Path) -> Path:
     p = Path(path)
     p.mkdir(parents=True, exist_ok=True)

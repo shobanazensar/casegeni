@@ -112,8 +112,22 @@ with st.sidebar:
             help="Sends response_format={'type':'json_object'} to the model. Disable for models that do not support it (e.g. some LM Studio setups).",
         )
 
-uploaded = st.file_uploader("Upload story / stories / epic input (.txt, .md, .json)", type=["txt", "md", "json"])
-text_input = st.text_area("Or paste the requirement text", height=240)
+uploaded = st.file_uploader("Upload story / stories / epic input (.txt, .md, .json, .docx)", type=["txt", "md", "json", "docx"])
+text_input = st.text_area(
+    "Or paste the requirement text",
+    height=240,
+    help=(
+        "Accepts any of these formats:\n"
+        "• Standard: `Story: Title` / `User Story: Title` with Acceptance Criteria\n"
+        "• Epic + stories: `Epic: Title` followed by `User Story:` blocks\n"
+        "• Gherkin/BDD: `Feature:` / `Scenario:` with `Given/When/Then`\n"
+        "• Jira-style: `US-123: Title` or `US1:` blocks\n"
+        "• Markdown headings: `## Story Name` as story separators\n"
+        "• Numbered list: `1. As a user ...`\n"
+        "• JSON array: `[{\"title\": \"...\", \"acceptance_criteria\": [...]}]`\n"
+        "• Plain text: lines starting with 'must'/'should' used as criteria"
+    ),
+)
 
 run_clicked = st.button("Generate test assets")
 
@@ -122,7 +136,22 @@ if run_clicked:
         st.error("Upload a file or paste requirement text.")
         st.stop()
 
-    document_text = uploaded.getvalue().decode("utf-8", errors="ignore") if uploaded else text_input
+    if uploaded:
+        if uploaded.name.lower().endswith(".docx"):
+            from src.utils.io_utils import extract_docx_text
+            document_text = extract_docx_text(uploaded.getvalue())
+        else:
+            document_text = uploaded.getvalue().decode("utf-8", errors="ignore")
+    else:
+        document_text = text_input
+    _progress_bar = st.progress(0, text="Starting pipeline…")
+    _status_text = st.empty()
+
+    def _on_progress(done: int, total: int, label: str):
+        pct = int(done / total * 100) if total else 100
+        _progress_bar.progress(pct, text=f"LLM generation — story {done}/{total}")
+        _status_text.caption(label)
+
     try:
         result = pipeline.run(
         document_text=document_text,
@@ -140,10 +169,14 @@ if run_clicked:
             "use_json_format": use_json_format,
         },
         max_test_count=int(max_test_count),
+        progress_callback=_on_progress if execution_mode == "online" else None,
     )
     except Exception as exc:
         st.error(f"Execution failed: {exc}")
         st.stop()
+
+    _progress_bar.progress(100, text="Done!")
+    _status_text.empty()
 
     domain_analysis = result["manifest"]["domain_analysis"]
     tc_df = result.get("test_cases_df", pd.DataFrame()).fillna("")

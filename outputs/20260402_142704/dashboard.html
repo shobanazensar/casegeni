@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Test Intelligence Dashboard</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f7faff; color:#0f2640; margin:0; padding:24px; }
+h1, h2 { color:#0f3d75; }
+.grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom:24px; }
+.card { background:white; border:1px solid #d7e4f7; border-radius:14px; padding:16px; box-shadow:0 2px 8px rgba(15,61,117,0.06); }
+.label { font-size:12px; color:#4a6280; text-transform:uppercase; }
+.value { font-size:28px; font-weight:700; margin-top:8px; }
+ul { margin-top:8px; }
+pre { background:white; border:1px solid #d7e4f7; padding:12px; border-radius:12px; }
+</style>
+</head>
+<body>
+<h1>Test Intelligence Dashboard</h1>
+<div class="grid">
+  <div class="card"><div class="label">Tests After Optimization</div><div class="value">11</div></div>
+  <div class="card"><div class="label">Coverage %</div><div class="value">100.0</div></div>
+  <div class="card"><div class="label">Reviewer Score</div><div class="value">4.38</div></div>
+  <div class="card"><div class="label">Automation Readiness %</div><div class="value">36.36</div></div>
+</div>
+<div class="card">
+<h2>Release Readiness: Ready</h2>
+<p><strong>Quality Score:</strong> 91.32</p>
+<ul><li>Strengthen negative-path coverage for uncovered AC patterns.</li><li>Increase edge/boundary coverage for critical validations.</li></ul>
+</div>
+<div class="card"><h2>Dashboard JSON</h2><pre>{'summary': {'total_acs': 3, 'total_tests_before': 11, 'total_tests_after': 11, 'reduction_percent': 0.0, 'traceability_coverage_percent': 100.0, 'avg_reviewer_score': 4.38, 'automation_readiness_percent': 36.36}, 'coverage_snapshot': {'by_layer': {'UI': 7, 'API': 2, 'Database': 2}, 'by_scenario_type': {'Positive': 5, 'Negative': 6}, 'by_priority': {'P4': 2, 'P3': 3, 'P2': 4, 'P1': 2}}, 'optimization_impact': {'tests_removed': 0, 'reduction_percent': 0.0, 'smoke_count': 2, 'regression_count': 9, 'critical_coverage_preserved': 'Yes'}, 'quality_gaps': {'acs_without_tests': 0, 'acs_missing_negative': 1, 'acs_missing_edge': 3, 'tests_needing_human_review': 0, 'low_quality_tests': 0}, 'final_verdict': {'overall_quality_score': 91.32, 'release_readiness': 'Ready', 'top_recommendations': ['Strengthen negative-path coverage for uncovered AC patterns.', 'Increase edge/boundary coverage for critical validations.']}}</pre></div>
+</body></html>

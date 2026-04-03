@@ -215,7 +215,7 @@ class A5TestGeneration(AgentBase):
         merged.setdefault("non_functional_type", bp.get("non_functional_type", ""))
         return merged
 
-    def _online_generate_from_groups(self, blueprints: list[dict], drafts: list[dict], document_text: str, llm_config: dict, fail_on_error: bool = True) -> tuple[list[dict], dict]:
+    def _online_generate_from_groups(self, blueprints: list[dict], drafts: list[dict], document_text: str, llm_config: dict, fail_on_error: bool = True, progress_callback=None) -> tuple[list[dict], dict]:
         client = LLMClient(
             model=llm_config.get("model", ""),
             api_key=llm_config.get("api_key", ""),
@@ -224,70 +224,88 @@ class A5TestGeneration(AgentBase):
             max_tokens=llm_config.get("max_tokens", 3200),
             use_json_format=llm_config.get("use_json_format", True),
         )
-        meta = {"requested": True, "used": False, "fallback_reason": "", "generator_source": "offline_rules", "model": llm_config.get("model", ""), "base_url": llm_config.get("base_url", ""), "batch_count": 0, "response_time_sec": 0.0, "raw_preview": "", "strategy": "grouped_ac_generation"}
+        meta = {"requested": True, "used": False, "fallback_reason": "", "generator_source": "offline_rules", "model": llm_config.get("model", ""), "base_url": llm_config.get("base_url", ""), "batch_count": 0, "response_time_sec": 0.0, "raw_preview": "", "strategy": "story_batched_generation"}
         if not client.is_configured():
             meta["fallback_reason"] = "LLM configuration incomplete"
             if fail_on_error:
                 raise ValueError(meta["fallback_reason"])
             return drafts, meta
 
-        def group_key(bp: dict):
-            return (bp["story_id"], bp["ac_id"])
-
-        groups = {}
+        # --- Group by story (one LLM call per story, not per AC) ---
+        story_groups: dict[str, dict] = {}
         for bp, draft in zip(blueprints, drafts):
-            groups.setdefault(group_key(bp), {"blueprints": [], "drafts": []})
-            groups[group_key(bp)]["blueprints"].append(bp)
-            groups[group_key(bp)]["drafts"].append(draft)
+            sid = bp["story_id"]
+            if sid not in story_groups:
+                story_groups[sid] = {"story_title": bp["story_title"], "acs": {}}
+            ac_id = bp["ac_id"]
+            if ac_id not in story_groups[sid]["acs"]:
+                story_groups[sid]["acs"][ac_id] = {"blueprints": [], "drafts": []}
+            story_groups[sid]["acs"][ac_id]["blueprints"].append(bp)
+            story_groups[sid]["acs"][ac_id]["drafts"].append(draft)
 
-        out = []
+        # Compact document excerpt (1000 chars is enough context; full text already in blueprint ac_text)
+        doc_excerpt = document_text[:1000].strip()
+
+        out: list[dict] = []
+        total_stories = len(story_groups)
+        completed = 0
+
         try:
             started = time.time()
-            for (story_id, ac_id), payload_group in groups.items():
-                group_blueprints = payload_group["blueprints"]
-                group_drafts = payload_group["drafts"]
-                rag = self.rag.retrieve(document_text, " ".join(f"{b['ac_text']} {b['module']} {b['domain']}" for b in group_blueprints), top_k=4)
-                allowed_layers = sorted({bp["layer_candidates"][0] for bp in group_blueprints})
+            for story_id, story_data in story_groups.items():
+                acs_payload = []
+                bp_lookup: dict[str, dict] = {}  # ac_id -> first blueprint
+                for ac_id, ac_data in story_data["acs"].items():
+                    grp_bps = ac_data["blueprints"]
+                    allowed_layers = sorted({bp["layer_candidates"][0] for bp in grp_bps})
+                    acs_payload.append({
+                        "ac_id": ac_id,
+                        "ac_text": grp_bps[0]["ac_text"],
+                        "allowed_layers": allowed_layers,
+                        "seed_blueprints": grp_bps,
+                    })
+                    bp_lookup[ac_id] = grp_bps[0]
+
                 system = (
                     "You are an expert enterprise QA architect. Return strict JSON only. "
-                    "Generate business-specific, execution-ready test cases for ONE acceptance criterion. "
+                    "Generate business-specific, execution-ready test cases for a user story. "
+                    "Each test case must belong to exactly one acceptance criterion (ac_id). "
                     "Do not create mechanical clones across layers. Use layers only when justified. "
-                    "Prefer UI and API for interactive business flows. Use Database, ETL Integration, and E2E only when the AC truly implies them. "
+                    "Prefer UI and API for interactive business flows. "
                     "All array fields must remain JSON arrays."
                 )
                 user = json.dumps({
                     "story_id": story_id,
-                    "ac_id": ac_id,
-                    "retrieved_context": rag,
-                    "document_excerpt": document_text[:6000],
-                    "allowed_layers": allowed_layers,
-                    "seed_blueprints": group_blueprints,
-                    "draft_examples": group_drafts,
+                    "story_title": story_data["story_title"],
+                    "document_excerpt": doc_excerpt,
+                    "acceptance_criteria": acs_payload,
                     "generation_rules": [
-                        "Return JSON with key test_cases.",
-                        "Generate 2 to 5 strong test cases for this AC depending on need; do not force all layers.",
-                        "Every title must be concrete and business-readable, not generic or template-style.",
-                        "Each test case must include: title, test_case_layer, scenario_type, functional_test_type, non_functional_type, preconditions, test_data, steps, expected_result.",
-                        "UI tests should mention visible controls, validation messages, OTP, document upload, or claim status when relevant.",
-                        "API tests should mention payload, auth, response/status code, validation contract, or duplicate prevention when relevant.",
-                        "Database tests should mention persistence, duplicate check, calculation result, audit, or before/after validation only when justified.",
-                        "ETL Integration tests should mention notifications, downstream events, message delivery, retry, or status propagation only when justified.",
-                        "E2E tests should be used sparingly for the most critical business journey only.",
-                        "Do not repeat the same scenario intent across multiple layers unless the layer adds unique verification value.",
-                        "For insurance claim flows, include realistic test data and domain terminology where relevant."
+                        "Return JSON with a single key 'test_cases' containing an array.",
+                        "Each test case must have 'ac_id' matching one of the provided acceptance_criteria ac_id values.",
+                        "Generate 2-4 test cases per AC; do not force all layers.",
+                        "Titles must be concrete and business-readable.",
+                        "Each test case must include: ac_id, title, test_case_layer, scenario_type, functional_test_type, non_functional_type, preconditions, test_data, steps, expected_result.",
+                        "UI tests: mention visible controls, validation messages.",
+                        "API tests: mention payload, auth, response/status code.",
+                        "Database tests: only when AC implies persistence or audit verification.",
+                        "Do not repeat the same scenario intent across layers unless each layer adds unique value.",
                     ]
                 }, indent=2)
+
                 payload = client.generate_json(system, user)
                 meta["batch_count"] += 1
                 if not meta["raw_preview"]:
                     meta["raw_preview"] = json.dumps(payload, ensure_ascii=False)[:1200]
+
                 improved = payload.get("test_cases", [])
                 if not isinstance(improved, list) or not improved:
-                    raise ValueError(f"LLM returned no test cases for {story_id}/{ac_id}")
+                    raise ValueError(f"LLM returned no test cases for story {story_id}")
+
                 for tc in improved:
-                    base_bp = group_blueprints[0]
+                    ac_id = tc.get("ac_id") or (acs_payload[0]["ac_id"] if acs_payload else "")
+                    base_bp = bp_lookup.get(ac_id) or list(bp_lookup.values())[0]
+                    allowed_layers = sorted({bp["layer_candidates"][0] for bp in story_groups[story_id]["acs"].get(ac_id, {"blueprints": [base_bp]})["blueprints"]})
                     merged = self._merge_with_blueprint(base_bp, tc)
-                    # Allow LLM to choose a justified layer from allowed layers.
                     chosen_layer = merged.get("test_case_layer") or merged.get("layer") or base_bp["layer_candidates"][0]
                     if chosen_layer not in allowed_layers:
                         chosen_layer = allowed_layers[0]
@@ -301,6 +319,11 @@ class A5TestGeneration(AgentBase):
                     merged["submodule"] = base_bp.get("submodule", "")
                     merged["source"] = "online_llm"
                     out.append(merged)
+
+                completed += 1
+                if progress_callback:
+                    progress_callback(completed, total_stories, f"Story {completed}/{total_stories}: {story_data['story_title'][:50]}")
+
             meta["used"] = True
             meta["generator_source"] = "online_llm"
             meta["response_time_sec"] = round(time.time() - started, 2)
@@ -312,12 +335,12 @@ class A5TestGeneration(AgentBase):
                 raise RuntimeError(str(exc)) from exc
             return drafts, meta
 
-    def execute(self, scenario_blueprints: list[dict], document_text: str, execution_mode: str, llm_config: dict) -> dict:
+    def execute(self, scenario_blueprints: list[dict], document_text: str, execution_mode: str, llm_config: dict, progress_callback=None) -> dict:
         drafts = [self._offline_generate_one(bp) for bp in scenario_blueprints]
         llm_meta = {"requested": execution_mode == "online", "used": False, "fallback_reason": "", "generator_source": "offline_rules"}
         tests = drafts
         if execution_mode == "online":
-            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, drafts, document_text, llm_config, fail_on_error=True)
+            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, drafts, document_text, llm_config, fail_on_error=True, progress_callback=progress_callback)
         for idx, tc in enumerate(tests, start=1):
             tc["test_case_id"] = f"TC{idx:05d}"
             if not tc.get("automated"):

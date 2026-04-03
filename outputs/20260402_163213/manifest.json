@@ -1,0 +1,92 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "financial_services",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Account",
+      "Profile"
+    ],
+    "domain_signals": [
+      "account"
+    ],
+    "business_entities": [
+      "Account",
+      "Profile"
+    ],
+    "user_roles": [
+      "Admin",
+      "user"
+    ],
+    "likely_process_flows": [
+      "only authorized personnel can access the banking platform",
+      "my session and data remain protected",
+      "only active users can access the system",
+      "I can maintain account security",
+      "unauthorized access is prevented"
+    ],
+    "applicable_regulations": [
+      "SOX",
+      "PCI-DSS",
+      "GLBA",
+      "Basel III",
+      "MiFID II",
+      "KYC"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=financial_services using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 5,
+    "ac_count": 30
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "llama3:8b",
+      "api_key": "***",
+      "base_url": "http://localhost:11434/v1",
+      "temperature": 0.2,
+      "max_tokens": 8000,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "llama3:8b",
+      "base_url": "http://localhost:11434/v1",
+      "batch_count": 5,
+      "response_time_sec": 434.89,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"User registration form remains accessible with clear labels\", \"test_case_layer\": \"UI\", \"scenario_type\": \"non_functional\", \"functional_test_type\": \"\", \"non_functional_type\": \"Accessibility\", \"preconditions\": \"User is not logged in\", \"test_data\": {}, \"steps\": [\"Open the user registration form\", \"Verify that the form remains accessible with clear labels\"], \"expected_result\": \"The form remains accessible with clear labels\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"User registration form validation for duplicate email\", \"test_case_layer\": \"UI\", \"scenario_type\": \"validation_or_rejection\", \"functional_test_type\": \"Functional\", \"non_functional_type\": \"\", \"preconditions\": \"User is not logged in\", \"test_data\": {}, \"steps\": [\"Open the user registration form\", \"Enter a duplicate email address\", \"Verify that the form rejects the duplicate email address\"], \"expected_result\": \"The form rejects the duplicate email address\"}, {\"ac_id\": \"ST1-AC2\", \"title\": \"User registration form validation for invalid email\", \"test_case_layer\": \"UI\", \"scenario_type\": \"validation_or_rejection\", \"functional_test_type\": \"Functional\", \"non_functional_type\": \"\", \"preconditions\": \"Us",
+      "strategy": "story_batched_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 100
+  }
+}

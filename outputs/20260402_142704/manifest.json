@@ -1,0 +1,83 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "construction_real_estate",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "General"
+    ],
+    "domain_signals": [
+      "project"
+    ],
+    "business_entities": [
+      "General"
+    ],
+    "user_roles": [
+      "Zensar employee "
+    ],
+    "likely_process_flows": [
+      "I can submit the trip for approval and booking by the Travel Desk"
+    ],
+    "applicable_regulations": [
+      "OSHA",
+      "building codes",
+      "zoning",
+      "environmental permits"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=construction_real_estate using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 3
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "llama3:8b",
+      "api_key": "***",
+      "base_url": "http://localhost:11434/v1",
+      "temperature": 0.7,
+      "max_tokens": 3720,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "llama3:8b",
+      "base_url": "http://localhost:11434/v1",
+      "batch_count": 3,
+      "response_time_sec": 208.65,
+      "raw_preview": "{\"test_cases\": [{\"title\": \"User can log in via SSO and land on the ZenTravel homepage\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"functional_test_type\": \"\", \"non_functional_type\": \"Accessibility\", \"preconditions\": [\"General module is available in a stable test environment.\"], \"test_data\": [\"Domain: construction_real_estate\", \"Requirement: ST1-AC1\"], \"steps\": [\"Launch the ZenTravel application and navigate to the login page.\", \"Enter valid SSO credentials and click the login button.\", \"Verify the user is logged in and lands on the ZenTravel homepage.\"], \"expected_result\": \"The user is successfully logged in and the homepage is displayed with the expected elements.\", \"tags\": [\"construction_real_estate\", \"UI\", \"Positive\", \"non_functional\", \"ST1-AC1\"]}, {\"title\": \"Home page shows expected sections and links\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"functional_test_type\": \"\", \"non_functional_type\": \"Accessibility\", \"preconditions\": [\"User is logged in to the ZenTravel application\"], \"test_data\": [\"Domain: construction_real_estate\", \"Requirement: ST1-AC1\"], \"steps\": [\"Verify the ZenTravel homepage displays the expected sections and links, including Create New ",
+      "strategy": "grouped_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 60
+  }
+}

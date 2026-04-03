@@ -38,7 +38,7 @@ class TestCasePipeline:
         self.a9 = A9Reviewer(self.base_dir)
         self.a10 = A10Dashboard(self.base_dir)
 
-    def run(self, document_text: str, output_dir: str, execution_mode: str, reviewer_mode: str, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, max_test_count: int) -> dict:
+    def run(self, document_text: str, output_dir: str, execution_mode: str, reviewer_mode: str, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, max_test_count: int, progress_callback=None) -> dict:
         execution_mode = _normalize_mode(execution_mode)
         reviewer_mode = _normalize_mode(reviewer_mode)
         llm_config = dict(llm_config or {})
@@ -60,7 +60,7 @@ class TestCasePipeline:
         state.update(req)
         scn = self.a4.execute(req["requirements"], state["domain_analysis"], selected_layers, selected_test_types)
         state.update(scn)
-        gen = self.a5.execute(scn["scenario_blueprints"], document_text, execution_mode, llm_config)
+        gen = self.a5.execute(scn["scenario_blueprints"], document_text, execution_mode, llm_config, progress_callback=progress_callback)
         gen["test_cases"] = apply_schema_guardrail_bulk(gen["test_cases"])
         state["llm_meta"] = gen.get("llm_meta", {})
 
