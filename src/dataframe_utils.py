@@ -6,8 +6,9 @@ from typing import Any
 
 DISPLAY_COLUMNS = [
     "test_case_id", "story_id", "ac_id", "title", "domain", "module", "test_case_layer",
-    "scenario_type", "functional_test_type", "non_functional_type", "priority", "automated",
-    "suite", "preconditions", "test_data", "steps", "expected_result", "reviewer_grade", "reviewer_score"
+    "scenario_type", "test_suite", "execution_tags", "classification_rationale",
+    "priority", "automated",
+    "preconditions", "test_data", "steps", "expected_result", "reviewer_grade", "reviewer_score"
 ]
 
 CAMEL_CASE_HEADERS = {
@@ -19,11 +20,11 @@ CAMEL_CASE_HEADERS = {
     "module": "module",
     "test_case_layer": "testCaseLayer",
     "scenario_type": "scenarioType",
-    "functional_test_type": "functionalTestType",
-    "non_functional_type": "nonFunctionalType",
+    "test_suite": "testSuite",
+    "execution_tags": "executionTags",
+    "classification_rationale": "classificationRationale",
     "priority": "priority",
     "automated": "automated",
-    "suite": "suite",
     "preconditions": "preconditions",
     "test_data": "testData",
     "steps": "steps",

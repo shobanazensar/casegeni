@@ -1,0 +1,126 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+      "mapped_test_cases": [],
+      "coverage": "Gap"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Given I submit valid user details, when I click \"Create User\", then the user should be created and assigned the selected role.",
+      "mapped_test_cases": [],
+      "coverage": "Gap"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+      "mapped_test_cases": [],
+      "coverage": "Gap"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC4",
+      "ac_text": "Given I try to register a user with an existing email, when I submit the form, then I should see an error message.",
+      "mapped_test_cases": [],
+      "coverage": "Gap"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC5",
+      "ac_text": "Given I am not an Admin, when I try to access the user registration form, then I should be denied access.",
+      "mapped_test_cases": [],
+      "coverage": "Gap"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC6",
+      "ac_text": "Given a user is created, when I view the user list, then the new user should appear with the correct role.",
+      "mapped_test_cases": [],
+      "coverage": "Gap"
+    }
+  ],
+  "summary": {
+    "total_acs": 6,
+    "covered_acs": 0,
+    "traceability_coverage_percent": 0.0,
+    "uncovered_count": 6
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "",
+      "category": "",
+      "priority": "",
+      "auto": "",
+      "coverage": "Gap",
+      "domain": "",
+      "gapsNotes": "No mapped test case"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "",
+      "category": "",
+      "priority": "",
+      "auto": "",
+      "coverage": "Gap",
+      "domain": "",
+      "gapsNotes": "No mapped test case"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "",
+      "category": "",
+      "priority": "",
+      "auto": "",
+      "coverage": "Gap",
+      "domain": "",
+      "gapsNotes": "No mapped test case"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "",
+      "category": "",
+      "priority": "",
+      "auto": "",
+      "coverage": "Gap",
+      "domain": "",
+      "gapsNotes": "No mapped test case"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "",
+      "category": "",
+      "priority": "",
+      "auto": "",
+      "coverage": "Gap",
+      "domain": "",
+      "gapsNotes": "No mapped test case"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC6",
+      "testCaseIds": "",
+      "category": "",
+      "priority": "",
+      "auto": "",
+      "coverage": "Gap",
+      "domain": "",
+      "gapsNotes": "No mapped test case"
+    }
+  ]
+}

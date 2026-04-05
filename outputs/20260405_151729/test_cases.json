@@ -1,0 +1,3047 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am on the login page, when I enter valid credentials, then I should be logged in and redirected to the dashboard.",
+    "title": "Successful login redirects to dashboard",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the successful login flow for the user.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role User and valid credentials."
+    ],
+    "test_data": [
+      "Username: validUser",
+      "Password: validPassword"
+    ],
+    "steps": [
+      "Navigate to the login page.",
+      "Enter valid credentials.",
+      "Click the Login button."
+    ],
+    "expected_result": "User is logged in and redirected to the dashboard.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.41,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am on the login page, when I enter valid credentials, then I should be logged in and redirected to the dashboard.",
+    "title": "Invalid credentials show error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the system's response to invalid login attempts.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Username: invalidUser",
+      "Password: invalidPassword"
+    ],
+    "steps": [
+      "Navigate to the login page.",
+      "Enter invalid credentials.",
+      "Click the Login button."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body contains error message: Invalid credentials.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: API case uses UI-only language; Layer expectations need tightening",
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.06,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 3.3,
+        "reason": "API case uses UI-only language; Layer expectations need tightening",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am on the login page, when I enter valid credentials, then I should be logged in and redirected to the dashboard.",
+    "title": "Empty username field shows error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the system's handling of empty username input.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Username:",
+      "Password: validPassword"
+    ],
+    "steps": [
+      "Navigate to the login page.",
+      "Leave the username field empty.",
+      "Enter valid password.",
+      "Click the Login button."
+    ],
+    "expected_result": "Inline validation error: Username is required.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.26,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am on the login page, when I enter valid credentials, then I should be logged in and redirected to the dashboard.",
+    "title": "Empty password field shows error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the system's handling of empty password input.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Username: validUser",
+      "Password:"
+    ],
+    "steps": [
+      "Navigate to the login page.",
+      "Enter valid username.",
+      "Leave the password field empty.",
+      "Click the Login button."
+    ],
+    "expected_result": "Inline validation error: Password is required.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.26,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am on the login page, when I enter valid credentials, then I should be logged in and redirected to the dashboard.",
+    "title": "SQL injection attempt is rejected",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the system's security against SQL injection attacks.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Username: ' OR '1'='1",
+      "Password: ' OR '1'='1"
+    ],
+    "steps": [
+      "Navigate to the login page.",
+      "Enter SQL injection strings as credentials.",
+      "Click the Login button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains error message: Invalid credentials.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: API case uses UI-only language; Layer expectations need tightening",
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.86,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 3.3,
+        "reason": "API case uses UI-only language; Layer expectations need tightening",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I am logged in, when I click \"Logout\", then my session should end and I should be redirected to the login page.",
+    "title": "Successful logout redirects to login page",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Logout",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the successful logout functionality.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and has access to the application.",
+      "User is logged in and on the dashboard."
+    ],
+    "test_data": [],
+    "steps": [
+      "Click the Logout button."
+    ],
+    "expected_result": "User is redirected to the login page.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Successful logout",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "session_management"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.69,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I am logged in, when I click \"Logout\", then my session should end and I should be redirected to the login page.",
+    "title": "Logout attempt without being logged in",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Logout",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the system's response when logout is attempted without an active session.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User.",
+      "User is not logged in."
+    ],
+    "test_data": [],
+    "steps": [
+      "Click the Logout button."
+    ],
+    "expected_result": "System displays an error message indicating the user is not logged in.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Successful logout",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "session_management"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00009",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I am logged in, when I click \"Logout\", then my session should end and I should be redirected to the login page.",
+    "title": "Logout attempt with expired session",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Logout",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the system's response when logout is attempted with an expired session.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and has access to the application.",
+      "User is logged in and session has expired."
+    ],
+    "test_data": [],
+    "steps": [
+      "Click the Logout button."
+    ],
+    "expected_result": "System displays an error message indicating the session has expired.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Successful logout",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "session_management"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.75,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00010",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I am logged in, when I click \"Logout\", then my session should end and I should be redirected to the login page.",
+    "title": "Logout during an ongoing action",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Logout",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies the behavior when logout is attempted while performing an action.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and has access to the application.",
+      "User is logged in and performing an action."
+    ],
+    "test_data": [],
+    "steps": [
+      "Click the Logout button."
+    ],
+    "expected_result": "System displays a warning message about ongoing actions and prevents logout.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Successful logout",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "session_management"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.75,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I am logged in, when I click \"Logout\", then my session should end and I should be redirected to the login page.",
+    "title": "Logout during session timeout",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Logout",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies the behavior when logout is attempted after session timeout.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and has access to the application.",
+      "User is logged in and session timeout has occurred."
+    ],
+    "test_data": [],
+    "steps": [
+      "Click the Logout button."
+    ],
+    "expected_result": "User is redirected to the login page with a session timeout message.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Successful logout",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "session_management"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.75,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I enter invalid credentials, when I attempt to log in, then I should see an error message.",
+    "title": "Valid credentials log in successfully",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Login",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the successful login functionality with valid credentials.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role User and has access to the login page."
+    ],
+    "test_data": [
+      "Username: validUser",
+      "Password: validPassword"
+    ],
+    "steps": [
+      "Enter 'validUser' in the username field.",
+      "Enter 'validPassword' in the password field.",
+      "Click the Login button."
+    ],
+    "expected_result": "User is redirected to the dashboard.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Invalid credentials",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.41,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00012",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I enter invalid credentials, when I attempt to log in, then I should see an error message.",
+    "title": "Invalid credentials returns error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Login",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the system's response to invalid login credentials.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role User and has access to the login page."
+    ],
+    "test_data": [
+      "Username: invalidUser",
+      "Password: invalidPassword"
+    ],
+    "steps": [
+      "Enter 'invalidUser' in the username field.",
+      "Enter 'invalidPassword' in the password field.",
+      "Click the Login button."
+    ],
+    "expected_result": "Error message 'Invalid credentials' is displayed.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Invalid credentials",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I enter invalid credentials, when I attempt to log in, then I should see an error message.",
+    "title": "Blank credentials return error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Login",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies that blank credentials trigger an appropriate error message.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role User and has access to the login page."
+    ],
+    "test_data": [
+      "Username: ''",
+      "Password: ''"
+    ],
+    "steps": [
+      "Leave the username field blank.",
+      "Leave the password field blank.",
+      "Click the Login button."
+    ],
+    "expected_result": "Error message 'Credentials cannot be blank' is displayed.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Invalid credentials",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00015",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I enter invalid credentials, when I attempt to log in, then I should see an error message.",
+    "title": "Max-length credentials return error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Login",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies that exceeding maximum length for credentials triggers an error.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role User and has access to the login page."
+    ],
+    "test_data": [
+      "Username: 'user12345678901234567890'",
+      "Password: 'pass12345678901234567890'"
+    ],
+    "steps": [
+      "Enter 'user12345678901234567890' in the username field.",
+      "Enter 'pass12345678901234567890' in the password field.",
+      "Click the Login button."
+    ],
+    "expected_result": "Error message 'Credentials exceed maximum length' is displayed.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Invalid credentials",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I enter invalid credentials, when I attempt to log in, then I should see an error message.",
+    "title": "Format-invalid credentials return error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Login",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks that incorrectly formatted credentials trigger an error message.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role User and has access to the login page."
+    ],
+    "test_data": [
+      "Username: 'user@domain'",
+      "Password: 'pass!@#'"
+    ],
+    "steps": [
+      "Enter 'user@domain' in the username field.",
+      "Enter 'pass!@#' in the password field.",
+      "Click the Login button."
+    ],
+    "expected_result": "Error message 'Invalid format for credentials' is displayed.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Invalid credentials",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00017",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I am logged out, when I try to access a protected page, then I should be redirected to the login page.",
+    "title": "Accessing protected page redirects to login when logged out",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Authentication",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the redirection functionality for logged-out users accessing protected pages.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User is logged out.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Attempt to access a protected page."
+    ],
+    "expected_result": "User is redirected to the login page.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Unauthorized access",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.76,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00022",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I am logged out, when I try to access a protected page, then I should be redirected to the login page.",
+    "title": "Security test for session management on protected page access",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Authentication",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test evaluates the security of session management when accessing protected pages.",
+    "non_functional_type": "Security",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "User is logged out.",
+      "API is accessible."
+    ],
+    "test_data": [
+      "Protected Page URL: /api/protected"
+    ],
+    "steps": [
+      "Send GET request to the protected page URL."
+    ],
+    "expected_result": "Session management is secure and prevents unauthorized access.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Unauthorized access",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "correctness: API case uses UI-only language; Layer expectations need tightening",
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.85,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 3.3,
+        "reason": "API case uses UI-only language; Layer expectations need tightening",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00019",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I am logged out, when I try to access a protected page, then I should be redirected to the login page.",
+    "title": "Accessing protected page without session returns error message",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Authentication",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies that the user receives an error message when trying to access a protected page while logged out.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User is logged out.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Attempt to access a protected page."
+    ],
+    "expected_result": "Error message 'You must log in to access this page.' is displayed.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Unauthorized access",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00018",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I am logged out, when I try to access a protected page, then I should be redirected to the login page.",
+    "title": "Unauthorized access attempt to protected page returns 401 error",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Authentication",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the API response for unauthorized access to a protected resource.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "User is logged out.",
+      "API is accessible."
+    ],
+    "test_data": [
+      "Protected Page URL: /api/protected"
+    ],
+    "steps": [
+      "Send GET request to the protected page URL."
+    ],
+    "expected_result": "HTTP 401 Unauthorized is returned.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Unauthorized access",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "correctness: API case uses UI-only language; Layer expectations need tightening",
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.76,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 1.8,
+        "reason": "API case uses UI-only language; Layer expectations need tightening",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00020",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I am logged out, when I try to access a protected page, then I should be redirected to the login page.",
+    "title": "Accessing protected page while logged out does not expose sensitive data",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Authentication",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test ensures that no sensitive data is exposed when a logged-out user attempts to access a protected page.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User is logged out.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Attempt to access a protected page."
+    ],
+    "expected_result": "No sensitive data is displayed on the page.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Unauthorized access",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00021",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I am logged out, when I try to access a protected page, then I should be redirected to the login page.",
+    "title": "System handles simultaneous access attempts to protected page by multiple logged-out users",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Authentication",
+    "test_case_layer": "UI",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the system's behavior when multiple logged-out users attempt to access a protected page at the same time.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Multiple users are logged out.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Simultaneously attempt to access a protected page from multiple logged-out user sessions."
+    ],
+    "expected_result": "All users are redirected to the login page.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Unauthorized access",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00023",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am logged in, when my session expires, then I should be automatically logged out.",
+    "title": "User is automatically logged out after session expiration",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the automatic logout feature upon session expiration.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Regular_User and has access to the application.",
+      "User is logged in and active session is established."
+    ],
+    "test_data": [],
+    "steps": [
+      "Wait for the session to expire."
+    ],
+    "expected_result": "User is redirected to the login page and sees a message indicating session expiration.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Session Expiration",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Session Management",
+      "Security"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.69,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00024",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am logged in, when my session expires, then I should be automatically logged out.",
+    "title": "User remains logged in when session is active",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks that the user is not logged out while actively using the application.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Regular_User and has access to the application.",
+      "User is logged in and active session is established."
+    ],
+    "test_data": [],
+    "steps": [
+      "Perform actions within the application before session expiration."
+    ],
+    "expected_result": "User remains logged in and can continue using the application.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Session Expiration",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Session Management",
+      "Security"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.75,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00026",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am logged in, when my session expires, then I should be automatically logged out.",
+    "title": "User is logged out when session expires with active tasks",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the behavior when the session expires while the user has ongoing tasks.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Regular_User and has access to the application.",
+      "User is logged in and has an active task in progress."
+    ],
+    "test_data": [],
+    "steps": [
+      "Wait for the session to expire while working on the task."
+    ],
+    "expected_result": "User is redirected to the login page and the task is not saved.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Session Expiration",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Session Management",
+      "Security"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.98,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00027",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am logged in, when my session expires, then I should be automatically logged out.",
+    "title": "User is logged out when session expires without user action",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the logout process when the session expires without any user interaction.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "User account exists with role Regular_User and has access to the application.",
+      "User is logged in and active session is established."
+    ],
+    "test_data": [],
+    "steps": [
+      "Let the session timeout without any user interaction."
+    ],
+    "expected_result": "User is redirected to the login page and sees a session expiration message.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Session Expiration",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Session Management",
+      "Security"
+    ],
+    "review_feedback": [
+      "correctness: API case uses UI-only language; Layer expectations need tightening",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.75,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 3.3,
+        "reason": "API case uses UI-only language; Layer expectations need tightening",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00025",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am logged in, when my session expires, then I should be automatically logged out.",
+    "title": "User is logged out when session expires during inactivity",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "API",
+    "scenario_type": "Edge Case",
+    "test_suite": "EndToEnd",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the logout process when the session expires due to inactivity.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "User account exists with role Regular_User and has access to the application.",
+      "User is logged in and active session is established."
+    ],
+    "test_data": [],
+    "steps": [
+      "Do not interact with the application for the duration of the session timeout.",
+      "Attempt to access a protected resource after timeout."
+    ],
+    "expected_result": "User is redirected to the login page and sees a session expiration message.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Session Expiration",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Session Management",
+      "Security"
+    ],
+    "review_feedback": [
+      "correctness: API case uses UI-only language; Layer expectations need tightening",
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.75,
+    "suite": "EndToEnd",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 3.3,
+        "reason": "API case uses UI-only language; Layer expectations need tightening",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00028",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given I am logged in, when I refresh the page, then my session should persist if not expired.",
+    "title": "Valid session refresh maintains user session",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the session persistence feature after a page refresh.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and has valid session."
+    ],
+    "test_data": [],
+    "steps": [
+      "Refresh the page."
+    ],
+    "expected_result": "User remains logged in and is redirected to the dashboard.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Session Persistence",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "session",
+      "persistence"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.76,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00032",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given I am logged in, when I refresh the page, then my session should persist if not expired.",
+    "title": "Performance test for session refresh under load",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test evaluates the performance of session refresh under high user load.",
+    "non_functional_type": "Performance",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and has valid session.",
+      "System is under high load with multiple concurrent users."
+    ],
+    "test_data": [],
+    "steps": [
+      "Refresh the page."
+    ],
+    "expected_result": "Session refresh completes within acceptable response time.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Session Persistence",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "session",
+      "persistence"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.25,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00029",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given I am logged in, when I refresh the page, then my session should persist if not expired.",
+    "title": "Expired session refresh returns to login page",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the behavior when the session has expired.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and session has expired."
+    ],
+    "test_data": [],
+    "steps": [
+      "Refresh the page."
+    ],
+    "expected_result": "User is redirected to the login page.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Session Persistence",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "session",
+      "persistence"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00030",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given I am logged in, when I refresh the page, then my session should persist if not expired.",
+    "title": "Session refresh near expiration maintains user session",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies session persistence when the session is close to expiration.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and session is near expiration."
+    ],
+    "test_data": [],
+    "steps": [
+      "Refresh the page."
+    ],
+    "expected_result": "User remains logged in and is redirected to the dashboard.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Session Persistence",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "session",
+      "persistence"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00031",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given I am logged in, when I refresh the page, then my session should persist if not expired.",
+    "title": "Session refresh during network failure returns error",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "Session Management",
+    "test_case_layer": "UI",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks how the system handles a network failure during session refresh.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role User and has valid session."
+    ],
+    "test_data": [],
+    "steps": [
+      "Simulate a network failure.",
+      "Refresh the page."
+    ],
+    "expected_result": "An error message is displayed indicating a network issue.",
+    "tags": [
+      "generic",
+      "UI",
+      "Positive",
+      "Session Persistence",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "session",
+      "persistence"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  }
+]

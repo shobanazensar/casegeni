@@ -36,8 +36,31 @@ with st.sidebar:
     st.header("Execution")
     execution_mode = st.selectbox("Execution mode", ["offline", "online"], index=0)
     reviewer_mode = st.selectbox("Reviewer mode", ["offline", "online"], index=0)
-    selected_layers = st.multiselect("Test layers", ["UI", "API", "Database", "ETL Integration", "E2E"], default=["UI", "API", "Database", "ETL Integration", "E2E"])
-    selected_types = st.multiselect("Test types", ["Functional", "Smoke", "Sanity", "Regression", "Performance", "Security", "Accessibility", "Compatibility"], default=["Functional", "Smoke", "Sanity", "Regression", "Performance", "Security", "Accessibility"])
+    selected_layers = st.multiselect(
+        "Test layers",
+        ["UI", "API", "Database", "ETL"],
+        default=["UI", "API", "Database", "ETL"],
+    )
+    st.caption("Layers: UI – user interface, API – service/REST, Database – persistence & audit, ETL – integration & downstream sync")
+    selected_types = st.multiselect(
+        "Primary test suite",
+        ["Functional", "Smoke", "EndToEnd"],
+        default=["Functional", "Smoke", "EndToEnd"],
+        help="Functional: business rules & AC coverage (default). Smoke: post-deploy health checks. EndToEnd: multi-system flow tests.",
+    )
+    selected_nf_types = st.multiselect(
+        "Non-functional types",
+        ["Performance", "Security", "Accessibility", "Compatibility"],
+        default=["Security"],
+        help="Non-functional test cases are generated after functional tests for each AC.",
+    )
+    selected_exec_tags = st.multiselect(
+        "Execution tags",
+        ["Regression", "UAT", "Parity", "Migration"],
+        default=["Regression"],
+        help="Secondary tags applied to tests. Regression = re-run after changes. These are never primary classifications.",
+    )
+    selected_types_combined = selected_types + selected_nf_types
     temperature = st.number_input("Temperature", min_value=0.0, max_value=1.5, value=0.2, step=0.05)
     max_tokens = st.number_input("Max tokens", min_value=256, max_value=64000, value=1800, step=128)
     max_test_count = st.number_input("Max test count", min_value=10, max_value=1000, value=60, step=5)
@@ -171,7 +194,7 @@ if run_clicked:
         execution_mode=execution_mode,
         reviewer_mode=reviewer_mode,
         selected_layers=selected_layers,
-        selected_test_types=selected_types,
+        selected_test_types=selected_types_combined,
         llm_config={
             "model": llm_model,
             "api_key": api_key,

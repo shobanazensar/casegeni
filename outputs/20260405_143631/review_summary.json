@@ -1,0 +1,17 @@
+{
+  "avg_reviewer_score": 0.0,
+  "grades": {
+    "Excellent": 0,
+    "Good": 0,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 0.0,
+  "scores_by_layer": {},
+  "scores_by_profile": {},
+  "profile_dimension_summary": {},
+  "major_common_issues": [],
+  "reviewer_table": [],
+  "reviewer_mode_used": "offline_rules"
+}

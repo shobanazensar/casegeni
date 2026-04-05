@@ -1,4 +1,5 @@
 from __future__ import annotations
+import re
 from pathlib import Path
 
 from src.agents.a0_orchestrator import A0Orchestrator
@@ -58,9 +59,22 @@ class TestCasePipeline:
         state["domain_analysis"] = self.a2.execute(document_text, state["project_state"], state["state_driven_focus"])
         req = self.a3.execute(document_text)
         state.update(req)
-        scn = self.a4.execute(req["requirements"], state["domain_analysis"], selected_layers, selected_test_types)
+
+        # Build offset progress wrappers so A4 (0–50 %) and A5 (50–100 %) share one bar.
+        n_acs = len(req["requirements"]) or 1
+        total_steps = n_acs * 2
+
+        def _a4_progress(done: int, total: int, label: str) -> None:
+            if progress_callback:
+                progress_callback(done, total_steps, f"[Scenarios] AC {done}/{n_acs}")
+
+        def _a5_progress(done: int, total: int, label: str) -> None:
+            if progress_callback:
+                progress_callback(n_acs + done, total_steps, f"[Test generation] AC {done}/{n_acs}")
+
+        scn = self.a4.execute(req["requirements"], state["domain_analysis"], selected_layers, selected_test_types, execution_mode=execution_mode, llm_config=llm_config, progress_callback=_a4_progress if execution_mode == "online" else None)
         state.update(scn)
-        gen = self.a5.execute(scn["scenario_blueprints"], document_text, execution_mode, llm_config, progress_callback=progress_callback)
+        gen = self.a5.execute(scn["scenario_blueprints"], document_text, execution_mode, llm_config, progress_callback=_a5_progress if execution_mode == "online" else None)
         gen["test_cases"] = apply_schema_guardrail_bulk(gen["test_cases"])
         state["llm_meta"] = gen.get("llm_meta", {})
 
@@ -77,12 +91,17 @@ class TestCasePipeline:
         state["review_summary"] = review["review_summary"]
 
         _SCENARIO_ORDER = {"Positive": 0, "Smoke": 0, "Sanity": 1, "Negative": 2, "Edge Case": 3, "Exception Handling": 4}
-        _LAYER_ORDER = {"UI": 0, "API": 1, "Database": 2, "ETL Integration": 3, "E2E": 4}
+        _LAYER_ORDER = {"UI": 0, "API": 1, "Database": 2, "ETL": 3}
+
+        def _ac_natural_key(ac_id: str) -> list:
+            # Natural sort so AC1, AC2, ..., AC9, AC10 orders correctly (not AC1, AC10, AC2)
+            return [int(s) if s.isdigit() else s.lower() for s in re.split(r'(\d+)', ac_id or "")]
+
         state["test_cases"] = sorted(
             state["test_cases"],
             key=lambda x: (
                 x.get("story_id", ""),
-                x.get("ac_id", ""),
+                _ac_natural_key(x.get("ac_id", "")),
                 _SCENARIO_ORDER.get(x.get("scenario_type", ""), 5),
                 _LAYER_ORDER.get(x.get("test_case_layer", ""), 5),
                 x.get("test_case_id", ""),

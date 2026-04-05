@@ -1,0 +1,87 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "domain_signals": [
+      "customer"
+    ],
+    "business_entities": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=ecommerce_retail using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 5
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "gpt-4o",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "gpt-4o",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 5,
+      "response_time_sec": 85.37,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Blank name field returns inline validation error on Save\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Negative\", \"functional_test_type\": \"Functional\", \"non_functional_type\": \"N/A\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.\"], \"test_data\": [\"Customer ID: CUST-10045\", \"Name: \", \"Phone: +1-555-0100\"], \"steps\": [\"Click Save.\"], \"expected_result\": \"HTTP 400 is returned. Response body contains field-level error: Name is required.\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"Whitespace-only name field returns inline validation error on Save\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Negative\", \"functional_test_type\": \"Functional\", \"non_functional_type\": \"N/A\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.\"], \"test_data\": [\"Customer ID: CUST-10045\", \"Name:    \", \"Phone: +1-555-0100\"], \"steps\": [\"Click Save.\"], \"expected_result\": \"HTTP 400 is returned. Response body contains",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 60
+  }
+}

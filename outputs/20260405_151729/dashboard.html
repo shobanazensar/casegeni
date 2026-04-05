@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Test Intelligence Dashboard</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f7faff; color:#0f2640; margin:0; padding:24px; }
+h1, h2 { color:#0f3d75; }
+.grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom:24px; }
+.card { background:white; border:1px solid #d7e4f7; border-radius:14px; padding:16px; box-shadow:0 2px 8px rgba(15,61,117,0.06); }
+.label { font-size:12px; color:#4a6280; text-transform:uppercase; }
+.value { font-size:28px; font-weight:700; margin-top:8px; }
+ul { margin-top:8px; }
+pre { background:white; border:1px solid #d7e4f7; padding:12px; border-radius:12px; }
+</style>
+</head>
+<body>
+<h1>Test Intelligence Dashboard</h1>
+<div class="grid">
+  <div class="card"><div class="label">Tests After Optimization</div><div class="value">31</div></div>
+  <div class="card"><div class="label">Coverage %</div><div class="value">100.0</div></div>
+  <div class="card"><div class="label">Reviewer Score</div><div class="value">3.98</div></div>
+  <div class="card"><div class="label">Automation Readiness %</div><div class="value">19.35</div></div>
+</div>
+<div class="card">
+<h2>Release Readiness: Ready</h2>
+<p><strong>Quality Score:</strong> 85.72</p>
+<ul><li>Increase edge/boundary coverage for critical validations.</li></ul>
+</div>
+<div class="card"><h2>Dashboard JSON</h2><pre>{'summary': {'total_acs': 6, 'total_tests_before': 32, 'total_tests_after': 31, 'reduction_percent': 3.12, 'traceability_coverage_percent': 100.0, 'avg_reviewer_score': 3.98, 'automation_readiness_percent': 19.35}, 'coverage_snapshot': {'by_layer': {'UI': 25, 'API': 6}, 'by_scenario_type': {'Positive': 8, 'Negative': 14, 'Edge Case': 6, 'Exception Handling': 3}, 'by_priority': {'P4': 25, 'P3': 5, 'P2': 1}}, 'optimization_impact': {'tests_removed': 1, 'reduction_percent': 3.12, 'smoke_count': 0, 'functional_count': 30, 'endtoend_count': 1, 'critical_coverage_preserved': 'Yes'}, 'quality_gaps': {'acs_without_tests': 0, 'acs_missing_negative': 0, 'acs_missing_edge': 1, 'tests_needing_human_review': 0, 'low_quality_tests': 0}, 'final_verdict': {'overall_quality_score': 85.72, 'release_readiness': 'Ready', 'top_recommendations': ['Increase edge/boundary coverage for critical validations.']}}</pre></div>
+</body></html>

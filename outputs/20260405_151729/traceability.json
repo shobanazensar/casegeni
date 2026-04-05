@@ -1,0 +1,218 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Given I am on the login page, when I enter valid credentials, then I should be logged in and redirected to the dashboard.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00004",
+        "TC00003",
+        "TC00005"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Given I am logged in, when I click \"Logout\", then my session should end and I should be redirected to the login page.",
+      "mapped_test_cases": [
+        "TC00006",
+        "TC00009",
+        "TC00007",
+        "TC00010",
+        "TC00008"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Given I enter invalid credentials, when I attempt to log in, then I should see an error message.",
+      "mapped_test_cases": [
+        "TC00011",
+        "TC00013",
+        "TC00016",
+        "TC00012",
+        "TC00015"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC4",
+      "ac_text": "Given I am logged out, when I try to access a protected page, then I should be redirected to the login page.",
+      "mapped_test_cases": [
+        "TC00017",
+        "TC00022",
+        "TC00019",
+        "TC00018",
+        "TC00020",
+        "TC00021"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC5",
+      "ac_text": "Given I am logged in, when my session expires, then I should be automatically logged out.",
+      "mapped_test_cases": [
+        "TC00023",
+        "TC00026",
+        "TC00024",
+        "TC00027",
+        "TC00025"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC6",
+      "ac_text": "Given I am logged in, when I refresh the page, then my session should persist if not expired.",
+      "mapped_test_cases": [
+        "TC00032",
+        "TC00028",
+        "TC00029",
+        "TC00030",
+        "TC00031"
+      ],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 6,
+    "covered_acs": 6,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00001, TC00004, TC00003",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Edge Case, Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing negative or risk-focused coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00002, TC00005",
+      "category": "🟢 API",
+      "priority": "P2/P3",
+      "auto": "✅",
+      "coverage": "Exception Handling, Negative",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00006, TC00009, TC00007, TC00010, TC00008",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Edge Case, Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00011, TC00013, TC00016, TC00012, TC00015",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00017, TC00019, TC00020, TC00021",
+      "category": "🔵 FUNC",
+      "priority": "P3/P4",
+      "auto": "⚠️",
+      "coverage": "Edge Case, Exception Handling, Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00022",
+      "category": "🔴 NF",
+      "priority": "P4",
+      "auto": "✅",
+      "coverage": "Security",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00018",
+      "category": "🟢 API",
+      "priority": "P3",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00023, TC00026, TC00024",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00027, TC00025",
+      "category": "🟢 API",
+      "priority": "P3/P4",
+      "auto": "✅",
+      "coverage": "Edge Case, Negative",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC6",
+      "testCaseIds": "TC00032",
+      "category": "🔴 NF",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Performance",
+      "domain": "generic",
+      "gapsNotes": "Missing negative or risk-focused coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC6",
+      "testCaseIds": "TC00028, TC00029, TC00030, TC00031",
+      "category": "🔵 FUNC",
+      "priority": "P3/P4",
+      "auto": "⚠️",
+      "coverage": "Edge Case, Exception Handling, Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": ""
+    }
+  ]
+}

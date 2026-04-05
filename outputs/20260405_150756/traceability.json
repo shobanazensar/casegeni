@@ -1,0 +1,251 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+      "mapped_test_cases": [
+        "TC00004",
+        "TC00001",
+        "TC00003",
+        "TC00002",
+        "TC00006",
+        "TC00005"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Given I submit valid user details, when I click \"Create User\", then the user should be created and assigned the selected role.",
+      "mapped_test_cases": [
+        "TC00007",
+        "TC00008",
+        "TC00009",
+        "TC00010",
+        "TC00011",
+        "TC00012"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+      "mapped_test_cases": [
+        "TC00013",
+        "TC00014",
+        "TC00015",
+        "TC00017",
+        "TC00016"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC4",
+      "ac_text": "Given I try to register a user with an existing email, when I submit the form, then I should see an error message.",
+      "mapped_test_cases": [
+        "TC00018",
+        "TC00019",
+        "TC00020",
+        "TC00021",
+        "TC00022"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC5",
+      "ac_text": "Given I am not an Admin, when I try to access the user registration form, then I should be denied access.",
+      "mapped_test_cases": [
+        "TC00023",
+        "TC00024",
+        "TC00025",
+        "TC00027"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Story:",
+      "ac_id": "ST1-AC6",
+      "ac_text": "Given a user is created, when I view the user list, then the new user should appear with the correct role.",
+      "mapped_test_cases": [
+        "TC00028",
+        "TC00029",
+        "TC00030",
+        "TC00032",
+        "TC00031"
+      ],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 6,
+    "covered_acs": 6,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00004, TC00001, TC00003",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00002, TC00006, TC00005",
+      "category": "🔴 NF",
+      "priority": "P2/P3/P4",
+      "auto": "⚠️/✅",
+      "coverage": "Security",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00007, TC00008, TC00009",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00010, TC00011, TC00012",
+      "category": "🔴 NF",
+      "priority": "P2/P3",
+      "auto": "⚠️/✅",
+      "coverage": "Security",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00013, TC00014",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00015, TC00017, TC00016",
+      "category": "🔴 NF",
+      "priority": "P2/P3",
+      "auto": "✅",
+      "coverage": "Security",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00018, TC00019",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00020",
+      "category": "🟢 API",
+      "priority": "P3",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00021",
+      "category": "🟣 DB",
+      "priority": "P4",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "generic",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00022",
+      "category": "🔴 NF",
+      "priority": "P4",
+      "auto": "✅",
+      "coverage": "Performance",
+      "domain": "generic",
+      "gapsNotes": "Missing negative or risk-focused coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00023",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing negative or risk-focused coverage; Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00024, TC00025, TC00027",
+      "category": "🔴 NF",
+      "priority": "P3/P4",
+      "auto": "⚠️/✅",
+      "coverage": "Security",
+      "domain": "generic",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC6",
+      "testCaseIds": "TC00028",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Positive",
+      "domain": "generic",
+      "gapsNotes": "Missing negative or risk-focused coverage; Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC6",
+      "testCaseIds": "TC00029, TC00030, TC00032, TC00031",
+      "category": "🔴 NF",
+      "priority": "P2/P3/P4",
+      "auto": "⚠️/✅",
+      "coverage": "Security",
+      "domain": "generic",
+      "gapsNotes": ""
+    }
+  ]
+}

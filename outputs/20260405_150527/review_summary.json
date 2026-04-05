@@ -1,0 +1,160 @@
+{
+  "avg_reviewer_score": 4.56,
+  "grades": {
+    "Excellent": 5,
+    "Good": 4,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.43,
+    "Database": 4.56,
+    "UI": 4.62
+  },
+  "scores_by_profile": {
+    "API": 4.43,
+    "Database": 4.56,
+    "UI_Business": 4.62
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.5,
+      "completeness": 5.0,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 4.8,
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "diagnostic_value": 3.8,
+      "defect_detection": 4.5,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.8,
+      "correctness": 4.1,
+      "completeness": 5.0,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.22,
+      "actionability": 4.6,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "security_awareness: Security evidence is limited (2)",
+    "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening (1)",
+    "diagnostic_value: Needs stronger diagnostics (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Update succeeds with all required fields populated",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.33,
+      "humanReview": "No",
+      "feedback": "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Blank required field is blocked with inline validation",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "API rejects request with missing required field",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Rejected request does not persist partial data",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.68,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC2",
+      "title": "Unique value is accepted in UI",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Duplicate active value is blocked in UI",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "API rejects duplicate active value",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Duplicate value is not persisted in master data",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.45,
+      "humanReview": "No",
+      "feedback": "diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC2",
+      "title": "Inactive record rule is handled correctly",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    }
+  ],
+  "reviewer_mode_used": "offline_rules"
+}

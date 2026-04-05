@@ -14,7 +14,7 @@ class A6Prioritization(AgentBase):
                 risk += 1
             if tc["scenario_type"] == "Exception Handling":
                 risk += 2
-            if tc["test_case_layer"] in {"API", "E2E", "ETL Integration"}:
+            if tc["test_case_layer"] in {"API", "ETL"}:
                 risk += 1
             if any(k in ac for k in ["unauthorized", "permission", "security", "payment", "audit", "mandatory", "state transition"]):
                 risk += 2
@@ -31,6 +31,6 @@ class A6Prioritization(AgentBase):
                 priority = "P4"
 
             tc["priority"] = priority
-            tc["automation_hint"] = "Yes" if tc["test_case_layer"] in {"API", "Database", "ETL Integration"} else ("Maybe" if tc["test_case_layer"] in {"UI", "E2E"} else "No")
+            tc["automation_hint"] = "Yes" if tc["test_case_layer"] in {"API", "Database", "ETL"} else ("Maybe" if tc["test_case_layer"] == "UI" else "No")
             tc["automated"] = tc["automation_hint"]
         return {"test_cases": test_cases}

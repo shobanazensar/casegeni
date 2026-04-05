@@ -17,8 +17,7 @@ class A9Reviewer(AgentBase):
             "UI": "UI_Business",
             "API": "API",
             "Database": "Database",
-            "ETL Integration": "ETL_Integration",
-            "E2E": "E2E_BusinessFlow",
+            "ETL": "ETL_Integration",
         }.get(tc.get("test_case_layer"), "UI_Business")
 
     def _has_keywords(self, text: str, words: list[str]) -> bool:
@@ -65,7 +64,7 @@ class A9Reviewer(AgentBase):
             if layer == "Database" and not self._has_keywords(all_text, ["query", "table", "persist", "audit", "history", "stored"]):
                 score -= 1.0
                 reasons.append("Database verification detail is weak")
-            if layer == "ETL Integration" and not self._has_keywords(all_text, ["payload", "mapping", "downstream", "reconciliation", "retry", "transform"]):
+            if layer == "ETL" and not self._has_keywords(all_text, ["payload", "mapping", "downstream", "reconciliation", "retry", "transform"]):
                 score -= 1.0
                 reasons.append("Integration flow evidence is weak")
             reasons.append("Layer behavior is largely correct" if score >= 4.0 else "Layer expectations need tightening")
@@ -111,7 +110,7 @@ class A9Reviewer(AgentBase):
             score = 4.8 if self._has_keywords(all_text, ["401", "403", "permission", "unauthorized", "token", "authentication"]) else 2.8
             reasons.append("Security checks are explicit" if score >= 4.0 else "Security evidence is limited")
         elif dimension == "reusability":
-            score = 4.2 if tc.get("test_case_layer") in {"API", "Database", "ETL Integration"} else 3.6
+            score = 4.2 if tc.get("test_case_layer") in {"API", "Database", "ETL"} else 3.6
             reasons.append("Reusable across data variations" if score >= 4.0 else "Somewhat scenario-specific")
         elif dimension == "data_integrity":
             score = 4.8 if self._has_keywords(all_text, ["persist", "stored", "audit", "old", "new", "before", "after", "unchanged"]) else 3.0

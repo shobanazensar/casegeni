@@ -1,0 +1,72 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "generic",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "General"
+    ],
+    "domain_signals": [],
+    "business_entities": [
+      "General"
+    ],
+    "user_roles": [
+      "user"
+    ],
+    "likely_process_flows": [
+      "my session and data remain protected"
+    ],
+    "applicable_regulations": [],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=generic using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 6
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "gpt-4o",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "gpt-4o",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 6,
+      "response_time_sec": 95.71,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Successful login redirects to dashboard\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"test_suite\": \"Functional\", \"execution_tags\": [], \"classification_rationale\": \"Validates the successful login flow for the user.\", \"non_functional_type\": \"\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User account exists with role User and valid credentials.\"], \"test_data\": [\"Username: validUser\", \"Password: validPassword\"], \"steps\": [\"Navigate to the login page.\", \"Enter valid credentials.\", \"Click the Login button.\"], \"expected_result\": \"User is logged in and redirected to the dashboard.\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"Invalid credentials show error message\", \"test_case_layer\": \"API\", \"scenario_type\": \"Negative\", \"test_suite\": \"Functional\", \"execution_tags\": [], \"classification_rationale\": \"Validates the system's response to invalid login attempts.\", \"non_functional_type\": \"\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\"], \"test_data\": [\"Username: invalidUser\", \"Password: invalidPassword\"], \"steps\": [\"Navigate to the login page.\", \"Enter invalid credentials.\", \"Click",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 60
+  }
+}

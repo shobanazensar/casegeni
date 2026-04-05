@@ -1,0 +1,105 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Update customer profile",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Mandatory fields name and primary phone must be provided.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00003",
+        "TC00004"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Update customer profile",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Email must be unique across active customers.",
+      "mapped_test_cases": [
+        "TC00005",
+        "TC00006",
+        "TC00007",
+        "TC00008",
+        "TC00009"
+      ],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 2,
+    "covered_acs": 2,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00001, TC00002",
+      "category": "🔵 FUNC",
+      "priority": "P2/P3",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00003",
+      "category": "🟢 API",
+      "priority": "P1",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00004",
+      "category": "🟣 DB",
+      "priority": "P2",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00005, TC00006, TC00009",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️",
+      "coverage": "Edge Case, Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00007",
+      "category": "🟢 API",
+      "priority": "P3",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00008",
+      "category": "🟣 DB",
+      "priority": "P4",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    }
+  ]
+}

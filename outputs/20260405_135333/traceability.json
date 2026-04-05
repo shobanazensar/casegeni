@@ -1,0 +1,146 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Mandatory fields name and primary phone must be provided.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00005",
+        "TC00004"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Email must be unique across active customers.",
+      "mapped_test_cases": [
+        "TC00006",
+        "TC00007",
+        "TC00009",
+        "TC00010",
+        "TC00008"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Unauthorized users cannot update customer profiles.",
+      "mapped_test_cases": [
+        "TC00015",
+        "TC00014",
+        "TC00013",
+        "TC00012",
+        "TC00011"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC4",
+      "ac_text": "Audit history must capture previous and new values.",
+      "mapped_test_cases": [
+        "TC00016",
+        "TC00017",
+        "TC00020",
+        "TC00018",
+        "TC00019"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC5",
+      "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+      "mapped_test_cases": [
+        "TC00021",
+        "TC00022",
+        "TC00023",
+        "TC00024"
+      ],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 5,
+    "covered_acs": 5,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00001, TC00002, TC00005, TC00004",
+      "category": "🔵 FUNC",
+      "priority": "P2/P3",
+      "auto": "⚠️",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00006, TC00007, TC00009, TC00010, TC00008",
+      "category": "🟢 API",
+      "priority": "P3/P4",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00015, TC00014, TC00013, TC00012, TC00011",
+      "category": "🔴 NF",
+      "priority": "P1/P2",
+      "auto": "✅",
+      "coverage": "Security",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00016, TC00018, TC00019",
+      "category": "🟣 DB",
+      "priority": "P3",
+      "auto": "✅",
+      "coverage": "Edge Case, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing negative or risk-focused coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00017, TC00020",
+      "category": "🟢 API",
+      "priority": "P1",
+      "auto": "✅",
+      "coverage": "Negative",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00021, TC00022, TC00023, TC00024",
+      "category": "🔴 NF",
+      "priority": "P2/P3/P4",
+      "auto": "✅",
+      "coverage": "Performance",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    }
+  ]
+}

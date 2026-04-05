@@ -12,13 +12,16 @@ class A5TestGeneration(AgentBase):
         self.rag = RAGRetriever()
 
     def _offline_generate_one(self, bp: dict) -> dict:
-        layer = bp["layer_candidates"][0]
+        candidates = bp.get("layer_candidates") or ["UI"]
+        layer = candidates[0] if candidates else "UI"
         scenario_key = bp.get("scenario_key", "general")
         ac_text = bp["ac_text"]
         domain = bp["domain"]
         module = bp["module"]
         functional_type = bp.get("functional_test_type", "Functional")
         non_functional_type = bp.get("non_functional_type", "")
+        # seed_type set by A4 offline; LLM blueprints may use scenario_type instead
+        seed_type = bp.get("seed_type") or bp.get("scenario_type") or "Positive"
 
         preconditions = [
             f"Application is deployed and accessible in the test environment.",
@@ -442,12 +445,12 @@ class A5TestGeneration(AgentBase):
             test_data.append("Record Identifier: [specify primary key or unique identifier for the target row]")
             test_data.append("Pre-Update Field Value: [specify the exact field value before the operation]")
             test_data.append("Post-Update Expected Value: [specify the exact field value expected after the operation]")
-        elif layer == "ETL Integration":
+        elif layer in {"ETL", "ETL Integration"}:
             test_data.append("Source Record ID: [specify identifier of the source record under test]")
             test_data.append("Field Under Test: [specify source field name and the value used for this test]")
             test_data.append("Expected Downstream Field: [specify the downstream field name and its expected mapped value]")
             test_data.append("Integration Job Name or Queue: [specify the job or topic name]")
-        elif layer == "E2E":
+        elif layer in {"E2E", "EndToEnd"}:
             test_data.append("Business Record ID: [specify the identifier traceable across source and downstream systems]")
             test_data.append("Source System Entry Point: [specify UI screen or API endpoint used to trigger the business action]")
             test_data.append("Downstream System and Field: [specify system name and field expected to reflect the change]")
@@ -462,14 +465,14 @@ class A5TestGeneration(AgentBase):
             "module": module,
             "submodule": bp.get("submodule", ""),
             "test_case_layer": layer,
-            "scenario_type": bp["seed_type"],
+            "scenario_type": seed_type,
             "functional_test_type": functional_type,
             "non_functional_type": non_functional_type,
             "preconditions": preconditions,
             "test_data": test_data,
             "steps": steps,
             "expected_result": expected,
-            "tags": [domain, layer, bp["seed_type"], bp.get("focus", ""), bp["ac_id"]],
+            "tags": [domain, layer, seed_type, bp.get("focus", ""), bp["ac_id"]],
             "risk_tags": list(bp.get("risk_tags", [])),
             "source": "offline_rules",
         }
@@ -485,112 +488,110 @@ class A5TestGeneration(AgentBase):
         merged.setdefault("non_functional_type", bp.get("non_functional_type", ""))
         return merged
 
-    def _online_generate_from_groups(self, blueprints: list[dict], drafts: list[dict], document_text: str, llm_config: dict, fail_on_error: bool = True, progress_callback=None) -> tuple[list[dict], dict]:
+    def _online_generate_from_groups(self, blueprints: list[dict], document_text: str, llm_config: dict, fail_on_error: bool = True, progress_callback=None) -> tuple[list[dict], dict]:
+        # Cap max_tokens at 2000 per AC call — allows 7-8 test cases per AC comfortably.
+        # Per-AC batching keeps input small so total prompt+response stays within bridge limits.
+        # Offline drafts are generated LAZILY — only on LLM failure for a specific AC.
         client = LLMClient(
             model=llm_config.get("model", ""),
             api_key=llm_config.get("api_key", ""),
             base_url=llm_config.get("base_url", ""),
             temperature=llm_config.get("temperature", 0.2),
-            max_tokens=llm_config.get("max_tokens", 3200),
+            max_tokens=min(llm_config.get("max_tokens", 2000), 2000),
             use_json_format=llm_config.get("use_json_format", True),
         )
-        meta = {"requested": True, "used": False, "fallback_reason": "", "generator_source": "offline_rules", "model": llm_config.get("model", ""), "base_url": llm_config.get("base_url", ""), "batch_count": 0, "response_time_sec": 0.0, "raw_preview": "", "strategy": "story_batched_generation"}
+        meta = {"requested": True, "used": False, "fallback_reason": "", "generator_source": "offline_rules", "model": llm_config.get("model", ""), "base_url": llm_config.get("base_url", ""), "batch_count": 0, "response_time_sec": 0.0, "raw_preview": "", "strategy": "per_ac_generation"}
         if not client.is_configured():
             meta["fallback_reason"] = "LLM configuration incomplete"
             if fail_on_error:
                 raise ValueError(meta["fallback_reason"])
-            return drafts, meta
+            return [self._offline_generate_one(bp) for bp in blueprints], meta
 
-        # --- Group by story (one LLM call per story, not per AC) ---
-        story_groups: dict[str, dict] = {}
-        for bp, draft in zip(blueprints, drafts):
-            sid = bp["story_id"]
-            if sid not in story_groups:
-                story_groups[sid] = {"story_title": bp["story_title"], "acs": {}}
-            ac_id = bp["ac_id"]
-            if ac_id not in story_groups[sid]["acs"]:
-                story_groups[sid]["acs"][ac_id] = {"blueprints": [], "drafts": []}
-            story_groups[sid]["acs"][ac_id]["blueprints"].append(bp)
-            story_groups[sid]["acs"][ac_id]["drafts"].append(draft)
+        # --- Group blueprints by (story_id, ac_id) — no pre-built drafts ---
+        ac_groups: dict[tuple[str, str], dict] = {}
+        for bp in blueprints:
+            key = (bp["story_id"], bp["ac_id"])
+            if key not in ac_groups:
+                ac_groups[key] = {
+                    "story_id": bp["story_id"],
+                    "story_title": bp["story_title"],
+                    "ac_id": bp["ac_id"],
+                    "ac_text": bp["ac_text"],
+                    "blueprints": [],
+                }
+            ac_groups[key]["blueprints"].append(bp)
 
-        # Compact document excerpt (1000 chars is enough context; full text already in blueprint ac_text)
-        doc_excerpt = document_text[:1000].strip()
+        doc_excerpt = document_text[:600].strip()
+
+        system = (
+            "You are a senior enterprise QA architect. Return strict JSON only — no markdown, no prose, no explanation outside the JSON. "
+            "Generate business-specific, execution-ready test cases for one acceptance criterion.\n\n"
+            "MANDATORY COVERAGE RULE — for EVERY AC without exception:\n"
+            "  - Always include at least one Positive (scenario_type: Positive) test case — the success/happy-path scenario that proves the AC works end-to-end.\n"
+            "  - Never skip the positive case even when the AC is primarily about validation or rejection.\n\n"
+            "TEST SUITE CLASSIFICATION (MANDATORY — assign exactly ONE per test case):\n"
+            "  - Smoke: system health verification ONLY — app launches, login works, core API responds. No business rule validation.\n"
+            "  - Functional: validates a single feature, rule, or acceptance criterion. This is the DEFAULT for all business logic tests.\n"
+            "  - EndToEnd: validates a COMPLETE business flow crossing multiple systems/modules (e.g. Hire→Payroll→Payslip). Do NOT use for single-module tests.\n"
+            "  NEVER use Regression, Sanity, or any other value as test_suite. Regression belongs in execution_tags only.\n\n"
+            "EXECUTION TAGS (optional array — can be empty or contain one or more):\n"
+            "  Allowed values: Regression, UAT, Parity, Migration.\n"
+            "  Apply Regression when the test should re-run after code changes or fixes.\n\n"
+            "CLASSIFICATION RATIONALE: one sentence explaining why the test_suite was chosen.\n\n"
+            "NON-FUNCTIONAL TESTS: generate non-functional tests (Performance, Security, etc.) AFTER all functional tests for the AC.\n\n"
+            "GOLDEN PRINCIPLES — every test case MUST follow all of these:\n"
+            "PRECONDITIONS — state only, never actions:\n"
+            "  - Describe system state, user role with exact permissions, config, and required data BEFORE execution.\n"
+            "  - NEVER write actions. BAD: 'Navigate to application'. GOOD: 'Application is deployed and accessible in UAT environment.'\n"
+            "  - NEVER be vague. BAD: 'User is logged in'. GOOD: 'User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.'\n"
+            "TEST DATA — specific values, never placeholders:\n"
+            "  - GOOD: 'Customer ID: CUST-10045', 'Name: John Smith', 'Phone: +1-555-0100'.\n"
+            "  - NEVER: 'valid name', 'existing customer', 'any phone number'.\n"
+            "STEPS — one action per step, verb-first, no assertions:\n"
+            "  - BAD: 'Verify salary is calculated'. GOOD: 'Click the Save button.'\n"
+            "EXPECTED RESULTS — assertive, measurable, present-tense:\n"
+            "  - BAD: 'System works as expected'. GOOD: 'HTTP 400 is returned. Response body contains field-level error: Name is required.'\n"
+            "scenario_type must be exactly one of: Positive, Negative, Edge Case, Exception Handling.\n"
+            "test_case_layer must be exactly one of the layers in allowed_layers.\n"
+            "Use each layer only when it adds unique verification value. All array fields must be JSON arrays."
+        )
 
         out: list[dict] = []
-        total_stories = len(story_groups)
+        total_acs = len(ac_groups)
         completed = 0
+        any_llm_success = False
+        started = time.time()
 
-        try:
-            started = time.time()
-            for story_id, story_data in story_groups.items():
-                acs_payload = []
-                bp_lookup: dict[str, dict] = {}  # ac_id -> first blueprint
-                for ac_id, ac_data in story_data["acs"].items():
-                    grp_bps = ac_data["blueprints"]
-                    allowed_layers = sorted({bp["layer_candidates"][0] for bp in grp_bps})
-                    acs_payload.append({
-                        "ac_id": ac_id,
-                        "ac_text": grp_bps[0]["ac_text"],
-                        "allowed_layers": allowed_layers,
-                        "seed_blueprints": grp_bps,
-                    })
-                    bp_lookup[ac_id] = grp_bps[0]
+        for (story_id, ac_id), ac_data in ac_groups.items():
+            grp_bps = ac_data["blueprints"]
+            allowed_layers = sorted({bp["layer_candidates"][0] for bp in grp_bps})
 
-                system = (
-                    "You are a senior enterprise QA architect. Return strict JSON only — no markdown, no prose, no explanation outside the JSON. "
-                    "Generate business-specific, execution-ready test cases for a user story. "
+            user = json.dumps({
+                "story_id": story_id,
+                "story_title": ac_data["story_title"],
+                "ac_id": ac_id,
+                "ac_text": ac_data["ac_text"],
+                "document_excerpt": doc_excerpt,
+                "allowed_layers": allowed_layers,
+                "seed_blueprints": grp_bps,
+                "generation_rules": [
+                    "Return JSON with a single key 'test_cases' containing an array.",
+                    "Every test case must set 'ac_id' to the ac_id value provided above.",
+                    "Generate 5-12 test cases per AC. Always start with at least one Positive (happy-path) test case. Then cover Negative, Edge Case, and Exception Handling variants. Non-functional tests (Security, Performance) come last. Do not pad — every test must add distinct coverage.",
+                    "scenario_type must be exactly one of: Positive, Negative, Edge Case, Exception Handling.",
+                    "test_suite must be exactly one of: Smoke, Functional, EndToEnd. Default to Functional for all business-rule tests. Use Smoke only for health checks. Use EndToEnd only when the test crosses multiple systems.",
+                    "execution_tags: array of zero or more from: Regression, UAT, Parity, Migration. Apply Regression for tests that should re-run after changes.",
+                    "classification_rationale: one sentence explaining the test_suite choice.",
+                    "Each test case must include: ac_id, title, test_case_layer (from allowed_layers), scenario_type, test_suite, execution_tags (array), classification_rationale, non_functional_type, preconditions (array), test_data (array), steps (array), expected_result (string).",
+                    "Titles must be concrete and outcome-specific. BAD: 'Validate AC-01'. GOOD: 'Blank name field returns inline validation error on Save'.",
+                    "PRECONDITIONS: system state and user role only. Never actions, never vague.",
+                    "TEST DATA: concrete values and identifiers. Never placeholders.",
+                    "STEPS: one verb-first action per step. No assertions in steps.",
+                    "EXPECTED RESULTS: assertive, present-tense, measurable. No vague language.",
+                ],
+            }, indent=2)
 
-                    "GOLDEN PRINCIPLES — every test case MUST follow all of these:\n"
-
-                    "PRECONDITIONS — state only, never actions:\n"
-                    "  - Must describe system state, user role with exact permissions, configuration, and required data existence BEFORE execution.\n"
-                    "  - NEVER write actions as preconditions. BAD: 'Navigate to application'. GOOD: 'Application is deployed and accessible in UAT environment.'\n"
-                    "  - NEVER write vague preconditions. BAD: 'User is logged in'. GOOD: 'User account exists with role Payroll_Admin and has active session.'\n"
-                    "  - NEVER write assertions as preconditions. BAD: 'Salary is calculated'. GOOD: 'Payroll period for March 2026 is open.'\n"
-
-                    "TEST DATA — specific values, never placeholders:\n"
-                    "  - Must contain actual input values, boundary values, reference data, and identifiers that drive the test behaviour.\n"
-                    "  - NEVER use vague placeholders. BAD: 'valid salary', 'existing employee', 'any payroll month'.\n"
-                    "  - GOOD: 'Employee ID: EMP_10045', 'Basic Salary: 50000', 'Tax Slab: 20%', 'Payroll Month: March 2026'.\n"
-
-                    "STEPS — actions only, one action per step, no assertions mixed in:\n"
-                    "  - Each step must begin with a verb and describe exactly one action.\n"
-                    "  - NEVER mix assertions into steps. BAD: 'Verify that salary is calculated'. That belongs in Expected Results.\n"
-                    "  - NEVER write vague steps. BAD: 'Ensure page loads'. GOOD: 'Click the Calculate Salary button.'\n"
-                    "  - Steps must be deterministic — no conditional language like 'if applicable'.\n"
-
-                    "EXPECTED RESULTS — measurable and assertive:\n"
-                    "  - Must describe exactly what correctness looks like: system response, data values, state changes, messages, status codes.\n"
-                    "  - NEVER use vague language. BAD: 'System works as expected', 'No issues observed', 'Salary should be correct'.\n"
-                    "  - GOOD: 'Net salary calculated is 40000. Tax amount is 10000. Payroll status is updated to Calculated.'\n"
-                    "  - Use present tense assertive language. BAD: 'System will display'. GOOD: 'System displays'.\n"
-                    "  - Each expected result must be independently verifiable and programmatically assertable.\n"
-
-                    "Do not create mechanical layer clones. Use each layer only when it adds unique verification value. "
-                    "All array fields must remain JSON arrays."
-                )
-                user = json.dumps({
-                    "story_id": story_id,
-                    "story_title": story_data["story_title"],
-                    "document_excerpt": doc_excerpt,
-                    "acceptance_criteria": acs_payload,
-                    "generation_rules": [
-                        "Return JSON with a single key 'test_cases' containing an array.",
-                        "Each test case must have 'ac_id' matching one of the provided acceptance_criteria ac_id values.",
-                        "Generate 2-4 test cases per AC. Do not force all layers — use each layer only when it adds unique verification value.",
-                        "Titles must be concrete, business-readable, and describe the specific outcome being verified. BAD: 'Validate AC-01'. GOOD: 'Mandatory field blank returns inline validation error'.",
-                        "Each test case must include: ac_id, title, test_case_layer, scenario_type, functional_test_type, non_functional_type, preconditions (array), test_data (array), steps (array), expected_result (string).",
-                        "PRECONDITIONS rule: Write system state, user roles with specific permissions, configurations, and required data. Never write actions or assertions as preconditions. Never use vague phrases like 'user is logged in' or 'all configurations are correct'.",
-                        "TEST DATA rule: Provide specific, concrete values. Include record identifiers, field names with exact values, permission scopes, HTTP endpoints, or boundary values. Never use placeholders like 'valid data', 'existing record', 'any value'.",
-                        "STEPS rule: One action per step. Every step starts with a verb. Never mix assertions into steps — validations go only in expected_result. Never write conditional steps ('if applicable').",
-                        "EXPECTED RESULTS rule: Use assertive present-tense language. State exact values, status codes, messages, state changes. Never use vague language like 'system works as expected', 'no issues observed', or 'should be correct'.",
-                        "UI tests: reference visible field names, button labels, and specific validation message text.",
-                        "API tests: specify HTTP method, endpoint path, expected status code, and response body content.",
-                        "Database tests: only when the AC explicitly implies persistence, audit, or data-integrity verification. Reference table names and field values.",
-                        "Do not repeat the same scenario intent across layers unless each layer provides a distinct and unique verification not covered by another layer.",
-                    ]
-                }, indent=2)
-
+            try:
                 payload = client.generate_json(system, user)
                 meta["batch_count"] += 1
                 if not meta["raw_preview"]:
@@ -598,12 +599,11 @@ class A5TestGeneration(AgentBase):
 
                 improved = payload.get("test_cases", [])
                 if not isinstance(improved, list) or not improved:
-                    raise ValueError(f"LLM returned no test cases for story {story_id}")
+                    raise ValueError(f"LLM returned no test cases for {story_id}/{ac_id}")
 
+                base_bp = grp_bps[0]
+                improved_out: list[dict] = []
                 for tc in improved:
-                    ac_id = tc.get("ac_id") or (acs_payload[0]["ac_id"] if acs_payload else "")
-                    base_bp = bp_lookup.get(ac_id) or list(bp_lookup.values())[0]
-                    allowed_layers = sorted({bp["layer_candidates"][0] for bp in story_groups[story_id]["acs"].get(ac_id, {"blueprints": [base_bp]})["blueprints"]})
                     merged = self._merge_with_blueprint(base_bp, tc)
                     chosen_layer = merged.get("test_case_layer") or merged.get("layer") or base_bp["layer_candidates"][0]
                     if chosen_layer not in allowed_layers:
@@ -617,29 +617,35 @@ class A5TestGeneration(AgentBase):
                     merged["module"] = base_bp["module"]
                     merged["submodule"] = base_bp.get("submodule", "")
                     merged["source"] = "online_llm"
-                    out.append(merged)
+                    # Map functional_test_type → test_suite if LLM used old field name
+                    if not merged.get("test_suite") and merged.get("functional_test_type"):
+                        merged["test_suite"] = merged["functional_test_type"]
+                    improved_out.append(merged)
+                out.extend(improved_out)
+                any_llm_success = True
 
-                completed += 1
-                if progress_callback:
-                    progress_callback(completed, total_stories, f"Story {completed}/{total_stories}: {story_data['story_title'][:50]}")
+            except Exception as exc:
+                # Per-AC fallback: generate offline drafts on demand for this AC only
+                meta["fallback_reason"] = f"{ac_id}: {exc}"
+                out.extend(self._offline_generate_one(bp) for bp in grp_bps)
 
+            completed += 1
+            if progress_callback:
+                progress_callback(completed, total_acs, f"A5 {completed}/{total_acs}: {ac_id}")
+
+        meta["response_time_sec"] = round(time.time() - started, 2)
+        if any_llm_success:
             meta["used"] = True
             meta["generator_source"] = "online_llm"
-            meta["response_time_sec"] = round(time.time() - started, 2)
-            return out, meta
-        except Exception as exc:
-            meta["fallback_reason"] = str(exc)
-            meta["response_time_sec"] = round(time.time() - started, 2) if "started" in locals() else 0.0
-            if fail_on_error:
-                raise RuntimeError(str(exc)) from exc
-            return drafts, meta
+        return out, meta
 
     def execute(self, scenario_blueprints: list[dict], document_text: str, execution_mode: str, llm_config: dict, progress_callback=None) -> dict:
-        drafts = [self._offline_generate_one(bp) for bp in scenario_blueprints]
         llm_meta = {"requested": execution_mode == "online", "used": False, "fallback_reason": "", "generator_source": "offline_rules"}
-        tests = drafts
         if execution_mode == "online":
-            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, drafts, document_text, llm_config, fail_on_error=True, progress_callback=progress_callback)
+            # Offline drafts are generated lazily inside the online path (only on per-AC LLM failure)
+            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, document_text, llm_config, fail_on_error=True, progress_callback=progress_callback)
+        else:
+            tests = [self._offline_generate_one(bp) for bp in scenario_blueprints]
         for idx, tc in enumerate(tests, start=1):
             tc["test_case_id"] = f"TC{idx:05d}"
             if not tc.get("automated"):

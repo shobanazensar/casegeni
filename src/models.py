@@ -3,9 +3,9 @@ from typing import List, Literal, Optional
 from pydantic import BaseModel, Field
 
 
-Layer = Literal["UI", "API", "Database", "ETL Integration", "E2E"]
+Layer = Literal["UI", "API", "Database", "ETL"]
 ScenarioType = Literal["Positive", "Negative", "Edge Case", "Exception Handling"]
-FunctionalType = Literal["Functional", "Smoke", "Sanity", "Regression", ""]
+TestSuite = Literal["Smoke", "Functional", "EndToEnd", ""]
 NonFunctionalType = Literal["Performance", "Security", "Accessibility", "Compatibility", ""]
 Priority = Literal["P1", "P2", "P3", "P4"]
 AutomationHint = Literal["Yes", "No", "Maybe"]
@@ -45,7 +45,9 @@ class TestCase(BaseModel):
     submodule: str = ""
     test_case_layer: Layer
     scenario_type: ScenarioType
-    functional_test_type: FunctionalType = ""
+    test_suite: TestSuite = "Functional"
+    execution_tags: List[str] = Field(default_factory=list)
+    classification_rationale: str = ""
     non_functional_type: NonFunctionalType = ""
     priority: Priority = "P3"
     automation_hint: AutomationHint = "Maybe"
