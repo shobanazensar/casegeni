@@ -1,0 +1,87 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "domain_signals": [
+      "customer"
+    ],
+    "business_entities": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=ecommerce_retail using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 5
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL Integration",
+      "E2E"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "Sanity",
+      "Regression",
+      "Performance",
+      "Security",
+      "Accessibility"
+    ],
+    "llm_config": {
+      "model": "llama3:8b",
+      "api_key": "***",
+      "base_url": "http://localhost:11434/v1",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "llama3:8b",
+      "base_url": "http://localhost:11434/v1",
+      "batch_count": 1,
+      "response_time_sec": 92.79,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Successful profile update\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"functional_test_type\": \"Functional\", \"non_functional_type\": \"\", \"preconditions\": \"User has valid credentials\", \"test_data\": {\"username\": \"johnDoe\", \"password\": \"password123\"}, \"steps\": [\"User logs in with valid credentials\", \"User navigates to profile update page\", \"User updates profile information\", \"User submits update request\"], \"expected_result\": \"Profile information is updated successfully\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"Failed profile update\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Negative\", \"functional_test_type\": \"Functional\", \"non_functional_type\": \"\", \"preconditions\": \"User has invalid credentials\", \"test_data\": {\"username\": \"invalidUser\", \"password\": \"wrongPassword\"}, \"steps\": [\"User logs in with invalid credentials\", \"User navigates to profile update page\", \"User updates profile information\", \"User submits update request\"], \"expected_result\": \"Profile information is not updated due to invalid credentials\"}, {\"ac_id\": \"ST1-AC2\", \"title\": \"Successful profile update with audit\", \"test_case_layer\": \"Database\", \"scenario_type\": \"Positive\", ",
+      "strategy": "story_batched_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 60
+  }
+}

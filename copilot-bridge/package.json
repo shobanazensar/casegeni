@@ -1,0 +1,40 @@
+{
+  "name": "copilot-llm-bridge",
+  "displayName": "Copilot LLM Bridge",
+  "description": "Exposes GitHub Copilot as a local OpenAI-compatible HTTP endpoint for CaseGeni",
+  "version": "1.0.0",
+  "publisher": "casegeni",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilotLlmBridge.start",
+        "title": "Copilot LLM Bridge: Start"
+      },
+      {
+        "command": "copilotLlmBridge.stop",
+        "title": "Copilot LLM Bridge: Stop"
+      },
+      {
+        "command": "copilotLlmBridge.status",
+        "title": "Copilot LLM Bridge: Show Status"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.4.0",
+    "@vscode/vsce": "^2.26.0"
+  },
+  "extensionDependencies": ["GitHub.copilot-chat"]
+}

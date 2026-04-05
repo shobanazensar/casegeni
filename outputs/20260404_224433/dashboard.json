@@ -1,0 +1,46 @@
+{
+  "summary": {
+    "total_acs": 5,
+    "total_tests_before": 7,
+    "total_tests_after": 7,
+    "reduction_percent": 0.0,
+    "traceability_coverage_percent": 100.0,
+    "avg_reviewer_score": 4.15,
+    "automation_readiness_percent": 14.29
+  },
+  "coverage_snapshot": {
+    "by_layer": {
+      "UI": 6,
+      "ETL Integration": 1
+    },
+    "by_scenario_type": {
+      "Positive": 7
+    },
+    "by_priority": {
+      "P3": 4,
+      "P4": 3
+    }
+  },
+  "optimization_impact": {
+    "tests_removed": 0,
+    "reduction_percent": 0.0,
+    "smoke_count": 0,
+    "regression_count": 7,
+    "critical_coverage_preserved": "Yes"
+  },
+  "quality_gaps": {
+    "acs_without_tests": 0,
+    "acs_missing_negative": 5,
+    "acs_missing_edge": 5,
+    "tests_needing_human_review": 0,
+    "low_quality_tests": 0
+  },
+  "final_verdict": {
+    "overall_quality_score": 88.1,
+    "release_readiness": "Ready",
+    "top_recommendations": [
+      "Strengthen negative-path coverage for uncovered AC patterns.",
+      "Increase edge/boundary coverage for critical validations."
+    ]
+  }
+}

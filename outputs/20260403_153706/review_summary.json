@@ -1,0 +1,106 @@
+{
+  "avg_reviewer_score": 4.17,
+  "grades": {
+    "Excellent": 0,
+    "Good": 4,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 60.0,
+  "scores_by_layer": {
+    "API": 4.1,
+    "Database": 4.29,
+    "UI": 4.15
+  },
+  "scores_by_profile": {
+    "API": 4.1,
+    "Database": 4.29,
+    "UI_Business": 4.15
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.5,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 4.8,
+      "correctness": 4.5,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "defect_detection": 3.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 3.9,
+      "correctness": 4.5,
+      "completeness": 2.8,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.15,
+      "actionability": 3.0,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "completeness: Missing execution detail (4)",
+    "actionability: Needs stronger data or step detail (2)",
+    "clarity: Needs clearer title or steps (1)",
+    "security_awareness: Security evidence is limited (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Successful profile update",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.25,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Failed profile update",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC2",
+      "title": "Successful profile update with audit",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC3",
+      "title": "Failed profile update with audit",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail; security_awareness: Security evidence is limited"
+    }
+  ],
+  "reviewer_mode_used": "offline_rules"
+}

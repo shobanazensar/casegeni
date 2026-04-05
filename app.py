@@ -48,6 +48,18 @@ with st.sidebar:
         st.subheader("LLM configuration")
 
         PROVIDER_PRESETS = {
+            "GitHub Copilot (VS Code Bridge)": {
+                "base_url": "http://127.0.0.1:3100/v1",
+                "default_model": "gpt-4o",
+                "needs_key": False,
+                "json_format": False,
+                "note": (
+                    "Requires the Copilot LLM Bridge extension to be installed and VS Code running. "
+                    "The bridge auto-starts when VS Code opens. "
+                    "Model name is matched against available Copilot models (e.g. gpt-4o, claude-sonnet-4-5). "
+                    "JSON-format mode is disabled because the bridge instructs Copilot via the system prompt instead."
+                ),
+            },
             "Ollama (Local)": {
                 "base_url": "http://localhost:11434/v1",
                 "default_model": "llama3.2",

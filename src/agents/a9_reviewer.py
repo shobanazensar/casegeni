@@ -46,9 +46,19 @@ class A9Reviewer(AgentBase):
             if "|" in title:
                 score -= 1.0
                 reasons.append("Template-style title hurts clarity")
+            # Penalise titles that are too generic
+            vague_title_phrases = ["validate ac", "test ac", "verify ac", "check ac", "positive test", "negative test"]
+            if any(p in title.lower() for p in vague_title_phrases):
+                score -= 1.5
+                reasons.append("Title is too generic — must describe the specific outcome being verified")
             reasons.append("Steps are readable and specific" if score >= 4.0 else "Needs clearer title or steps")
         elif dimension == "correctness":
             score = 4.5 if expected and len(expected) >= 35 else 3.0
+            # Penalise vague expected results
+            vague_expected = ["system works as expected", "no issues observed", "correctly", "should be correct", "as expected", "the business rule is satisfied"]
+            if any(p in expected.lower() for p in vague_expected):
+                score -= 2.0
+                reasons.append("Expected result is too vague — must be specific, measurable, and assertable")
             if layer == "API" and self._has_keywords(all_text, ["screen", "page", "click"]):
                 score -= 1.2
                 reasons.append("API case uses UI-only language")
@@ -60,8 +70,28 @@ class A9Reviewer(AgentBase):
                 reasons.append("Integration flow evidence is weak")
             reasons.append("Layer behavior is largely correct" if score >= 4.0 else "Layer expectations need tightening")
         elif dimension == "completeness":
-            score = 5.0 if len(tc.get("preconditions", [])) >= 2 and len(tc.get("steps", [])) >= 3 and expected else 2.8
-            reasons.append("Has preconditions, steps, and expected result" if score >= 4.5 else "Missing execution detail")
+            preconds = tc.get("preconditions", [])
+            steps_list = tc.get("steps", [])
+            test_data_list = tc.get("test_data", [])
+            score = 5.0 if len(preconds) >= 2 and len(steps_list) >= 3 and expected and len(test_data_list) >= 2 else 2.8
+            # Penalise vague preconditions
+            vague_pre_phrases = ["user is logged in", "all configurations are correct", "valid business context", "system is available", "user has access"]
+            vague_pre_count = sum(1 for p in preconds if any(v in p.lower() for v in vague_pre_phrases))
+            if vague_pre_count > 0:
+                score -= min(1.5, vague_pre_count * 0.75)
+                reasons.append(f"{vague_pre_count} precondition(s) are vague — must specify system state and exact user role")
+            # Penalise vague test data
+            vague_data_phrases = ["valid data", "existing record", "any value", "use values relevant", "aligned to the scenario"]
+            vague_data_count = sum(1 for d in test_data_list if any(v in str(d).lower() for v in vague_data_phrases))
+            if vague_data_count > 0:
+                score -= min(1.5, vague_data_count * 0.75)
+                reasons.append(f"{vague_data_count} test data item(s) are vague — must provide specific concrete values")
+            # Penalise steps that contain assertions
+            assertion_steps = sum(1 for s in steps_list if any(v in s.lower() for v in ["verify", "check if", "ensure", "assert", "confirm that", "observe that"]))
+            if assertion_steps > 0:
+                score -= min(1.5, assertion_steps * 0.5)
+                reasons.append(f"{assertion_steps} step(s) contain assertions — validations must go only in Expected Results")
+            reasons.append("Has preconditions, steps, test data, and expected result" if score >= 4.5 else "Missing execution detail or contains quality violations")
         elif dimension == "business_outcome_focus":
             score = 4.5 if self._has_keywords(all_text, ["save", "updated", "blocked", "downstream", "audit", "customer", "profile", "business"]) else 3.0
             reasons.append("Outcome is business-observable" if score >= 4.0 else "Outcome is too generic")
