@@ -1,0 +1,369 @@
+{
+  "avg_reviewer_score": 4.17,
+  "grades": {
+    "Excellent": 4,
+    "Good": 19,
+    "Acceptable": 2,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [
+    "TC00023",
+    "TC00024",
+    "TC00027",
+    "TC00026",
+    "TC00025"
+  ],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.11,
+    "Database": 4.41,
+    "ETL": 3.74,
+    "UI": 4.68
+  },
+  "scores_by_profile": {
+    "API": 4.12,
+    "Database": 4.41,
+    "ETL_Integration": 3.74,
+    "NonFunctional": 4.03,
+    "UI_Business": 4.68
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.37,
+      "completeness": 2.8,
+      "diagnostic_value": 4.16,
+      "security_awareness": 3.89,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 4.8,
+      "correctness": 4.5,
+      "completeness": 3.24,
+      "diagnostic_value": 4.6,
+      "defect_detection": 4.36,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "ETL_Integration": {
+      "data_integrity": 3.36,
+      "transformation_accuracy": 3.72,
+      "completeness": 3.24,
+      "defect_detection": 4.36,
+      "diagnostic_value": 3.32,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 4.5,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.0,
+      "diagnostic_value": 3.0,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.8,
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.27,
+      "actionability": 4.6,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "completeness: Missing execution detail or contains quality violations (19)",
+    "diagnostic_value: Needs stronger diagnostics (8)",
+    "security_awareness: Security evidence is limited (5)",
+    "data_integrity: Data integrity checks are weak (4)",
+    "transformation_accuracy: Transformation checks are weak (3)",
+    "measurement_clarity: Measurement criteria are vague (1)",
+    "environment_readiness: Environment needs are under-specified (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Valid name and primary phone updates customer profile successfully",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Blank name field returns inline validation error on Save",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Blank primary phone field returns inline validation error on Save",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Valid unique email update",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.72,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Duplicate active email update",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC2",
+      "title": "Duplicate inactive email update",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.86,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Self-same email update",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.86,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST1-AC2",
+      "title": "Performance of email uniqueness check",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST1-AC3",
+      "title": "Unauthorized user cannot update customer profile",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.16,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST1-AC3",
+      "title": "Unauthorized user profile update attempt is rate-limited",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00017",
+      "acId": "ST1-AC3",
+      "title": "Unauthorized user receives appropriate error message",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST1-AC3",
+      "title": "User attempts to update another user's profile",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST1-AC3",
+      "title": "User with expired token cannot update customer profile",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST1-AC3",
+      "title": "System handles invalid customer ID gracefully",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST1-AC3",
+      "title": "System logs unauthorized access attempts",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00018",
+      "acId": "ST1-AC4",
+      "title": "Audit captures correct previous and new values on profile update",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00022",
+      "acId": "ST1-AC4",
+      "title": "Audit captures both old and new values correctly",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.36,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00019",
+      "acId": "ST1-AC4",
+      "title": "No audit record created on failed profile update",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.36,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00020",
+      "acId": "ST1-AC4",
+      "title": "Audit captures partial changes correctly",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.36,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00021",
+      "acId": "ST1-AC4",
+      "title": "Audit records cannot be altered after creation",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.68,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00023",
+      "acId": "ST1-AC5",
+      "title": "Valid profile update triggers sync",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 4.13,
+      "humanReview": "Yes",
+      "feedback": "completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00024",
+      "acId": "ST1-AC5",
+      "title": "Profile update failure does not trigger sync",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.79,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00027",
+      "acId": "ST1-AC5",
+      "title": "Sync job receives correct data",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Acceptable",
+      "score": 3.43,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak; completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00026",
+      "acId": "ST1-AC5",
+      "title": "Sync job recovers from failure",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.92,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00025",
+      "acId": "ST1-AC5",
+      "title": "Simultaneous updates cause sync issues",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Acceptable",
+      "score": 3.43,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak; completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics"
+    }
+  ],
+  "reviewer_mode_used": "offline_rules"
+}

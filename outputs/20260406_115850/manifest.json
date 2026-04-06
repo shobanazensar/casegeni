@@ -1,0 +1,83 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "domain_signals": [
+      "customer"
+    ],
+    "business_entities": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=ecommerce_retail using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 5
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "gpt-4o",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "gpt-4o",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 5,
+      "response_time_sec": 97.31,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Valid name and primary phone updates customer profile successfully\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"test_suite\": \"Functional\", \"execution_tags\": [], \"classification_rationale\": \"This test validates the successful update of a customer profile with mandatory fields filled.\", \"non_functional_type\": \"\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.\", \"Customer profile exists with ID: CUST-10045.\"], \"test_data\": [\"Customer ID: CUST-10045\", \"Name: John Smith\", \"Primary Phone: +1-555-0100\"], \"steps\": [\"Navigate to the customer profile update page.\", \"Enter Name: John Smith.\", \"Enter Primary Phone: +1-555-0100.\", \"Click the Save button.\"], \"expected_result\": \"Customer profile is updated successfully. HTTP 200 is returned.\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"Blank name field returns inline validation error on Save\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Negative\", \"test_suite\": \"Functional\", \"execution_tags\": [], \"classification_rationale\": \"This test checks the system's response ",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}
