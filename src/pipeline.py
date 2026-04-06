@@ -39,7 +39,7 @@ class TestCasePipeline:
         self.a9 = A9Reviewer(self.base_dir)
         self.a10 = A10Dashboard(self.base_dir)
 
-    def run(self, document_text: str, output_dir: str, execution_mode: str, reviewer_mode: str, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, max_test_count: int, progress_callback=None) -> dict:
+    def run(self, document_text: str, output_dir: str, execution_mode: str, reviewer_mode: str, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, max_test_count: int, max_per_ac: int = 10, progress_callback=None) -> dict:
         execution_mode = _normalize_mode(execution_mode)
         reviewer_mode = _normalize_mode(reviewer_mode)
         llm_config = dict(llm_config or {})
@@ -80,7 +80,7 @@ class TestCasePipeline:
 
         prior = self.a6.execute(gen["test_cases"], state["project_state"])
         state["test_cases_generated"] = apply_schema_guardrail_bulk(prior["test_cases"])
-        opt = self.a7.execute(state["test_cases_generated"], max_test_count)
+        opt = self.a7.execute(state["test_cases_generated"], max_test_count, max_per_ac)
         opt["test_cases_after_optimization"] = apply_schema_guardrail_bulk(opt["test_cases_after_optimization"])
         state.update(opt)
 

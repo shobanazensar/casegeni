@@ -1,0 +1,2633 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Valid name and primary phone updates customer profile successfully",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the successful update of a customer profile with mandatory fields filled.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Doe",
+      "Phone: +1-555-0100"
+    ],
+    "steps": [
+      "Navigate to the customer profile update page.",
+      "Enter 'John Doe' in the name field.",
+      "Enter '+1-555-0100' in the primary phone field.",
+      "Click the Save button."
+    ],
+    "expected_result": "Customer profile is updated successfully. HTTP 200 is returned.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "Blank name field",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Mandatory Field",
+      "Input Validation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Blank name field returns inline validation error on Save",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the validation error when the mandatory name field is left blank.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name:",
+      "Phone: +1-555-0100"
+    ],
+    "steps": [
+      "Navigate to the customer profile update page.",
+      "Leave the name field blank.",
+      "Enter '+1-555-0100' in the primary phone field.",
+      "Click the Save button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Name is required.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "Blank name field",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Mandatory Field",
+      "Input Validation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Blank primary phone field returns inline validation error on Save",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the validation error when the mandatory primary phone field is left blank.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Doe",
+      "Phone:"
+    ],
+    "steps": [
+      "Navigate to the customer profile update page.",
+      "Enter 'John Doe' in the name field.",
+      "Leave the primary phone field blank.",
+      "Click the Save button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Primary phone is required.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "Blank name field",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Mandatory Field",
+      "Input Validation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Whitespace-only name field returns inline validation error on Save",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the validation error when the name field contains only whitespace.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: '   '",
+      "Phone: +1-555-0100"
+    ],
+    "steps": [
+      "Navigate to the customer profile update page.",
+      "Enter whitespace in the name field.",
+      "Enter '+1-555-0100' in the primary phone field.",
+      "Click the Save button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Name cannot be blank.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "Blank name field",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Mandatory Field",
+      "Input Validation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Whitespace-only primary phone field returns inline validation error on Save",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks the validation error when the primary phone field contains only whitespace.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Doe",
+      "Phone: '   '"
+    ],
+    "steps": [
+      "Navigate to the customer profile update page.",
+      "Enter 'John Doe' in the name field.",
+      "Enter whitespace in the primary phone field.",
+      "Click the Save button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Primary phone cannot be blank.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "Blank name field",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Mandatory Field",
+      "Input Validation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "User successfully updates customer profile with unique email via UI",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the successful update of a customer profile with a unique email.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with email: unique@example.com."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "New Email: new_unique@example.com"
+    ],
+    "steps": [
+      "Open the customer profile for Customer ID: CUST-10045.",
+      "Enter new email: new_unique@example.com.",
+      "Click the Save button."
+    ],
+    "expected_result": "Customer profile is updated successfully. New email: new_unique@example.com is saved.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "User attempts to update customer profile with duplicate email via UI",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system rejects duplicate email entries.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with email: existing@example.com.",
+      "Another customer ID: CUST-10046 exists with email: existing@example.com."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "New Email: existing@example.com"
+    ],
+    "steps": [
+      "Open the customer profile for Customer ID: CUST-10045.",
+      "Enter new email: existing@example.com.",
+      "Click the Save button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Email must be unique.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "API rejects update with duplicate email",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the API rejects requests with duplicate email entries.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API is deployed and accessible.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with email: existing@example.com.",
+      "Another customer ID: CUST-10046 exists with email: existing@example.com."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "New Email: existing@example.com"
+    ],
+    "steps": [
+      "Send a PUT request to update Customer ID: CUST-10045 with new email: existing@example.com."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Email must be unique.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00009",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Duplicate email is not persisted in database",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the database does not store duplicate email entries.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Database is accessible.",
+      "Customer ID: CUST-10045 exists with email: existing@example.com.",
+      "Another customer ID: CUST-10046 exists with email: existing@example.com."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "New Email: existing@example.com"
+    ],
+    "steps": [
+      "Attempt to update Customer ID: CUST-10045 with new email: existing@example.com.",
+      "Query the database for Customer ID: CUST-10045."
+    ],
+    "expected_result": "Email for Customer ID: CUST-10045 remains unchanged in the database.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00010",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "User updates customer profile with inactive email record",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system allows updates with emails from inactive records.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with email: inactive@example.com (inactive)."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "New Email: inactive@example.com"
+    ],
+    "steps": [
+      "Open the customer profile for Customer ID: CUST-10045.",
+      "Enter new email: inactive@example.com.",
+      "Click the Save button."
+    ],
+    "expected_result": "Customer profile is updated successfully. New email: inactive@example.com is saved.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Unauthorized request for email update is rejected at API level",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that unauthorized requests are rejected by the API.",
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API is deployed and accessible.",
+      "User account does not have permission to update customer profiles."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "New Email: new_unique@example.com"
+    ],
+    "steps": [
+      "Send a PUT request to update Customer ID: CUST-10045 with new email: new_unique@example.com."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body contains error: Unauthorized access.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00012",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Authorized user successfully updates customer profile",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that authorized users can update customer profiles as expected.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Doe",
+      "Phone: +1-555-0101"
+    ],
+    "steps": [
+      "Send PUT request to update customer profile with ID CUST-10045.",
+      "Include updated name and phone in the request body."
+    ],
+    "expected_result": "HTTP 200 is returned. Response body contains updated customer profile data.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "Unauthorized role attempts to update profile",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Unauthorized user attempts to update customer profile",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that unauthorized users cannot update customer profiles.",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Guest and has no permissions on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: Jane Doe",
+      "Phone: +1-555-0102"
+    ],
+    "steps": [
+      "Send PUT request to update customer profile with ID CUST-10045.",
+      "Include updated name and phone in the request body."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body contains error: Unauthorized access.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "Unauthorized role attempts to update profile",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00014",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Unauthenticated user attempts to update customer profile",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that unauthenticated users cannot update customer profiles.",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "No user is logged in.",
+      "Customer profile exists with ID: CUST-10045."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: Jane Doe",
+      "Phone: +1-555-0102"
+    ],
+    "steps": [
+      "Send PUT request to update customer profile with ID CUST-10045.",
+      "Include updated name and phone in the request body."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body contains error: Authentication required.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "Unauthorized role attempts to update profile",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "completeness: 1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.19,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.05,
+        "reason": "1 precondition(s) are vague — must specify system state and exact user role; Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00015",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Expired token used to update customer profile",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that expired tokens cannot be used to update customer profiles.",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10045.",
+      "User has an expired authentication token."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: Jane Doe",
+      "Phone: +1-555-0102"
+    ],
+    "steps": [
+      "Send PUT request to update customer profile with ID CUST-10045 using expired token.",
+      "Include updated name and phone in the request body."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body contains error: Token expired.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "Unauthorized role attempts to update profile",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Cross-ownership attempt to update customer profile",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Update",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that users cannot update profiles they do not own.",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile exists with ID: CUST-10046 owned by another user."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10046",
+      "Name: Jane Doe",
+      "Phone: +1-555-0102"
+    ],
+    "steps": [
+      "Send PUT request to update customer profile with ID CUST-10046.",
+      "Include updated name and phone in the request body."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body contains error: Access denied.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "Unauthorized role attempts to update profile",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "Security",
+      "Access Control"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00017",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Audit history captures previous and new values on successful update",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the audit history correctly logs changes made to customer profiles.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile with ID CUST-10045 exists."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Old Name: John Doe",
+      "New Name: John Smith",
+      "Old Phone: +1-555-0100",
+      "New Phone: +1-555-0200"
+    ],
+    "steps": [
+      "Update customer profile with ID CUST-10045 to new name 'John Smith' and new phone '+1-555-0200'.",
+      "Save the changes."
+    ],
+    "expected_result": "Audit history captures old values 'John Doe' and '+1-555-0100' and new values 'John Smith' and '+1-555-0200'.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "Audit capture",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Audit",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00018",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "No audit record created on failed update",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Ensures that no audit record is created if the update fails due to validation errors.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile with ID CUST-10045 exists."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Invalid Phone: 'invalid-phone'"
+    ],
+    "steps": [
+      "Attempt to update customer profile with ID CUST-10045 to invalid phone 'invalid-phone'.",
+      "Save the changes."
+    ],
+    "expected_result": "No audit record is created in the database.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "Audit capture",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Audit",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.36,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00019",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Audit captures partial field changes",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the audit history captures changes when only some fields are updated.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile with ID CUST-10045 exists."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Old Name: John Doe",
+      "New Name: John Smith",
+      "Old Phone: +1-555-0100"
+    ],
+    "steps": [
+      "Update customer profile with ID CUST-10045 to new name 'John Smith' while keeping the phone unchanged.",
+      "Save the changes."
+    ],
+    "expected_result": "Audit history captures old name 'John Doe' and new name 'John Smith', with phone remaining unchanged.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "Audit capture",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Audit",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.36,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00020",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Audit values are immutable after creation",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Ensures that once an audit record is created, its values cannot be altered.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile with ID CUST-10045 exists."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Old Name: John Doe",
+      "New Name: John Smith"
+    ],
+    "steps": [
+      "Update customer profile with ID CUST-10045 to new name 'John Smith'.",
+      "Save the changes.",
+      "Attempt to modify the created audit record."
+    ],
+    "expected_result": "Attempt to modify the audit record fails, confirming values are immutable.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "Audit capture",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Audit",
+      "Data Integrity"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.68,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00021",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Audit captures both old and new values correctly",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the audit history correctly logs both old and new values for all updated fields.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer profile with ID CUST-10045 exists."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Old Name: John Doe",
+      "New Name: John Smith",
+      "Old Phone: +1-555-0100",
+      "New Phone: +1-555-0200"
+    ],
+    "steps": [
+      "Update customer profile with ID CUST-10045 to new name 'John Smith' and new phone '+1-555-0200'.",
+      "Save the changes."
+    ],
+    "expected_result": "Audit history captures old values 'John Doe' and '+1-555-0100' and new values 'John Smith' and '+1-555-0200'.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "Audit capture",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "Audit",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.36,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00022",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Successful sync after profile update",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "CRM Sync",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that a successful profile update triggers the CRM sync job.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with current profile data."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Updated Name: John Doe",
+      "Updated Phone: +1-555-0101"
+    ],
+    "steps": [
+      "Update the customer profile with new name and phone.",
+      "Click the Save button."
+    ],
+    "expected_result": "CRM sync job is triggered successfully.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Sync triggered after profile update",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Data Integrity",
+      "Sync Reliability"
+    ],
+    "review_feedback": [
+      "transformation_accuracy: Transformation checks are weak",
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.77,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00023",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "No sync triggered if profile update fails",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "CRM Sync",
+    "test_case_layer": "ETL",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that no sync occurs if the profile update fails due to validation errors.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with current profile data."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Invalid Phone: +1-555-INVALID"
+    ],
+    "steps": [
+      "Update the customer profile with invalid phone number.",
+      "Click the Save button."
+    ],
+    "expected_result": "No CRM sync job is triggered.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Sync triggered after profile update",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Data Integrity",
+      "Sync Reliability"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak",
+      "transformation_accuracy: Transformation checks are weak",
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Acceptable",
+    "reviewer_score": 3.43,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00024",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Verify payload integrity during sync",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "CRM Sync",
+    "test_case_layer": "ETL",
+    "scenario_type": "Negative",
+    "test_suite": "EndToEnd",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the correct payload is sent to the CRM during the sync process.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with current profile data."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Updated Name: John Doe",
+      "Updated Phone: +1-555-0101"
+    ],
+    "steps": [
+      "Update the customer profile with new name and phone.",
+      "Click the Save button.",
+      "Capture the payload sent to CRM."
+    ],
+    "expected_result": "Payload contains updated Name: John Doe and Phone: +1-555-0101.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Sync triggered after profile update",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Data Integrity",
+      "Sync Reliability"
+    ],
+    "review_feedback": [],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.73,
+    "suite": "EndToEnd",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 4.8,
+        "reason": "Validates transformed downstream values",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00025",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "System should handle sync failures gracefully",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "CRM Sync",
+    "test_case_layer": "ETL",
+    "scenario_type": "Negative",
+    "test_suite": "EndToEnd",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system can handle failures during the CRM sync process without crashing.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with current profile data."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Updated Name: John Doe",
+      "Updated Phone: +1-555-0101"
+    ],
+    "steps": [
+      "Update the customer profile with new name and phone.",
+      "Click the Save button.",
+      "Simulate a CRM sync failure."
+    ],
+    "expected_result": "System logs the error and does not crash.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Sync triggered after profile update",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Data Integrity",
+      "Sync Reliability"
+    ],
+    "review_feedback": [
+      "transformation_accuracy: Transformation checks are weak"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.37,
+    "suite": "EndToEnd",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00026",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Ensure no data loss during concurrent updates",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "CRM Sync",
+    "test_case_layer": "ETL",
+    "scenario_type": "Negative",
+    "test_suite": "EndToEnd",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that concurrent updates do not lead to data loss in the CRM sync.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Customer ID: CUST-10045 exists with current profile data."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Updated Name: John Doe",
+      "Updated Phone: +1-555-0101"
+    ],
+    "steps": [
+      "Simultaneously update the customer profile from two different sessions.",
+      "Click the Save button in both sessions."
+    ],
+    "expected_result": "Both updates are processed without data loss.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Sync triggered after profile update",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Data Integrity",
+      "Sync Reliability"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak",
+      "transformation_accuracy: Transformation checks are weak",
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Acceptable",
+    "reviewer_score": 3.43,
+    "suite": "EndToEnd",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  }
+]

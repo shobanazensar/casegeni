@@ -1,0 +1,83 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "domain_signals": [
+      "customer"
+    ],
+    "business_entities": [
+      "Profile",
+      "Audit",
+      "Sync"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=ecommerce_retail using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 5
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "offline",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "Claude Sonnet 4.6",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": false,
+      "fallback_reason": "ST1-AC5: LLM HTTP error 500: {\"error\":{\"message\":\"Response too long.\",\"type\":\"bridge_error\"}}",
+      "generator_source": "offline_rules",
+      "model": "Claude Sonnet 4.6",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 0,
+      "response_time_sec": 125.54,
+      "raw_preview": "",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "offline_rules",
+    "max_test_count": 200
+  }
+}

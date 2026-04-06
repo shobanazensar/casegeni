@@ -1,0 +1,3175 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+    "title": "Admin successfully accesses user registration form and selects a role",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the ability of an Admin to access the user registration form and select a role.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has access to the user registration form."
+    ],
+    "test_data": [],
+    "steps": [
+      "Access the user registration form.",
+      "Enter user details: Name: John Doe, Email: john.doe@example.com, Phone: +1-555-0101.",
+      "Select role: Manager."
+    ],
+    "expected_result": "User details are entered successfully and role Manager is selected.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.03,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+    "title": "Unauthorized user attempts to access user registration form",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that unauthorized users cannot access the user registration form.",
+    "non_functional_type": "Security",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Teller and does not have access to the user registration form."
+    ],
+    "test_data": [],
+    "steps": [
+      "Attempt to access the user registration form."
+    ],
+    "expected_result": "HTTP 403 is returned. Access is denied for the user.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+    "title": "Admin submits user registration form with missing name field",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system rejects submissions with missing required fields.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has access to the user registration form."
+    ],
+    "test_data": [
+      "Email: john.doe@example.com",
+      "Phone: +1-555-0101",
+      "Role: Manager"
+    ],
+    "steps": [
+      "Access the user registration form.",
+      "Leave the name field blank.",
+      "Enter email: john.doe@example.com.",
+      "Enter phone: +1-555-0101.",
+      "Select role: Manager.",
+      "Click the Create User button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Name is required.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic",
+      "maintainability: Could be simplified"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.42,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 3.2,
+        "reason": "Could be simplified",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+    "title": "Admin submits user registration form with invalid email format",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system rejects submissions with invalid email formats.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has access to the user registration form."
+    ],
+    "test_data": [
+      "Name: John Doe",
+      "Email: invalid-email-format",
+      "Phone: +1-555-0101",
+      "Role: Manager"
+    ],
+    "steps": [
+      "Access the user registration form.",
+      "Enter user details: Name: John Doe, Email: invalid-email-format, Phone: +1-555-0101.",
+      "Select role: Manager.",
+      "Click the Create User button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Email format is invalid.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+    "title": "Unauthorized token is blocked by API during user registration",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the API blocks requests with unauthorized tokens.",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Send a request to the user registration API with an unauthorized token."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body indicates that the token is unauthorized.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+    "title": "Admin accesses user registration form and selects multiple roles",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system handles attempts to select multiple roles correctly.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has access to the user registration form."
+    ],
+    "test_data": [
+      "Name: John Doe",
+      "Email: john.doe@example.com",
+      "Phone: +1-555-0101"
+    ],
+    "steps": [
+      "Access the user registration form.",
+      "Enter user details: Name: John Doe, Email: john.doe@example.com, Phone: +1-555-0101.",
+      "Select role: Admin.",
+      "Select role: Manager."
+    ],
+    "expected_result": "System prevents selection of multiple roles and displays an error message.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Given I am an Admin, when I access the user registration form, then I should be able to enter user details and select a role.",
+    "title": "Unauthenticated request to user registration form is denied",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that unauthenticated requests are denied access to the user registration API.",
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Send a request to the user registration API without authentication."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body indicates that authentication is required.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I submit valid user details, when I click \"Create User\", then the user should be created and assigned the selected role.",
+    "title": "Valid user details create user successfully",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the successful creation of a user with valid details.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to create users."
+    ],
+    "test_data": [
+      "User Name: Jane Doe",
+      "Email: jane.doe@example.com",
+      "Role: Admin"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: Name, Email, and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "User is created successfully and assigned the Admin role.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.41,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00009",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I submit valid user details, when I click \"Create User\", then the user should be created and assigned the selected role.",
+    "title": "Invalid email format returns error",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system rejects invalid email formats.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to create users."
+    ],
+    "test_data": [
+      "User Name: John Smith",
+      "Email: john.smith@invalid",
+      "Role: Teller"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: Name, invalid Email, and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Email format is invalid.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00010",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I submit valid user details, when I click \"Create User\", then the user should be created and assigned the selected role.",
+    "title": "Missing user name returns error",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system rejects requests with missing required fields.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to create users."
+    ],
+    "test_data": [
+      "User Name:",
+      "Email: jane.doe@example.com",
+      "Role: Manager"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: empty Name, Email, and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Name is required.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I submit valid user details, when I click \"Create User\", then the user should be created and assigned the selected role.",
+    "title": "Unauthorized role cannot create user",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that users without proper authorization cannot create new users.",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Teller and does not have permission to create users."
+    ],
+    "test_data": [
+      "User Name: Mark Lee",
+      "Email: mark.lee@example.com",
+      "Role: Admin"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: Name, Email, and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body contains error: Unauthorized access.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00012",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Given I submit valid user details, when I click \"Create User\", then the user should be created and assigned the selected role.",
+    "title": "Unauthenticated request is denied",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that unauthenticated requests are denied access.",
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API is deployed and accessible.",
+      "No authentication token is provided."
+    ],
+    "test_data": [
+      "User Name: Jane Doe",
+      "Email: jane.doe@example.com",
+      "Role: Admin"
+    ],
+    "steps": [
+      "Send a POST request to the user creation endpoint with user details."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body contains error: Authentication required.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+    "title": "User with assigned role logs in and accesses allowed features",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that a user with the correct role can access permitted features.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Teller and has access to Teller features."
+    ],
+    "test_data": [
+      "Username: teller_user",
+      "Password: secure_password"
+    ],
+    "steps": [
+      "Enter username and password in the login form.",
+      "Click the Login button.",
+      "Navigate to the Teller dashboard."
+    ],
+    "expected_result": "User is successfully logged in and can access Teller features.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.41,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00018",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+    "title": "User with assigned role logs in and accesses allowed features under load",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the system performs well under load while users access permitted features.",
+    "non_functional_type": "Performance",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Manager and has access to Manager features."
+    ],
+    "test_data": [
+      "Username: manager_user",
+      "Password: secure_password"
+    ],
+    "steps": [
+      "Simulate multiple users logging in with valid credentials.",
+      "Monitor system performance during the login process."
+    ],
+    "expected_result": "All users are logged in successfully within acceptable response times.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00014",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+    "title": "User with unauthorized role attempts to access restricted feature",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that a user with an unauthorized role cannot access restricted features.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer and has no access to Teller features."
+    ],
+    "test_data": [
+      "Username: customer_user",
+      "Password: secure_password"
+    ],
+    "steps": [
+      "Enter username and password in the login form.",
+      "Click the Login button.",
+      "Attempt to navigate to the Teller dashboard."
+    ],
+    "expected_result": "Access is denied and an error message is displayed.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00015",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+    "title": "User with no assigned role attempts to log in",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that a user without an assigned role cannot log in.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with no assigned role."
+    ],
+    "test_data": [
+      "Username: unassigned_user",
+      "Password: secure_password"
+    ],
+    "steps": [
+      "Send login request with username and password."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body contains error: User has no assigned role.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00017",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+    "title": "Direct backend access without role is denied",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "ETL",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that direct access to backend services without proper role is denied.",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Attempt to access backend API directly without authentication."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body contains error: Access denied.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.04,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 3.5,
+        "reason": "Integration flow evidence is weak; Layer expectations need tightening",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Given I assign a role, when the user logs in, then their access should be limited to their assigned role.",
+    "title": "Unauthenticated request is denied cleanly",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that unauthenticated requests are handled properly.",
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [],
+    "steps": [
+      "Send a request to access a protected resource without authentication."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body contains error: Authentication required.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00019",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I try to register a user with an existing email, when I submit the form, then I should see an error message.",
+    "title": "Register user with unique email",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates successful user registration with a unique email.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to register users."
+    ],
+    "test_data": [
+      "Email: unique@example.com",
+      "Name: Jane Doe",
+      "Role: Teller"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: Email, Name, and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "User is created successfully and assigned the role Teller.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Email Duplication",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "User Experience",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.41,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00020",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I try to register a user with an existing email, when I submit the form, then I should see an error message.",
+    "title": "Register user with existing email",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates error handling for duplicate email registration.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to register users.",
+      "Email: existing@example.com is already registered."
+    ],
+    "test_data": [
+      "Email: existing@example.com",
+      "Name: John Smith",
+      "Role: Manager"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: Email, Name, and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "Error message is displayed: 'Email already exists.'",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Email Duplication",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "User Experience",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00023",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I try to register a user with an existing email, when I submit the form, then I should see an error message.",
+    "title": "API response for duplicate email registration",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates API response for duplicate email registration.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API is accessible and running.",
+      "User account exists with role Admin and has permission to register users.",
+      "Email: existing@example.com is already registered."
+    ],
+    "test_data": [
+      "Email: existing@example.com",
+      "Name: John Smith",
+      "Role: Manager"
+    ],
+    "steps": [
+      "Send POST request to user registration API with user details."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains error: 'Email already exists.'",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Email Duplication",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "User Experience",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00021",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I try to register a user with an existing email, when I submit the form, then I should see an error message.",
+    "title": "Register user with blank email",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates error handling for blank email field.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to register users."
+    ],
+    "test_data": [
+      "Email:",
+      "Name: Alice Johnson",
+      "Role: Admin"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: Name and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "Error message is displayed: 'Email is required.'",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Email Duplication",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "User Experience",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00022",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Given I try to register a user with an existing email, when I submit the form, then I should see an error message.",
+    "title": "Register user with invalid email format",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "UI",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates error handling for invalid email format.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to register users."
+    ],
+    "test_data": [
+      "Email: invalid-email-format",
+      "Name: Bob Brown",
+      "Role: Teller"
+    ],
+    "steps": [
+      "Navigate to the user registration form.",
+      "Enter user details: Email, Name, and select Role.",
+      "Click the Create User button."
+    ],
+    "expected_result": "Error message is displayed: 'Invalid email format.'",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Email Duplication",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "User Experience",
+      "Data Integrity"
+    ],
+    "review_feedback": [
+      "business_outcome_focus: Outcome is too generic"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.48,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00024",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am not an Admin, when I try to access the user registration form, then I should be denied access.",
+    "title": "Admin access to user registration form is successful",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that an Admin can access the user registration form.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has access to User Registration module."
+    ],
+    "test_data": [],
+    "steps": [
+      "Navigate to the user registration form."
+    ],
+    "expected_result": "User registration form is displayed.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Access Control",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Access Control",
+      "Security Risk"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.76,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00025",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am not an Admin, when I try to access the user registration form, then I should be denied access.",
+    "title": "Unauthorized access attempt by non-Admin user",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that non-Admin users are denied access to the user registration form.",
+    "non_functional_type": "Security",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has no access to User Registration module."
+    ],
+    "test_data": [],
+    "steps": [
+      "Navigate to the user registration form."
+    ],
+    "expected_result": "Access is denied. HTTP 403 is returned.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Access Control",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Access Control",
+      "Security Risk"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00026",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am not an Admin, when I try to access the user registration form, then I should be denied access.",
+    "title": "Expired token access attempt to user registration form",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that access is denied when using an expired token.",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and has an expired session token."
+    ],
+    "test_data": [],
+    "steps": [
+      "Send a request to access the user registration form with an expired token."
+    ],
+    "expected_result": "Access is denied. HTTP 401 is returned.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Access Control",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Access Control",
+      "Security Risk"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.03,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00028",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Given I am not an Admin, when I try to access the user registration form, then I should be denied access.",
+    "title": "Unauthorized role access attempt to user registration form",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "User Registration",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that users with unauthorized roles cannot access the registration form.",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Manager and has no access to User Registration module."
+    ],
+    "test_data": [],
+    "steps": [
+      "Send a request to access the user registration form."
+    ],
+    "expected_result": "Access is denied. HTTP 403 is returned.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "Access Control",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "Access Control",
+      "Security Risk"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.03,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00029",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given a user is created, when I view the user list, then the new user should appear with the correct role.",
+    "title": "New user appears in user list with correct role",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the core functionality of user creation and role assignment.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Admin and has permission to view user list.",
+      "User 'John Doe' is created with role 'Teller'."
+    ],
+    "test_data": [
+      "User Name: John Doe",
+      "User Role: Teller"
+    ],
+    "steps": [
+      "Navigate to the user list page.",
+      "Search for 'John Doe' in the user list."
+    ],
+    "expected_result": "User 'John Doe' appears in the user list with role 'Teller'.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.76,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00030",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given a user is created, when I view the user list, then the new user should appear with the correct role.",
+    "title": "Unauthorized user cannot view user list",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test checks that unauthorized users cannot access the user list.",
+    "non_functional_type": "Security",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Customer_Service_Agent and does not have permission to view user list."
+    ],
+    "test_data": [],
+    "steps": [
+      "Log in as Customer_Service_Agent.",
+      "Attempt to access the user list page."
+    ],
+    "expected_result": "HTTP 403 is returned. Access is denied.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00031",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given a user is created, when I view the user list, then the new user should appear with the correct role.",
+    "title": "Unauthorized token is blocked by API",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test ensures that API calls with unauthorized tokens are rejected.",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API is deployed and accessible.",
+      "User account exists with role Admin."
+    ],
+    "test_data": [
+      "Invalid Token: 'INVALID_TOKEN'"
+    ],
+    "steps": [
+      "Send a request to the user list API with an invalid token."
+    ],
+    "expected_result": "HTTP 401 is returned. Unauthorized access.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.03,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00033",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given a user is created, when I view the user list, then the new user should appear with the correct role.",
+    "title": "Direct backend access is denied",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "ETL",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test ensures that direct access to backend services is restricted.",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Backend services are running and accessible."
+    ],
+    "test_data": [],
+    "steps": [
+      "Attempt to access the user list directly via backend endpoint."
+    ],
+    "expected_result": "HTTP 403 is returned. Access is denied.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.88,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 3.5,
+        "reason": "Integration flow evidence is weak; Layer expectations need tightening",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00032",
+    "story_id": "ST1",
+    "story_title": "Story:",
+    "ac_id": "ST1-AC6",
+    "ac_text": "Given a user is created, when I view the user list, then the new user should appear with the correct role.",
+    "title": "Unauthenticated request is denied cleanly",
+    "domain": "generic",
+    "module": "General",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies that unauthenticated requests are handled properly by the API.",
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API is deployed and accessible."
+    ],
+    "test_data": [],
+    "steps": [
+      "Send a request to the user list API without authentication."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body indicates unauthenticated request.",
+    "tags": [
+      "generic",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC6"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  }
+]

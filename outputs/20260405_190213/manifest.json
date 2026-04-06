@@ -1,0 +1,72 @@
+{
+  "project_state": "New",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "New",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "generic",
+    "secondary_domain": "",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "General"
+    ],
+    "domain_signals": [],
+    "business_entities": [
+      "General"
+    ],
+    "user_roles": [
+      "Admin"
+    ],
+    "likely_process_flows": [
+      "only authorized personnel can access the banking platform"
+    ],
+    "applicable_regulations": [],
+    "domain_test_focus": [],
+    "reasoning": "Detected domain=generic using rule-based keyword evidence."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 6
+  },
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "online",
+    "reviewer_mode_used": "offline_rules",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "gpt-4o",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 1800,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "gpt-4o",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 6,
+      "response_time_sec": 102.41,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Admin successfully accesses user registration form and selects a role\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"test_suite\": \"Functional\", \"execution_tags\": [], \"classification_rationale\": \"Validates the ability of an Admin to access the user registration form and select a role.\", \"non_functional_type\": \"\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User account exists with role Admin and has access to the user registration form.\"], \"test_data\": [], \"steps\": [\"Access the user registration form.\", \"Enter user details: Name: John Doe, Email: john.doe@example.com, Phone: +1-555-0101.\", \"Select role: Manager.\"], \"expected_result\": \"User details are entered successfully and role Manager is selected.\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"Unauthorized user attempts to access user registration form\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Negative\", \"test_suite\": \"Functional\", \"execution_tags\": [\"Regression\"], \"classification_rationale\": \"Validates that unauthorized users cannot access the user registration form.\", \"non_functional_type\": \"Security\", \"preconditions\": [\"Application is deployed",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 60
+  }
+}

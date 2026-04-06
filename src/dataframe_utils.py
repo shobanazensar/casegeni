@@ -6,9 +6,9 @@ from typing import Any
 
 DISPLAY_COLUMNS = [
     "test_case_id", "story_id", "ac_id", "title", "domain", "module", "test_case_layer",
-    "scenario_type", "test_suite", "execution_tags", "classification_rationale",
+    "scenario_type", "test_suite", "execution_tags",
     "priority", "automated",
-    "preconditions", "test_data", "steps", "expected_result", "reviewer_grade", "reviewer_score"
+    "preconditions", "test_data", "steps", "expected_result",
 ]
 
 CAMEL_CASE_HEADERS = {
@@ -22,15 +22,12 @@ CAMEL_CASE_HEADERS = {
     "scenario_type": "scenarioType",
     "test_suite": "testSuite",
     "execution_tags": "executionTags",
-    "classification_rationale": "classificationRationale",
     "priority": "priority",
     "automated": "automated",
     "preconditions": "preconditions",
     "test_data": "testData",
     "steps": "steps",
     "expected_result": "expectedResult",
-    "reviewer_grade": "reviewerGrade",
-    "reviewer_score": "reviewerScore",
 }
 
 

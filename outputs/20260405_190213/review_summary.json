@@ -1,0 +1,421 @@
+{
+  "avg_reviewer_score": 4.21,
+  "grades": {
+    "Excellent": 0,
+    "Good": 32,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [
+    "TC00017",
+    "TC00033"
+  ],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.15,
+    "ETL": 3.96,
+    "UI": 4.27
+  },
+  "scores_by_profile": {
+    "API": 4.2,
+    "NonFunctional": 4.09,
+    "UI_Business": 4.34
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.5,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "security_awareness": 3.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 4.37,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.08,
+      "diagnostic_value": 3.96,
+      "maintainability": 4.5,
+      "reusability": 4.04,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.56,
+      "correctness": 4.5,
+      "completeness": 4.56,
+      "business_outcome_focus": 3.0,
+      "defect_detection": 4.22,
+      "actionability": 4.28,
+      "maintainability": 4.41
+    }
+  },
+  "major_common_issues": [
+    "business_outcome_focus: Outcome is too generic (15)",
+    "measurement_clarity: Measurement criteria are vague (15)",
+    "environment_readiness: Environment needs are under-specified (14)",
+    "diagnostic_value: Needs stronger diagnostics (6)",
+    "completeness: Missing execution detail or contains quality violations (5)",
+    "actionability: Needs stronger data or step detail (3)",
+    "clarity: Needs clearer title or steps (2)",
+    "maintainability: Could be simplified (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Admin successfully accesses user registration form and selects a role",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Admin submits user registration form with invalid email format",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Admin submits user registration form with missing name field",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.42,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic; maintainability: Could be simplified"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Unauthorized user attempts to access user registration form",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 3.96,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC1",
+      "title": "Unauthorized token is blocked by API during user registration",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC1",
+      "title": "Admin accesses user registration form and selects multiple roles",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC1",
+      "title": "Unauthenticated request to user registration form is denied",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Valid user details create user successfully",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.41,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC2",
+      "title": "Invalid email format returns error",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST1-AC2",
+      "title": "Missing user name returns error",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST1-AC2",
+      "title": "Unauthorized role cannot create user",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST1-AC2",
+      "title": "Unauthenticated request is denied",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST1-AC3",
+      "title": "User with assigned role logs in and accesses allowed features",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.41,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00018",
+      "acId": "ST1-AC3",
+      "title": "User with assigned role logs in and accesses allowed features under load",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague"
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST1-AC3",
+      "title": "User with unauthorized role attempts to access restricted feature",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST1-AC3",
+      "title": "User with no assigned role attempts to log in",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00017",
+      "acId": "ST1-AC3",
+      "title": "Direct backend access without role is denied",
+      "layer": "ETL",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.04,
+      "humanReview": "Yes",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST1-AC3",
+      "title": "Unauthenticated request is denied cleanly",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00019",
+      "acId": "ST1-AC4",
+      "title": "Register user with unique email",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.41,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00020",
+      "acId": "ST1-AC4",
+      "title": "Register user with existing email",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00023",
+      "acId": "ST1-AC4",
+      "title": "API response for duplicate email registration",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00021",
+      "acId": "ST1-AC4",
+      "title": "Register user with blank email",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00022",
+      "acId": "ST1-AC4",
+      "title": "Register user with invalid email format",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.48,
+      "humanReview": "No",
+      "feedback": "business_outcome_focus: Outcome is too generic"
+    },
+    {
+      "testCaseId": "TC00024",
+      "acId": "ST1-AC5",
+      "title": "Admin access to user registration form is successful",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.76,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00025",
+      "acId": "ST1-AC5",
+      "title": "Unauthorized access attempt by non-Admin user",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 3.96,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00026",
+      "acId": "ST1-AC5",
+      "title": "Expired token access attempt to user registration form",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00028",
+      "acId": "ST1-AC5",
+      "title": "Unauthorized role access attempt to user registration form",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00029",
+      "acId": "ST1-AC6",
+      "title": "New user appears in user list with correct role",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.76,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00030",
+      "acId": "ST1-AC6",
+      "title": "Unauthorized user cannot view user list",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00031",
+      "acId": "ST1-AC6",
+      "title": "Unauthorized token is blocked by API",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00033",
+      "acId": "ST1-AC6",
+      "title": "Direct backend access is denied",
+      "layer": "ETL",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 3.88,
+      "humanReview": "Yes",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00032",
+      "acId": "ST1-AC6",
+      "title": "Unauthenticated request is denied cleanly",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    }
+  ],
+  "reviewer_mode_used": "offline_rules"
+}

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from collections import defaultdict
 from src.agents.base import AgentBase
 
 
@@ -6,7 +7,7 @@ class A7Optimization(AgentBase):
     def __init__(self, base_dir):
         super().__init__(base_dir, "A7 Optimization - Offline.updated.json")
 
-    def execute(self, test_cases: list[dict], max_test_count: int) -> dict:
+    def execute(self, test_cases: list[dict], max_test_count: int, max_per_ac: int = 10) -> dict:
         before = len(test_cases)
         deduped = []
         seen = set()
@@ -25,7 +26,15 @@ class A7Optimization(AgentBase):
             priority_rank = {"P1": 0, "P2": 1, "P3": 2, "P4": 3}.get(tc.get("priority", "P3"), 2)
             return (tc.get("story_id", ""), tc.get("ac_id", ""), scenario_rank, layer_rank, priority_rank, tc.get("title", ""))
 
-        optimized = sorted(deduped, key=rank)[:max_test_count]
+        # Per-AC cap: group by AC, rank within each group, keep top max_per_ac
+        ac_groups: dict = defaultdict(list)
+        for tc in deduped:
+            ac_groups[(tc.get("story_id", ""), tc.get("ac_id", ""))].append(tc)
+        per_ac_selected: list = []
+        for key in sorted(ac_groups.keys()):
+            per_ac_selected.extend(sorted(ac_groups[key], key=rank)[:max_per_ac])
+
+        optimized = sorted(per_ac_selected, key=rank)[:max_test_count]
         for tc in optimized:
             # Preserve test_suite if already set by A5 LLM; default to Functional
             ts = tc.get("test_suite", "")

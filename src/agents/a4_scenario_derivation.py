@@ -104,6 +104,66 @@ class A4ScenarioDerivation(AgentBase):
                 add(self._base_blueprint(req, domain_context, "Positive", "business_valid_flow", f"Validate {req['ac_id']}", preferred[0], "Functional", "", "generic_positive"))
                 if len(preferred) > 1:
                     add(self._base_blueprint(req, domain_context, "Negative", "validation_or_rejection", f"Reject invalid processing for {req['ac_id']}", preferred[1], "Functional", "", "generic_negative"))
+
+        # ── Ensure at least 2 positive blueprints per active layer ────────────
+        positives_by_layer: dict = {}
+        for bp in results:
+            if bp.get("seed_type") == "Positive" and not bp.get("non_functional_type"):
+                lyr = (bp.get("layer_candidates") or [""])[0]
+                positives_by_layer[lyr] = positives_by_layer.get(lyr, 0) + 1
+        for lyr in ["UI", "API"]:
+            if lyr in selected_layers:
+                need = max(0, 2 - positives_by_layer.get(lyr, 0))
+                if need >= 1:
+                    add(self._base_blueprint(req, domain_context, "Positive", "business_valid_flow",
+                        f"Happy path: {req['ac_id']} completed successfully via {lyr} with valid data",
+                        lyr, "Functional", "", f"{lyr.lower()}_happy_path_positive"))
+                if need >= 2:
+                    add(self._base_blueprint(req, domain_context, "Positive", "business_valid_flow",
+                        f"Alternative valid input: {req['ac_id']} succeeds with alternate valid data via {lyr}",
+                        lyr, "Functional", "", f"{lyr.lower()}_happy_path_alt_positive"))
+
+        # ── NF sweep: one blueprint per selected NF type not yet present ──────
+        nf_covered = {bp.get("non_functional_type") for bp in results if bp.get("non_functional_type")}
+        if "Security" in selected_test_types and "Security" not in nf_covered:
+            add_if("API", "Negative", "non_functional",
+                   f"Unauthorised request for {req['ac_id']} is rejected at API level",
+                   "nf_security_api_generic", functional_type="", non_functional_type="Security")
+        if "Performance" in selected_test_types and "Performance" not in nf_covered:
+            add_if("API", "Positive", "non_functional",
+                   f"Response time for {req['ac_id']} stays within SLA under expected load",
+                   "nf_performance_api_generic", functional_type="", non_functional_type="Performance")
+        if "Accessibility" in selected_test_types and "Accessibility" not in nf_covered:
+            add_if("UI", "Positive", "non_functional",
+                   f"All UI controls for {req['ac_id']} are keyboard accessible and screen-reader labelled",
+                   "nf_accessibility_ui_generic", functional_type="", non_functional_type="Accessibility")
+        if "Compatibility" in selected_test_types and "Compatibility" not in nf_covered:
+            add_if("UI", "Positive", "non_functional",
+                   f"Feature for {req['ac_id']} renders correctly across supported browsers and devices",
+                   "nf_compatibility_ui_generic", functional_type="", non_functional_type="Compatibility")
+
+        # ── Full layer coverage baseline: ≥1 Positive, ≥1 Negative, ≥1 Edge Case per layer ──
+        functional_coverage: dict = {}
+        for bp in results:
+            if not bp.get("non_functional_type"):
+                lyr = (bp.get("layer_candidates") or [""])[0]
+                stype = bp.get("seed_type", "")
+                functional_coverage.setdefault(lyr, set()).add(stype)
+        _baseline_scenarios = [
+            ("Positive",      "business_valid_flow",        "Happy path",         "baseline_positive"),
+            ("Negative",      "validation_or_rejection",    "Invalid input",      "baseline_negative"),
+            ("Edge Case",     "boundary_and_data_variation", "Boundary/edge input", "baseline_edge"),
+        ]
+        for lyr in selected_layers:
+            covered_stypes = functional_coverage.get(lyr, set())
+            for (stype, focus, hint_prefix, key_suffix) in _baseline_scenarios:
+                if stype not in covered_stypes:
+                    add(self._base_blueprint(
+                        req, domain_context, stype, focus,
+                        f"{lyr}: {hint_prefix} for {req['ac_id']}",
+                        lyr, "Functional", "", f"{lyr.lower()}_{key_suffix}",
+                    ))
+
         return results
 
     def _online_derive(self, requirements: list[dict], domain_context: dict, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, progress_callback=None) -> list[dict]:

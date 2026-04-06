@@ -1,0 +1,327 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Mandatory fields name and primary phone must be provided.",
+      "mapped_test_cases": [
+        "TC00005",
+        "TC00001",
+        "TC00007",
+        "TC00006",
+        "TC00011",
+        "TC00013",
+        "TC00002",
+        "TC00003",
+        "TC00008",
+        "TC00004"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Email must be unique across active customers.",
+      "mapped_test_cases": [
+        "TC00021",
+        "TC00016",
+        "TC00023",
+        "TC00022",
+        "TC00026",
+        "TC00028",
+        "TC00017",
+        "TC00018",
+        "TC00024",
+        "TC00019"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Unauthorized users cannot update customer profiles.",
+      "mapped_test_cases": [
+        "TC00036",
+        "TC00035",
+        "TC00038",
+        "TC00037",
+        "TC00043",
+        "TC00046",
+        "TC00039",
+        "TC00031",
+        "TC00041",
+        "TC00032"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC4",
+      "ac_text": "Audit history must capture previous and new values.",
+      "mapped_test_cases": [
+        "TC00053",
+        "TC00049",
+        "TC00055",
+        "TC00054",
+        "TC00050",
+        "TC00061",
+        "TC00057",
+        "TC00059",
+        "TC00056",
+        "TC00052"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC5",
+      "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+      "mapped_test_cases": [
+        "TC00068",
+        "TC00067",
+        "TC00070",
+        "TC00069",
+        "TC00076",
+        "TC00064",
+        "TC00072",
+        "TC00074",
+        "TC00071",
+        "TC00077"
+      ],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 5,
+    "covered_acs": 5,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00005, TC00001, TC00013, TC00002",
+      "category": "🔵 FUNC",
+      "priority": "P2/P3",
+      "auto": "⚠️/✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00007, TC00006, TC00003",
+      "category": "🟢 API",
+      "priority": "P1/P2",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00011, TC00004",
+      "category": "🟣 DB",
+      "priority": "P2/P3",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "testCaseIds": "TC00008",
+      "category": "🔴 NF",
+      "priority": "P1",
+      "auto": "✅",
+      "coverage": "Security",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00021, TC00016, TC00028, TC00017",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️/✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00023, TC00022, TC00018",
+      "category": "🟢 API",
+      "priority": "P3/P4",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00026, TC00019",
+      "category": "🟣 DB",
+      "priority": "P4",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "testCaseIds": "TC00024",
+      "category": "🔴 NF",
+      "priority": "P3",
+      "auto": "✅",
+      "coverage": "Security",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00036, TC00035, TC00046, TC00039",
+      "category": "🔵 FUNC",
+      "priority": "P2/P3",
+      "auto": "⚠️/✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00038, TC00037, TC00041",
+      "category": "🟢 API",
+      "priority": "P1/P2",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00043",
+      "category": "🟣 DB",
+      "priority": "P3",
+      "auto": "✅",
+      "coverage": "Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing negative or risk-focused coverage; Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "testCaseIds": "TC00031, TC00032",
+      "category": "🔴 NF",
+      "priority": "P1/P2",
+      "auto": "⚠️/✅",
+      "coverage": "Security",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00053, TC00049, TC00061, TC00057",
+      "category": "🔵 FUNC",
+      "priority": "P2/P3",
+      "auto": "⚠️/✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00055, TC00054, TC00059",
+      "category": "🟢 API",
+      "priority": "P1/P2",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00050, TC00052",
+      "category": "🟣 DB",
+      "priority": "P2/P3",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "testCaseIds": "TC00056",
+      "category": "🔴 NF",
+      "priority": "P1",
+      "auto": "✅",
+      "coverage": "Security",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00068, TC00067, TC00064, TC00072",
+      "category": "🔵 FUNC",
+      "priority": "P4",
+      "auto": "⚠️/✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00070, TC00069, TC00074",
+      "category": "🟢 API",
+      "priority": "P3/P4",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00076, TC00077",
+      "category": "🟣 DB",
+      "priority": "P4",
+      "auto": "✅",
+      "coverage": "Negative, Positive",
+      "domain": "ecommerce_retail",
+      "gapsNotes": "Missing edge coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "testCaseIds": "TC00071",
+      "category": "🔴 NF",
+      "priority": "P3",
+      "auto": "✅",
+      "coverage": "Security",
+      "domain": "ecommerce_retail",
+      "gapsNotes": ""
+    }
+  ]
+}

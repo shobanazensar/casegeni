@@ -11,6 +11,67 @@ class A5TestGeneration(AgentBase):
         super().__init__(base_dir, "A5 Test Cases Generation - Offline.updated.json")
         self.rag = RAGRetriever()
 
+    @staticmethod
+    def _extract_ac_context(bp: dict) -> dict:
+        """Derive field name, boundary value, format and role hints from AC text.
+        Used to populate test data with meaningful values instead of [specify...] placeholders."""
+        import re
+        text = bp.get("ac_text", "") or ""
+        module = (bp.get("module") or "record").title()
+        domain = (bp.get("domain") or "").title()
+        seed_type = bp.get("seed_type") or bp.get("scenario_type") or "Positive"
+
+        # ── Field name: first noun phrase before a modal verb ──────────────────
+        _NOISE = {"the system", "the application", "a user", "the user", "users",
+                  "it", "they", "this", "that", "each", "every", "all", "any", "system"}
+        field_name = module
+        for pattern in [
+            r'(?:^|[.;]\s*)(?:[Tt]he\s+)?([A-Za-z][A-Za-z /\-]{2,50}?)\s+(?:must|should|cannot|shall|needs? to|is required|will be)',
+            r'(?:ensure|verify|validate|check)\s+(?:that\s+)?(?:the\s+)?([A-Za-z][A-Za-z /\-]{2,40}?)\s+',
+            r'(?:^|\s)(?:[Tt]he\s+)([A-Za-z][A-Za-z /\-]{3,40}?)\s+(?:field|value|attribute|property)\b',
+        ]:
+            m = re.search(pattern, text)
+            if m:
+                candidate = m.group(1).strip().rstrip("'s").strip()
+                if candidate.lower() not in _NOISE and 2 < len(candidate) < 55:
+                    field_name = candidate.title()
+                    break
+
+        # ── Boundary / numeric constraint ──────────────────────────────────
+        boundary_value = ""
+        bm = re.search(
+            r'\b(\d[\d,]*\s*(?:character|char|digit|byte|day|second|minute|hour|record|item|user|%|percent)?s?)\b',
+            text, re.IGNORECASE
+        )
+        if bm:
+            boundary_value = bm.group(1).strip()
+
+        # ── Format hint ────────────────────────────────────────────────
+        format_hint = ""
+        fmt_m = re.search(r'(?:format|pattern|regex|valid format)[:\s]+([^\.,;]{4,60})', text, re.IGNORECASE)
+        if fmt_m:
+            format_hint = fmt_m.group(1).strip()
+
+        # ── Role hint ───────────────────────────────────────────────────
+        role_hint = f"{module}_Admin or {module}_Editor"
+        rm = re.search(r'\b(admin(?:istrator)?|manager|user|editor|viewer|owner|approver|reviewer)\b', text, re.IGNORECASE)
+        if rm:
+            role_hint = f"{rm.group(1).title()} role with access to {module}"
+
+        # ── Expected HTTP status by scenario type ─────────────────────────────
+        http_status = "200 or 201" if seed_type == "Positive" else ("401 or 403" if "auth" in (bp.get("focus", "") + text).lower() else "400 or 422")
+
+        return {
+            "field_name": field_name,
+            "boundary_value": boundary_value,
+            "format_hint": format_hint,
+            "role_hint": role_hint,
+            "module": module,
+            "domain": domain,
+            "http_status": http_status,
+            "ac_summary": (text[:150].rstrip() + "...") if len(text) > 150 else text,
+        }
+
     def _offline_generate_one(self, bp: dict) -> dict:
         candidates = bp.get("layer_candidates") or ["UI"]
         layer = candidates[0] if candidates else "UI"
@@ -392,6 +453,118 @@ class A5TestGeneration(AgentBase):
                 ],
                 "expected": "All interactive fields receive visible keyboard focus in a logical order. Every field has a visible and descriptive label. Form submission completes successfully via keyboard only. Validation error messages are programmatically associated with their fields and announced by the screen reader.",
             },
+            "nf_security_api_generic": {
+                "pre": [
+                    "API endpoint is accessible in the test environment.",
+                    "An authentication token with insufficient scope or no token is prepared for the test.",
+                    "A valid request payload for the operation under test is prepared.",
+                ],
+                "steps": [
+                    "Prepare a request to the target API endpoint using an invalid, expired, or missing authentication token.",
+                    "Submit the request and capture the HTTP response status code and full response body.",
+                    "Repeat using a token scoped to a role that does not have permission for the operation.",
+                ],
+                "expected": "The API returns HTTP 401 for unauthenticated requests and HTTP 403 for unauthorised roles. The response body contains an appropriate error message. No data is created, read, updated, or deleted as a result.",
+            },
+            "nf_performance_api_generic": {
+                "pre": [
+                    "API endpoint is accessible in the performance/load test environment.",
+                    "A valid authenticated request payload is prepared.",
+                    "SLA threshold for response time is documented (e.g. p95 < 500 ms under 50 concurrent users).",
+                ],
+                "steps": [
+                    "Configure a load test with the agreed concurrent-user count and ramp-up period.",
+                    "Execute the load test against the target API endpoint using valid authenticated requests.",
+                    "Capture p50, p95, and p99 response times and the error rate throughout the test duration.",
+                    "Compare the captured metrics against the documented SLA thresholds.",
+                ],
+                "expected": "p95 response time is at or below the SLA threshold throughout the test. Error rate remains below the accepted threshold. No memory leaks, thread exhaustion, or degraded throughput patterns are observed.",
+            },
+            "nf_accessibility_ui_generic": {
+                "pre": [
+                    "Application is deployed and accessible in the test environment.",
+                    "A screen-reader tool (e.g. NVDA, VoiceOver) and keyboard-only navigation capability are available.",
+                    "The feature under test is enabled and navigable.",
+                ],
+                "steps": [
+                    "Navigate to the feature using keyboard only (Tab, Shift+Tab, Enter, Space, arrow keys) and verify all interactive controls receive visible focus.",
+                    "Activate a screen reader and navigate through the page; verify every field, button, and error message has a meaningful label or aria-label.",
+                    "Trigger any inline validation and confirm the error message is programmatically associated with its field and announced by the screen reader.",
+                    "Verify colour contrast of all foreground text against its background meets the WCAG 2.1 AA ratio of at least 4.5:1.",
+                ],
+                "expected": "All interactive elements are keyboard reachable and operable. Screen reader announces labels, states, and errors correctly. Colour contrast passes WCAG 2.1 AA. The entire workflow can be completed without a pointer device.",
+            },
+            "nf_compatibility_ui_generic": {
+                "pre": [
+                    "Application is deployed and accessible in the test environment.",
+                    "Browser and device matrix is defined (e.g. Chrome latest, Firefox latest, Safari latest, Edge latest; desktop and mobile viewport).",
+                    "The feature under test is enabled.",
+                ],
+                "steps": [
+                    "Open the feature in each browser defined in the matrix and verify the page renders without layout breaks or missing elements.",
+                    "Perform the primary business action (create, edit, or submit) in each browser and verify the outcome is consistent.",
+                    "Resize the browser to mobile viewport (320 px wide) and verify the layout is responsive with no horizontal scrollbar.",
+                    "Verify that JavaScript errors or console warnings specific to the feature are absent in each browser.",
+                ],
+                "expected": "The feature renders correctly and all business actions complete successfully across all defined browsers and viewports. No browser-specific regressions, layout breaks, or unhandled JavaScript errors are present.",
+            },
+            "ui_happy_path_positive": {
+                "pre": [
+                    "Application is deployed and accessible in the test environment.",
+                    "User account exists with the required role and Edit permissions for the module under test.",
+                    "All mandatory reference data and configuration are present in the test environment.",
+                ],
+                "steps": [
+                    "Log in to the application with the permitted user account.",
+                    "Navigate to the module and open or create the record under test.",
+                    "Enter all required fields with valid data as defined in Test Data.",
+                    "Submit or save the record.",
+                    "Verify the outcome reflects the submitted values.",
+                ],
+                "expected": "The record is saved successfully. All entered values are displayed correctly on the confirmation or record-view screen. No error or validation messages are shown.",
+            },
+            "ui_happy_path_alt_positive": {
+                "pre": [
+                    "Application is deployed and accessible in the test environment.",
+                    "User account exists with the required role and Edit permissions for the module under test.",
+                    "An alternative set of valid input values is prepared that satisfies all business rules.",
+                ],
+                "steps": [
+                    "Log in to the application with the permitted user account.",
+                    "Navigate to the module and open or create the record under test.",
+                    "Enter the alternative valid values from Test Data.",
+                    "Submit or save the record.",
+                    "Verify the outcome reflects the alternative submitted values.",
+                ],
+                "expected": "The record is saved successfully with the alternative valid values. The system behaviour matches the primary happy-path outcome. No errors are produced.",
+            },
+            "api_happy_path_positive": {
+                "pre": [
+                    "API endpoint is accessible in the test environment.",
+                    "A valid authentication token with the required permission scope is available.",
+                    "A complete and valid request payload is prepared.",
+                ],
+                "steps": [
+                    "Construct the request with a valid payload as defined in Test Data.",
+                    "Submit the request to the API endpoint using the correct HTTP method.",
+                    "Capture the HTTP response status code and response body.",
+                    "Query the database or call the GET endpoint to verify the persisted state.",
+                ],
+                "expected": "API returns HTTP 200 or 201. Response body confirms the operation completed successfully. The database reflects the expected state change consistent with the submitted values.",
+            },
+            "api_happy_path_alt_positive": {
+                "pre": [
+                    "API endpoint is accessible in the test environment.",
+                    "A valid authentication token with the required permission scope is available.",
+                    "An alternative valid request payload is prepared with different but valid field values.",
+                ],
+                "steps": [
+                    "Construct the request with the alternative valid payload from Test Data.",
+                    "Submit the request to the API endpoint using the correct HTTP method.",
+                    "Capture the HTTP response status code and response body.",
+                ],
+                "expected": "API returns HTTP 200 or 201. The alternative valid input is accepted and the response matches the expected outcome for that variant.",
+            },
             "generic_positive": {
                 "pre": [
                     "Application is deployed and accessible in the test environment.",
@@ -421,39 +594,76 @@ class A5TestGeneration(AgentBase):
                 ],
                 "expected": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action.",
             },
+            "generic_edge_case": {
+                "pre": [
+                    "Application is deployed and accessible in the test environment.",
+                    "User account exists with the required role and permissions for the feature under test.",
+                    "A boundary or edge-condition input value is identified and defined in Test Data.",
+                ],
+                "steps": [
+                    "Log in to the application with the permitted user account.",
+                    "Navigate to the feature under test.",
+                    "Enter or submit the boundary/edge-condition value defined in Test Data.",
+                    "Observe and record the system response.",
+                ],
+                "expected": "The system handles the boundary input consistently with the documented business rule — either accepting it and processing correctly, or rejecting it with a specific, descriptive validation message.",
+            },
         }
 
-        selected = library.get(scenario_key, library["generic_positive"])
+        if scenario_key in library:
+            selected = library[scenario_key]
+        elif seed_type in {"Negative", "Exception Handling"}:
+            selected = library["generic_negative"]
+        elif seed_type == "Edge Case":
+            selected = library["generic_edge_case"]
+        else:
+            selected = library["generic_positive"]
         preconditions.extend(selected["pre"])
         steps.extend(selected["steps"])
         expected = selected["expected"]
 
+        # ── Derive context from the AC text for all test data entries ────────────
+        ctx = self._extract_ac_context(bp)
+        is_baseline = scenario_key not in library  # True for A4-generated baseline blueprints
+
+        # For baseline blueprints: sharpen the title and expected result with AC context
+        if is_baseline:
+            title = f"{layer} | {seed_type} \u2014 {ctx['field_name']} | {bp['ac_id']}"
+            boundary_clause = f" Boundary value: {ctx['boundary_value']}." if ctx["boundary_value"] else ""
+            expected = expected.rstrip(".") + f".{boundary_clause} Per AC: \"{ctx['ac_summary'][:120]}\""
+
         if non_functional_type:
             functional_type = ""
-        if layer == "UI" and scenario_key.startswith("ui_"):
-            test_data.append(f"User Role: [specify role with exact permissions required, e.g. {module}_Admin or {module}_Editor]")
-            test_data.append("Target Record ID: [specify unique identifier of the record under test]")
-            test_data.append("Field Under Test: [specify field name and the exact input value to use]")
+
+        # ── Context-aware test data (no more [specify ...] placeholders) ────────
+        boundary_note = f" (boundary: {ctx['boundary_value']})" if ctx["boundary_value"] and seed_type in {"Edge Case", "Negative", "Exception Handling"} else ""
+        format_note = f" (format: {ctx['format_hint']})" if ctx["format_hint"] else ""
+        if layer == "UI":
+            test_data.append(f"User Role: {ctx['role_hint']}")
+            test_data.append(f"Target Record ID: Existing {ctx['module']} record in test environment")
+            test_data.append(f"Field Under Test: {ctx['field_name']}{boundary_note}{format_note}")
             test_data.append("Environment: UAT or System Integration Test")
         elif layer == "API":
-            test_data.append("Endpoint: [specify full URL and HTTP method, e.g. PUT /api/v1/records/{id}]")
-            test_data.append("Auth Token: [specify token type and permission scope, e.g. Bearer token with UPDATE_RECORD scope]")
-            test_data.append("Request Payload: [specify the JSON payload including the field under test with its exact value]")
-            test_data.append("Expected HTTP Status: [specify exact expected status code, e.g. 200, 400, 401, 422]")
+            test_data.append(f"Endpoint: PUT or POST /api/v1/{ctx['module'].lower().replace(' ', '-')}/{{id}}")
+            test_data.append(f"Auth Token: Bearer token with {ctx['module'].replace(' ', '')}_UPDATE scope")
+            payload_note = f"\"{ctx['field_name']}\": \"<{seed_type.lower()} value{boundary_note}>\""
+            test_data.append(f"Request Payload: JSON body with {payload_note}")
+            test_data.append(f"Expected HTTP Status: {ctx['http_status']}")
         elif layer == "Database":
-            test_data.append("Target Table: [specify table name, e.g. customer_master or audit_log]")
-            test_data.append("Record Identifier: [specify primary key or unique identifier for the target row]")
-            test_data.append("Pre-Update Field Value: [specify the exact field value before the operation]")
-            test_data.append("Post-Update Expected Value: [specify the exact field value expected after the operation]")
+            table_name = ctx['module'].lower().replace(' ', '_') + "_master"
+            test_data.append(f"Target Table: {table_name} (or related audit/history table)")
+            test_data.append(f"Record Identifier: Primary key of {ctx['module']} record under test")
+            test_data.append(f"Pre-Update {ctx['field_name']} Value: [value before operation is triggered]")
+            test_data.append(f"Post-Update {ctx['field_name']} Expected: [value per AC \u2014 {ctx['ac_summary'][:80]}]")
         elif layer in {"ETL", "ETL Integration"}:
-            test_data.append("Source Record ID: [specify identifier of the source record under test]")
-            test_data.append("Field Under Test: [specify source field name and the value used for this test]")
-            test_data.append("Expected Downstream Field: [specify the downstream field name and its expected mapped value]")
-            test_data.append("Integration Job Name or Queue: [specify the job or topic name]")
+            test_data.append(f"Source Record ID: {ctx['module']} identifier in source system")
+            test_data.append(f"Field Under Test: {ctx['field_name']}{boundary_note} in source payload")
+            test_data.append(f"Expected Downstream {ctx['field_name']}: mapped value in downstream system per business rule")
+            test_data.append(f"Integration Job / Queue: [{ctx['domain']} sync or ETL pipeline name]")
         elif layer in {"E2E", "EndToEnd"}:
-            test_data.append("Business Record ID: [specify the identifier traceable across source and downstream systems]")
-            test_data.append("Source System Entry Point: [specify UI screen or API endpoint used to trigger the business action]")
-            test_data.append("Downstream System and Field: [specify system name and field expected to reflect the change]")
+            test_data.append(f"Business Record ID: {ctx['module']} identifier traceable across source and downstream systems")
+            test_data.append(f"Source Entry Point: UI screen or API endpoint that triggers the {ctx['field_name'].lower()} change")
+            test_data.append(f"Downstream System and Field: [system name] — {ctx['field_name']}{boundary_note}")
 
         return {
             "story_id": bp["story_id"],

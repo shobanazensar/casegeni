@@ -41,7 +41,6 @@ with st.sidebar:
         ["UI", "API", "Database", "ETL"],
         default=["UI", "API", "Database", "ETL"],
     )
-    st.caption("Layers: UI – user interface, API – service/REST, Database – persistence & audit, ETL – integration & downstream sync")
     selected_types = st.multiselect(
         "Primary test suite",
         ["Functional", "Smoke", "EndToEnd"],
@@ -63,7 +62,10 @@ with st.sidebar:
     selected_types_combined = selected_types + selected_nf_types
     temperature = st.number_input("Temperature", min_value=0.0, max_value=1.5, value=0.2, step=0.05)
     max_tokens = st.number_input("Max tokens", min_value=256, max_value=64000, value=1800, step=128)
-    max_test_count = st.number_input("Max test count", min_value=10, max_value=1000, value=60, step=5)
+    max_per_ac = st.number_input("Max tests per AC", min_value=6, max_value=15, value=10, step=1,
+        help="Maximum test cases kept per acceptance criterion after optimization. Range 6–15.")
+    max_test_count = st.number_input("Max test count (global cap)", min_value=10, max_value=2000, value=200, step=10,
+        help="Hard global cap across all ACs. Set high enough to not override the per-AC limit (e.g. 200 for 12 ACs × 10 tests).")
 
     llm_model = api_key = base_url = ""
     use_json_format = True
@@ -129,8 +131,6 @@ with st.sidebar:
 
         provider = st.selectbox("Provider", list(PROVIDER_PRESETS.keys()), index=0)
         preset = PROVIDER_PRESETS[provider]
-        if preset["note"]:
-            st.caption(preset["note"])
 
         llm_model = st.text_input("Model name", value=preset["default_model"])
         base_url = st.text_input("Base URL", value=preset["base_url"])
@@ -184,8 +184,8 @@ if run_clicked:
 
     def _on_progress(done: int, total: int, label: str):
         pct = int(done / total * 100) if total else 100
-        _progress_bar.progress(pct, text=f"LLM generation — story {done}/{total}")
-        _status_text.caption(label)
+        _progress_bar.progress(pct, text=label)
+        _status_text.empty()
 
     try:
         result = pipeline.run(
@@ -204,6 +204,7 @@ if run_clicked:
             "use_json_format": use_json_format,
         },
         max_test_count=int(max_test_count),
+        max_per_ac=int(max_per_ac),
         progress_callback=_on_progress if execution_mode == "online" else None,
     )
     except Exception as exc:
@@ -244,7 +245,7 @@ if run_clicked:
     s3.metric("Acceptance Criteria", result["manifest"]["requirements_summary"].get("ac_count", 0))
     s4.metric("Coverage %", result["traceability"]["summary"].get("traceability_coverage_percent", 0.0))
 
-    tabs = st.tabs(["Test Cases", "Traceability", "Reviewer", "Dashboard", "Agent Output"])
+    tabs = st.tabs(["Test Cases", "Traceability", "Dashboard", "Agent Output"])
 
     with tabs[0]:
         st.subheader("Generated test cases")
@@ -256,48 +257,207 @@ if run_clicked:
 
     with tabs[1]:
         st.subheader("Traceability")
-        c1, c2, c3 = st.columns(3)
+        c1, c2, c3, c4 = st.columns(4)
         c1.metric("Total ACs", result["traceability"]["summary"].get("total_acs", 0))
         c2.metric("Covered ACs", result["traceability"]["summary"].get("covered_acs", 0))
-        c3.metric("Coverage %", result["traceability"]["summary"].get("traceability_coverage_percent", 0.0))
-        st.dataframe(trace_rows, use_container_width=True, height=420)
+        c3.metric("Uncovered ACs", result["traceability"]["summary"].get("uncovered_count", 0))
+        c4.metric("Coverage %", f"{result['traceability']['summary'].get('traceability_coverage_percent', 0.0)}%")
+
+        if not trace_rows.empty:
+            # Column display config: rename to human-friendly headers and control widths
+            col_cfg = {
+                "storyId":           st.column_config.TextColumn("Story ID",        width="small"),
+                "acId":              st.column_config.TextColumn("AC ID",           width="small"),
+                "acText":            st.column_config.TextColumn("AC Summary",      width="large"),
+                "testCaseId":        st.column_config.TextColumn("Test Case ID",    width="small"),
+                "title":             st.column_config.TextColumn("Title",           width="large"),
+                "testCaseLayer":     st.column_config.TextColumn("Layer",           width="small"),
+                "scenarioType":      st.column_config.TextColumn("Scenario Type",   width="small"),
+                "testSuite":         st.column_config.TextColumn("Test Suite",      width="small"),
+                "nonFunctionalType": st.column_config.TextColumn("NF Type",         width="small"),
+                "priority":          st.column_config.TextColumn("Priority",        width="small"),
+                "automatable":       st.column_config.TextColumn("Automatable",     width="small"),
+                "coverage":          st.column_config.TextColumn("Coverage",        width="small"),
+                "gapNotes":          st.column_config.TextColumn("Gap Notes",       width="medium"),
+            }
+            st.dataframe(trace_rows, use_container_width=True, height=520, column_config=col_cfg)
+        else:
+            st.info("No traceability data available.")
 
     with tabs[2]:
-        st.subheader("Reviewer")
-        r1, r2, r3 = st.columns(3)
-        r1.metric("Average Score", result["review_summary"].get("avg_reviewer_score", 0.0))
-        r2.metric("Needs Human Review", len(result["review_summary"].get("tests_needing_human_review", [])))
-        r3.metric("Coverage %", result["review_summary"].get("traceability_coverage_percent", 0.0))
-        col1, col2 = st.columns(2)
-        col1.markdown("**Scores by Layer**")
-        col1.dataframe(pd.DataFrame([{"layer": k, "score": v} for k, v in result["review_summary"].get("scores_by_layer", {}).items()]), use_container_width=True)
-        col2.markdown("**Scores by Profile**")
-        col2.dataframe(pd.DataFrame([{"profile": k, "score": v} for k, v in result["review_summary"].get("scores_by_profile", {}).items()]), use_container_width=True)
-        st.markdown("**Dimension Summary by Profile**")
-        st.dataframe(pd.DataFrame([
-            {"profile": profile, **scores} for profile, scores in result["review_summary"].get("profile_dimension_summary", {}).items()
-        ]), use_container_width=True)
-        if result["review_summary"].get("major_common_issues"):
-            st.markdown("**Common Issues**")
-            for item in result["review_summary"].get("major_common_issues", []):
-                st.write(f"- {item}")
-        st.markdown("**Detailed Reviewer Output**")
-        st.dataframe(reviewer_table, use_container_width=True, height=420)
-        with st.expander("Raw reviewer JSON"):
-            st.json(result["review_summary"])
+        import altair as alt
+        from collections import Counter as _Counter
 
-    with tabs[3]:
         st.subheader("Dashboard")
-        c1, c2, c3, c4 = st.columns(4)
         summary = result["dashboard"]["summary"]
-        c1.metric("Tests after optimization", summary["total_tests_after"])
-        c2.metric("Coverage %", summary["traceability_coverage_percent"])
-        c3.metric("Reviewer score", summary["avg_reviewer_score"])
-        c4.metric("Automation readiness %", summary["automation_readiness_percent"])
-        st.json(result["dashboard"])
+        verdict = result["dashboard"]["final_verdict"]
+        quality_gaps = result["dashboard"]["quality_gaps"]
+        trace_sum = result["traceability"]["summary"]
+
+        # ── KPI Row ──────────────────────────────────────────────────────────
+        k1, k2, k3 = st.columns(3)
+        k1.metric("Total Test Cases", summary["total_tests_after"])
+        k2.metric("Coverage %", f"{summary['traceability_coverage_percent']}%")
+        k3.metric("Tests Reduced", f"{summary['reduction_percent']}%")
+        st.markdown("---")
+
+        def _hbar(df: pd.DataFrame, x_col: str, y_col: str, scheme: str, height: int = 180):
+            bars = (
+                alt.Chart(df)
+                .mark_bar(cornerRadiusTopRight=5, cornerRadiusBottomRight=5)
+                .encode(
+                    x=alt.X(f"{x_col}:Q", title="Count"),
+                    y=alt.Y(f"{y_col}:N", sort="-x", title=None),
+                    color=alt.Color(f"{y_col}:N", scale=alt.Scale(scheme=scheme), legend=None),
+                    tooltip=[f"{y_col}:N", f"{x_col}:Q"],
+                )
+            )
+            labels = bars.mark_text(align="left", dx=4, color="#444").encode(
+                text=alt.Text(f"{x_col}:Q")
+            )
+            return (bars + labels).properties(height=height)
+
+        def _donut(df: pd.DataFrame, theta_col: str, color_col: str, scheme: str, height: int = 240):
+            return (
+                alt.Chart(df)
+                .mark_arc(innerRadius=55, outerRadius=100)
+                .encode(
+                    theta=alt.Theta(f"{theta_col}:Q"),
+                    color=alt.Color(
+                        f"{color_col}:N",
+                        scale=alt.Scale(scheme=scheme),
+                        legend=alt.Legend(title=color_col),
+                    ),
+                    tooltip=[f"{color_col}:N", f"{theta_col}:Q"],
+                )
+                .properties(height=height)
+            )
+
+        # ── Row 1: Priority (donut) + Layer (donut) ───────────────────────────
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("**Test Cases by Priority**")
+            if not tc_df.empty and "priority" in tc_df.columns:
+                p_df = (
+                    tc_df["priority"].value_counts()
+                    .reindex(["P1", "P2", "P3", "P4"], fill_value=0)
+                    .reset_index()
+                )
+                p_df.columns = ["Priority", "Count"]
+                st.altair_chart(_donut(p_df, "Count", "Priority", "blues"), use_container_width=True)
+        with col2:
+            st.markdown("**Test Cases by Layer**")
+            if not tc_df.empty and "testCaseLayer" in tc_df.columns:
+                l_df = tc_df["testCaseLayer"].value_counts().reset_index()
+                l_df.columns = ["Layer", "Count"]
+                st.altair_chart(_donut(l_df, "Count", "Layer", "tableau10"), use_container_width=True)
+
+        # ── Row 2: Test Suite (h-bar) + Scenario Type (h-bar) ────────────────
+        col3, col4 = st.columns(2)
+        with col3:
+            st.markdown("**Test Cases by Test Suite / Type**")
+            if not tc_df.empty and "testSuite" in tc_df.columns:
+                s_df = tc_df["testSuite"].value_counts().reset_index()
+                s_df.columns = ["Suite", "Count"]
+                st.altair_chart(_hbar(s_df, "Count", "Suite", "set2"), use_container_width=True)
+        with col4:
+            st.markdown("**Test Cases by Scenario Type**")
+            if not tc_df.empty and "scenarioType" in tc_df.columns:
+                sc_df = tc_df["scenarioType"].value_counts().reset_index()
+                sc_df.columns = ["Scenario", "Count"]
+                st.altair_chart(_hbar(sc_df, "Count", "Scenario", "pastel1"), use_container_width=True)
+
+        # ── Row 3: Priority × Layer heatmap + Execution Tags ─────────────────
+        col5, col6 = st.columns(2)
+        with col5:
+            st.markdown("**Priority Distribution by Layer** *(heatmap)*")
+            if not tc_df.empty and "testCaseLayer" in tc_df.columns and "priority" in tc_df.columns:
+                heat_df = (
+                    tc_df.groupby(["testCaseLayer", "priority"])
+                    .size()
+                    .reset_index(name="Count")
+                )
+                heatmap = alt.Chart(heat_df).mark_rect().encode(
+                    x=alt.X("priority:N", sort=["P1", "P2", "P3", "P4"], title="Priority"),
+                    y=alt.Y("testCaseLayer:N", title="Layer"),
+                    color=alt.Color("Count:Q", scale=alt.Scale(scheme="blues"), title="Count"),
+                    tooltip=["testCaseLayer:N", "priority:N", "Count:Q"],
+                )
+                heat_text = heatmap.mark_text(baseline="middle", fontWeight="bold").encode(
+                    text="Count:Q",
+                    color=alt.condition(
+                        alt.datum.Count > 4, alt.value("white"), alt.value("#333")
+                    ),
+                )
+                st.altair_chart((heatmap + heat_text).properties(height=180), use_container_width=True)
+        with col6:
+            st.markdown("**Execution Tags Distribution**")
+            if not tc_df.empty and "executionTags" in tc_df.columns:
+                tags_flat = []
+                for cell in tc_df["executionTags"]:
+                    tags_flat.extend(str(cell).split("\n"))
+                tag_counts = _Counter(t.strip() for t in tags_flat if t.strip())
+                if tag_counts:
+                    tag_df = (
+                        pd.DataFrame(tag_counts.items(), columns=["Tag", "Count"])
+                        .sort_values("Count", ascending=False)
+                    )
+                    st.altair_chart(_hbar(tag_df, "Count", "Tag", "set3", height=180), use_container_width=True)
+
+        st.markdown("---")
+        # ── Traceability & Coverage ───────────────────────────────────────────
+        st.markdown("#### Traceability & Coverage")
+        tc1, tc2, tc3, tc4 = st.columns(4)
+        tc1.metric("Total ACs", trace_sum.get("total_acs", 0))
+        tc2.metric("Covered ACs", trace_sum.get("covered_acs", 0))
+        tc3.metric("Uncovered ACs", trace_sum.get("uncovered_count", 0))
+        tc4.metric("Coverage %", f"{trace_sum.get('traceability_coverage_percent', 0.0)}%")
+
+        matrix_rows = pd.DataFrame(result["traceability"].get("matrix", []))
+        if not matrix_rows.empty and "story_id" in matrix_rows.columns and "coverage" in matrix_rows.columns:
+            story_cov_df = (
+                matrix_rows.groupby("story_id")
+                .apply(lambda g: round(g["coverage"].eq("Covered").sum() / max(len(g), 1) * 100, 1))
+                .reset_index(name="Coverage %")
+            )
+            st.markdown("**AC Coverage by Story (%)**")
+            cov_chart = (
+                alt.Chart(story_cov_df)
+                .mark_bar(cornerRadiusTopRight=5, cornerRadiusBottomRight=5)
+                .encode(
+                    x=alt.X("Coverage %:Q", scale=alt.Scale(domain=[0, 100])),
+                    y=alt.Y("story_id:N", sort="-x", title=None),
+                    color=alt.Color(
+                        "Coverage %:Q",
+                        scale=alt.Scale(domain=[0, 100], scheme="redyellowgreen"),
+                        legend=None,
+                    ),
+                    tooltip=["story_id:N", "Coverage %:Q"],
+                )
+                .properties(height=max(60, len(story_cov_df) * 32))
+            )
+            labels = cov_chart.mark_text(align="left", dx=4, color="#444").encode(
+                text=alt.Text("Coverage %:Q", format=".1f")
+            )
+            st.altair_chart((cov_chart + labels), use_container_width=True)
+
+        st.markdown("---")
+        # ── Quality Gaps & Recommendations ───────────────────────────────────
+        st.markdown("#### Quality Gaps & Recommendations")
+        qg1, qg2, qg3 = st.columns(3)
+        qg1.metric("ACs Missing Negative Tests", quality_gaps.get("acs_missing_negative", 0))
+        qg2.metric("ACs Missing Edge Tests", quality_gaps.get("acs_missing_edge", 0))
+        qg3.metric("ACs Without Tests", quality_gaps.get("acs_without_tests", 0))
+
+        st.markdown("**Top Recommendations**")
+        for rec in verdict.get("top_recommendations", []):
+            st.markdown(f"- {rec}")
+
+        with st.expander("Full dashboard JSON"):
+            st.json(result["dashboard"])
         st.download_button("Download dashboard HTML", data=result["dashboard_html"], file_name="dashboard.html")
 
-    with tabs[4]:
+    with tabs[3]:
         st.subheader("Agent output")
         st.download_button("Download manifest JSON", data=json.dumps(result["manifest"], indent=2), file_name="manifest.json")
         st.download_button("Download traceability JSON", data=json.dumps(result["traceability"], indent=2), file_name="traceability.json")
