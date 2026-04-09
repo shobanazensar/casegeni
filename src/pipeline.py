@@ -84,9 +84,9 @@ class TestCasePipeline:
         opt["test_cases_after_optimization"] = apply_schema_guardrail_bulk(opt["test_cases_after_optimization"])
         state.update(opt)
 
-        trace = self.a8.execute(req["requirements"], opt["test_cases_after_optimization"])
+        trace = self.a8.execute(req["requirements"], opt["test_cases_after_optimization"], removed_by_ac=opt.get("removed_by_ac", {}))
         state.update(trace)
-        review = self.a9.execute(opt["test_cases_after_optimization"], reviewer_mode, llm_config, trace["traceability_summary"])
+        review = self.a9.execute(opt["test_cases_after_optimization"], reviewer_mode, trace["traceability_summary"])
         state["test_cases"] = apply_schema_guardrail_bulk(review["reviewed_test_cases"])
         state["review_summary"] = review["review_summary"]
 
@@ -137,6 +137,11 @@ class TestCasePipeline:
             "state_driven_focus": state["state_driven_focus"],
             "domain_analysis": state["domain_analysis"],
             "requirements_summary": req["summary"],
+            "epic_title": req.get("epic_title", ""),
+            "stories": [
+                {"story_id": s["story_id"], "story_title": s["story_title"], "epic_title": s.get("epic_title", "")}
+                for s in req.get("stories", [])
+            ],
             "run_config": run_config,
         }
         dump_json(artifact_dir / "manifest.json", manifest)

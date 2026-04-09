@@ -46,13 +46,42 @@ class A7Optimization(AgentBase):
             if not tc.get("execution_tags"):
                 tc["execution_tags"] = ["Regression"]
 
+        optimized_ids = {tc["test_case_id"] for tc in optimized}
+
+        # Build per-AC removed TC list for downstream traceability enrichment
+        removed_by_ac: dict[str, list] = defaultdict(list)
+        for tc in test_cases:
+            if tc["test_case_id"] not in optimized_ids:
+                ac_key = str(tc.get("ac_id", ""))
+                # Determine removal reason
+                if tc["test_case_id"] not in {t["test_case_id"] for t in deduped}:
+                    reason = "Duplicate — identical scenario/layer/outcome already represented by a retained test"
+                else:
+                    reason = "Priority cap — lower-priority variant within this AC; higher-coverage tests were retained"
+                removed_by_ac[ac_key].append({
+                    "id": tc["test_case_id"],
+                    "title": tc.get("title", ""),
+                    "layer": tc.get("test_case_layer", ""),
+                    "priority": tc.get("priority", ""),
+                    "scenario": tc.get("scenario_type", ""),
+                    "reason": reason,
+                })
+
+        dedup_removed = before - len(deduped)
+        rank_removed = len(deduped) - len(optimized)
+        dedup_pct = round((dedup_removed / before) * 100, 2) if before else 0
+        rank_pct = round((rank_removed / before) * 100, 2) if before else 0
+
         p12 = [x for x in deduped if x.get("priority") in {"P1", "P2"}]
         return {
             "test_cases_before_optimization": test_cases,
             "test_cases_after_optimization": optimized,
+            "removed_by_ac": dict(removed_by_ac),
             "optimization_summary": {
                 "tests_removed": max(0, before - len(optimized)),
                 "reduction_percent": round(((before - len(optimized)) / before) * 100, 2) if before else 0,
+                "deduplication_reduction_percent": dedup_pct,
+                "priority_scoring_reduction_percent": rank_pct,
                 "smoke_count": sum(1 for x in optimized if x.get("test_suite") == "Smoke"),
                 "functional_count": sum(1 for x in optimized if x.get("test_suite") == "Functional"),
                 "endtoend_count": sum(1 for x in optimized if x.get("test_suite") == "EndToEnd"),

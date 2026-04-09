@@ -1,0 +1,5436 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Update succeeds with all required fields populated",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with a role that has Edit permission for the module under test.",
+      "An existing record is available with all mandatory fields currently populated."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Mandatory Fields Name And Primary Phone",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the Edit-permitted user account.",
+      "Navigate to the module and open the existing record in edit mode.",
+      "Enter a valid value for each mandatory field as defined in Test Data.",
+      "Click Save."
+    ],
+    "expected_result": "Record is saved successfully. All values entered appear correctly on the record view. No validation error messages are displayed.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.33,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 2.5,
+        "reason": "Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Happy path: ST1-AC1 completed successfully via UI with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and Edit permissions for the module under test.",
+      "All mandatory reference data and configuration are present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Mandatory Fields Name And Primary Phone",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the module and open or create the record under test.",
+      "Enter all required fields with valid data as defined in Test Data.",
+      "Submit or save the record.",
+      "Verify the outcome reflects the submitted values."
+    ],
+    "expected_result": "The record is saved successfully. All entered values are displayed correctly on the confirmation or record-view screen. No error or validation messages are shown.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 2.5,
+        "reason": "Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Happy path: ST1-AC1 completed successfully via API with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "A complete and valid request payload is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Mandatory Fields Name And Primary Phone\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with a valid payload as defined in Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body.",
+      "Query the database or call the GET endpoint to verify the persisted state."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. Response body confirms the operation completed successfully. The database reflects the expected state change consistent with the submitted values.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.21,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Alternative valid input: ST1-AC1 succeeds with alternate valid data via API",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "An alternative valid request payload is prepared with different but valid field values."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Mandatory Fields Name And Primary Phone\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with the alternative valid payload from Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. The alternative valid input is accepted and the response matches the expected outcome for that variant.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Database | Positive — Mandatory Fields Name And Primary Phone | ST1-AC1",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Mandatory Fields Name And Primary Phone Value: [value before operation is triggered]",
+      "Post-Update Mandatory Fields Name And Primary Phone Expected: [value per AC — Mandatory fields name and primary phone must be provided.]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Mandatory fields name and primary phone must be provided.\"",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.11,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 3.5,
+        "reason": "Database verification detail is weak; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "ETL | Positive — Mandatory Fields Name And Primary Phone | ST1-AC1",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "Source Record ID: Profile identifier in source system",
+      "Field Under Test: Mandatory Fields Name And Primary Phone in source payload",
+      "Expected Downstream Mandatory Fields Name And Primary Phone: mapped value in downstream system per business rule",
+      "Integration Job / Queue: [Ecommerce_Retail sync or ETL pipeline name]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Mandatory fields name and primary phone must be provided.\"",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak",
+      "transformation_accuracy: Transformation checks are weak"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.81,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Blank required field is blocked with inline validation",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with a role that has Edit permission for the module under test.",
+      "An existing record is open in edit mode."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Mandatory Fields Name And Primary Phone",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the Edit-permitted user account.",
+      "Navigate to the module and open the existing record in edit mode.",
+      "Clear the value in one mandatory field while keeping all other fields valid.",
+      "Click Save."
+    ],
+    "expected_result": "An inline validation message is displayed immediately adjacent to the blank mandatory field identifying the field by name. The record is not saved and no data is persisted.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "API rejects request with missing required field",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "A baseline request payload with all mandatory fields populated is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Mandatory Fields Name And Primary Phone\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Construct the request payload by removing one mandatory field from the baseline payload.",
+      "Submit a POST or PUT request to the update endpoint with the incomplete payload.",
+      "Capture the HTTP response status code and the full response body."
+    ],
+    "expected_result": "API returns HTTP 400 or 422. Response body contains a field-level error message identifying the missing mandatory field by name. No record is created or updated in the database.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Unauthorised request for ST1-AC1 is rejected at API level",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "An authentication token with insufficient scope or no token is prepared for the test.",
+      "A valid request payload for the operation under test is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Mandatory Fields Name And Primary Phone\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Prepare a request to the target API endpoint using an invalid, expired, or missing authentication token.",
+      "Submit the request and capture the HTTP response status code and full response body.",
+      "Repeat using a token scoped to a role that does not have permission for the operation."
+    ],
+    "expected_result": "The API returns HTTP 401 for unauthenticated requests and HTTP 403 for unauthorised roles. The response body contains an appropriate error message. No data is created, read, updated, or deleted as a result.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "non_functional",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Rejected request does not persist partial data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Database is accessible via query tool in the test environment.",
+      "A target record exists with known current field values recorded before the test.",
+      "A reproducible invalid update scenario that will cause validation failure is identified."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC1",
+      "Requirement Text: Mandatory fields name and primary phone must be provided.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Mandatory Fields Name And Primary Phone Value: [value before operation is triggered]",
+      "Post-Update Mandatory Fields Name And Primary Phone Expected: [value per AC — Mandatory fields name and primary phone must be provided.]"
+    ],
+    "steps": [
+      "Record the current field values of the target record from the database.",
+      "Trigger the invalid update via UI or API to cause a validation failure.",
+      "Query the target record and related audit or history tables in the database.",
+      "Compare the queried values against the values recorded in step 1."
+    ],
+    "expected_result": "All field values of the target record are identical to the values recorded before the update attempt. No partial update exists and no new audit entry is inserted for the failed operation.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Negative",
+      "data_integrity",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "new",
+      "data_integrity"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.68,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Unique value is accepted in UI",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with a role that has Edit permission for the module under test.",
+      "A value that does not exist on any other active record in the system is identified and available as Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Email",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the Edit-permitted user account.",
+      "Navigate to the module and open the target record in edit mode.",
+      "Enter the unique value from Test Data into the constrained field.",
+      "Click Save."
+    ],
+    "expected_result": "Record is saved successfully. The constrained field displays the new unique value on the record view. No validation or uniqueness error is displayed.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00021",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Happy path: ST1-AC2 completed successfully via UI with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and Edit permissions for the module under test.",
+      "All mandatory reference data and configuration are present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Email",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the module and open or create the record under test.",
+      "Enter all required fields with valid data as defined in Test Data.",
+      "Submit or save the record.",
+      "Verify the outcome reflects the submitted values."
+    ],
+    "expected_result": "The record is saved successfully. All entered values are displayed correctly on the confirmation or record-view screen. No error or validation messages are shown.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 2.5,
+        "reason": "Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00022",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Happy path: ST1-AC2 completed successfully via API with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "A complete and valid request payload is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Email\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with a valid payload as defined in Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body.",
+      "Query the database or call the GET endpoint to verify the persisted state."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. Response body confirms the operation completed successfully. The database reflects the expected state change consistent with the submitted values.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.21,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00023",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Alternative valid input: ST1-AC2 succeeds with alternate valid data via API",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "An alternative valid request payload is prepared with different but valid field values."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Email\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with the alternative valid payload from Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. The alternative valid input is accepted and the response matches the expected outcome for that variant.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00026",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Database | Positive — Email | ST1-AC2",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Email Value: [value before operation is triggered]",
+      "Post-Update Email Expected: [value per AC — Email must be unique across active customers.]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Email must be unique across active customers.\"",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.11,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 3.5,
+        "reason": "Database verification detail is weak; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00028",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "ETL | Positive — Email | ST1-AC2",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "Source Record ID: Profile identifier in source system",
+      "Field Under Test: Email in source payload",
+      "Expected Downstream Email: mapped value in downstream system per business rule",
+      "Integration Job / Queue: [Ecommerce_Retail sync or ETL pipeline name]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Email must be unique across active customers.\"",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak",
+      "transformation_accuracy: Transformation checks are weak"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.81,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00017",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Duplicate active value is blocked in UI",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with a role that has Edit permission for the module under test.",
+      "A second active record exists in the system that already holds the duplicate value identified in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Email",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the Edit-permitted user account.",
+      "Navigate to the module and open the target record in edit mode.",
+      "Enter the duplicate value from Test Data into the constrained field.",
+      "Click Save."
+    ],
+    "expected_result": "Save is blocked. A specific business-rule or uniqueness validation message is displayed identifying the conflict. No change is committed to the record.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00018",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "API rejects duplicate active value",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "A second active record already holds the duplicate value identified in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Email\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Construct the request payload using the duplicate value from Test Data in the constrained field.",
+      "Submit a POST or PUT request to the update endpoint.",
+      "Capture the HTTP response status code and the full response body."
+    ],
+    "expected_result": "API returns HTTP 400 or 409. Response body contains a uniqueness or business-rule error message. The target record is not updated and no new record is created in the database.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00024",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Unauthorised request for ST1-AC2 is rejected at API level",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "An authentication token with insufficient scope or no token is prepared for the test.",
+      "A valid request payload for the operation under test is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Email\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Prepare a request to the target API endpoint using an invalid, expired, or missing authentication token.",
+      "Submit the request and capture the HTTP response status code and full response body.",
+      "Repeat using a token scoped to a role that does not have permission for the operation."
+    ],
+    "expected_result": "The API returns HTTP 401 for unauthenticated requests and HTTP 403 for unauthorised roles. The response body contains an appropriate error message. No data is created, read, updated, or deleted as a result.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "non_functional",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00019",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Duplicate value is not persisted in master data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Database is accessible via query tool in the test environment.",
+      "The target record's current constrained field value is recorded before the test.",
+      "A duplicate-value rejection scenario is reproducible via UI or API."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC2",
+      "Requirement Text: Email must be unique across active customers.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Email Value: [value before operation is triggered]",
+      "Post-Update Email Expected: [value per AC — Email must be unique across active customers.]"
+    ],
+    "steps": [
+      "Record the current constrained field value of the target record from the database.",
+      "Trigger the duplicate-value update through UI or API to cause a rejection.",
+      "Query the master record and any unique-key constraint tables in the database.",
+      "Compare the stored constrained field value against the value recorded in step 1."
+    ],
+    "expected_result": "The constrained field value in the database remains identical to the value recorded before the duplicate attempt. No new entry is inserted into unique-key or validation tables for this record.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Negative",
+      "data_integrity",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "new",
+      "data_integrity"
+    ],
+    "review_feedback": [
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.45,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00035",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Happy path: ST1-AC3 completed successfully via UI with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and Edit permissions for the module under test.",
+      "All mandatory reference data and configuration are present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Unauthorized User",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the module and open or create the record under test.",
+      "Enter all required fields with valid data as defined in Test Data.",
+      "Submit or save the record.",
+      "Verify the outcome reflects the submitted values."
+    ],
+    "expected_result": "The record is saved successfully. All entered values are displayed correctly on the confirmation or record-view screen. No error or validation messages are shown.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 2.5,
+        "reason": "Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00036",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Alternative valid input: ST1-AC3 succeeds with alternate valid data via UI",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and Edit permissions for the module under test.",
+      "An alternative set of valid input values is prepared that satisfies all business rules."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Unauthorized User",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the module and open or create the record under test.",
+      "Enter the alternative valid values from Test Data.",
+      "Submit or save the record.",
+      "Verify the outcome reflects the alternative submitted values."
+    ],
+    "expected_result": "The record is saved successfully with the alternative valid values. The system behaviour matches the primary happy-path outcome. No errors are produced.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.58,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00037",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Happy path: ST1-AC3 completed successfully via API with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "A complete and valid request payload is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Unauthorized User\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with a valid payload as defined in Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body.",
+      "Query the database or call the GET endpoint to verify the persisted state."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. Response body confirms the operation completed successfully. The database reflects the expected state change consistent with the submitted values.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.21,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00038",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Alternative valid input: ST1-AC3 succeeds with alternate valid data via API",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "An alternative valid request payload is prepared with different but valid field values."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Unauthorized User\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with the alternative valid payload from Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. The alternative valid input is accepted and the response matches the expected outcome for that variant.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00043",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Database | Positive — Unauthorized User | ST1-AC3",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Unauthorized User Value: [value before operation is triggered]",
+      "Post-Update Unauthorized User Expected: [value per AC — Unauthorized users cannot update customer profiles.]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Unauthorized users cannot update customer profiles.\"",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.11,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 3.5,
+        "reason": "Database verification detail is weak; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00046",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "ETL | Positive — Unauthorized User | ST1-AC3",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "Source Record ID: Profile identifier in source system",
+      "Field Under Test: Unauthorized User in source payload",
+      "Expected Downstream Unauthorized User: mapped value in downstream system per business rule",
+      "Integration Job / Queue: [Ecommerce_Retail sync or ETL pipeline name]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Unauthorized users cannot update customer profiles.\"",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak",
+      "transformation_accuracy: Transformation checks are weak"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.81,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00031",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Unauthorized role cannot use edit action from UI",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with a role that has read-only or no permission for the module under test (no Edit permission assigned).",
+      "A record exists in the module that would be the target of an edit attempt."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Unauthorized User",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the read-only or non-permitted user account.",
+      "Navigate to the module and open the target record.",
+      "Attempt to locate and interact with any Edit or Save control on the record view."
+    ],
+    "expected_result": "Edit controls are either hidden or visibly disabled. If an edit action is attempted, the system displays an authorisation-denied message. No change is committed to the record.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00039",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "UI | Negative — Unauthorized User | ST1-AC3",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "An invalid or boundary-violating input variant is identified and defined in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Unauthorized User",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the invalid values defined in Test Data.",
+      "Observe and record the system response.",
+      "Verify the persistence state has not changed."
+    ],
+    "expected_result": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action. Per AC: \"Unauthorized users cannot update customer profiles.\"",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.5,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.8,
+        "reason": "Template-style title hurts clarity; Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00032",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Unauthorized token is blocked by API",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token is available that is scoped to a role without the required update permission.",
+      "A valid request payload is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Unauthorized User\": \"<negative value>\"",
+      "Expected HTTP Status: 401 or 403"
+    ],
+    "steps": [
+      "Construct a valid request payload for the update operation.",
+      "Submit a POST or PUT request to the update endpoint using the under-privileged token in the Authorization header.",
+      "Capture the HTTP response status code and the full response body."
+    ],
+    "expected_result": "API returns HTTP 401 or 403. Response body contains an authorisation error message. No record is created or updated in the database.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00041",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "API | Negative — Unauthorized User | ST1-AC3",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "An invalid or boundary-violating input variant is identified and defined in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC3",
+      "Requirement Text: Unauthorized users cannot update customer profiles.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Unauthorized User\": \"<negative value>\"",
+      "Expected HTTP Status: 401 or 403"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the invalid values defined in Test Data.",
+      "Observe and record the system response.",
+      "Verify the persistence state has not changed."
+    ],
+    "expected_result": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action. Per AC: \"Unauthorized users cannot update customer profiles.\"",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "API",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.55,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00049",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Successful update creates visible audit history",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with a role that has Edit permission for the module under test.",
+      "The current field values of the target record are recorded before the test begins.",
+      "Audit history or audit-facing UI is accessible to the test user or tester."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Audit History",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the Edit-permitted user account.",
+      "Navigate to the module and open the target record in edit mode.",
+      "Change the specified field to the new value defined in Test Data.",
+      "Click Save.",
+      "Navigate to the audit history view for the updated record."
+    ],
+    "expected_result": "An audit history entry is created for the update. The entry records the user account that performed the change, the timestamp of the change, the field name, the old value as recorded before the test, and the new value as entered in step 3.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "auditability"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00053",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Happy path: ST1-AC4 completed successfully via UI with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and Edit permissions for the module under test.",
+      "All mandatory reference data and configuration are present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Audit History",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the module and open or create the record under test.",
+      "Enter all required fields with valid data as defined in Test Data.",
+      "Submit or save the record.",
+      "Verify the outcome reflects the submitted values."
+    ],
+    "expected_result": "The record is saved successfully. All entered values are displayed correctly on the confirmation or record-view screen. No error or validation messages are shown.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 2.5,
+        "reason": "Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00054",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Happy path: ST1-AC4 completed successfully via API with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "A complete and valid request payload is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Audit History\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with a valid payload as defined in Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body.",
+      "Query the database or call the GET endpoint to verify the persisted state."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. Response body confirms the operation completed successfully. The database reflects the expected state change consistent with the submitted values.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.21,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00055",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Alternative valid input: ST1-AC4 succeeds with alternate valid data via API",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "An alternative valid request payload is prepared with different but valid field values."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Audit History\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with the alternative valid payload from Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. The alternative valid input is accepted and the response matches the expected outcome for that variant.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00050",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Audit record stores old and new values correctly",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Database is accessible via query tool in the test environment.",
+      "A successful update has been completed via UI or API and the old and new field values are both known.",
+      "Audit and history tables are identified and accessible for query."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Audit History Value: [value before operation is triggered]",
+      "Post-Update Audit History Expected: [value per AC — Audit history must capture previous and new values.]"
+    ],
+    "steps": [
+      "Query the audit or history table for the record updated in the precondition.",
+      "Compare the old_value column in the audit record against the field value that existed before the update.",
+      "Compare the new_value column in the audit record against the field value entered during the update."
+    ],
+    "expected_result": "The audit record exists for the update transaction. The old_value column matches the pre-update field value exactly. The new_value column matches the post-update field value exactly.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "auditability"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.62,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00061",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "ETL | Positive — Audit History | ST1-AC4",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "Source Record ID: Profile identifier in source system",
+      "Field Under Test: Audit History in source payload",
+      "Expected Downstream Audit History: mapped value in downstream system per business rule",
+      "Integration Job / Queue: [Ecommerce_Retail sync or ETL pipeline name]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Audit history must capture previous and new values.\"",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "transformation_accuracy: Transformation checks are weak"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.26,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00057",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "UI | Negative — Audit History | ST1-AC4",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "An invalid or boundary-violating input variant is identified and defined in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Audit History",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the invalid values defined in Test Data.",
+      "Observe and record the system response.",
+      "Verify the persistence state has not changed."
+    ],
+    "expected_result": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action. Per AC: \"Audit history must capture previous and new values.\"",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.5,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.8,
+        "reason": "Template-style title hurts clarity; Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00056",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Unauthorised request for ST1-AC4 is rejected at API level",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "An authentication token with insufficient scope or no token is prepared for the test.",
+      "A valid request payload for the operation under test is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Audit History\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Prepare a request to the target API endpoint using an invalid, expired, or missing authentication token.",
+      "Submit the request and capture the HTTP response status code and full response body.",
+      "Repeat using a token scoped to a role that does not have permission for the operation."
+    ],
+    "expected_result": "The API returns HTTP 401 for unauthenticated requests and HTTP 403 for unauthorised roles. The response body contains an appropriate error message. No data is created, read, updated, or deleted as a result.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "non_functional",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00059",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "API | Negative — Audit History | ST1-AC4",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "An invalid or boundary-violating input variant is identified and defined in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Audit History\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the invalid values defined in Test Data.",
+      "Observe and record the system response.",
+      "Verify the persistence state has not changed."
+    ],
+    "expected_result": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action. Per AC: \"Audit history must capture previous and new values.\"",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.36,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00052",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Failed update does not create successful audit record",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Database is accessible via query tool in the test environment.",
+      "A reproducible invalid update scenario that will fail validation is identified.",
+      "The total count of audit records for the target record is noted before the test."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC4",
+      "Requirement Text: Audit history must capture previous and new values.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Audit History Value: [value before operation is triggered]",
+      "Post-Update Audit History Expected: [value per AC — Audit history must capture previous and new values.]"
+    ],
+    "steps": [
+      "Record the current audit record count for the target record in the database.",
+      "Attempt the invalid update via UI or API so that the operation is rejected by the system.",
+      "Query the audit or history table for the target record.",
+      "Compare the audit record count against the count recorded in step 1."
+    ],
+    "expected_result": "The audit record count for the target record after the failed attempt is identical to the count before the attempt. No new audit entry with a success status is inserted for the validation-failed operation.",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Negative",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "new",
+      "auditability"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.68,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00067",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Happy path: ST1-AC5 completed successfully via UI with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and Edit permissions for the module under test.",
+      "All mandatory reference data and configuration are present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Profile Update",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the module and open or create the record under test.",
+      "Enter all required fields with valid data as defined in Test Data.",
+      "Submit or save the record.",
+      "Verify the outcome reflects the submitted values."
+    ],
+    "expected_result": "The record is saved successfully. All entered values are displayed correctly on the confirmation or record-view screen. No error or validation messages are shown.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 2.5,
+        "reason": "Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00068",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Alternative valid input: ST1-AC5 succeeds with alternate valid data via UI",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and Edit permissions for the module under test.",
+      "An alternative set of valid input values is prepared that satisfies all business rules."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Profile Update",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the module and open or create the record under test.",
+      "Enter the alternative valid values from Test Data.",
+      "Submit or save the record.",
+      "Verify the outcome reflects the alternative submitted values."
+    ],
+    "expected_result": "The record is saved successfully with the alternative valid values. The system behaviour matches the primary happy-path outcome. No errors are produced.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.58,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00069",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Happy path: ST1-AC5 completed successfully via API with valid data",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "A complete and valid request payload is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Profile Update\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with a valid payload as defined in Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body.",
+      "Query the database or call the GET endpoint to verify the persisted state."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. Response body confirms the operation completed successfully. The database reflects the expected state change consistent with the submitted values.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.21,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00070",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Alternative valid input: ST1-AC5 succeeds with alternate valid data via API",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "A valid authentication token with the required permission scope is available.",
+      "An alternative valid request payload is prepared with different but valid field values."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Profile Update\": \"<positive value>\"",
+      "Expected HTTP Status: 200 or 201"
+    ],
+    "steps": [
+      "Construct the request with the alternative valid payload from Test Data.",
+      "Submit the request to the API endpoint using the correct HTTP method.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "API returns HTTP 200 or 201. The alternative valid input is accepted and the response matches the expected outcome for that variant.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00076",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Database | Positive — Profile Update | ST1-AC5",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "All reference data or configuration required for the feature is present in the test environment."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Profile Update Value: [value before operation is triggered]",
+      "Post-Update Profile Update Expected: [value per AC — Profile update should be reflected in downstream CRM sync jobs.]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the valid values defined in Test Data.",
+      "Observe and record the system outcome."
+    ],
+    "expected_result": "The system accepts the input, completes the business action without errors, and displays a confirmation or updated state that reflects the submitted values. Per AC: \"Profile update should be reflected in downstream CRM sync jobs.\"",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.11,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 3.5,
+        "reason": "Database verification detail is weak; Layer expectations need tightening",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00064",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Successful update is propagated downstream",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Source system and downstream integration system are deployed and operational in the test environment.",
+      "Downstream sync or integration job is enabled and scheduled or triggerable.",
+      "A target record exists in the source system that is within scope for downstream synchronisation.",
+      "Integration logs and downstream record state are accessible for inspection."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "Source Record ID: Profile identifier in source system",
+      "Field Under Test: Profile Update in source payload",
+      "Expected Downstream Profile Update: mapped value in downstream system per business rule",
+      "Integration Job / Queue: [Ecommerce_Retail sync or ETL pipeline name]"
+    ],
+    "steps": [
+      "Update the source record with the values defined in Test Data via UI or API.",
+      "Confirm the update is saved successfully in the source system.",
+      "Trigger the sync mechanism or wait for the scheduled integration job to execute.",
+      "Inspect the integration execution log for the processed record.",
+      "Query the corresponding record in the downstream system."
+    ],
+    "expected_result": "Integration log shows a successful processing entry for the updated record with no error status. The corresponding record in the downstream system reflects the exact values updated in the source system.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "integration_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.17,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 4.8,
+        "reason": "Validates transformed downstream values",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00072",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "UI | Negative — Profile Update | ST1-AC5",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "An invalid or boundary-violating input variant is identified and defined in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "User Role: Profile_Admin or Profile_Editor",
+      "Target Record ID: Existing Profile record in test environment",
+      "Field Under Test: Profile Update",
+      "Environment: UAT or System Integration Test"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the invalid values defined in Test Data.",
+      "Observe and record the system response.",
+      "Verify the persistence state has not changed."
+    ],
+    "expected_result": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action. Per AC: \"Profile update should be reflected in downstream CRM sync jobs.\"",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.5,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.8,
+        "reason": "Template-style title hurts clarity; Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00071",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Unauthorised request for ST1-AC5 is rejected at API level",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "API endpoint is accessible in the test environment.",
+      "An authentication token with insufficient scope or no token is prepared for the test.",
+      "A valid request payload for the operation under test is prepared."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Profile Update\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Prepare a request to the target API endpoint using an invalid, expired, or missing authentication token.",
+      "Submit the request and capture the HTTP response status code and full response body.",
+      "Repeat using a token scoped to a role that does not have permission for the operation."
+    ],
+    "expected_result": "The API returns HTTP 401 for unauthenticated requests and HTTP 403 for unauthorised roles. The response body contains an appropriate error message. No data is created, read, updated, or deleted as a result.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "non_functional",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "non_functional"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00074",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "API | Negative — Profile Update | ST1-AC5",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "An invalid or boundary-violating input variant is identified and defined in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "Endpoint: PUT or POST /api/v1/profile/{id}",
+      "Auth Token: Bearer token with Profile_UPDATE scope",
+      "Request Payload: JSON body with \"Profile Update\": \"<negative value>\"",
+      "Expected HTTP Status: 400 or 422"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the invalid values defined in Test Data.",
+      "Observe and record the system response.",
+      "Verify the persistence state has not changed."
+    ],
+    "expected_result": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action. Per AC: \"Profile update should be reflected in downstream CRM sync jobs.\"",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.36,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00077",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Database | Negative — Profile Update | ST1-AC5",
+    "domain": "ecommerce_retail",
+    "module": "Profile",
+    "submodule": "Audit",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the test environment.",
+      "Profile module is available and the feature under test is enabled.",
+      "Application is deployed and accessible in the test environment.",
+      "User account exists with the required role and permissions for the feature under test.",
+      "An invalid or boundary-violating input variant is identified and defined in Test Data."
+    ],
+    "test_data": [
+      "Domain: ecommerce_retail",
+      "Acceptance Criterion: ST1-AC5",
+      "Requirement Text: Profile update should be reflected in downstream CRM sync jobs.",
+      "Target Table: profile_master (or related audit/history table)",
+      "Record Identifier: Primary key of Profile record under test",
+      "Pre-Update Profile Update Value: [value before operation is triggered]",
+      "Post-Update Profile Update Expected: [value per AC — Profile update should be reflected in downstream CRM sync jobs.]"
+    ],
+    "steps": [
+      "Log in to the application with the permitted user account.",
+      "Navigate to the feature under test.",
+      "Execute the business action using the invalid values defined in Test Data.",
+      "Observe and record the system response.",
+      "Verify the persistence state has not changed."
+    ],
+    "expected_result": "The system rejects the invalid input with a specific error or validation message identifying the reason. No data is persisted or modified as a result of the rejected action. Per AC: \"Profile update should be reflected in downstream CRM sync jobs.\"",
+    "tags": [
+      "ecommerce_retail",
+      "Database",
+      "Negative",
+      "validation_or_rejection",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "new",
+      "validation_or_rejection"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.61,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "offline_rules",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 4.5,
+        "reason": "1 step(s) contain assertions — validations must go only in Expected Results; Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  }
+]

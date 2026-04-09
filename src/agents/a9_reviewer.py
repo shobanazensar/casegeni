@@ -18,7 +18,7 @@ class A9Reviewer(AgentBase):
             "API": "API",
             "Database": "Database",
             "ETL": "ETL_Integration",
-        }.get(tc.get("test_case_layer"), "UI_Business")
+        }.get(tc.get("test_case_layer") or "", "UI_Business")
 
     def _has_keywords(self, text: str, words: list[str]) -> bool:
         text = text.lower()
@@ -165,8 +165,8 @@ class A9Reviewer(AgentBase):
         tc["intervention_reason"] = "Low score or invalid classification" if human_needed else ""
         return tc
 
-    def execute(self, test_cases: list[dict], reviewer_mode: str, llm_config: dict, traceability_summary: dict) -> dict:
-        mapped_ac_ids = set(tc.get("ac_id") for tc in test_cases if tc.get("ac_id"))
+    def execute(self, test_cases: list[dict], reviewer_mode: str, traceability_summary: dict) -> dict:
+        mapped_ac_ids: set[str] = set(filter(None, (tc.get("ac_id") for tc in test_cases)))
         reviewed = [self._offline_review_one(dict(tc), mapped_ac_ids) for tc in test_cases]
         avg = round(mean([tc["reviewer_score"] for tc in reviewed]), 2) if reviewed else 0.0
         needs_human = [tc["test_case_id"] for tc in reviewed if tc.get("human_intervention_needed")]
@@ -192,7 +192,7 @@ class A9Reviewer(AgentBase):
         } for tc in reviewed]
 
         profile_dimension_summary = defaultdict(dict)
-        for profile in sorted(set(tc.get("review_profile") for tc in reviewed if tc.get("review_profile"))):
+        for profile in sorted(filter(None, set(tc.get("review_profile") for tc in reviewed))):
             profile_cases = [tc for tc in reviewed if tc.get("review_profile") == profile]
             dims = self.profiles.get(profile, {}).get("dimensions", {})
             for dim in dims:
@@ -211,6 +211,6 @@ class A9Reviewer(AgentBase):
                 "profile_dimension_summary": profile_dimension_summary,
                 "major_common_issues": [f"{issue} ({count})" for issue, count in common_issues.most_common(8)],
                 "reviewer_table": reviewer_table,
-                "reviewer_mode_used": "offline_rules",
+                "reviewer_mode_used": reviewer_mode or "offline_rules",
             },
         }

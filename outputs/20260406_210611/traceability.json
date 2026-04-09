@@ -1,0 +1,217 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Mandatory fields name and primary phone must be provided.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00004",
+        "TC00003"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Email must be unique across active customers.",
+      "mapped_test_cases": [
+        "TC00005",
+        "TC00006"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Unauthorized users cannot update customer profiles.",
+      "mapped_test_cases": [
+        "TC00007",
+        "TC00008"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC4",
+      "ac_text": "Audit history must capture previous and new values.",
+      "mapped_test_cases": [
+        "TC00009"
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "ac_id": "ST1-AC5",
+      "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+      "mapped_test_cases": [
+        "TC00010"
+      ],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 5,
+    "covered_acs": 5,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Mandatory fields name and primary phone must be provided.",
+      "testCaseId": "TC00001",
+      "title": "Happy path: ST1-AC1 completed successfully via UI with valid data",
+      "testCaseLayer": "UI",
+      "scenarioType": "Positive",
+      "testSuite": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Mandatory fields name and primary phone must be provided.",
+      "testCaseId": "TC00002",
+      "title": "Invalid input for ST1-AC1",
+      "testCaseLayer": "UI",
+      "scenarioType": "Negative",
+      "testSuite": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Mandatory fields name and primary phone must be provided.",
+      "testCaseId": "TC00004",
+      "title": "Unauthorised request for ST1-AC1 is rejected at API level",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testSuite": "Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P1",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Mandatory fields name and primary phone must be provided.",
+      "testCaseId": "TC00003",
+      "title": "Boundary/edge input for ST1-AC1",
+      "testCaseLayer": "UI",
+      "scenarioType": "Edge Case",
+      "testSuite": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Email must be unique across active customers.",
+      "testCaseId": "TC00005",
+      "title": "Unique email is not allowed for existing customers",
+      "testCaseLayer": "UI",
+      "scenarioType": "Positive",
+      "testSuite": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P4",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Email must be unique across active customers.",
+      "testCaseId": "TC00006",
+      "title": "Duplicate email is not allowed for existing customers",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testSuite": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "acText": "Unauthorized users cannot update customer profiles.",
+      "testCaseId": "TC00007",
+      "title": "Authorized customer service agent updates customer profile",
+      "testCaseLayer": "API",
+      "scenarioType": "Positive",
+      "testSuite": "Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "acText": "Unauthorized users cannot update customer profiles.",
+      "testCaseId": "TC00008",
+      "title": "Unauthorized user attempts to update customer profile",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testSuite": "Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P1",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "acText": "Audit history must capture previous and new values.",
+      "testCaseId": "TC00009",
+      "title": "Audit history captures previous and new values for updated customer profile",
+      "testCaseLayer": "Database",
+      "scenarioType": "Positive",
+      "testSuite": "Functional",
+      "nonFunctionalType": "Performance",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing negative/risk coverage; Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC5",
+      "acText": "Profile update should be reflected in downstream CRM sync jobs.",
+      "testCaseId": "TC00010",
+      "title": "Profile update sync with valid payload",
+      "testCaseLayer": "ETL",
+      "scenarioType": "Positive",
+      "testSuite": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P4",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing negative/risk coverage; Missing edge case coverage"
+    }
+  ]
+}

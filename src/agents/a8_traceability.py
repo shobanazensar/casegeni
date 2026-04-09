@@ -9,11 +9,12 @@ class A8Traceability(AgentBase):
     def __init__(self, base_dir):
         super().__init__(base_dir, "A8 Traceability - Offline.updated.json")
 
-    def execute(self, requirements: list[dict], test_cases: list[dict]) -> dict:
+    def execute(self, requirements: list[dict], test_cases: list[dict], removed_by_ac: dict | None = None) -> dict:
         matrix = []
         readable_rows = []
         covered = 0
         uncovered = []
+        removed_by_ac = removed_by_ac or {}
 
         by_req: dict = {}
         for tc in test_cases:
@@ -28,12 +29,15 @@ class A8Traceability(AgentBase):
             else:
                 uncovered.append(req)
 
+            removed = removed_by_ac.get(str(req["ac_id"]).strip(), [])
+
             matrix.append({
                 "story_id": req["story_id"],
                 "story_title": req["story_title"],
                 "ac_id": req["ac_id"],
                 "ac_text": req["text"],
                 "mapped_test_cases": [tc["test_case_id"] for tc in mapped],
+                "removed_test_cases": removed,
                 "coverage": "Covered" if mapped else "Gap",
             })
 

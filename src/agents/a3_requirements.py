@@ -7,11 +7,46 @@ from src.agents.base import AgentBase
 class A3Requirements(AgentBase):
     def __init__(self, base_dir):
         super().__init__(base_dir, "A3 Requirements - Offline.updated.json")
+        self._build_patterns()
+
+    def _build_patterns(self) -> None:
+        """Build compiled regex patterns from config, falling back to hardcoded defaults."""
+
+        # AC section header keywords
+        _ac_kws = self.config.get("ac_section_header_keywords", [
+            "acceptance criteria", "acceptance criterion", "acceptance criterias",
+            "conditions", "condition", "criteria", "requirements", "requirement",
+            "definition of done", "dod", "constraints", "constraint", "checklist",
+            "expected results", "expected result", "success criteria", "success criterion",
+            "given-when-then", "given when then",
+        ])
+        # Build regex: normalise spaces→\s+ and hyphens→[- ] inside each term
+        def _kw_to_pattern(kw: str) -> str:
+            return re.sub(r"[ \-]+", r"[\\s\\-]+", re.escape(kw))
+        _ac_alts = "|".join(_kw_to_pattern(k) for k in _ac_kws)
+        self._AC_SECTION_HEADERS = re.compile(
+            r"^(" + _ac_alts + r")\s*:?\s*$", flags=re.I
+        )
+
+        # BDD prefixes
+        _bdd = self.config.get("bdd_prefixes", ["given", "when", "then", "and", "but"])
+        self._BDD_PREFIX = re.compile(
+            r"^(" + "|".join(re.escape(p) for p in _bdd) + r")\b", flags=re.I
+        )
+
+        # Story boundary keywords
+        _boundary = self.config.get("story_boundary_keywords",
+                                    ["story", "user story", "epic", "feature", "scenario"])
+        _boundary_alts = "|".join(re.escape(k).replace(r"\ ", r"\s+") for k in _boundary)
+        self._STORY_BOUNDARY = re.compile(
+            r"^(" + _boundary_alts + r"|us[\s-]?\d+|#{1,4})\s*[:\s]", flags=re.I
+        )
 
     # ------------------------------------------------------------------
     # Acceptance-criteria extraction
     # ------------------------------------------------------------------
 
+    # Class-level defaults (used if __init__ is bypassed, e.g. in tests)
     _AC_SECTION_HEADERS = re.compile(
         r"^(acceptance\s+criteri[ao]n?|conditions?|criteria|requirements?|"
         r"definition\s+of\s+done|dod|constraints?|checklist|expected\s+results?|"
@@ -204,28 +239,35 @@ class A3Requirements(AgentBase):
         items = data if isinstance(data, list) else [data]
         stories: list[dict] = []
 
+        # Load key aliases from config (fallback to hardcoded defaults)
+        _aliases = self.config.get("json_input_key_aliases", {
+            "title": ["title", "story_title", "name", "summary"],
+            "epic_title": ["epic", "epic_title"],
+            "acceptance_criteria": ["acceptance_criteria", "criteria", "ac", "conditions"],
+        })
+
+        def _pick(item: dict, aliases_key: str, fallback=None):
+            """Return first matching value from item using aliases for the given key."""
+            for k in _aliases.get(aliases_key, [aliases_key]):
+                if k in item:
+                    return item[k]
+            return fallback
+
+        _id_prefix = self.config.get("story_id_prefix", "ST")
+
         for idx, item in enumerate(items, start=1):
             if not isinstance(item, dict):
                 continue
 
-            story_id = f"ST{idx}"
+            story_id = f"{_id_prefix}{idx}"
             title = (
-                item.get("title")
-                or item.get("story_title")
-                or item.get("name")
-                or item.get("summary")
-                or str(item.get("description", ""))[:80]
+                _pick(item, "title")
+                or str(_pick(item, "title", item.get("description", "")))[:80]
                 or f"Story {idx}"
             )
-            epic_title = item.get("epic") or item.get("epic_title") or ""
+            epic_title = _pick(item, "epic_title") or ""
 
-            acs_raw = (
-                item.get("acceptance_criteria")
-                or item.get("criteria")
-                or item.get("ac")
-                or item.get("conditions")
-                or []
-            )
+            acs_raw = _pick(item, "acceptance_criteria") or []
             if isinstance(acs_raw, str):
                 acs_raw = [ln.strip() for ln in re.split(r"[\n;]", acs_raw) if ln.strip()]
 
@@ -276,21 +318,25 @@ class A3Requirements(AgentBase):
 
         story_blocks = self._split_into_story_blocks(document_text)
 
+        _id_prefix = self.config.get("story_id_prefix", "ST")
+        _role_patterns = self.config.get("role_extraction_patterns", [r"As a[n]? ([^,\.\n]+)"])
+
         stories: list[dict] = []
         for idx, block in enumerate(story_blocks, start=1):
             story_title = self._extract_story_title(block, idx)
             ac_lines = self._extract_acceptance_lines(block)
+            story_id = f"{_id_prefix}{idx}"
             acs = [
                 {
-                    "story_id": f"ST{idx}",
+                    "story_id": story_id,
                     "story_title": story_title,
-                    "ac_id": f"ST{idx}-AC{j}",
+                    "ac_id": f"{story_id}-AC{j}",
                     "text": ac,
                 }
                 for j, ac in enumerate(ac_lines, start=1)
             ]
             stories.append({
-                "story_id": f"ST{idx}",
+                "story_id": story_id,
                 "story_title": story_title,
                 "epic_title": epic_title,
                 "acceptance_criteria": acs,

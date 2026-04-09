@@ -20,6 +20,9 @@ class A6Prioritization(AgentBase):
                 risk += 2
             if project_state == "Legacy":
                 risk += 1
+            # Test suite risk: Smoke and EndToEnd are critical-path suites
+            if tc.get("test_suite") in {"Smoke", "EndToEnd"}:
+                risk += 2
 
             if risk >= 4:
                 priority = "P1"

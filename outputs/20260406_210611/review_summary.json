@@ -1,0 +1,190 @@
+{
+  "avg_reviewer_score": 4.23,
+  "grades": {
+    "Excellent": 3,
+    "Good": 7,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [
+    "TC00010"
+  ],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.07,
+    "Database": 4.18,
+    "ETL": 3.85,
+    "UI": 4.51
+  },
+  "scores_by_profile": {
+    "API": 4.1,
+    "ETL_Integration": 3.85,
+    "NonFunctional": 4.09,
+    "UI_Business": 4.51
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.5,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "ETL_Integration": {
+      "data_integrity": 3.0,
+      "transformation_accuracy": 4.8,
+      "completeness": 2.8,
+      "defect_detection": 3.8,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 3.9,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.0,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.35,
+      "correctness": 4.5,
+      "completeness": 4.45,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.15,
+      "actionability": 4.2,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "measurement_clarity: Measurement criteria are vague (4)",
+    "environment_readiness: Environment needs are under-specified (4)",
+    "completeness: Missing execution detail or contains quality violations (3)",
+    "correctness: API case uses UI-only language; Layer expectations need tightening (2)",
+    "clarity: Needs clearer title or steps (1)",
+    "actionability: Needs stronger data or step detail (1)",
+    "security_awareness: Security evidence is limited (1)",
+    "data_integrity: Data integrity checks are weak (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Happy path: ST1-AC1 completed successfully via UI with valid data",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Invalid input for ST1-AC1",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Unauthorised request for ST1-AC1 is rejected at API level",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Boundary/edge input for ST1-AC1",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC2",
+      "title": "Unique email is not allowed for existing customers",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Duplicate email is not allowed for existing customers",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC3",
+      "title": "Authorized customer service agent updates customer profile",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.0,
+      "humanReview": "No",
+      "feedback": "correctness: API case uses UI-only language; Layer expectations need tightening; measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC3",
+      "title": "Unauthorized user attempts to update customer profile",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.0,
+      "humanReview": "No",
+      "feedback": "correctness: API case uses UI-only language; Layer expectations need tightening; measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC4",
+      "title": "Audit history captures previous and new values for updated customer profile",
+      "layer": "Database",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST1-AC5",
+      "title": "Profile update sync with valid payload",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.85,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; completeness: Missing execution detail or contains quality violations"
+    }
+  ],
+  "reviewer_mode_used": "offline_rules"
+}

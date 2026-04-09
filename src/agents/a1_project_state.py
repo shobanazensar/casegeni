@@ -11,5 +11,5 @@ class A1ProjectState:
         if any(t in text for t in self.legacy_terms):
             return {"project_state": "Legacy", "state_driven_focus": "Risk containment"}
         if any(t in text for t in self.existing_terms):
-            return {"project_state": "Existing", "state_driven_focus": "Impact analysis"}
-        return {"project_state": "New", "state_driven_focus": "Discovery"}
+            return {"project_state": "Brownfield", "state_driven_focus": "Impact analysis"}
+        return {"project_state": "Greenfield", "state_driven_focus": "Discovery"}

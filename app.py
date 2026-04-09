@@ -35,7 +35,7 @@ pipeline = TestCasePipeline(base_dir=Path(__file__).resolve().parent)
 with st.sidebar:
     st.header("Execution")
     execution_mode = st.selectbox("Execution mode", ["offline", "online"], index=0)
-    reviewer_mode = st.selectbox("Reviewer mode", ["offline", "online"], index=0)
+    reviewer_mode = "offline"
     selected_layers = st.multiselect(
         "Test layers",
         ["UI", "API", "Database", "ETL"],
@@ -61,7 +61,7 @@ with st.sidebar:
     )
     selected_types_combined = selected_types + selected_nf_types
     temperature = st.number_input("Temperature", min_value=0.0, max_value=1.5, value=0.2, step=0.05)
-    max_tokens = st.number_input("Max tokens", min_value=256, max_value=64000, value=1800, step=128)
+    max_tokens = st.number_input("Max tokens", min_value=256, max_value=64000, value=8192, step=128)
     max_per_ac = st.number_input("Max tests per AC", min_value=6, max_value=15, value=10, step=1,
         help="Maximum test cases kept per acceptance criterion after optimization. Range 6–15.")
     max_test_count = st.number_input("Max test count (global cap)", min_value=10, max_value=2000, value=200, step=10,
@@ -213,37 +213,32 @@ if run_clicked:
 
     _progress_bar.progress(100, text="Done!")
     _status_text.empty()
+    st.session_state["casegen_result"] = result
+    st.session_state["casegen_tc_df"] = result.get("test_cases_df", pd.DataFrame()).fillna("")
+    st.session_state["casegen_trace_rows"] = pd.DataFrame(result["traceability"].get("readable", []))
+    st.session_state["casegen_reviewer_table"] = pd.DataFrame(result["review_summary"].get("reviewer_table", []))
 
+if "casegen_result" in st.session_state:
+    result = st.session_state["casegen_result"]
+    tc_df = st.session_state["casegen_tc_df"]
+    trace_rows = st.session_state["casegen_trace_rows"]
+    reviewer_table = st.session_state["casegen_reviewer_table"]
     domain_analysis = result["manifest"]["domain_analysis"]
-    tc_df = result.get("test_cases_df", pd.DataFrame()).fillna("")
-    trace_rows = pd.DataFrame(result["traceability"].get("readable", []))
-    reviewer_table = pd.DataFrame(result["review_summary"].get("reviewer_table", []))
+    _subdomain = domain_analysis.get('subdomain') or ''
+    _subdomain_html = f" &nbsp;&nbsp;|&nbsp;&nbsp; <b>Subdomain:</b> {_subdomain}" if _subdomain else ""
 
     st.markdown(f"""
     <div class='info-card'>
         <b>ProjectState:</b> {result['manifest'].get('project_state','')} &nbsp;&nbsp;|&nbsp;&nbsp;
-        <b>StateDrivenFocus:</b> {result['manifest'].get('state_driven_focus','')} &nbsp;&nbsp;|&nbsp;&nbsp;
-        <b>Domain:</b> {domain_analysis.get('primary_domain','')} &nbsp;&nbsp;|&nbsp;&nbsp;
-        <b>ApplicationOrProduct:</b> {domain_analysis.get('application_or_product','')} &nbsp;&nbsp;|&nbsp;&nbsp;
-        <b>ProductType:</b> {', '.join(domain_analysis.get('module_or_submodules', []))}
+        <b>Domain:</b> {domain_analysis.get('primary_domain','')}{_subdomain_html}
     </div>
     """, unsafe_allow_html=True)
 
-    run_cfg = result["manifest"].get("run_config", {})
-    src = run_cfg.get("generator_source", "offline_rules")
-    if run_cfg.get("execution_mode_requested") == "online" and src != "online_llm":
-        st.warning("Online was selected, but LLM generation was not used. See run config below for details.")
-    elif src == "online_llm":
-        st.success("Online LLM generation was used for this run.")
-
-    with st.expander("Run config and execution evidence"):
-        st.json(run_cfg)
-
     s1, s2, s3, s4 = st.columns(4)
-    s1.metric("Test Cases", len(result["test_cases"]))
-    s2.metric("Stories", result["manifest"]["requirements_summary"].get("story_count", 0))
-    s3.metric("Acceptance Criteria", result["manifest"]["requirements_summary"].get("ac_count", 0))
-    s4.metric("Coverage %", result["traceability"]["summary"].get("traceability_coverage_percent", 0.0))
+    s1.metric("Stories", result["manifest"]["requirements_summary"].get("story_count", 0))
+    s2.metric("Acceptance Criteria (AC's)", result["manifest"]["requirements_summary"].get("ac_count", 0))
+    s3.metric("Test Cases", len(result["test_cases"]))
+    s4.metric("Coverage %", f"{float(result['traceability']['summary'].get('traceability_coverage_percent', 0.0)):.1f}%")
 
     tabs = st.tabs(["Test Cases", "Traceability", "Dashboard", "Agent Output"])
 
@@ -261,28 +256,227 @@ if run_clicked:
         c1.metric("Total ACs", result["traceability"]["summary"].get("total_acs", 0))
         c2.metric("Covered ACs", result["traceability"]["summary"].get("covered_acs", 0))
         c3.metric("Uncovered ACs", result["traceability"]["summary"].get("uncovered_count", 0))
-        c4.metric("Coverage %", f"{result['traceability']['summary'].get('traceability_coverage_percent', 0.0)}%")
+        c4.metric("Coverage %", f"{float(result['traceability']['summary'].get('traceability_coverage_percent', 0.0)):.1f}%")
 
-        if not trace_rows.empty:
-            # Column display config: rename to human-friendly headers and control widths
-            col_cfg = {
-                "storyId":           st.column_config.TextColumn("Story ID",        width="small"),
-                "acId":              st.column_config.TextColumn("AC ID",           width="small"),
-                "acText":            st.column_config.TextColumn("AC Summary",      width="large"),
-                "testCaseId":        st.column_config.TextColumn("Test Case ID",    width="small"),
-                "title":             st.column_config.TextColumn("Title",           width="large"),
-                "testCaseLayer":     st.column_config.TextColumn("Layer",           width="small"),
-                "scenarioType":      st.column_config.TextColumn("Scenario Type",   width="small"),
-                "testSuite":         st.column_config.TextColumn("Test Suite",      width="small"),
-                "nonFunctionalType": st.column_config.TextColumn("NF Type",         width="small"),
-                "priority":          st.column_config.TextColumn("Priority",        width="small"),
-                "automatable":       st.column_config.TextColumn("Automatable",     width="small"),
-                "coverage":          st.column_config.TextColumn("Coverage",        width="small"),
-                "gapNotes":          st.column_config.TextColumn("Gap Notes",       width="medium"),
-            }
-            st.dataframe(trace_rows, use_container_width=True, height=520, column_config=col_cfg)
-        else:
-            st.info("No traceability data available.")
+        st.markdown("---")
+
+        # ── Shared lookups ────────────────────────────────────────────────────
+        _tc_lookup = {
+            tc["test_case_id"]: tc
+            for tc in result["test_cases"]
+        }
+
+        _removed_map: dict = {}
+        for _mrow in result["traceability"].get("matrix", []):
+            _removed_map[_mrow["ac_id"]] = _mrow.get("removed_test_cases", [])
+
+        from collections import defaultdict as _dd
+        _story_map: dict = _dd(lambda: {"title": "", "acs": []})
+        for _row in result["traceability"].get("matrix", []):
+            _sid = _row["story_id"]
+            _story_map[_sid]["title"] = _row.get("story_title", _sid)
+            _story_map[_sid]["acs"].append(_row)
+
+        # Build story → epic lookup from manifest
+        _story_epic: dict[str, str] = {
+            s["story_id"]: s.get("epic_title", "")
+            for s in result.get("manifest", {}).get("stories", [])
+        }
+        _global_epic = result.get("manifest", {}).get("epic_title", "")
+
+        def _prio_colour(p: str) -> str:
+            return {"P1": "#c0392b", "P2": "#e67e22", "P3": "#2980b9", "P4": "#7f8c8d"}.get(p, "#7f8c8d")
+
+        def _scenario_icon(s: str) -> str:
+            return {"Positive": "🟢", "Negative": "🔴", "Edge Case": "🟠",
+                    "Exception Handling": "⚠️", "Smoke": "💨"}.get(s, "🧪")
+
+        def _layer_colour(l: str) -> str:
+            return {"UI": "#1a6b3c", "API": "#1a4a8a", "Database": "#6b4a1a", "ETL": "#5a1a6b"}.get(l, "#444")
+
+        # ══════════════════════════════════════════════════════════════════════
+        # TRACEABILITY MATRIX TABLE
+        # ══════════════════════════════════════════════════════════════════════
+        st.markdown("""
+        <style>
+        .rtm-tbl-wrap    { width:100%; font-family:'Segoe UI',sans-serif; font-size:0.88rem; }
+        .rtm-tbl-header  { display:grid;
+                           grid-template-columns:12% 16% 26% 30% 16%;
+                           background:#0e2d54; color:#ffffff; font-weight:700;
+                           padding:8px 12px; border-radius:8px 8px 0 0;
+                           font-size:0.8rem; letter-spacing:0.04em;
+                           text-transform:uppercase; gap:4px; }
+        .rtm-story-bar   { background:#1a4a8a; color:#cce0ff; font-weight:700;
+                           padding:6px 14px; font-size:0.85rem;
+                           border-left:4px solid #5b9ee1; margin-top:3px; }
+        /* Checkbox toggle — hidden, drives expand via CSS sibling selector */
+        .rtm-toggle      { display:none; }
+        .rtm-ac-group    { border-bottom:1px solid #dde8f5; }
+        .rtm-data-row    { display:grid;
+                           grid-template-columns:12% 16% 26% 30% 16%;
+                           align-items:start; gap:4px;
+                           padding:8px 12px; background:#f7fbff; }
+        .rtm-data-row:hover { background:#f0f5ff; }
+        .rtm-toggle:checked ~ .rtm-data-row { background:#dbeafe; }
+        .rtm-cell        { overflow:hidden; padding:0 4px; }
+        .rtm-epic-cell   { color:#5b6e8a; font-size:0.8rem; padding-top:3px; }
+        .rtm-story-cell  { color:#123b73; font-weight:600; font-size:0.82rem; padding-top:3px; }
+        .rtm-ac-cell     { color:#222; }
+        .rtm-ac-id       { font-weight:700; color:#204c84; margin-right:5px; }
+        .rtm-tcmap-cell  { color:#1a4a8a; font-size:0.78rem; line-height:1.7;
+                           padding-top:3px; word-break:break-all; }
+        .rtm-tc-cnt      { display:flex; flex-direction:column; align-items:center;
+                           justify-content:flex-start; padding-top:2px; }
+        .rtm-cnt-badge   { display:inline-flex; align-items:center; justify-content:center;
+                           background:#204c84; color:#fff; border-radius:20px;
+                           padding:3px 14px; font-size:0.82rem; font-weight:700;
+                           cursor:pointer; user-select:none; min-width:52px;
+                           box-shadow:0 1px 3px rgba(32,76,132,0.25);
+                           transition:background 0.15s; }
+        .rtm-cnt-badge:hover { background:#1a3d6e; }
+        .rtm-toggle:checked ~ .rtm-data-row .rtm-cnt-badge { background:#1a3d6e; }
+        .rtm-cnt-zero    { display:inline-flex; align-items:center; justify-content:center;
+                           background:#e0e0e0; color:#888; border-radius:20px;
+                           padding:3px 14px; font-size:0.82rem; font-weight:700; min-width:52px; }
+        .rtm-cnt-hint    { font-size:0.7rem; color:#5b9ee1; margin-top:3px;
+                           font-style:italic; text-align:center; }
+        .rtm-cnt-hint::before { content:"▶ expand"; }
+        .rtm-toggle:checked ~ .rtm-data-row .rtm-cnt-hint::before { content:"▼ collapse"; }
+        /* Detail panel — hidden by default, shown when toggle checked */
+        .rtm-detail-panel  { display:none; padding:12px 16px 16px 16px;
+                             background:#f0f6ff; border-top:1px solid #ccdff5; }
+        .rtm-toggle:checked ~ .rtm-detail-panel { display:block; }
+        .rtm-detail-hdr  { font-size:0.78rem; font-weight:700; color:#204c84;
+                           text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px; }
+        .rtm-tc-cards    { display:flex; flex-wrap:wrap; gap:10px; }
+        .rtm-tc-card     { background:#ffffff; border:1px solid #ccdff5;
+                           border-radius:8px; padding:10px 14px; min-width:230px;
+                           flex:1 1 230px; max-width:360px; }
+        .rtm-tc-card-id  { font-weight:700; color:#204c84; font-size:0.88rem; }
+        .rtm-tc-card-ttl { color:#222; font-size:0.83rem; margin:4px 0 6px; line-height:1.35; }
+        .rtm-tc-meta     { display:flex; flex-wrap:wrap; gap:4px; }
+        .rtm-pill        { border-radius:10px; padding:2px 8px; font-size:0.72rem;
+                           font-weight:600; white-space:nowrap; }
+        .rtm-no-tc       { color:#a33; font-size:0.84rem; padding:4px 0; }
+        </style>
+        """, unsafe_allow_html=True)
+
+        # ── Table header ──────────────────────────────────────────────────────
+        st.markdown(
+            '<div class="rtm-tbl-wrap">'
+            '<div class="rtm-tbl-header">'
+            '<span>Epic</span>'
+            '<span>User Story</span>'
+            '<span>Acceptance Criteria</span>'
+            '<span>TCs Mapped</span>'
+            '<span>Test Cases Mapped (Count)</span>'
+            '</div>',
+            unsafe_allow_html=True,
+        )
+
+        # ── Rows per story ────────────────────────────────────────────────────
+        for _sid, _sdata in _story_map.items():
+            _epic = _story_epic.get(_sid, "") or _global_epic
+            _acs  = _sdata["acs"]
+            _total_tcs = sum(len(a.get("mapped_test_cases", [])) for a in _acs)
+
+            st.markdown(
+                f'<div class="rtm-story-bar">'
+                f'📘 &nbsp;{_sid} &nbsp;–&nbsp; {_sdata["title"]} &nbsp;&nbsp;'
+                f'<span style="font-weight:400;font-size:0.8rem;">'
+                f'({len(_acs)} ACs &nbsp;·&nbsp; {_total_tcs} Test Cases)'
+                f'</span></div>',
+                unsafe_allow_html=True,
+            )
+
+            # One toggle-driven group per AC
+            _rows_html = ""
+            for _idx_ac, _ac in enumerate(_acs):
+                _ac_id   = _ac["ac_id"]
+                _ac_txt  = _ac["ac_text"]
+                _tc_ids  = _ac.get("mapped_test_cases", [])
+                _cnt     = len(_tc_ids)
+
+                # Unique checkbox ID — sanitise ac_id for use as HTML id
+                _chk_id  = f"rtm_{_sid}_{_idx_ac}".replace(" ", "_").replace("/", "_").replace(".", "_")
+
+                # TC IDs comma-separated
+                _tc_ids_str = (
+                    ", ".join(_tc_ids)
+                    if _tc_ids
+                    else '<span style="color:#bbb;">—</span>'
+                )
+
+                # Count badge / zero badge
+                if _cnt:
+                    _cnt_cell = (
+                        f'<div class="rtm-tc-cnt">'
+                        f'<label for="{_chk_id}" class="rtm-cnt-badge">🧪 {_cnt}</label>'
+                        f'<span class="rtm-cnt-hint"></span>'
+                        f'</div>'
+                    )
+                else:
+                    _cnt_cell = '<div class="rtm-tc-cnt"><span class="rtm-cnt-zero">0</span></div>'
+
+                # Detail panel — TC cards
+                _detail = '<div class="rtm-detail-panel">'
+                if _tc_ids:
+                    _detail += (
+                        f'<div class="rtm-detail-hdr">'
+                        f'🧪 &nbsp;Test Cases &nbsp;'
+                        f'<span style="background:#204c84;color:#fff;border-radius:8px;'
+                        f'padding:1px 9px;font-size:0.72rem;font-weight:600;">{_cnt}</span>'
+                        f'</div>'
+                        f'<div class="rtm-tc-cards">'
+                    )
+                    for _tcid in _tc_ids:
+                        _tc  = _tc_lookup.get(_tcid, {})
+                        _ttl = _tc.get("title", _tcid)
+                        _l   = _tc.get("test_case_layer", "—")
+                        _p   = _tc.get("priority", "—")
+                        _sc  = _tc.get("scenario_type", "—")
+                        _sut = _tc.get("test_suite", "")
+                        _pcol = _prio_colour(_p)
+                        _lcol = _layer_colour(_l)
+                        _icon = _scenario_icon(_sc)
+                        _detail += (
+                            f'<div class="rtm-tc-card">'
+                            f'<div class="rtm-tc-card-id">{_tcid}</div>'
+                            f'<div class="rtm-tc-card-ttl">{_ttl}</div>'
+                            f'<div class="rtm-tc-meta">'
+                            f'<span class="rtm-pill" style="background:{_lcol}22;color:{_lcol};border:1px solid {_lcol}55;">{_l}</span>'
+                            f'<span class="rtm-pill" style="background:{_pcol}22;color:{_pcol};border:1px solid {_pcol}55;">{_p}</span>'
+                            f'<span class="rtm-pill" style="background:#f0f0f0;color:#444;border:1px solid #ccc;">{_icon} {_sc}</span>'
+                            f'<span class="rtm-pill" style="background:#f0f8ff;color:#2c5f8a;border:1px solid #bbd;">{_sut}</span>'
+                            f'</div></div>'
+                        )
+                    _detail += '</div>'
+                else:
+                    _detail += '<div class="rtm-no-tc">No test cases mapped to this AC.</div>'
+                _detail += '</div>'  # close rtm-detail-panel
+
+                # Group: hidden checkbox → data row → detail panel
+                # CSS sibling selectors: .rtm-toggle:checked ~ .rtm-data-row / ~ .rtm-detail-panel
+                _rows_html += (
+                    f'<div class="rtm-ac-group">'
+                    f'<input type="checkbox" id="{_chk_id}" class="rtm-toggle">'
+                    f'<div class="rtm-data-row">'
+                    f'<div class="rtm-cell rtm-epic-cell">{_epic or "—"}</div>'
+                    f'<div class="rtm-cell rtm-story-cell">{_sid}</div>'
+                    f'<div class="rtm-cell rtm-ac-cell">'
+                    f'<span class="rtm-ac-id">{_ac_id}</span>{_ac_txt}'
+                    f'</div>'
+                    f'<div class="rtm-cell rtm-tcmap-cell">{_tc_ids_str}</div>'
+                    f'<div class="rtm-cell">{_cnt_cell}</div>'
+                    f'</div>'
+                    f'{_detail}'
+                    f'</div>'
+                )
+
+            st.markdown(_rows_html, unsafe_allow_html=True)
+
+        st.markdown('</div>', unsafe_allow_html=True)  # close rtm-tbl-wrap
+
 
     with tabs[2]:
         import altair as alt
@@ -297,8 +491,93 @@ if run_clicked:
         # ── KPI Row ──────────────────────────────────────────────────────────
         k1, k2, k3 = st.columns(3)
         k1.metric("Total Test Cases", summary["total_tests_after"])
-        k2.metric("Coverage %", f"{summary['traceability_coverage_percent']}%")
-        k3.metric("Tests Reduced", f"{summary['reduction_percent']}%")
+        k2.metric("Coverage %", f"{float(summary['traceability_coverage_percent']):.1f}%")
+        _opt_dedup_pct = float(result["dashboard"]["optimization_impact"].get("deduplication_reduction_percent", 0))
+        _opt_rank_pct = float(result["dashboard"]["optimization_impact"].get("priority_scoring_reduction_percent", 0))
+        k3.metric("Test Optimization %", f"{float(summary['reduction_percent']):.1f}%")
+        st.markdown("---")
+
+        # ── Test Optimization: Before vs After bar chart ──────────────────────
+        st.markdown("**Test Optimization % — Before vs After**")
+        st.markdown(
+            f"<div style='font-size:0.92rem; color:#204c84; margin:-6px 0 10px 0;'>"
+            f"Deduplication &nbsp;—&nbsp; <b>{_opt_dedup_pct:.1f}%</b> &nbsp;&nbsp;|&nbsp;&nbsp;"
+            f"Priority-Based Cap (max TCs/AC) &nbsp;—&nbsp; <b>{_opt_rank_pct:.1f}%</b>"
+            f"</div>",
+            unsafe_allow_html=True,
+        )
+        _before = summary.get("total_tests_before", 0)
+        _after  = summary.get("total_tests_after", 0)
+        _reduced = max(_before - _after, 0)
+        _pct_saved = round(_reduced / max(_before, 1) * 100, 1)
+        _pct_after = round(_after / max(_before, 1) * 100, 1)
+        _opt_df = pd.DataFrame({
+            "Stage": ["Before Optimization", "After Optimization"],
+            "Tests": [_before, _after],
+            "Label": [
+                f"{_before} (100%)",
+                f"{_after} ({_pct_after}%)",
+            ],
+        })
+        _opt_bars = (
+            alt.Chart(_opt_df)
+            .mark_bar(size=70)
+            .encode(
+                x=alt.X("Stage:N", sort=["Before Optimization", "After Optimization"],
+                         axis=alt.Axis(labelAngle=0), title=None),
+                y=alt.Y("Tests:Q", title="Number of Tests"),
+                color=alt.Color(
+                    "Stage:N",
+                    scale=alt.Scale(
+                        domain=["Before Optimization", "After Optimization"],
+                        range=["#d95f02", "#1b9e77"],
+                    ),
+                    legend=None,
+                ),
+                tooltip=["Stage:N", "Tests:Q"],
+            )
+        )
+        _opt_line = (
+            alt.Chart(_opt_df)
+            .mark_line(color="#204c84", strokeWidth=2.5, point=alt.OverlayMarkDef(color="#204c84", size=80))
+            .encode(
+                x=alt.X("Stage:N", sort=["Before Optimization", "After Optimization"]),
+                y=alt.Y("Tests:Q"),
+            )
+        )
+        _opt_labels = _opt_bars.mark_text(dy=-22, fontSize=14, fontWeight="bold", color="#333").encode(
+            text="Label:N"
+        )
+        # Midpoint label on the line: anchored to the Before point, shifted right to sit mid-line
+        _mid_y = (_before + _after) / 2
+        _mid_label = f"−{_reduced} ({_pct_saved}% optimized)"
+        _mid_df = pd.DataFrame({
+            "Stage": ["Before Optimization"],
+            "y": [_mid_y],
+            "label": [_mid_label],
+        })
+        _opt_mid_text = (
+            alt.Chart(_mid_df)
+            .mark_text(
+                align="center",
+                dx=120,          # shift right to sit between the two bars
+                fontSize=12,
+                fontWeight="bold",
+                color="#204c84",
+                fontStyle="italic",
+                lineBreak="\n",
+            )
+            .encode(
+                x=alt.X("Stage:N", sort=["Before Optimization", "After Optimization"]),
+                y=alt.Y("y:Q"),
+                text="label:N",
+            )
+        )
+        st.altair_chart(
+            (_opt_bars + _opt_line + _opt_labels + _opt_mid_text)
+            .properties(height=300),
+            use_container_width=True,
+        )
         st.markdown("---")
 
         def _hbar(df: pd.DataFrame, x_col: str, y_col: str, scheme: str, height: int = 180):
@@ -318,11 +597,15 @@ if run_clicked:
             return (bars + labels).properties(height=height)
 
         def _donut(df: pd.DataFrame, theta_col: str, color_col: str, scheme: str, height: int = 240):
-            return (
+            df = df.copy()
+            _total = df[theta_col].sum()
+            df["_slice_label"] = df.apply(
+                lambda r: f"{int(r[theta_col])} ({r[theta_col] / max(_total, 1) * 100:.1f}%)", axis=1
+            )
+            base = (
                 alt.Chart(df)
-                .mark_arc(innerRadius=55, outerRadius=100)
                 .encode(
-                    theta=alt.Theta(f"{theta_col}:Q"),
+                    theta=alt.Theta(f"{theta_col}:Q", stack=True),
                     color=alt.Color(
                         f"{color_col}:N",
                         scale=alt.Scale(scheme=scheme),
@@ -330,16 +613,20 @@ if run_clicked:
                     ),
                     tooltip=[f"{color_col}:N", f"{theta_col}:Q"],
                 )
-                .properties(height=height)
             )
+            arc = base.mark_arc(innerRadius=55, outerRadius=100)
+            text = base.mark_text(radius=125, fontSize=11, fontWeight="bold", color="#333").encode(
+                text=alt.Text("_slice_label:N")
+            )
+            return (arc + text).properties(height=height)
 
         # ── Row 1: Priority (donut) + Layer (donut) ───────────────────────────
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("**Test Cases by Priority**")
-            if not tc_df.empty and "priority" in tc_df.columns:
+            if not tc_df.empty and "Priority" in tc_df.columns:
                 p_df = (
-                    tc_df["priority"].value_counts()
+                    tc_df["Priority"].value_counts()
                     .reindex(["P1", "P2", "P3", "P4"], fill_value=0)
                     .reset_index()
                 )
@@ -347,8 +634,8 @@ if run_clicked:
                 st.altair_chart(_donut(p_df, "Count", "Priority", "blues"), use_container_width=True)
         with col2:
             st.markdown("**Test Cases by Layer**")
-            if not tc_df.empty and "testCaseLayer" in tc_df.columns:
-                l_df = tc_df["testCaseLayer"].value_counts().reset_index()
+            if not tc_df.empty and "TestCaseLayer" in tc_df.columns:
+                l_df = tc_df["TestCaseLayer"].value_counts().reset_index()
                 l_df.columns = ["Layer", "Count"]
                 st.altair_chart(_donut(l_df, "Count", "Layer", "tableau10"), use_container_width=True)
 
@@ -356,14 +643,14 @@ if run_clicked:
         col3, col4 = st.columns(2)
         with col3:
             st.markdown("**Test Cases by Test Suite / Type**")
-            if not tc_df.empty and "testSuite" in tc_df.columns:
-                s_df = tc_df["testSuite"].value_counts().reset_index()
+            if not tc_df.empty and "TestSuite" in tc_df.columns:
+                s_df = tc_df["TestSuite"].value_counts().reset_index()
                 s_df.columns = ["Suite", "Count"]
                 st.altair_chart(_hbar(s_df, "Count", "Suite", "set2"), use_container_width=True)
         with col4:
             st.markdown("**Test Cases by Scenario Type**")
-            if not tc_df.empty and "scenarioType" in tc_df.columns:
-                sc_df = tc_df["scenarioType"].value_counts().reset_index()
+            if not tc_df.empty and "ScenarioType" in tc_df.columns:
+                sc_df = tc_df["ScenarioType"].value_counts().reset_index()
                 sc_df.columns = ["Scenario", "Count"]
                 st.altair_chart(_hbar(sc_df, "Count", "Scenario", "pastel1"), use_container_width=True)
 
@@ -371,17 +658,17 @@ if run_clicked:
         col5, col6 = st.columns(2)
         with col5:
             st.markdown("**Priority Distribution by Layer** *(heatmap)*")
-            if not tc_df.empty and "testCaseLayer" in tc_df.columns and "priority" in tc_df.columns:
+            if not tc_df.empty and "TestCaseLayer" in tc_df.columns and "Priority" in tc_df.columns:
                 heat_df = (
-                    tc_df.groupby(["testCaseLayer", "priority"])
+                    tc_df.groupby(["TestCaseLayer", "Priority"])
                     .size()
                     .reset_index(name="Count")
                 )
                 heatmap = alt.Chart(heat_df).mark_rect().encode(
-                    x=alt.X("priority:N", sort=["P1", "P2", "P3", "P4"], title="Priority"),
-                    y=alt.Y("testCaseLayer:N", title="Layer"),
+                    x=alt.X("Priority:N", sort=["P1", "P2", "P3", "P4"], title="Priority"),
+                    y=alt.Y("TestCaseLayer:N", title="Layer"),
                     color=alt.Color("Count:Q", scale=alt.Scale(scheme="blues"), title="Count"),
-                    tooltip=["testCaseLayer:N", "priority:N", "Count:Q"],
+                    tooltip=["TestCaseLayer:N", "Priority:N", "Count:Q"],
                 )
                 heat_text = heatmap.mark_text(baseline="middle", fontWeight="bold").encode(
                     text="Count:Q",
@@ -392,9 +679,9 @@ if run_clicked:
                 st.altair_chart((heatmap + heat_text).properties(height=180), use_container_width=True)
         with col6:
             st.markdown("**Execution Tags Distribution**")
-            if not tc_df.empty and "executionTags" in tc_df.columns:
+            if not tc_df.empty and "ExecutionTags" in tc_df.columns:
                 tags_flat = []
-                for cell in tc_df["executionTags"]:
+                for cell in tc_df["ExecutionTags"]:
                     tags_flat.extend(str(cell).split("\n"))
                 tag_counts = _Counter(t.strip() for t in tags_flat if t.strip())
                 if tag_counts:
@@ -411,7 +698,7 @@ if run_clicked:
         tc1.metric("Total ACs", trace_sum.get("total_acs", 0))
         tc2.metric("Covered ACs", trace_sum.get("covered_acs", 0))
         tc3.metric("Uncovered ACs", trace_sum.get("uncovered_count", 0))
-        tc4.metric("Coverage %", f"{trace_sum.get('traceability_coverage_percent', 0.0)}%")
+        tc4.metric("Coverage %", f"{float(trace_sum.get('traceability_coverage_percent', 0.0)):.1f}%")
 
         matrix_rows = pd.DataFrame(result["traceability"].get("matrix", []))
         if not matrix_rows.empty and "story_id" in matrix_rows.columns and "coverage" in matrix_rows.columns:
@@ -423,10 +710,10 @@ if run_clicked:
             st.markdown("**AC Coverage by Story (%)**")
             cov_chart = (
                 alt.Chart(story_cov_df)
-                .mark_bar(cornerRadiusTopRight=5, cornerRadiusBottomRight=5)
+                .mark_bar(cornerRadiusTopLeft=5, cornerRadiusTopRight=5)
                 .encode(
-                    x=alt.X("Coverage %:Q", scale=alt.Scale(domain=[0, 100])),
-                    y=alt.Y("story_id:N", sort="-x", title=None),
+                    x=alt.X("story_id:N", sort="-y", title="Story", axis=alt.Axis(labelAngle=-30)),
+                    y=alt.Y("Coverage %:Q", scale=alt.Scale(domain=[0, 100]), title="Coverage %"),
                     color=alt.Color(
                         "Coverage %:Q",
                         scale=alt.Scale(domain=[0, 100], scheme="redyellowgreen"),
@@ -434,9 +721,9 @@ if run_clicked:
                     ),
                     tooltip=["story_id:N", "Coverage %:Q"],
                 )
-                .properties(height=max(60, len(story_cov_df) * 32))
+                .properties(height=260)
             )
-            labels = cov_chart.mark_text(align="left", dx=4, color="#444").encode(
+            labels = cov_chart.mark_text(align="center", dy=-10, fontSize=11, fontWeight="bold", color="#444").encode(
                 text=alt.Text("Coverage %:Q", format=".1f")
             )
             st.altair_chart((cov_chart + labels), use_container_width=True)
@@ -463,3 +750,13 @@ if run_clicked:
         st.download_button("Download traceability JSON", data=json.dumps(result["traceability"], indent=2), file_name="traceability.json")
         st.download_button("Download reviewer summary JSON", data=json.dumps(result["review_summary"], indent=2), file_name="review_summary.json")
         st.download_button("Download dashboard JSON", data=json.dumps(result["dashboard"], indent=2), file_name="dashboard.json")
+
+    run_cfg = result["manifest"].get("run_config", {})
+    src = run_cfg.get("generator_source", "offline_rules")
+    if run_cfg.get("execution_mode_requested") == "online" and src != "online_llm":
+        st.warning("Online was selected, but LLM generation was not used. See run config below for details.")
+    elif src == "online_llm":
+        st.success("Online LLM generation was used for this run.")
+
+    with st.expander("Run config and execution evidence"):
+        st.json(run_cfg)

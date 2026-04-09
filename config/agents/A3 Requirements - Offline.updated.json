@@ -336,5 +336,64 @@
         "confidence_score": 0.0
       }
     ]
-  }
+  },
+  "ac_section_header_keywords": [
+    "acceptance criteria",
+    "acceptance criterion",
+    "acceptance criterias",
+    "conditions",
+    "condition",
+    "criteria",
+    "requirements",
+    "requirement",
+    "definition of done",
+    "dod",
+    "constraints",
+    "constraint",
+    "checklist",
+    "expected results",
+    "expected result",
+    "success criteria",
+    "success criterion",
+    "given-when-then",
+    "given when then"
+  ],
+  "bdd_prefixes": [
+    "given",
+    "when",
+    "then",
+    "and",
+    "but"
+  ],
+  "story_boundary_keywords": [
+    "story",
+    "user story",
+    "epic",
+    "feature",
+    "scenario"
+  ],
+  "json_input_key_aliases": {
+    "title": [
+      "title",
+      "story_title",
+      "name",
+      "summary"
+    ],
+    "epic_title": [
+      "epic",
+      "epic_title"
+    ],
+    "acceptance_criteria": [
+      "acceptance_criteria",
+      "criteria",
+      "ac",
+      "conditions"
+    ]
+  },
+  "story_id_prefix": "ST",
+  "role_extraction_patterns": [
+    "As a[n]? ([^,\\.\\n]+)",
+    "As the ([^,\\.\\n]+)",
+    "For a[n]? ([^,\\.\\n]+) user"
+  ]
 }

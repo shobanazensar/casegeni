@@ -200,5 +200,309 @@
         "confidence_score": 0.0
       }
     ]
+  },
+  "scenario_trigger_rules": {
+    "mandatory_field": {
+      "keywords": [
+        "mandatory",
+        "required",
+        "must be provided",
+        "cannot be blank",
+        "blank"
+      ],
+      "blueprints": [
+        {
+          "layer": "UI",
+          "seed_type": "Positive",
+          "focus": "business_valid_flow",
+          "title_hint": "Update succeeds with all required fields populated",
+          "scenario_key": "ui_valid_required"
+        },
+        {
+          "layer": "UI",
+          "seed_type": "Negative",
+          "focus": "validation_or_rejection",
+          "title_hint": "Blank required field is blocked with inline validation",
+          "scenario_key": "ui_required_blank"
+        },
+        {
+          "layer": "API",
+          "seed_type": "Negative",
+          "focus": "validation_or_rejection",
+          "title_hint": "API rejects request with missing required field",
+          "scenario_key": "api_missing_required"
+        },
+        {
+          "layer": "Database",
+          "seed_type": "Negative",
+          "focus": "data_integrity",
+          "title_hint": "Rejected request does not persist partial data",
+          "scenario_key": "db_no_partial_persist"
+        },
+        {
+          "layer": "UI",
+          "seed_type": "Edge Case",
+          "focus": "boundary_and_data_variation",
+          "title_hint": "Whitespace and boundary handling for required fields",
+          "scenario_key": "ui_whitespace_boundary",
+          "sub_keywords": [
+            "trim",
+            "spaces",
+            "whitespace",
+            "format",
+            "length"
+          ]
+        }
+      ]
+    },
+    "uniqueness": {
+      "keywords": [
+        "unique",
+        "duplicate",
+        "already used",
+        "exists only on inactive",
+        "email"
+      ],
+      "blueprints": [
+        {
+          "layer": "UI",
+          "seed_type": "Positive",
+          "focus": "business_valid_flow",
+          "title_hint": "Unique value is accepted in UI",
+          "scenario_key": "ui_unique_value"
+        },
+        {
+          "layer": "UI",
+          "seed_type": "Negative",
+          "focus": "validation_or_rejection",
+          "title_hint": "Duplicate active value is blocked in UI",
+          "scenario_key": "ui_duplicate_active"
+        },
+        {
+          "layer": "API",
+          "seed_type": "Negative",
+          "focus": "validation_or_rejection",
+          "title_hint": "API rejects duplicate active value",
+          "scenario_key": "api_duplicate_active"
+        },
+        {
+          "layer": "Database",
+          "seed_type": "Negative",
+          "focus": "data_integrity",
+          "title_hint": "Duplicate value is not persisted in master data",
+          "scenario_key": "db_duplicate_not_stored"
+        },
+        {
+          "layer": "UI",
+          "seed_type": "Edge Case",
+          "focus": "boundary_and_data_variation",
+          "title_hint": "Inactive record rule is handled correctly",
+          "scenario_key": "ui_inactive_duplicate_rule",
+          "sub_keywords": [
+            "inactive",
+            "active customers"
+          ]
+        }
+      ]
+    },
+    "authorization": {
+      "keywords": [
+        "unauthorized",
+        "permission",
+        "role",
+        "forbidden",
+        "authenticated",
+        "unauthenticated"
+      ],
+      "blueprints": [
+        {
+          "layer": "UI",
+          "seed_type": "Negative",
+          "focus": "authorization",
+          "title_hint": "Unauthorized role cannot use edit action from UI",
+          "scenario_key": "ui_unauthorized_role",
+          "non_functional_type": "Security"
+        },
+        {
+          "layer": "API",
+          "seed_type": "Negative",
+          "focus": "authorization",
+          "title_hint": "Unauthorized token is blocked by API",
+          "scenario_key": "api_unauthorized_token",
+          "non_functional_type": "Security"
+        },
+        {
+          "layer": "API",
+          "seed_type": "Exception Handling",
+          "focus": "authentication",
+          "title_hint": "Unauthenticated request is denied cleanly",
+          "scenario_key": "api_unauthenticated",
+          "non_functional_type": "Security"
+        },
+        {
+          "layer": "ETL",
+          "seed_type": "Negative",
+          "focus": "authorization",
+          "title_hint": "Direct backend or integration bypass is denied",
+          "scenario_key": "integration_bypass_denied",
+          "non_functional_type": "Security",
+          "requires_test_type": "Security"
+        }
+      ]
+    },
+    "audit": {
+      "keywords": [
+        "audit",
+        "history",
+        "previous and new values",
+        "timestamp",
+        "changed fields"
+      ],
+      "blueprints": [
+        {
+          "layer": "UI",
+          "seed_type": "Positive",
+          "focus": "auditability",
+          "title_hint": "Successful update creates visible audit history",
+          "scenario_key": "ui_audit_created"
+        },
+        {
+          "layer": "Database",
+          "seed_type": "Positive",
+          "focus": "auditability",
+          "title_hint": "Audit record stores old and new values correctly",
+          "scenario_key": "db_audit_old_new"
+        },
+        {
+          "layer": "Database",
+          "seed_type": "Edge Case",
+          "focus": "auditability",
+          "title_hint": "Only changed fields are marked as changed",
+          "scenario_key": "db_audit_changed_fields"
+        },
+        {
+          "layer": "Database",
+          "seed_type": "Negative",
+          "focus": "auditability",
+          "title_hint": "Failed update does not create successful audit record",
+          "scenario_key": "db_no_audit_for_failed"
+        }
+      ]
+    },
+    "downstream": {
+      "keywords": [
+        "downstream",
+        "sync",
+        "etl",
+        "integration",
+        "crm",
+        "mapping",
+        "reconciliation",
+        "transform"
+      ],
+      "blueprints": [
+        {
+          "layer": "ETL",
+          "seed_type": "Positive",
+          "focus": "integration_flow",
+          "title_hint": "Successful update is propagated downstream",
+          "scenario_key": "etl_sync_success"
+        },
+        {
+          "layer": "ETL",
+          "seed_type": "Edge Case",
+          "focus": "integration_flow",
+          "title_hint": "Outbound payload carries approved transformed values",
+          "scenario_key": "etl_payload_transform"
+        },
+        {
+          "layer": "ETL",
+          "seed_type": "Exception Handling",
+          "focus": "failure_recovery",
+          "title_hint": "Downstream failure is logged for retry or exception handling",
+          "scenario_key": "etl_downstream_failure"
+        }
+      ]
+    },
+    "performance": {
+      "keywords": [
+        "performance",
+        "response time",
+        "throughput",
+        "load"
+      ],
+      "requires_test_type": "Performance",
+      "blueprints": [
+        {
+          "layer": "API",
+          "seed_type": "Positive",
+          "focus": "non_functional",
+          "title_hint": "Response time remains within SLA under expected load",
+          "scenario_key": "nf_performance_api",
+          "functional_type": "",
+          "non_functional_type": "Performance"
+        }
+      ]
+    },
+    "accessibility": {
+      "keywords": [
+        "field",
+        "screen",
+        "form",
+        "ui",
+        "page"
+      ],
+      "requires_test_type": "Accessibility",
+      "blueprints": [
+        {
+          "layer": "UI",
+          "seed_type": "Positive",
+          "focus": "non_functional",
+          "title_hint": "Form remains keyboard accessible with clear labels",
+          "scenario_key": "nf_accessibility_ui",
+          "functional_type": "",
+          "non_functional_type": "Accessibility"
+        }
+      ]
+    }
+  },
+  "layer_preference_order": [
+    "UI",
+    "API",
+    "Database",
+    "ETL"
+  ],
+  "min_positives_per_layer": {
+    "count": 2,
+    "layers": [
+      "UI",
+      "API"
+    ]
+  },
+  "baseline_scenario_types": [
+    {
+      "seed_type": "Positive",
+      "focus": "business_valid_flow",
+      "hint_prefix": "Happy path",
+      "key_suffix": "baseline_positive"
+    },
+    {
+      "seed_type": "Negative",
+      "focus": "validation_or_rejection",
+      "hint_prefix": "Invalid input",
+      "key_suffix": "baseline_negative"
+    },
+    {
+      "seed_type": "Edge Case",
+      "focus": "boundary_and_data_variation",
+      "hint_prefix": "Boundary/edge input",
+      "key_suffix": "baseline_edge"
+    }
+  ],
+  "nf_type_to_layer": {
+    "Security": "API",
+    "Performance": "API",
+    "Accessibility": "UI",
+    "Compatibility": "UI"
   }
 }

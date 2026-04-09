@@ -12,22 +12,22 @@ DISPLAY_COLUMNS = [
 ]
 
 CAMEL_CASE_HEADERS = {
-    "test_case_id": "testCaseId",
-    "story_id": "storyId",
-    "ac_id": "acId",
-    "title": "title",
-    "domain": "domain",
-    "module": "module",
-    "test_case_layer": "testCaseLayer",
-    "scenario_type": "scenarioType",
-    "test_suite": "testSuite",
-    "execution_tags": "executionTags",
-    "priority": "priority",
-    "automated": "automated",
-    "preconditions": "preconditions",
-    "test_data": "testData",
-    "steps": "steps",
-    "expected_result": "expectedResult",
+    "test_case_id": "TestCaseId",
+    "story_id": "StoryId",
+    "ac_id": "AcId",
+    "title": "Title",
+    "domain": "Domain",
+    "module": "Module",
+    "test_case_layer": "TestCaseLayer",
+    "scenario_type": "ScenarioType",
+    "test_suite": "TestSuite",
+    "execution_tags": "ExecutionTags",
+    "priority": "Priority",
+    "automated": "Automated",
+    "preconditions": "Preconditions",
+    "test_data": "TestData",
+    "steps": "Steps",
+    "expected_result": "ExpectedResult",
 }
 
 
