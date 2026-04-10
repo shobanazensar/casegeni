@@ -69,6 +69,7 @@ with st.sidebar:
 
     llm_model = api_key = base_url = ""
     use_json_format = True
+    ssl_verify = True
     if execution_mode == "online" or reviewer_mode == "online":
         st.subheader("LLM configuration")
 
@@ -120,6 +121,20 @@ with st.sidebar:
                 "json_format": True,
                 "note": "",
             },
+            "Company / Azure OpenAI": {
+                "base_url": "",
+                "default_model": "",
+                "needs_key": True,
+                "json_format": False,
+                "ssl_verify": False,
+                "note": (
+                    "For company-hosted or Azure OpenAI endpoints. "
+                    "Enter your company base URL (e.g. https://api.company.com/v1), "
+                    "the exact model/deployment name, and your API key. "
+                    "SSL verification is OFF by default (corporate TLS proxy). "
+                    "JSON-format mode is OFF by default — many corporate proxies do not support response_format=json_object."
+                ),
+            },
             "Custom / Other": {
                 "base_url": "",
                 "default_model": "",
@@ -146,6 +161,9 @@ with st.sidebar:
             value=preset["json_format"],
             help="Sends response_format={'type':'json_object'} to the model. Disable for models that do not support it (e.g. some LM Studio setups).",
         )
+        ssl_verify = preset.get("ssl_verify", True)
+        if preset.get("note"):
+            st.caption(preset["note"])
 
 uploaded = st.file_uploader("Upload story / stories / epic input (.txt, .md, .json, .docx)", type=["txt", "md", "json", "docx"])
 text_input = st.text_area(
@@ -202,6 +220,7 @@ if run_clicked:
             "temperature": temperature,
             "max_tokens": max_tokens,
             "use_json_format": use_json_format,
+            "ssl_verify": ssl_verify,
         },
         max_test_count=int(max_test_count),
         max_per_ac=int(max_per_ac),
@@ -501,8 +520,8 @@ if "casegen_result" in st.session_state:
         st.markdown("**Test Optimization % — Before vs After**")
         st.markdown(
             f"<div style='font-size:0.92rem; color:#204c84; margin:-6px 0 10px 0;'>"
-            f"Deduplication &nbsp;—&nbsp; <b>{_opt_dedup_pct:.1f}%</b> &nbsp;&nbsp;|&nbsp;&nbsp;"
-            f"Priority-Based Cap (max TCs/AC) &nbsp;—&nbsp; <b>{_opt_rank_pct:.1f}%</b>"
+            f"Deduplication Impact &nbsp;—&nbsp; <b>{_opt_dedup_pct:.1f}%</b> &nbsp;&nbsp;|&nbsp;&nbsp;"
+            f"Priority-Based Test Case Capping Impact &nbsp;—&nbsp; <b>{_opt_rank_pct:.1f}%</b>"
             f"</div>",
             unsafe_allow_html=True,
         )

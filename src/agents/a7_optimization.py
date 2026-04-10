@@ -23,7 +23,7 @@ class A7Optimization(AgentBase):
         def rank(tc: dict) -> tuple:
             scenario_rank = _SCENARIO_ORDER.get(tc.get("scenario_type", ""), 5)
             layer_rank = _LAYER_ORDER.get(tc.get("test_case_layer", ""), 5)
-            priority_rank = {"P1": 0, "P2": 1, "P3": 2, "P4": 3}.get(tc.get("priority", "P3"), 2)
+            priority_rank = {"P0": 0, "P1": 1, "P2": 2, "P3": 3}.get(tc.get("priority", "P2"), 2)
             return (tc.get("story_id", ""), tc.get("ac_id", ""), scenario_rank, layer_rank, priority_rank, tc.get("title", ""))
 
         # Per-AC cap: group by AC, rank within each group, keep top max_per_ac
@@ -72,7 +72,7 @@ class A7Optimization(AgentBase):
         dedup_pct = round((dedup_removed / before) * 100, 2) if before else 0
         rank_pct = round((rank_removed / before) * 100, 2) if before else 0
 
-        p12 = [x for x in deduped if x.get("priority") in {"P1", "P2"}]
+        p12 = [x for x in deduped if x.get("priority") in {"P0", "P1"}]
         return {
             "test_cases_before_optimization": test_cases,
             "test_cases_after_optimization": optimized,

@@ -1,0 +1,106 @@
+{
+  "project_state": "Greenfield",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "Greenfield",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "telecommunications",
+    "secondary_domain": "",
+    "subdomain": "OSS (Network Operations)",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "OSS (Network Operations)"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "OSS (Network Operations)": 1
+      }
+    },
+    "domain_signals": [
+      "service"
+    ],
+    "business_entities": [
+      "OSS (Network Operations)"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "FCC",
+      "Telecommunications Act",
+      "CPNI",
+      "Net Neutrality",
+      "CALEA",
+      "PDPA"
+    ],
+    "domain_test_focus": [
+      "CDR mediation and rating accuracy",
+      "prepaid balance deduction and top-up",
+      "roaming charge calculation",
+      "number porting integrity",
+      "SIM swap fraud detection",
+      "billing cycle cutover accuracy",
+      "data throttling threshold enforcement",
+      "churn prediction model inputs",
+      "dunning workflow sequencing",
+      "revenue assurance reconciliation"
+    ],
+    "reasoning": "Detected domain=telecommunications, subdomain=OSS (Network Operations) via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 5
+  },
+  "epic_title": "",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "epic_title": ""
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "EndToEnd",
+      "Performance"
+    ],
+    "llm_config": {
+      "model": "Claude Sonnet 4.6",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "Claude Sonnet 4.6",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 5,
+      "response_time_sec": 283.15,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Customer profile update succeeds when name and primary phone are both provided via UI\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"test_suite\": \"Functional\", \"execution_tags\": [\"Regression\", \"UAT\"], \"classification_rationale\": \"Validates the happy-path business rule that mandatory fields name and primary phone allow a successful profile update through the UI.\", \"non_functional_type\": \"\", \"preconditions\": [\"User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module in OSS.\", \"Customer record CUST-10045 exists in the system with current name 'Jane Doe' and primary phone '+1-555-0100'.\", \"OSS application is deployed and accessible in UAT environment at https://oss-uat.telecom.local.\"], \"test_data\": [\"Customer ID: CUST-10045\", \"Updated Name: John Smith\", \"Updated Primary Phone: +1-555-0199\", \"Email: john.smith@example.com\"], \"steps\": [\"Navigate to Customer Profile search page.\", \"Enter 'CUST-10045' in the Customer ID search field.\", \"Click the Search button.\", \"Click the Edit button on the profile for CUST-10045.\", \"Clear the Name field and type 'John Smith'.\", \"Clear the Primary Pho",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "project_state": "Legacy",
+  "state_driven_focus": "Risk containment",
+  "domain_analysis": {
+    "project_state": "Legacy",
+    "state_driven_focus": "Risk containment",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "subdomain": "Order Management",
+    "confidence_score": 0.99,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Order Management"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "Order Management": 3
+      }
+    },
+    "domain_signals": [
+      "order",
+      "product",
+      "customer",
+      "fulfillment"
+    ],
+    "business_entities": [
+      "Order Management"
+    ],
+    "user_roles": [
+      "operations user",
+      "sales user"
+    ],
+    "likely_process_flows": [
+      "fulfillment can begin",
+      "downstream teams know the current state"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [
+      "pricing calculations",
+      "tax by jurisdiction",
+      "inventory sync",
+      "order fulfillment"
+    ],
+    "reasoning": "Detected domain=ecommerce_retail, subdomain=Order Management via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 2,
+    "ac_count": 7
+  },
+  "epic_title": "Order management modernization",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "epic_title": "Order management modernization"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "epic_title": "Order management modernization"
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "offline",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "gpt-5.4-mini",
+      "api_key": "***",
+      "base_url": "https://qi-labs-resource.openai.azure.com/openai/v1/",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": true
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": false,
+      "fallback_reason": "ST2-AC3: LLM request failed: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)>",
+      "generator_source": "offline_rules",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://qi-labs-resource.openai.azure.com/openai/v1/",
+      "batch_count": 0,
+      "response_time_sec": 7.41,
+      "raw_preview": "",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "offline_rules",
+    "max_test_count": 200
+  }
+}

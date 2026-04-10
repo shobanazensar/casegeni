@@ -20,7 +20,7 @@ TEST_CASE_SCHEMA_DEFAULTS = {
     "execution_tags": [],
     "classification_rationale": "",
     "non_functional_type": "",
-    "priority": "P3",
+    "priority": "P2",
     "automation_hint": "May be",
     "automated": "May be",
     "preconditions": [],
@@ -41,7 +41,7 @@ VALID_SCENARIO_TYPES = {"Positive", "Negative", "Edge Case", "Exception Handling
 VALID_TEST_SUITES = {"Smoke", "Functional", "EndToEnd", ""}
 VALID_NON_FUNCTIONAL_TYPES = {"Performance", "Security", "Accessibility", "Compatibility", ""}
 VALID_EXECUTION_TAGS = {"Regression", "UAT", "Parity", "Migration"}
-VALID_PRIORITIES = {"P1", "P2", "P3", "P4"}
+VALID_PRIORITIES = {"P0", "P1", "P2", "P3"}
 VALID_AUTOMATED = {"Yes", "No", "May be", "Maybe"}
 
 
@@ -149,7 +149,7 @@ def apply_schema_guardrail(test_case: dict, index: int = 0) -> dict:
     tc["non_functional_type"] = _norm_set(tc.get("non_functional_type"), VALID_NON_FUNCTIONAL_TYPES, "", {
         "performance": "Performance", "security": "Security", "accessibility": "Accessibility", "compatibility": "Compatibility"
     })
-    tc["priority"] = _norm_set(tc.get("priority"), VALID_PRIORITIES, "P3", {"critical": "P1", "high": "P2", "medium": "P3", "low": "P4"})
+    tc["priority"] = _norm_set(tc.get("priority"), VALID_PRIORITIES, "P2", {"blocker": "P0", "critical": "P0", "must test": "P0", "high": "P1", "medium": "P2", "low": "P3"})
     automated = _ensure_string(tc.get("automated") or tc.get("automation_hint") or "May be")
     tc["automation_hint"] = _norm_set(automated, VALID_AUTOMATED, "May be", {"maybe": "May be", "yes": "Yes", "no": "No"})
     tc["automated"] = tc["automation_hint"]

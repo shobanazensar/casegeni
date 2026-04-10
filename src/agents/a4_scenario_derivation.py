@@ -227,6 +227,7 @@ class A4ScenarioDerivation(AgentBase):
             temperature=llm_config.get("temperature", 0.2),
             max_tokens=min(llm_config.get("max_tokens", 1500), 1500),
             use_json_format=llm_config.get("use_json_format", True),
+            ssl_verify=llm_config.get("ssl_verify", True),
         )
         if not client.is_configured():
             raise ValueError("LLM configuration incomplete for A4 online mode")

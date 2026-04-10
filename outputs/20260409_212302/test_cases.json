@@ -1,0 +1,4355 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Customer profile update succeeds when name and primary phone are both provided via UI",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the happy-path business rule that mandatory fields name and primary phone allow a successful profile update through the UI.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module in OSS.",
+      "Customer record CUST-10045 exists in the system with current name 'Jane Doe' and primary phone '+1-555-0100'.",
+      "OSS application is deployed and accessible in UAT environment at https://oss-uat.telecom.local."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Updated Name: John Smith",
+      "Updated Primary Phone: +1-555-0199",
+      "Email: john.smith@example.com"
+    ],
+    "steps": [
+      "Navigate to Customer Profile search page.",
+      "Enter 'CUST-10045' in the Customer ID search field.",
+      "Click the Search button.",
+      "Click the Edit button on the profile for CUST-10045.",
+      "Clear the Name field and type 'John Smith'.",
+      "Clear the Primary Phone field and type '+1-555-0199'.",
+      "Click the Save button."
+    ],
+    "expected_result": "Profile update is saved successfully. A green confirmation banner displays 'Customer profile updated successfully.' The Name field shows 'John Smith' and Primary Phone field shows '+1-555-0199' on the profile detail page.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "maintainability: Could be simplified"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.57,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 3.2,
+        "reason": "Could be simplified",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "API returns HTTP 200 and persists update when name and primary phone are provided in PUT request",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the happy-path API contract ensuring mandatory fields name and primary phone result in a successful update response.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and reachable in UAT environment.",
+      "Valid OAuth2 bearer token exists for user with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Customer record CUST-10045 exists in the database with name 'Jane Doe' and primary phone '+1-555-0100'."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Request Body: {\"name\": \"Maria Garcia\", \"primaryPhone\": \"+1-555-0250\", \"email\": \"maria.garcia@example.com\"}",
+      "Authorization Header: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.validtoken"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10045 with the specified request body and Authorization header.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "HTTP 200 OK is returned. Response body contains {\"customerId\": \"CUST-10045\", \"name\": \"Maria Garcia\", \"primaryPhone\": \"+1-555-0250\", \"status\": \"updated\"}. No error array is present in the response.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Profile update API response time remains under 2 seconds under concurrent load of 50 requests",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Non-functional performance test validating a single API feature's response time, not a cross-system flow, so classified as Functional.",
+    "non_functional_type": "Performance",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and reachable in performance test environment.",
+      "50 distinct customer records CUST-20001 through CUST-20050 exist in the database with valid name and primary phone values.",
+      "Load testing tool (e.g., JMeter) is configured with 50 concurrent threads targeting the endpoint.",
+      "Valid OAuth2 bearer tokens are pre-generated for each thread."
+    ],
+    "test_data": [
+      "Customer IDs: CUST-20001 through CUST-20050",
+      "Request Body template: {\"name\": \"PerfTest User N\", \"primaryPhone\": \"+1-555-2NNNN\"} where N is the thread index",
+      "Concurrent users: 50",
+      "SLA threshold: 2000 ms per request (95th percentile)"
+    ],
+    "steps": [
+      "Configure the load testing tool with 50 concurrent threads each sending a PUT request to /api/v1/customers/{customerId} with unique customer IDs and valid mandatory fields.",
+      "Execute the load test for a duration of 60 seconds.",
+      "Collect response time metrics for all requests."
+    ],
+    "expected_result": "95th percentile response time is at or below 2000 ms. All 50 concurrent requests return HTTP 200. Error rate is 0%. No HTTP 5xx responses are observed.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.61,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 4.8,
+        "reason": "Measurement target is clear",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Database correctly persists updated name and primary phone after successful profile update",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the database-layer persistence of mandatory fields after a successful update to confirm data integrity end-to-end.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Direct read access to OSS database (schema: oss_telecom, table: customer_profile) is available.",
+      "Customer record CUST-10048 exists in the customer_profile table with name = 'David Park', primary_phone = '+1-555-0500'.",
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and reachable.",
+      "Valid OAuth2 bearer token exists for user with role Customer_Service_Agent and edit permission on Customer Profile module."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10048",
+      "Request Body: {\"name\": \"David S. Park\", \"primaryPhone\": \"+1-555-0555\"}",
+      "Authorization Header: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.validtoken"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10048 with the specified request body and Authorization header.",
+      "Execute SQL query: SELECT name, primary_phone, updated_at FROM oss_telecom.customer_profile WHERE customer_id = 'CUST-10048'."
+    ],
+    "expected_result": "The API returns HTTP 200. The database query returns name = 'David S. Park' and primary_phone = '+1-555-0555'. The updated_at timestamp is within 5 seconds of the current UTC time.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.04,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Blank name field triggers inline validation error and blocks save on UI",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the UI-layer enforcement of the mandatory name field rule by testing rejection when name is blank.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module in OSS.",
+      "Customer record CUST-10046 exists in the system with current name 'Robert Chen' and primary phone '+1-555-0300'.",
+      "OSS application is deployed and accessible in UAT environment at https://oss-uat.telecom.local."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10046",
+      "Name: (empty — field cleared)",
+      "Primary Phone: +1-555-0300"
+    ],
+    "steps": [
+      "Navigate to Customer Profile search page.",
+      "Enter 'CUST-10046' in the Customer ID search field.",
+      "Click the Search button.",
+      "Click the Edit button on the profile for CUST-10046.",
+      "Clear the Name field completely, leaving it empty.",
+      "Click the Save button."
+    ],
+    "expected_result": "Save action is blocked. An inline validation error message 'Name is required' is displayed directly below the Name field in red text. The profile remains unchanged with name 'Robert Chen'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "maintainability: Could be simplified"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.64,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 3.2,
+        "reason": "Could be simplified",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "API returns HTTP 400 with field-level error when primary phone is missing from request body",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the API-layer enforcement of the mandatory primary phone field by testing rejection when the field is omitted.",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and reachable in UAT environment.",
+      "Valid OAuth2 bearer token exists for user with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Customer record CUST-10045 exists in the database with name 'Jane Doe' and primary phone '+1-555-0100'."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Request Body: {\"name\": \"Jane Doe\"}",
+      "Authorization Header: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.validtoken"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10045 with the specified request body (primaryPhone field omitted) and Authorization header.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "HTTP 400 Bad Request is returned. Response body contains an errors array with at least one entry: {\"field\": \"primaryPhone\", \"message\": \"Primary phone is required\"}. No changes are persisted to the customer record.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Rejected profile update with missing name does not persist partial data in database",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates data integrity at the database layer ensuring that a rejected mandatory field violation does not result in partial writes.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Direct read access to OSS database (schema: oss_telecom, table: customer_profile) is available.",
+      "Customer record CUST-10047 exists in the customer_profile table with name = 'Emily Watson', primary_phone = '+1-555-0400', email = 'emily.watson@example.com', updated_at = '2025-01-10T08:00:00Z'.",
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and reachable."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10047",
+      "Request Body: {\"name\": \"\", \"primaryPhone\": \"+1-555-0499\"}",
+      "Pre-update DB values: name = 'Emily Watson', primary_phone = '+1-555-0400', updated_at = '2025-01-10T08:00:00Z'"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10047 with the specified request body containing an empty name.",
+      "Execute SQL query: SELECT name, primary_phone, updated_at FROM oss_telecom.customer_profile WHERE customer_id = 'CUST-10047'."
+    ],
+    "expected_result": "The API returns HTTP 400. The database query returns name = 'Emily Watson', primary_phone = '+1-555-0400', and updated_at = '2025-01-10T08:00:00Z'. No column values have changed. No orphan or partial row exists in any related staging table.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Mandatory fields name and primary phone must be provided.",
+    "title": "Name field at maximum 150-character boundary and phone with international format are accepted",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates boundary-length input for the mandatory name field and an international phone format to confirm the system handles edge-case valid data.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and reachable in UAT environment.",
+      "Valid OAuth2 bearer token exists for user with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Customer record CUST-10049 exists in the database."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10049",
+      "Request Body: {\"name\": \"Alexandrinaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"primaryPhone\": \"+44-20-7946-0958\"}",
+      "Name length: exactly 150 characters",
+      "Authorization Header: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.validtoken"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10049 with the specified request body containing a 150-character name and international phone number.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "HTTP 200 OK is returned. Response body contains the full 150-character name without truncation and primaryPhone value '+44-20-7946-0958'. The status field reads 'updated'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00009",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Unique email is accepted and profile updates successfully via UI",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the core business rule that a unique email across active customers is accepted during profile update.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Active customer CUST-10045 exists with name 'John Smith', phone '+1-555-0100', and email 'john.smith@oldmail.com'.",
+      "No active customer in the system has the email 'john.smith.unique@newmail.com'.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Current Email: john.smith@oldmail.com",
+      "New Email: john.smith.unique@newmail.com"
+    ],
+    "steps": [
+      "Navigate to the Customer Profile page for customer CUST-10045.",
+      "Clear the Email field.",
+      "Enter 'john.smith.unique@newmail.com' in the Email field.",
+      "Click the Save button."
+    ],
+    "expected_result": "Profile update succeeds. A success toast notification displays 'Customer profile updated successfully.' The Email field shows 'john.smith.unique@newmail.com'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00010",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "API accepts unique email and returns HTTP 200 with updated profile",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the happy-path API flow confirming a unique email is persisted via the update endpoint.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API authentication token exists for user with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Active customer CUST-10046 exists with name 'Maria Garcia', phone '+1-555-0200', and email 'maria.garcia@telecomail.com'.",
+      "No other active customer has the email 'maria.garcia.new@telecomail.com'."
+    ],
+    "test_data": [
+      "Endpoint: PUT /api/v1/customers/CUST-10046",
+      "Request Body: {\"email\": \"maria.garcia.new@telecomail.com\"}",
+      "Authorization: Bearer <valid_agent_token>"
+    ],
+    "steps": [
+      "Send a PUT request to /api/v1/customers/CUST-10046 with the request body containing email 'maria.garcia.new@telecomail.com'."
+    ],
+    "expected_result": "HTTP 200 is returned. Response body contains 'email': 'maria.garcia.new@telecomail.com' and 'customer_id': 'CUST-10046'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00018",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Email uniqueness validation API response time stays within SLA under concurrent load",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Non-functional performance test validating that the email uniqueness check does not degrade API response time under load; classified Functional as it tests a single endpoint.",
+    "non_functional_type": "Performance",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API is deployed and accessible in the performance testing environment.",
+      "Customer table contains 500,000 active customer records with unique emails.",
+      "Performance test tool (e.g., JMeter) is configured with 50 concurrent virtual users.",
+      "API authentication tokens are pre-generated for all virtual users."
+    ],
+    "test_data": [
+      "Endpoint: PUT /api/v1/customers/CUST-10061",
+      "Request Body: {\"email\": \"perf.test.unique.<thread_id>@telco.com\"}",
+      "Concurrent Users: 50",
+      "Duration: 5 minutes",
+      "SLA: 95th percentile response time ≤ 2000ms"
+    ],
+    "steps": [
+      "Configure the performance test with 50 concurrent users sending PUT requests to update customer profiles with unique emails.",
+      "Execute the performance test for 5 minutes.",
+      "Collect response time metrics from the test results."
+    ],
+    "expected_result": "95th percentile response time is ≤ 2000ms. Error rate is below 1%. No HTTP 5xx responses are observed. All successful requests return HTTP 200.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.61,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 4.8,
+        "reason": "Measurement target is clear",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00017",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Database confirms unique email is persisted correctly after successful profile update",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates at the database layer that a unique email is correctly stored for the active customer after a successful update.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Database access is available with read permissions on the customer table.",
+      "Active customer CUST-10060 exists with name 'Rachel Adams', phone '+1-555-1200', email 'rachel.adams@telco.com', and status 'ACTIVE'.",
+      "No other active customer has the email 'rachel.adams.updated@telco.com'.",
+      "A successful profile update has been executed via API setting CUST-10060 email to 'rachel.adams.updated@telco.com'."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10060",
+      "Expected Email: rachel.adams.updated@telco.com",
+      "Query: SELECT email, status, updated_at FROM customer WHERE customer_id = 'CUST-10060'"
+    ],
+    "steps": [
+      "Execute the SELECT query against the customer table for CUST-10060."
+    ],
+    "expected_result": "The query returns exactly one row with email = 'rachel.adams.updated@telco.com', status = 'ACTIVE', and updated_at reflects the current timestamp within the last 5 minutes.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.04,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Duplicate active customer email is blocked with inline error in UI",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the rejection rule when a duplicate email belonging to another active customer is entered via UI.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Active customer CUST-10047 exists with name 'David Lee', phone '+1-555-0300', and email 'david.lee@telco.com'.",
+      "Active customer CUST-10048 exists with name 'Susan Park', phone '+1-555-0400', and email 'susan.park@telco.com'.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer being edited: CUST-10047",
+      "Duplicate Email to enter: susan.park@telco.com (belongs to active customer CUST-10048)"
+    ],
+    "steps": [
+      "Navigate to the Customer Profile page for customer CUST-10047.",
+      "Clear the Email field.",
+      "Enter 'susan.park@telco.com' in the Email field.",
+      "Click the Save button."
+    ],
+    "expected_result": "Profile update is rejected. An inline validation error displays beneath the Email field: 'This email is already associated with an active customer.' The profile is not saved and the previous email 'david.lee@telco.com' is retained.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00012",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "API rejects duplicate active customer email with HTTP 409 conflict",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the API-level enforcement of the unique email constraint across active customers.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API authentication token exists for user with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Active customer CUST-10049 exists with name 'Robert Chen', phone '+1-555-0500', and email 'robert.chen@telco.com'.",
+      "Active customer CUST-10050 exists with name 'Emily White', phone '+1-555-0600', and email 'emily.white@telco.com'."
+    ],
+    "test_data": [
+      "Endpoint: PUT /api/v1/customers/CUST-10049",
+      "Request Body: {\"email\": \"emily.white@telco.com\"}",
+      "Authorization: Bearer <valid_agent_token>"
+    ],
+    "steps": [
+      "Send a PUT request to /api/v1/customers/CUST-10049 with the request body containing email 'emily.white@telco.com'."
+    ],
+    "expected_result": "HTTP 409 is returned. Response body contains field-level error: {\"field\": \"email\", \"message\": \"This email is already associated with an active customer.\"}. Customer CUST-10049 email remains 'robert.chen@telco.com'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Database unique constraint prevents duplicate email insertion for active customers",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the database layer enforces email uniqueness for active customer records as a data integrity safeguard.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Database access is available with read/write permissions on the customer table.",
+      "Active customer record exists: customer_id = 'CUST-10051', email = 'lisa.jones@telco.com', status = 'ACTIVE'.",
+      "Active customer record exists: customer_id = 'CUST-10052', email = 'mark.taylor@telco.com', status = 'ACTIVE'."
+    ],
+    "test_data": [
+      "Target record: CUST-10052",
+      "UPDATE statement: UPDATE customer SET email = 'lisa.jones@telco.com' WHERE customer_id = 'CUST-10052' AND status = 'ACTIVE'"
+    ],
+    "steps": [
+      "Execute the UPDATE statement to set CUST-10052 email to 'lisa.jones@telco.com'."
+    ],
+    "expected_result": "The UPDATE statement fails with a unique constraint violation error. The email for CUST-10052 remains 'mark.taylor@telco.com'. A query of SELECT email FROM customer WHERE customer_id = 'CUST-10052' returns 'mark.taylor@telco.com'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak",
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.0,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "ETL batch rejects duplicate email records and routes them to error queue",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "ETL",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the ETL pipeline enforces email uniqueness when processing bulk customer profile updates.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "ETL job 'CustomerProfileSync' is configured and scheduled in the UAT environment.",
+      "Active customer CUST-10057 exists in the target database with email 'kevin.hall@telco.com' and status 'ACTIVE'.",
+      "Source staging table contains an update record for CUST-10058 with email 'kevin.hall@telco.com'.",
+      "CUST-10058 is an active customer with current email 'cust10058.old@telco.com'."
+    ],
+    "test_data": [
+      "ETL Job: CustomerProfileSync",
+      "Source Record: {customer_id: 'CUST-10058', email: 'kevin.hall@telco.com'}",
+      "Conflicting Active Record: CUST-10057 with email 'kevin.hall@telco.com'"
+    ],
+    "steps": [
+      "Trigger the CustomerProfileSync ETL job manually.",
+      "Wait for the ETL job to complete processing."
+    ],
+    "expected_result": "The ETL job completes with status 'Completed with errors.' The record for CUST-10058 is routed to the error/rejection queue with reason 'Duplicate email: kevin.hall@telco.com already exists for active customer CUST-10057.' CUST-10058 email in the target database remains 'cust10058.old@telco.com'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "transformation_accuracy: Transformation checks are weak",
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.04,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00014",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "Email belonging to an inactive customer is accepted for a new active customer via UI",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the boundary rule that uniqueness applies only to active customers, so an inactive customer's email can be reused.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.",
+      "Inactive customer CUST-10053 exists with name 'Sarah Brown', phone '+1-555-0700', email 'sarah.brown@telco.com', and status 'INACTIVE'.",
+      "Active customer CUST-10054 exists with name 'James Wilson', phone '+1-555-0800', email 'james.wilson@telco.com', and status 'ACTIVE'.",
+      "No active customer has the email 'sarah.brown@telco.com'.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer being edited: CUST-10054",
+      "New Email: sarah.brown@telco.com (belongs to inactive customer CUST-10053)"
+    ],
+    "steps": [
+      "Navigate to the Customer Profile page for customer CUST-10054.",
+      "Clear the Email field.",
+      "Enter 'sarah.brown@telco.com' in the Email field.",
+      "Click the Save button."
+    ],
+    "expected_result": "Profile update succeeds. A success toast notification displays 'Customer profile updated successfully.' The Email field for CUST-10054 shows 'sarah.brown@telco.com'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00015",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Email must be unique across active customers.",
+    "title": "API accepts case-variant email that differs only by casing from an existing active customer email",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the edge boundary of case-insensitive email uniqueness enforcement at the API level.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API authentication token exists for user with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Active customer CUST-10055 exists with name 'Anna Kim', phone '+1-555-0900', and email 'anna.kim@telco.com'.",
+      "Active customer CUST-10056 exists with name 'Peter Nguyen', phone '+1-555-1000', and email 'peter.nguyen@telco.com'."
+    ],
+    "test_data": [
+      "Endpoint: PUT /api/v1/customers/CUST-10056",
+      "Request Body: {\"email\": \"Anna.Kim@Telco.Com\"}",
+      "Authorization: Bearer <valid_agent_token>"
+    ],
+    "steps": [
+      "Send a PUT request to /api/v1/customers/CUST-10056 with the request body containing email 'Anna.Kim@Telco.Com'."
+    ],
+    "expected_result": "HTTP 409 is returned. Response body contains field-level error: {\"field\": \"email\", \"message\": \"This email is already associated with an active customer.\"}. Email uniqueness check is case-insensitive. Customer CUST-10056 email remains 'peter.nguyen@telco.com'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "business_valid_flow",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "business_valid_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00019",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Authorized Customer_Service_Agent successfully updates customer profile via UI",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the happy-path authorization rule that a properly permissioned agent can perform a profile update through the UI.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment at https://oss.telecom-uat.internal",
+      "User account 'agent.jones' exists with role Customer_Service_Agent and has edit permission on Customer Profile module",
+      "Customer record CUST-10045 (Name: John Smith, Phone: +1-555-0100) exists in active status",
+      "User 'agent.jones' is authenticated and has an active session"
+    ],
+    "test_data": [
+      "Username: agent.jones",
+      "Role: Customer_Service_Agent",
+      "Customer ID: CUST-10045",
+      "Updated Phone: +1-555-0199"
+    ],
+    "steps": [
+      "Navigate to Customer Profile search page.",
+      "Enter 'CUST-10045' in the Customer ID search field.",
+      "Click the Search button.",
+      "Click the Edit button on the CUST-10045 profile row.",
+      "Clear the Primary Phone field and enter '+1-555-0199'.",
+      "Click the Save button."
+    ],
+    "expected_result": "Profile update succeeds. A success toast notification displays 'Customer profile updated successfully.' The Primary Phone field for CUST-10045 now shows '+1-555-0199'. The Edit button remains visible and enabled for the agent.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [
+      "maintainability: Could be simplified"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.57,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 3.2,
+        "reason": "Could be simplified",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00020",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Authorized Customer_Service_Agent successfully updates customer profile via API",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the happy-path API authorization that an authorized bearer token permits profile update operations.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and accessible",
+      "Valid OAuth2 bearer token exists for user 'agent.martinez' with role Customer_Service_Agent and scope customer:profile:edit",
+      "Customer record CUST-20078 (Name: Maria Garcia, Phone: +1-555-0345) exists in active status"
+    ],
+    "test_data": [
+      "Bearer Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.agent.martinez.CSA",
+      "Customer ID: CUST-20078",
+      "Request Body: {\"name\": \"Maria Garcia\", \"primaryPhone\": \"+1-555-0346\"}"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-20078 with Authorization header 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.agent.martinez.CSA' and the JSON request body.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "HTTP 200 OK is returned. Response body contains 'customerId': 'CUST-20078' and 'primaryPhone': '+1-555-0346'. The 'updatedBy' field reads 'agent.martinez'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00021",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Unauthorized Billing_Analyst role cannot see Edit button on customer profile UI",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates a core business authorization rule that a user without edit permission is blocked from initiating a profile update at the UI layer.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment at https://oss.telecom-uat.internal",
+      "User account 'analyst.wong' exists with role Billing_Analyst and has read-only permission on Customer Profile module (no edit permission)",
+      "Customer record CUST-10045 (Name: John Smith, Phone: +1-555-0100) exists in active status",
+      "User 'analyst.wong' is authenticated and has an active session"
+    ],
+    "test_data": [
+      "Username: analyst.wong",
+      "Role: Billing_Analyst",
+      "Customer ID: CUST-10045"
+    ],
+    "steps": [
+      "Navigate to Customer Profile search page.",
+      "Enter 'CUST-10045' in the Customer ID search field.",
+      "Click the Search button.",
+      "Observe the CUST-10045 profile detail page."
+    ],
+    "expected_result": "The customer profile for CUST-10045 displays in read-only mode. The Edit button is not rendered on the page. No editable fields are present. A label or indicator shows 'View Only' access level.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00022",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "API rejects profile update request bearing unauthorized Billing_Analyst token with HTTP 403",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the API enforces role-based authorization and rejects requests from tokens lacking the required edit scope.",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and accessible",
+      "Valid OAuth2 bearer token exists for user 'analyst.wong' with role Billing_Analyst and scope customer:profile:read (no customer:profile:edit scope)",
+      "Customer record CUST-10045 (Name: John Smith, Phone: +1-555-0100) exists in active status"
+    ],
+    "test_data": [
+      "Bearer Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.analyst.wong.BA",
+      "Customer ID: CUST-10045",
+      "Request Body: {\"name\": \"John Smith\", \"primaryPhone\": \"+1-555-0999\"}"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10045 with Authorization header 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.analyst.wong.BA' and the JSON request body.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "HTTP 403 Forbidden is returned. Response body contains error code 'AUTH_FORBIDDEN' and message 'You do not have permission to update customer profiles.' The customer record CUST-10045 primaryPhone remains '+1-555-0100' unchanged.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00026",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Security: Brute-force authorization bypass attempts are rate-limited and logged",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates a security control ensuring repeated unauthorized access attempts are throttled, directly supporting the authorization enforcement mandate of this AC.",
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and accessible",
+      "Valid OAuth2 bearer token exists for user 'analyst.wong' with role Billing_Analyst (no edit permission)",
+      "Rate limiting is configured at 10 requests per minute per user for 4xx responses",
+      "Security audit log is enabled and accessible at /var/log/oss/security-audit.log"
+    ],
+    "test_data": [
+      "Bearer Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.analyst.wong.BA",
+      "Customer ID: CUST-10045",
+      "Request Body: {\"name\": \"John Smith\", \"primaryPhone\": \"+1-555-0666\"}",
+      "Number of rapid sequential requests: 15"
+    ],
+    "steps": [
+      "Send 15 rapid sequential PUT requests to /api/v1/customers/CUST-10045 with the Billing_Analyst bearer token and JSON request body within 60 seconds.",
+      "Capture the HTTP response status code for each request.",
+      "Query the security audit log for entries matching user 'analyst.wong' and endpoint '/api/v1/customers/CUST-10045' within the last 2 minutes."
+    ],
+    "expected_result": "The first 10 requests each return HTTP 403 Forbidden. Requests 11 through 15 return HTTP 429 Too Many Requests with header 'Retry-After' present. The security audit log contains at least 15 entries for user 'analyst.wong' with action 'PROFILE_UPDATE_DENIED' and includes source IP address, timestamp, and customer ID 'CUST-10045' for each entry.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00024",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Database does not persist profile changes when update is attempted by unauthorized role",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates at the data layer that no unauthorized modification reaches the database, providing defense-in-depth verification beyond the API layer.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Database OSS_CUSTOMER_DB is accessible with read-only query credentials for QA verification",
+      "Customer record CUST-10045 exists in table CUSTOMER_PROFILE with primary_phone = '+1-555-0100' and last_modified_by = 'agent.jones' and last_modified_ts = '2025-01-15T10:30:00Z'",
+      "An API PUT request to /api/v1/customers/CUST-10045 has just been executed using Billing_Analyst token for user 'analyst.wong' and returned HTTP 403"
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Table: CUSTOMER_PROFILE",
+      "Expected primary_phone: +1-555-0100",
+      "Expected last_modified_by: agent.jones",
+      "Expected last_modified_ts: 2025-01-15T10:30:00Z"
+    ],
+    "steps": [
+      "Execute SQL: SELECT primary_phone, last_modified_by, last_modified_ts FROM CUSTOMER_PROFILE WHERE customer_id = 'CUST-10045'.",
+      "Compare returned values against baseline expected values."
+    ],
+    "expected_result": "Query returns exactly one row. primary_phone is '+1-555-0100'. last_modified_by is 'agent.jones'. last_modified_ts is '2025-01-15T10:30:00Z'. No values have changed from the pre-request baseline, confirming no unauthorized write occurred.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00025",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "Expired bearer token is rejected by API with HTTP 401 when attempting profile update",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates an authorization boundary condition where a previously valid token has expired, ensuring time-based access control is enforced.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and accessible",
+      "An expired OAuth2 bearer token exists for user 'agent.jones' with role Customer_Service_Agent; token expiry set to '2024-12-01T00:00:00Z' (past date)",
+      "Customer record CUST-10045 (Name: John Smith, Phone: +1-555-0100) exists in active status"
+    ],
+    "test_data": [
+      "Bearer Token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.agent.jones.EXPIRED_20241201",
+      "Customer ID: CUST-10045",
+      "Request Body: {\"name\": \"John Smith\", \"primaryPhone\": \"+1-555-0777\"}"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10045 with Authorization header 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.agent.jones.EXPIRED_20241201' and the JSON request body.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "HTTP 401 Unauthorized is returned. Response body contains error code 'TOKEN_EXPIRED' and message 'Authentication token has expired. Please re-authenticate.' Customer record CUST-10045 primaryPhone remains '+1-555-0100' unchanged.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00023",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Unauthorized users cannot update customer profiles.",
+    "title": "API denies unauthenticated request with no bearer token returning HTTP 401",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates the authentication gate which is a prerequisite to authorization, ensuring requests without credentials are cleanly rejected.",
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "API endpoint PUT /api/v1/customers/{customerId} is deployed and accessible",
+      "No Authorization header or token is available for this request",
+      "Customer record CUST-10045 (Name: John Smith, Phone: +1-555-0100) exists in active status"
+    ],
+    "test_data": [
+      "Authorization Header: (omitted)",
+      "Customer ID: CUST-10045",
+      "Request Body: {\"name\": \"John Smith\", \"primaryPhone\": \"+1-555-0888\"}"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10045 without an Authorization header and with the JSON request body.",
+      "Capture the HTTP response status code and response body."
+    ],
+    "expected_result": "HTTP 401 Unauthorized is returned. Response body contains error code 'AUTH_UNAUTHENTICATED' and message 'Authentication credentials are missing or invalid.' No customer data is exposed in the error response. Customer record CUST-10045 primaryPhone remains '+1-555-0100' unchanged.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Negative",
+      "authorization",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "authorization"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "suite": "Functional",
+    "functional_test_type": "",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00027",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Successful profile update via UI creates audit history entry showing previous and new values",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the core audit history capture business rule through the UI layer for a single feature.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User account 'agent.jones' exists with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Customer profile CUST-10045 exists with Name: 'John Smith', Primary Phone: '+1-555-0100', Email: 'john.smith@telcomail.com'.",
+      "Application is deployed and accessible in UAT environment.",
+      "Audit history table (customer_audit_log) is empty for CUST-10045 prior to this test."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Current Name: John Smith",
+      "New Name: Jonathan Smith",
+      "Current Primary Phone: +1-555-0100",
+      "New Primary Phone: +1-555-0199",
+      "Agent User: agent.jones"
+    ],
+    "steps": [
+      "Navigate to Customer Profile page for CUST-10045.",
+      "Update the Name field from 'John Smith' to 'Jonathan Smith'.",
+      "Update the Primary Phone field from '+1-555-0100' to '+1-555-0199'.",
+      "Click the Save button.",
+      "Open the Audit History tab for CUST-10045."
+    ],
+    "expected_result": "Audit History tab displays a new entry with timestamp of the update, changed_by showing 'agent.jones', and two field-change rows: Name old value 'John Smith' / new value 'Jonathan Smith', and Primary Phone old value '+1-555-0100' / new value '+1-555-0199'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00029",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "API profile update with valid data returns audit trail in response body containing previous and new values",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates the API response includes audit details for the single audit history feature.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer profile CUST-30012 exists with Name: 'Carlos Rivera', Primary Phone: '+1-555-0300', Email: 'carlos.r@telcomail.com'.",
+      "User 'agent.kumar' has role Customer_Service_Agent with edit permission on Customer Profile module.",
+      "API endpoint /api/v1/customers/CUST-30012 is accessible."
+    ],
+    "test_data": [
+      "Customer ID: CUST-30012",
+      "Current Name: Carlos Rivera",
+      "New Name: Carlos M. Rivera",
+      "Current Primary Phone: +1-555-0300",
+      "New Primary Phone: +1-555-0301",
+      "Agent User: agent.kumar"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-30012 with body {\"name\": \"Carlos M. Rivera\", \"primary_phone\": \"+1-555-0301\"} using agent.kumar credentials."
+    ],
+    "expected_result": "HTTP 200 is returned. Response body contains an 'audit_trail' array with two objects: one with field 'name', old_value 'Carlos Rivera', new_value 'Carlos M. Rivera'; another with field 'primary_phone', old_value '+1-555-0300', new_value '+1-555-0301'. Each object includes changed_by 'agent.kumar' and a valid ISO-8601 change_timestamp.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00034",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Audit history API response time remains under 500ms when customer has 500 prior audit records",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Non-functional performance test scoped to the audit feature's API endpoint; does not cross multiple systems so remains Functional.",
+    "non_functional_type": "Performance",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer profile CUST-80010 exists with 500 pre-existing audit records in customer_audit_log.",
+      "User 'agent.lee' has role Customer_Service_Agent with edit permission on Customer Profile module.",
+      "API endpoint /api/v1/customers/CUST-80010 is accessible and system is running under normal load conditions."
+    ],
+    "test_data": [
+      "Customer ID: CUST-80010",
+      "Pre-existing audit records: 500",
+      "Current Name: Emma Wilson",
+      "New Name: Emma W. Wilson",
+      "SLA threshold: 500ms"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-80010 with body {\"name\": \"Emma W. Wilson\"} using agent.lee credentials.",
+      "Record the total response time of the API call."
+    ],
+    "expected_result": "HTTP 200 is returned with a complete audit_trail in the response body. Total API response time is less than or equal to 500ms. The response includes the new audit entry with field 'name', old_value 'Emma Wilson', new_value 'Emma W. Wilson'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00028",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Audit record in database stores exact old and new values with correct metadata after API profile update",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Verifies the database-level audit record integrity for a single acceptance criterion.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer profile CUST-20078 exists in customer table with Name: 'Maria Garcia', Primary Phone: '+1-555-0200', Email: 'maria.garcia@telconet.com'.",
+      "Service account 'agent.lee' has role Customer_Service_Agent with edit permission on Customer Profile module.",
+      "No existing audit records in customer_audit_log for CUST-20078."
+    ],
+    "test_data": [
+      "Customer ID: CUST-20078",
+      "Current Email: maria.garcia@telconet.com",
+      "New Email: m.garcia@telconet.com",
+      "Agent User: agent.lee"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-20078 with body {\"email\": \"m.garcia@telconet.com\"} using agent.lee credentials.",
+      "Execute SQL query: SELECT field_name, old_value, new_value, changed_by, change_timestamp FROM customer_audit_log WHERE customer_id = 'CUST-20078' ORDER BY change_timestamp DESC LIMIT 1."
+    ],
+    "expected_result": "Query returns exactly one row with field_name = 'email', old_value = 'maria.garcia@telconet.com', new_value = 'm.garcia@telconet.com', changed_by = 'agent.lee', and change_timestamp within 5 seconds of the API request time.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00032",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "ETL audit extraction job correctly transfers audit records with old and new values to reporting warehouse",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that audit data is correctly extracted and loaded into the reporting layer, verifying a single feature's ETL pipeline.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer profile CUST-60021 has an existing audit record in customer_audit_log: field_name='name', old_value='Lisa Brown', new_value='Lisa M. Brown', changed_by='agent.kumar', change_timestamp='2025-07-14T10:30:00Z'.",
+      "ETL job 'AuditHistoryExtract' is configured and ready to execute.",
+      "Reporting warehouse table rpt_customer_audit is empty for CUST-60021."
+    ],
+    "test_data": [
+      "Customer ID: CUST-60021",
+      "Source audit record field_name: name",
+      "Source old_value: Lisa Brown",
+      "Source new_value: Lisa M. Brown",
+      "Source changed_by: agent.kumar",
+      "Source change_timestamp: 2025-07-14T10:30:00Z"
+    ],
+    "steps": [
+      "Trigger the ETL job 'AuditHistoryExtract' for the date range 2025-07-14.",
+      "Query rpt_customer_audit in reporting warehouse: SELECT field_name, old_value, new_value, changed_by, change_timestamp FROM rpt_customer_audit WHERE customer_id = 'CUST-60021'."
+    ],
+    "expected_result": "Query returns exactly one row with field_name = 'name', old_value = 'Lisa Brown', new_value = 'Lisa M. Brown', changed_by = 'agent.kumar', change_timestamp = '2025-07-14T10:30:00Z'. ETL job completes with status SUCCESS and zero error records.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [
+      "transformation_accuracy: Transformation checks are weak",
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.94,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 3.0,
+        "reason": "Transformation checks are weak",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00031",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Failed profile update due to missing mandatory field does not create an audit record in database",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates that the audit feature does not produce records when the update transaction fails, which is a single-feature business rule.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer profile CUST-50033 exists with Name: 'David Wong', Primary Phone: '+1-555-0500', Email: 'david.wong@telcomail.com'.",
+      "User 'agent.lee' has role Customer_Service_Agent with edit permission on Customer Profile module.",
+      "Current row count in customer_audit_log for CUST-50033 is recorded as baseline (e.g., 2 rows)."
+    ],
+    "test_data": [
+      "Customer ID: CUST-50033",
+      "Submitted Name: (empty string)",
+      "Submitted Primary Phone: +1-555-0501",
+      "Baseline audit row count: 2"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-50033 with body {\"name\": \"\", \"primary_phone\": \"+1-555-0501\"} using agent.lee credentials.",
+      "Execute SQL query: SELECT COUNT(*) AS total FROM customer_audit_log WHERE customer_id = 'CUST-50033'."
+    ],
+    "expected_result": "HTTP 400 is returned with error message 'Name is required'. Database query returns total = 2, confirming no audit record was created for the failed update.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.36,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00033",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Updating multiple fields in a single UI save creates separate audit entries for each changed field",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "Validates edge-case behavior where multiple simultaneous field changes must each produce distinct audit entries within the single audit feature.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "User 'agent.jones' exists with role Customer_Service_Agent and edit permission on Customer Profile module.",
+      "Customer profile CUST-70099 exists with Name: 'Robert Chen', Primary Phone: '+1-555-0700', Email: 'robert.chen@telconet.com'.",
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer ID: CUST-70099",
+      "Current Name: Robert Chen → New Name: Robert J. Chen",
+      "Current Primary Phone: +1-555-0700 → New Primary Phone: +1-555-0777",
+      "Current Email: robert.chen@telconet.com → New Email: rj.chen@telconet.com"
+    ],
+    "steps": [
+      "Navigate to Customer Profile page for CUST-70099.",
+      "Update Name field to 'Robert J. Chen'.",
+      "Update Primary Phone field to '+1-555-0777'.",
+      "Update Email field to 'rj.chen@telconet.com'.",
+      "Click the Save button.",
+      "Open the Audit History tab for CUST-70099."
+    ],
+    "expected_result": "Audit History tab displays three distinct field-change entries under the same transaction timestamp: (1) Name old 'Robert Chen' / new 'Robert J. Chen', (2) Primary Phone old '+1-555-0700' / new '+1-555-0777', (3) Email old 'robert.chen@telconet.com' / new 'rj.chen@telconet.com'. All entries show changed_by 'agent.jones'.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [
+      "maintainability: Could be simplified"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.64,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 3.2,
+        "reason": "Could be simplified",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00030",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Audit history must capture previous and new values.",
+    "title": "Submitting identical values via API produces no new audit record when no fields actually change",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "Validates edge-case behavior of the audit feature ensuring unchanged fields do not generate false audit entries.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer profile CUST-40055 exists with Name: 'Aisha Patel', Primary Phone: '+1-555-0400', Email: 'aisha.patel@telconet.com'.",
+      "User 'agent.jones' has role Customer_Service_Agent with edit permission on Customer Profile module.",
+      "Current row count in customer_audit_log for CUST-40055 is recorded as baseline (e.g., 3 rows)."
+    ],
+    "test_data": [
+      "Customer ID: CUST-40055",
+      "Submitted Name (unchanged): Aisha Patel",
+      "Submitted Primary Phone (unchanged): +1-555-0400",
+      "Submitted Email (unchanged): aisha.patel@telconet.com",
+      "Baseline audit row count: 3"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-40055 with body {\"name\": \"Aisha Patel\", \"primary_phone\": \"+1-555-0400\", \"email\": \"aisha.patel@telconet.com\"} using agent.jones credentials.",
+      "Execute SQL query: SELECT COUNT(*) AS total FROM customer_audit_log WHERE customer_id = 'CUST-40055'."
+    ],
+    "expected_result": "HTTP 200 is returned with no audit_trail entries in the response. Database query returns total = 3, confirming no new audit record was created for the no-change submission.",
+    "tags": [
+      "telecommunications",
+      "UI",
+      "Positive",
+      "auditability",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "auditability"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.36,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00036",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "UI profile update for customer triggers CRM sync and reflects updated contact details in downstream CRM",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "scenario_type": "Positive",
+    "test_suite": "EndToEnd",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "This test crosses from the UI layer through backend persistence to the downstream CRM sync, validating end-to-end propagation.",
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Customer record CUST-20078 exists with name 'Maria Lopez' and primary phone '+1-555-0230'",
+      "User account cs_agent_maria exists with role Customer_Service_Agent and has edit permission on Customer Profile module",
+      "Customer Profile edit page is accessible in UAT environment at https://oss-uat.telecomcorp.com/customers/CUST-20078/edit",
+      "CRM sync job scheduler is active with 5-minute polling interval",
+      "Downstream CRM system CRM-UAT-01 is reachable"
+    ],
+    "test_data": [
+      "Customer ID: CUST-20078",
+      "Original name: 'Maria Lopez'",
+      "Updated name: 'Maria G. Lopez'",
+      "Updated primary phone: '+1-555-0231'",
+      "Login credentials: cs_agent_maria / P@ssw0rd!2024"
+    ],
+    "steps": [
+      "Log in to https://oss-uat.telecomcorp.com with username cs_agent_maria and password P@ssw0rd!2024",
+      "Navigate to Customer Profile page for CUST-20078",
+      "Clear the Name field and enter 'Maria G. Lopez'",
+      "Clear the Primary Phone field and enter '+1-555-0231'",
+      "Click the Save button",
+      "Wait for the next CRM sync job cycle to complete (maximum 5 minutes)",
+      "Query the downstream CRM system CRM-UAT-01 for customer record CUST-20078"
+    ],
+    "expected_result": "UI displays success toast message 'Profile updated successfully'. Downstream CRM system CRM-UAT-01 contains customer CUST-20078 with name 'Maria G. Lopez' and primary_phone '+1-555-0231'.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [
+      "maintainability: Could be simplified"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.57,
+    "suite": "EndToEnd",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 3.2,
+        "reason": "Could be simplified",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00035",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Successful customer profile update via API triggers CRM sync job and propagates updated data to downstream CRM",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "EndToEnd",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "classification_rationale": "This test validates the complete flow from API profile update through the sync job to the downstream CRM system, crossing multiple systems.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer record CUST-10045 exists in the OSS database with name 'John Smith' and primary phone '+1-555-0100'",
+      "User account svc_agent_01 exists with role Customer_Service_Agent and has edit permission on Customer Profile module",
+      "CRM sync job scheduler is active and configured with a 5-minute polling interval",
+      "Downstream CRM system (Salesforce sandbox CRM-UAT-01) is reachable and healthy",
+      "API endpoint PUT /api/v1/customers/{id} is deployed and accessible in UAT environment"
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Authorization: Bearer token for svc_agent_01",
+      "Updated name: 'John A. Smith'",
+      "Updated primary phone: '+1-555-0199'",
+      "Updated email: 'john.a.smith@telecomcorp.com'",
+      "CRM sync job ID: SYNC-JOB-3021"
+    ],
+    "steps": [
+      "Send PUT request to /api/v1/customers/CUST-10045 with body {\"name\": \"John A. Smith\", \"primary_phone\": \"+1-555-0199\", \"email\": \"john.a.smith@telecomcorp.com\"} and Authorization header Bearer token for svc_agent_01",
+      "Wait for the next CRM sync job cycle to execute (maximum 5 minutes)",
+      "Query the CRM sync job log table for CUST-10045 sync status",
+      "Query the downstream CRM system CRM-UAT-01 for customer record CUST-10045"
+    ],
+    "expected_result": "API returns HTTP 200 with updated customer payload. CRM sync job log shows entry for CUST-10045 with status 'COMPLETED' and timestamp within the sync cycle. Downstream CRM system CRM-UAT-01 contains customer CUST-10045 with name 'John A. Smith', primary_phone '+1-555-0199', and email 'john.a.smith@telecomcorp.com'.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.49,
+    "suite": "EndToEnd",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 4.8,
+        "reason": "Security checks are explicit",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00042",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "CRM sync API response time remains within SLA under expected concurrent profile update load",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "API",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This is a non-functional performance test scoped to the API sync trigger endpoint — categorized as Functional since it tests a single endpoint's performance characteristic.",
+    "non_functional_type": "Performance",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "100 distinct customer records (CUST-80001 through CUST-80100) exist in the OSS database, each with valid name, primary phone, and email",
+      "API endpoint PUT /api/v1/customers/{id} is deployed in UAT environment",
+      "CRM sync job infrastructure is active and can receive queue entries",
+      "Load testing tool (e.g., JMeter) is configured with 50 concurrent virtual users",
+      "SLA target: 95th percentile response time ≤ 2000ms for profile update API"
+    ],
+    "test_data": [
+      "Customer IDs: CUST-80001 through CUST-80100",
+      "Concurrent virtual users: 50",
+      "Ramp-up period: 30 seconds",
+      "Test duration: 5 minutes",
+      "SLA threshold: P95 response time ≤ 2000ms",
+      "Error rate threshold: < 1%"
+    ],
+    "steps": [
+      "Configure JMeter test plan with 50 concurrent threads targeting PUT /api/v1/customers/{id} with randomized customer IDs from CUST-80001 to CUST-80100",
+      "Set ramp-up to 30 seconds and total duration to 5 minutes",
+      "Execute the load test",
+      "Collect response time percentiles (P50, P95, P99) and error rate from the test results"
+    ],
+    "expected_result": "P95 response time is ≤ 2000ms. P50 response time is ≤ 800ms. Error rate is < 1%. All successful responses return HTTP 200. No sync queue insertion failures are observed in the application logs during the test window.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.61,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 4.8,
+        "reason": "Measurement target is clear",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00038",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Database sync queue record is created with correct change details after customer profile update",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test verifies the database-level behavior of sync queue population upon profile update, which is a single-feature functional check.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer record CUST-40100 exists in the customer_profile table with name 'Sarah Kim' and primary phone '+1-555-0400'",
+      "crm_sync_queue table has no existing PENDING records for CUST-40100",
+      "Database trigger or application logic is deployed that inserts into crm_sync_queue upon customer_profile update"
+    ],
+    "test_data": [
+      "Customer ID: CUST-40100",
+      "Original name: 'Sarah Kim'",
+      "Updated name: 'Sarah J. Kim'",
+      "Original primary phone: '+1-555-0400'",
+      "Updated primary phone: '+1-555-0401'"
+    ],
+    "steps": [
+      "Execute UPDATE on customer_profile table: SET name = 'Sarah J. Kim', primary_phone = '+1-555-0401' WHERE customer_id = 'CUST-40100'",
+      "Query crm_sync_queue table for records WHERE customer_id = 'CUST-40100' AND sync_status = 'PENDING'",
+      "Inspect the change_payload column of the returned record"
+    ],
+    "expected_result": "Exactly one new record exists in crm_sync_queue for CUST-40100 with sync_status 'PENDING'. change_payload contains {\"previous\": {\"name\": \"Sarah Kim\", \"primary_phone\": \"+1-555-0400\"}, \"new\": {\"name\": \"Sarah J. Kim\", \"primary_phone\": \"+1-555-0401\"}}. created_at timestamp is within 2 seconds of the update execution time.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.62,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00037",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "ETL sync job picks up profile update and successfully delivers transformed payload to CRM",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "ETL",
+    "scenario_type": "Positive",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the ETL sync job's specific behavior of detecting, transforming, and delivering a single profile change — a single-feature functional verification.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer record CUST-30092 exists in OSS database with name 'Robert Chen' and primary phone '+1-555-0350' and email 'robert.chen@example.com'",
+      "CUST-30092 has sync_status set to 'PENDING' in the crm_sync_queue table after a profile update",
+      "ETL sync job SYNC-JOB-3021 is configured and ready to be triggered manually in UAT environment",
+      "Downstream CRM system CRM-UAT-01 is reachable and contains a prior version of CUST-30092"
+    ],
+    "test_data": [
+      "Customer ID: CUST-30092",
+      "Updated name in OSS DB: 'Robert T. Chen'",
+      "Updated primary phone in OSS DB: '+1-555-0355'",
+      "crm_sync_queue record: {customer_id: 'CUST-30092', sync_status: 'PENDING', change_timestamp: '2024-07-15T10:30:00Z'}",
+      "Expected CRM payload field mapping: oss.name → crm.full_name, oss.primary_phone → crm.phone_primary"
+    ],
+    "steps": [
+      "Trigger ETL sync job SYNC-JOB-3021 manually via the job scheduler console",
+      "Monitor the sync job execution log for CUST-30092 entry",
+      "Capture the outbound payload sent to CRM-UAT-01 from the job log",
+      "Query the crm_sync_queue table for CUST-30092 sync_status after job completion"
+    ],
+    "expected_result": "ETL sync job completes within 60 seconds. Outbound payload to CRM contains {\"full_name\": \"Robert T. Chen\", \"phone_primary\": \"+1-555-0355\"}. crm_sync_queue record for CUST-30092 shows sync_status 'COMPLETED' and sync_timestamp populated with current execution time. CRM-UAT-01 record for CUST-30092 reflects full_name 'Robert T. Chen' and phone_primary '+1-555-0355'.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.62,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 4.8,
+        "reason": "Validates transformed downstream values",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00041",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "Profile update with no actual field change does not generate a CRM sync queue entry",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "scenario_type": "Negative",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates that the system correctly rejects a no-op update from triggering unnecessary downstream sync — a single-feature functional validation.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer record CUST-70400 exists in customer_profile table with name 'Emily Watson' and primary phone '+1-555-0700' and email 'emily.watson@example.com'",
+      "crm_sync_queue table has zero PENDING records for CUST-70400",
+      "Database trigger or application logic is deployed that conditionally inserts into crm_sync_queue only when field values actually change"
+    ],
+    "test_data": [
+      "Customer ID: CUST-70400",
+      "Name (unchanged): 'Emily Watson'",
+      "Primary phone (unchanged): '+1-555-0700'",
+      "Email (unchanged): 'emily.watson@example.com'"
+    ],
+    "steps": [
+      "Execute UPDATE on customer_profile table: SET name = 'Emily Watson', primary_phone = '+1-555-0700', email = 'emily.watson@example.com' WHERE customer_id = 'CUST-70400'",
+      "Query crm_sync_queue table for records WHERE customer_id = 'CUST-70400' AND sync_status = 'PENDING'"
+    ],
+    "expected_result": "Zero new records exist in crm_sync_queue for CUST-70400. No unnecessary sync job is triggered for unchanged data.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00039",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "ETL sync job transforms outbound payload with correct field mapping and data formatting for CRM",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "ETL",
+    "scenario_type": "Edge Case",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates edge-case data transformation rules within the ETL sync layer — a single-feature functional verification of payload mapping.",
+    "non_functional_type": "",
+    "priority": "P4",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer record CUST-50200 exists in OSS database with name 'José María Ñoño-García' and primary phone '+52-555-1234567' and email 'jose.garcia@telecomcorp.mx'",
+      "CUST-50200 has sync_status 'PENDING' in crm_sync_queue with change_timestamp '2024-07-15T14:00:00Z'",
+      "ETL sync job SYNC-JOB-3021 is configured with field mapping: oss.name → crm.full_name (UTF-8), oss.primary_phone → crm.phone_primary (E.164 format), oss.email → crm.email_address (lowercase)",
+      "Downstream CRM system CRM-UAT-01 is reachable"
+    ],
+    "test_data": [
+      "Customer ID: CUST-50200",
+      "Name (source): 'José María Ñoño-García'",
+      "Phone (source): '+52-555-1234567'",
+      "Email (source): 'Jose.Garcia@TelecomCorp.MX'",
+      "Expected CRM full_name: 'José María Ñoño-García'",
+      "Expected CRM phone_primary: '+525551234567'",
+      "Expected CRM email_address: 'jose.garcia@telecomcorp.mx'"
+    ],
+    "steps": [
+      "Trigger ETL sync job SYNC-JOB-3021 manually via the job scheduler console",
+      "Capture the outbound HTTP payload sent to CRM-UAT-01 for CUST-50200 from the job execution log",
+      "Inspect character encoding of the full_name field in the payload",
+      "Inspect phone_primary format in the payload",
+      "Inspect email_address casing in the payload"
+    ],
+    "expected_result": "Outbound payload contains full_name 'José María Ñoño-García' with UTF-8 encoding preserved including diacritics. phone_primary is '+525551234567' in E.164 format with hyphens removed. email_address is 'jose.garcia@telecomcorp.mx' in lowercase. Sync job status for CUST-50200 is 'COMPLETED'.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [
+      "data_integrity: Data integrity checks are weak"
+    ],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.28,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 3.0,
+        "reason": "Data integrity checks are weak",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 4.8,
+        "reason": "Validates transformed downstream values",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  },
+  {
+    "test_case_id": "TC00040",
+    "story_id": "ST1",
+    "story_title": "User updates customer profile",
+    "ac_id": "ST1-AC5",
+    "ac_text": "Profile update should be reflected in downstream CRM sync jobs.",
+    "title": "CRM sync job logs error and marks record for retry when downstream CRM is unreachable",
+    "domain": "telecommunications",
+    "module": "OSS (Network Operations)",
+    "submodule": "",
+    "test_case_layer": "ETL",
+    "scenario_type": "Exception Handling",
+    "test_suite": "Functional",
+    "execution_tags": [
+      "Regression"
+    ],
+    "classification_rationale": "This test validates the ETL sync job's failure-handling logic when the downstream system is unavailable — a single-feature functional verification of error recovery.",
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Customer record CUST-60300 exists in OSS database with name 'David Park' and primary phone '+1-555-0600'",
+      "CUST-60300 has sync_status 'PENDING' in crm_sync_queue with retry_count = 0",
+      "Downstream CRM system CRM-UAT-01 is intentionally unreachable (firewall rule BLOCK-CRM-01 applied or service stopped)",
+      "ETL sync job SYNC-JOB-3021 is configured with max_retries = 3 and retry_interval = 300 seconds"
+    ],
+    "test_data": [
+      "Customer ID: CUST-60300",
+      "CRM endpoint: https://crm-uat-01.telecomcorp.com/api/v1/contacts",
+      "Expected HTTP error: Connection timeout or HTTP 503",
+      "Max retries configured: 3",
+      "Retry interval: 300 seconds"
+    ],
+    "steps": [
+      "Trigger ETL sync job SYNC-JOB-3021 manually via the job scheduler console",
+      "Monitor the sync job execution log for CUST-60300",
+      "Query the crm_sync_queue table for CUST-60300 after job execution",
+      "Query the sync_error_log table for CUST-60300 error details"
+    ],
+    "expected_result": "ETL sync job logs an error entry in sync_error_log for CUST-60300 with error_type 'CONNECTION_FAILED' and the HTTP error detail (timeout or 503). crm_sync_queue record for CUST-60300 shows sync_status 'RETRY_PENDING', retry_count = 1, and next_retry_at is set to current time + 300 seconds. No data is written to downstream CRM. Job completes without crashing and continues processing other queued records.",
+    "tags": [
+      "telecommunications",
+      "ETL",
+      "Positive",
+      "integration_flow",
+      "ST1-AC5"
+    ],
+    "risk_tags": [
+      "greenfield",
+      "integration_flow"
+    ],
+    "review_feedback": [],
+    "review_profile": "ETL_Integration",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.73,
+    "suite": "Functional",
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 25
+      },
+      "transformation_accuracy": {
+        "score": 4.8,
+        "reason": "Validates transformed downstream values",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": true,
+    "intervention_reason": "Low score or invalid classification"
+  }
+]

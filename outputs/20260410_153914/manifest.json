@@ -1,0 +1,111 @@
+{
+  "project_state": "Legacy",
+  "state_driven_focus": "Risk containment",
+  "domain_analysis": {
+    "project_state": "Legacy",
+    "state_driven_focus": "Risk containment",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "subdomain": "Order Management",
+    "confidence_score": 0.99,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Order Management"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "Order Management": 3
+      }
+    },
+    "domain_signals": [
+      "order",
+      "product",
+      "customer",
+      "fulfillment"
+    ],
+    "business_entities": [
+      "Order Management"
+    ],
+    "user_roles": [
+      "operations user",
+      "sales user"
+    ],
+    "likely_process_flows": [
+      "fulfillment can begin",
+      "downstream teams know the current state"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [
+      "pricing calculations",
+      "tax by jurisdiction",
+      "inventory sync",
+      "order fulfillment"
+    ],
+    "reasoning": "Detected domain=ecommerce_retail, subdomain=Order Management via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 2,
+    "ac_count": 7
+  },
+  "epic_title": "Order management modernization",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "epic_title": "Order management modernization"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "epic_title": "Order management modernization"
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "gpt-4o",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": false,
+      "ssl_verify": true
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "gpt-4o",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 7,
+      "response_time_sec": 162.17,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Valid order creation with all required fields\", \"test_case_layer\": \"API\", \"scenario_type\": \"Positive\", \"test_suite\": \"Functional\", \"execution_tags\": [], \"classification_rationale\": \"This test validates the successful creation of an order with all required fields.\", \"non_functional_type\": \"N/A\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User account exists with role Sales_User and has permission to create orders.\"], \"test_data\": [\"Order Date: 2023-10-01\", \"Customer ID: CUST-10045\", \"Line Item: Product ID: PROD-2001, Quantity: 2\"], \"steps\": [\"Send POST request to /api/orders with valid order data.\"], \"expected_result\": \"HTTP 201 is returned. Response body contains order ID and confirmation message.\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"Order creation without order date\", \"test_case_layer\": \"API\", \"scenario_type\": \"Negative\", \"test_suite\": \"Functional\", \"execution_tags\": [\"Regression\"], \"classification_rationale\": \"This test checks the system's response when the order date is missing.\", \"non_functional_type\": \"N/A\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User acc",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}

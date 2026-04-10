@@ -1,0 +1,106 @@
+{
+  "project_state": "Greenfield",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "Greenfield",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "telecommunications",
+    "secondary_domain": "",
+    "subdomain": "OSS (Network Operations)",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "OSS (Network Operations)"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "OSS (Network Operations)": 1
+      }
+    },
+    "domain_signals": [
+      "service"
+    ],
+    "business_entities": [
+      "OSS (Network Operations)"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "FCC",
+      "Telecommunications Act",
+      "CPNI",
+      "Net Neutrality",
+      "CALEA",
+      "PDPA"
+    ],
+    "domain_test_focus": [
+      "CDR mediation and rating accuracy",
+      "prepaid balance deduction and top-up",
+      "roaming charge calculation",
+      "number porting integrity",
+      "SIM swap fraud detection",
+      "billing cycle cutover accuracy",
+      "data throttling threshold enforcement",
+      "churn prediction model inputs",
+      "dunning workflow sequencing",
+      "revenue assurance reconciliation"
+    ],
+    "reasoning": "Detected domain=telecommunications, subdomain=OSS (Network Operations) via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 5
+  },
+  "epic_title": "",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "epic_title": ""
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "EndToEnd",
+      "Performance"
+    ],
+    "llm_config": {
+      "model": "gpt-4o",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "ST1-AC1: LLM HTTP error 500: {\"error\":{\"message\":\"Response contained no choices.\",\"type\":\"bridge_error\"}}",
+      "generator_source": "online_llm",
+      "model": "gpt-4o",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 4,
+      "response_time_sec": 112.68,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC2\", \"title\": \"Valid unique email update\", \"test_case_layer\": \"API\", \"scenario_type\": \"Positive\", \"test_suite\": \"EndToEnd\", \"execution_tags\": [], \"classification_rationale\": \"EndToEnd is chosen as it validates the complete flow of updating a customer profile with a unique email.\", \"non_functional_type\": \"Performance\", \"preconditions\": [\"Application is deployed and accessible in UAT environment.\", \"User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module.\", \"Customer profile with ID CUST-10045 exists with email 'old_email@example.com'.\"], \"test_data\": [\"Customer ID: CUST-10045\", \"New Email: unique_email@example.com\"], \"steps\": [\"Send PUT request to update customer profile with ID CUST-10045 and new email unique_email@example.com.\"], \"expected_result\": \"HTTP 200 is returned. Customer profile is updated with new email unique_email@example.com.\"}, {\"ac_id\": \"ST1-AC2\", \"title\": \"Blank email update\", \"test_case_layer\": \"API\", \"scenario_type\": \"Negative\", \"test_suite\": \"EndToEnd\", \"execution_tags\": [], \"classification_rationale\": \"EndToEnd is chosen as it validates the complete flow of handling a blank email up",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}

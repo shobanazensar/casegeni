@@ -1,0 +1,110 @@
+{
+  "project_state": "Legacy",
+  "state_driven_focus": "Risk containment",
+  "domain_analysis": {
+    "project_state": "Legacy",
+    "state_driven_focus": "Risk containment",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "subdomain": "Order Management",
+    "confidence_score": 0.99,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Order Management"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "Order Management": 3
+      }
+    },
+    "domain_signals": [
+      "order",
+      "product",
+      "customer",
+      "fulfillment"
+    ],
+    "business_entities": [
+      "Order Management"
+    ],
+    "user_roles": [
+      "operations user",
+      "sales user"
+    ],
+    "likely_process_flows": [
+      "fulfillment can begin",
+      "downstream teams know the current state"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [
+      "pricing calculations",
+      "tax by jurisdiction",
+      "inventory sync",
+      "order fulfillment"
+    ],
+    "reasoning": "Detected domain=ecommerce_retail, subdomain=Order Management via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 2,
+    "ac_count": 7
+  },
+  "epic_title": "Order management modernization",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "epic_title": "Order management modernization"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "epic_title": "Order management modernization"
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "Claude Sonnet 4.6",
+      "api_key": "***",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "Claude Sonnet 4.6",
+      "base_url": "http://127.0.0.1:3100/v1",
+      "batch_count": 7,
+      "response_time_sec": 382.94,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Order created successfully via UI when order date, customer, and one line item are provided\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"test_suite\": \"Functional\", \"execution_tags\": [\"Regression\", \"UAT\"], \"classification_rationale\": \"Validates the happy-path business rule that an order is created when all required fields are populated via the UI.\", \"non_functional_type\": \"\", \"preconditions\": [\"Order Management application is deployed and accessible in UAT environment.\", \"User account 'sales_user_01' exists with role Sales_Representative and has create permission on Order module.\", \"Customer record CUST-10045 (Acme Corp) exists in the system in Active status.\", \"Product SKU-00112 (Wireless Mouse) exists with available inventory of 500 units.\"], \"test_data\": [\"Order Date: 2025-07-15\", \"Customer: CUST-10045 (Acme Corp)\", \"Line Item 1 — Product: SKU-00112 (Wireless Mouse), Quantity: 3, Unit Price: $24.99\"], \"steps\": [\"Navigate to the Create Order page from the Order Management menu.\", \"Enter '2025-07-15' in the Order Date field.\", \"Search for and select customer 'CUST-10045 (Acme Corp)' in the Customer field.\", \"Click the Add L",
+      "strategy": "per_ac_generation"
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}

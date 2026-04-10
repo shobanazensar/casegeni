@@ -1,6 +1,6 @@
 {
   "agent": "A6_Prioritization",
-  "objective": "Assign priority from P1 to P4 and refine automation hints for generated test cases using risk, business value, and project state. Preserve prior fields and do not modify test steps or generate new tests.",
+  "objective": "Assign priority from P0 to P3 and refine automation hints for generated test cases using an 8-dimension model: Business Impact, Functional Criticality, Integration & Dependency Risk, Data Risk, Failure Blast Radius, Defect Probability, Environment Applicability, and Usage Frequency. Preserve all prior fields and do not modify test steps or generate new tests.",
   "input_unit": "one_generated_test_case_with_project_state",
   "required_outputs": [
     "priority",
@@ -12,10 +12,26 @@
     "automation_reason"
   ],
   "allowed_priorities": [
+    "P0",
     "P1",
     "P2",
-    "P3",
-    "P4"
+    "P3"
+  ],
+  "priority_meaning": {
+    "P0": "Must Test — go-live or production blocker, compliance breach, financial/payroll error, data corruption",
+    "P1": "High — key business scenario, critical integration, high user dependency",
+    "P2": "Medium — secondary flow, non-blocking defect, limited user impact",
+    "P3": "Low — informational, cosmetic, rare edge case"
+  },
+  "scoring_dimensions": [
+    "Business Impact (revenue, customer experience, statutory reporting)",
+    "Functional Criticality (core vs supporting functionality)",
+    "Integration & Dependency Risk (upstream/downstream systems)",
+    "Data Risk (accuracy, completeness, GDPR/PII exposure)",
+    "Failure Blast Radius (users, regions, interfaces affected)",
+    "Defect Probability (complex logic, historical defect areas)",
+    "Environment Applicability (prod, UAT, critical interfaces)",
+    "Usage Frequency (daily, periodic, edge use)"
   ],
   "allowed_automation_hints": [
     "Yes",
@@ -25,17 +41,20 @@
   "rules": [
     "Use risk and business value as the primary basis for prioritization.",
     "Use project state from A1 (New, Existing, Legacy) to adjust priority, not replace risk and value.",
-    "Assign P1 to release-blocking, security-sensitive, compliance-sensitive, revenue-critical, or core workflow tests.",
-    "Assign P2 to high-value and important integration, regression, or major validation tests.",
-    "Assign P3 to useful but non-critical broader coverage tests.",
-    "Assign P4 to low-risk, optional, rare-path, or low-value coverage tests.",
-    "Increase priority for Smoke tests and critical negative or exception scenarios when impact is high.",
-    "Increase priority for Security and Performance tests when they protect critical workflows or compliance obligations.",
+    "Evaluate all 8 dimensions for each test case: Business Impact, Functional Criticality, Integration & Dependency Risk, Data Risk, Failure Blast Radius, Defect Probability, Environment Applicability, and Usage Frequency.",
+    "Assign P0 to test cases that are go-live blockers, compliance breaches (GDPR, HIPAA, SOX, statutory), financial/payroll calculation errors, or data corruption risks.",
+    "Assign P1 to key business scenarios, critical integrations, tests with high user or revenue dependency, and high blast-radius failures.",
+    "Assign P2 to secondary flows, non-blocking defects, tests covering limited users or non-critical paths.",
+    "Assign P3 to informational content, cosmetic issues, rare edge cases, and low-frequency optional flows.",
+    "P0 must remain selective — only genuine blockers and compliance-critical tests qualify; do not over-assign P0.",
+    "Use project state from A1 (New, Existing, Legacy) as a modifier: Legacy increases Defect Probability; New increases Functional Criticality weight for core paths.",
+    "Smoke and EndToEnd tests increase Functional Criticality and Blast Radius scores.",
+    "Security and Performance non-functional types increase Data Risk and Defect Probability scores.",
     "Do not assign priority based only on layer.",
     "Refine automation hint as Yes, No, or Maybe based on repeatability, stability, setup complexity, environment dependency, and need for manual judgment.",
     "Do not rewrite the test case.",
-    "Keep the reason concise and evidence-based.",
-    "Keep P1 to P4 as the canonical internal priority scale for all downstream agents.",
+    "Keep the reason concise and evidence-based, citing the dominant dimensions.",
+    "Keep P0 to P3 as the canonical internal priority scale for all downstream agents.",
     "Preserve story, AC, scenario, and module lineage on every prioritized test case."
   ],
   "output_schema": {

@@ -1,0 +1,587 @@
+{
+  "avg_reviewer_score": 4.43,
+  "grades": {
+    "Excellent": 16,
+    "Good": 29,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [
+    "TC00020",
+    "TC00021",
+    "TC00043"
+  ],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.36,
+    "Database": 4.38,
+    "ETL": 4.16,
+    "UI": 4.66
+  },
+  "scores_by_profile": {
+    "API": 4.37,
+    "Database": 4.38,
+    "ETL_Integration": 4.16,
+    "NonFunctional": 4.3,
+    "UI_Business": 4.66
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.36,
+      "completeness": 4.78,
+      "diagnostic_value": 4.44,
+      "security_awareness": 3.0,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 4.26,
+      "correctness": 4.5,
+      "completeness": 4.78,
+      "diagnostic_value": 3.64,
+      "defect_detection": 4.29,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "ETL_Integration": {
+      "data_integrity": 3.0,
+      "transformation_accuracy": 4.2,
+      "completeness": 5.0,
+      "defect_detection": 4.5,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 4.5,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 4.2,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.8,
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.18,
+      "actionability": 4.6,
+      "maintainability": 4.26
+    }
+  },
+  "major_common_issues": [
+    "security_awareness: Security evidence is limited (18)",
+    "diagnostic_value: Needs stronger diagnostics (8)",
+    "data_integrity: Data integrity checks are weak (6)",
+    "completeness: Missing execution detail or contains quality violations (3)",
+    "maintainability: Could be simplified (2)",
+    "measurement_clarity: Measurement criteria are vague (1)",
+    "transformation_accuracy: Transformation checks are weak (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Order is created successfully when order date, customer, and one line item are provided",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Save is blocked when customer is missing on the Create Order form",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Save is blocked when order date is missing on the Create Order form",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC1",
+      "title": "API rejects order creation when order date is missing",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Save is blocked when no line items are added to the Create Order form",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC1",
+      "title": "Database does not persist an order when required fields are missing in the request",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.45,
+      "humanReview": "No",
+      "feedback": "diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Valid product code order line is accepted and order is created successfully via API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST1-AC2",
+      "title": "Multiple line items with one invalid product code are rejected as a single failed order request",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Unknown product code is rejected with field-level validation error on order creation API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC2",
+      "title": "Blank product code is rejected on order entry screen before submission",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST1-AC2",
+      "title": "Malformed product code with special characters is rejected by the order API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST1-AC2",
+      "title": "Unauthorized user cannot create an order with invalid product code through the API",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.3,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST1-AC3",
+      "title": "Tax is calculated and persisted for taxable order line items on order creation",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST1-AC3",
+      "title": "Non-taxable product returns zero tax on order creation",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00018",
+      "acId": "ST1-AC3",
+      "title": "Tax is not recalculated for an order line marked as non-taxable by product master data",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST1-AC3",
+      "title": "Mixed order calculates tax only for taxable line items",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00017",
+      "acId": "ST1-AC3",
+      "title": "Tax amount rounds correctly for a taxable item with fractional cents",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.45,
+      "humanReview": "No",
+      "feedback": "diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST1-AC3",
+      "title": "Tax calculation failure returns a controlled error when tax service is unavailable",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00022",
+      "acId": "ST1-AC4",
+      "title": "Order creation event is published with alternate valid order data through the UI",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00019",
+      "acId": "ST1-AC4",
+      "title": "Order creation publishes event to downstream integration queue after successful API order creation",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00025",
+      "acId": "ST1-AC4",
+      "title": "Order creation event is recorded in the database event outbox after successful order insert",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.62,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00023",
+      "acId": "ST1-AC4",
+      "title": "Order creation event is not exposed when the user lacks create order permission",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00026",
+      "acId": "ST1-AC4",
+      "title": "Order creation event outbox record is not created when order insert fails validation",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.33,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak"
+    },
+    {
+      "testCaseId": "TC00024",
+      "acId": "ST1-AC4",
+      "title": "Order creation event is not duplicated when the same order request is submitted twice",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.19,
+      "humanReview": "No",
+      "feedback": "diagnostic_value: Needs stronger diagnostics; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00020",
+      "acId": "ST1-AC4",
+      "title": "Order creation event payload contains the created order identifiers and line item details",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 4.28,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak"
+    },
+    {
+      "testCaseId": "TC00021",
+      "acId": "ST1-AC4",
+      "title": "Order creation event is not published when downstream integration endpoint is unavailable",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 4.28,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak"
+    },
+    {
+      "testCaseId": "TC00027",
+      "acId": "ST2-AC1",
+      "title": "Operations user updates order status from Pending to Confirmed using a valid transition",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00031",
+      "acId": "ST2-AC1",
+      "title": "Database stores only allowed status transition after a valid update",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.04,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00028",
+      "acId": "ST2-AC1",
+      "title": "API rejects invalid status transition from Shipped to Pending",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00029",
+      "acId": "ST2-AC1",
+      "title": "UI prevents invalid transition from Delivered to Processing for a completed order",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00030",
+      "acId": "ST2-AC1",
+      "title": "API returns validation error when the requested status is missing from the payload",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00032",
+      "acId": "ST2-AC2",
+      "title": "Cancelled order remains blocked from shipping status update through API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00036",
+      "acId": "ST2-AC2",
+      "title": "Database preserves cancelled status after rejected shipped transition attempt",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.62,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00033",
+      "acId": "ST2-AC2",
+      "title": "API rejects cancelled order status change to shipped with validation error",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00037",
+      "acId": "ST2-AC2",
+      "title": "Database does not persist shipped status for cancelled order transition attempt",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.68,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00034",
+      "acId": "ST2-AC2",
+      "title": "API blocks cancelled order from shipping when status update is submitted repeatedly",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.19,
+      "humanReview": "No",
+      "feedback": "diagnostic_value: Needs stronger diagnostics; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00038",
+      "acId": "ST2-AC2",
+      "title": "Database rejects cancelled-to-shipped transition for order with multiple historical status changes",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.08,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00035",
+      "acId": "ST2-AC2",
+      "title": "API returns business-rule error when cancelled order is updated to shipped with missing correlation context",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00039",
+      "acId": "ST2-AC2",
+      "title": "Database records rejected transition when cancelled order is submitted for shipped status without prior shipment data",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.08,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00040",
+      "acId": "ST2-AC3",
+      "title": "Order status change appears in reporting and notification feed for a completed order update",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.57,
+      "humanReview": "No",
+      "feedback": "maintainability: Could be simplified"
+    },
+    {
+      "testCaseId": "TC00044",
+      "acId": "ST2-AC3",
+      "title": "UI displays status update in reporting and notification widgets after save confirmation",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.57,
+      "humanReview": "No",
+      "feedback": "maintainability: Could be simplified"
+    },
+    {
+      "testCaseId": "TC00041",
+      "acId": "ST2-AC3",
+      "title": "API rejects order status update when reporting and notification event payload is missing required status value",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00045",
+      "acId": "ST2-AC3",
+      "title": "API returns unauthorized when a user without reporting access attempts to publish a status update",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00042",
+      "acId": "ST2-AC3",
+      "title": "Reporting and notifications show the latest status after two rapid updates to the same order",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.45,
+      "humanReview": "No",
+      "feedback": "diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00043",
+      "acId": "ST2-AC3",
+      "title": "Notification delivery failure does not block status visibility in reporting",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.92,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

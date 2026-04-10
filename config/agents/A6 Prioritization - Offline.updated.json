@@ -1,6 +1,6 @@
 {
   "agent": "A6_Prioritization",
-  "purpose": "Assign test priority (P1 to P4) and refine automation hints using risk, business value, and project state patterns while preserving lineage.",
+  "purpose": "Assign test priority (P0 to P3) and refine automation hints using an 8-dimension scoring model covering business impact, functional criticality, integration risk, data risk, failure blast radius, defect probability, environment applicability, and usage frequency while preserving lineage.",
   "input_expected_from_previous_agents": [
     "test_case_id",
     "story_id",
@@ -25,17 +25,27 @@
     "tags"
   ],
   "priority_scale": [
+    "P0",
     "P1",
     "P2",
-    "P3",
-    "P4"
+    "P3"
   ],
   "priority_meaning": {
-    "P1": "Critical business risk or release blocker",
-    "P2": "High business importance or significant impact",
-    "P3": "Medium importance or useful broader coverage",
-    "P4": "Low importance, optional, or low-risk coverage"
+    "P0": "Must Test — go-live or production blocker, compliance breach, financial/payroll error, data corruption",
+    "P1": "High — key business scenario, critical integration, high user dependency",
+    "P2": "Medium — secondary flow, non-blocking defect, limited user impact",
+    "P3": "Low — informational, cosmetic, rare edge case"
   },
+  "scoring_dimensions": [
+    "Business Impact (revenue, customer experience, statutory reporting)",
+    "Functional Criticality (core vs supporting functionality)",
+    "Integration & Dependency Risk (upstream/downstream systems)",
+    "Data Risk (accuracy, completeness, GDPR/PII exposure)",
+    "Failure Blast Radius (users, regions, interfaces affected)",
+    "Defect Probability (complex logic, historical defect areas)",
+    "Environment Applicability (prod, UAT, critical interfaces)",
+    "Usage Frequency (daily, periodic, edge use)"
+  ],
   "scoring_model": {
     "priority_formula": "priority = risk_score + value_score + state_adjustment",
     "risk_score_range": [
@@ -183,10 +193,10 @@
     "Compatibility": 1
   },
   "priority_mapping": {
-    "9_to_99": "P1",
-    "7_to_8": "P2",
-    "5_to_6": "P3",
-    "0_to_4": "P4"
+    "10_to_15": "P0",
+    "7_to_9": "P1",
+    "4_to_6": "P2",
+    "0_to_3": "P3"
   },
   "automation_hint_rules": {
     "prefer_yes_if": [

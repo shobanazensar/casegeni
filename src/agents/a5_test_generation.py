@@ -205,6 +205,7 @@ class A5TestGeneration(AgentBase):
             temperature=llm_config.get("temperature", 0.2),
             max_tokens=llm_config.get("max_tokens", 8192),
             use_json_format=llm_config.get("use_json_format", True),
+            ssl_verify=llm_config.get("ssl_verify", True),
         )
         meta = {"requested": True, "used": False, "fallback_reason": "", "generator_source": "offline_rules", "model": llm_config.get("model", ""), "base_url": llm_config.get("base_url", ""), "batch_count": 0, "response_time_sec": 0.0, "raw_preview": "", "strategy": "per_ac_generation"}
         if not client.is_configured():

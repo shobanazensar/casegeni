@@ -1,0 +1,299 @@
+{
+  "avg_reviewer_score": 4.08,
+  "grades": {
+    "Excellent": 0,
+    "Good": 22,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [
+    "TC00029",
+    "TC00028",
+    "TC00030"
+  ],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.08,
+    "Database": 4.18,
+    "ETL": 3.99
+  },
+  "scores_by_profile": {
+    "API": 3.72,
+    "NonFunctional": 4.1
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 3.8,
+      "completeness": 2.8,
+      "diagnostic_value": 3.0,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 4.24,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.0,
+      "diagnostic_value": 4.14,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    }
+  },
+  "major_common_issues": [
+    "measurement_clarity: Measurement criteria are vague (21)",
+    "environment_readiness: Environment needs are under-specified (21)",
+    "diagnostic_value: Needs stronger diagnostics (7)",
+    "correctness: API case uses UI-only language; Layer expectations need tightening (2)",
+    "completeness: Missing execution detail or contains quality violations (1)",
+    "security_awareness: Security evidence is limited (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "API | Negative — Mandatory Fields Name And Primary Phone | ST1-AC1",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC2",
+      "title": "Valid unique email update",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST1-AC2",
+      "title": "Blank email update",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST1-AC2",
+      "title": "Duplicate active email update",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST1-AC2",
+      "title": "Duplicate inactive email update",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST1-AC2",
+      "title": "Format-invalid email update",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST1-AC2",
+      "title": "Max-length email update",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST1-AC2",
+      "title": "Self-same value email update",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.03,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00017",
+      "acId": "ST1-AC3",
+      "title": "Authorized user updates customer profile successfully",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.72,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; diagnostic_value: Needs stronger diagnostics; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00019",
+      "acId": "ST1-AC3",
+      "title": "Unauthenticated user attempts to update profile",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00018",
+      "acId": "ST1-AC3",
+      "title": "Unauthorized role attempts to update profile",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00021",
+      "acId": "ST1-AC3",
+      "title": "User attempts to update another user's profile",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00020",
+      "acId": "ST1-AC3",
+      "title": "User with expired token attempts to update profile",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00022",
+      "acId": "ST1-AC4",
+      "title": "Audit history captures previous and new values on successful update",
+      "layer": "Database",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00023",
+      "acId": "ST1-AC4",
+      "title": "No audit record created on update failure",
+      "layer": "Database",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00024",
+      "acId": "ST1-AC4",
+      "title": "Audit captures partial field changes correctly",
+      "layer": "Database",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00025",
+      "acId": "ST1-AC4",
+      "title": "Ensure audit records are immutable after creation",
+      "layer": "Database",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00026",
+      "acId": "ST1-AC5",
+      "title": "Valid profile update triggers sync",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 3.85,
+      "humanReview": "No",
+      "feedback": "correctness: API case uses UI-only language; Layer expectations need tightening; measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00027",
+      "acId": "ST1-AC5",
+      "title": "Profile update failure does not trigger sync",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 3.85,
+      "humanReview": "No",
+      "feedback": "correctness: API case uses UI-only language; Layer expectations need tightening; measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00029",
+      "acId": "ST1-AC5",
+      "title": "Sync job resilience on profile update failure",
+      "layer": "ETL",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.04,
+      "humanReview": "Yes",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00028",
+      "acId": "ST1-AC5",
+      "title": "Simultaneous updates cause sync issues",
+      "layer": "ETL",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.04,
+      "humanReview": "Yes",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00030",
+      "acId": "ST1-AC5",
+      "title": "Performance of CRM sync after profile update",
+      "layer": "ETL",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 3.88,
+      "humanReview": "Yes",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

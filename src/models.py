@@ -7,7 +7,7 @@ Layer = Literal["UI", "API", "Database", "ETL"]
 ScenarioType = Literal["Positive", "Negative", "Edge Case", "Exception Handling"]
 TestSuite = Literal["Smoke", "Functional", "EndToEnd", ""]
 NonFunctionalType = Literal["Performance", "Security", "Accessibility", "Compatibility", ""]
-Priority = Literal["P1", "P2", "P3", "P4"]
+Priority = Literal["P0", "P1", "P2", "P3"]
 AutomationHint = Literal["Yes", "No", "Maybe"]
 
 
@@ -49,7 +49,7 @@ class TestCase(BaseModel):
     execution_tags: List[str] = Field(default_factory=list)
     classification_rationale: str = ""
     non_functional_type: NonFunctionalType = ""
-    priority: Priority = "P3"
+    priority: Priority = "P2"
     automation_hint: AutomationHint = "Maybe"
     automated: AutomationHint = "Maybe"
     preconditions: List[str]

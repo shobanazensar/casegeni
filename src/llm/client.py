@@ -1,12 +1,13 @@
 from __future__ import annotations
 import json
 import re
+import ssl
 from urllib import request, error
 from typing import Any
 
 
 class LLMClient:
-    def __init__(self, model: str, api_key: str, base_url: str, temperature: float = 0.2, max_tokens: int = 1800, timeout: int = 120, use_json_format: bool = True):
+    def __init__(self, model: str, api_key: str, base_url: str, temperature: float = 0.2, max_tokens: int = 1800, timeout: int = 120, use_json_format: bool = True, ssl_verify: bool = True):
         self.model = model
         self.api_key = api_key
         self.base_url = (base_url or "").rstrip("/")
@@ -18,6 +19,9 @@ class LLMClient:
         # False for those providers; the client will then rely on prompt
         # instructions + the built-in JSON extractor instead.
         self.use_json_format = use_json_format
+        # Set to False to bypass SSL certificate verification.
+        # Required in corporate environments that use a custom CA / TLS proxy.
+        self.ssl_verify = ssl_verify
 
     def is_configured(self) -> bool:
         # api_key is optional for local providers (Ollama, LM Studio).
@@ -118,21 +122,42 @@ class LLMClient:
         }
         if self.use_json_format:
             payload["response_format"] = {"type": "json_object"}
-        req = request.Request(
-            f"{self.base_url}/chat/completions",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {self.api_key}",
-            },
-            method="POST",
-        )
+        ssl_ctx = None if self.ssl_verify else ssl.create_default_context()
+        if ssl_ctx is not None:
+            ssl_ctx.check_hostname = False
+            ssl_ctx.verify_mode = ssl.CERT_NONE
+
+        def _do_request(p: dict):
+            r = request.Request(
+                f"{self.base_url}/chat/completions",
+                data=json.dumps(p).encode("utf-8"),
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {self.api_key}",
+                },
+                method="POST",
+            )
+            with request.urlopen(r, timeout=self.timeout, context=ssl_ctx) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+
         try:
-            with request.urlopen(req, timeout=self.timeout) as resp:
-                raw = json.loads(resp.read().decode("utf-8"))
+            raw = _do_request(payload)
         except error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="ignore")
-            raise RuntimeError(f"LLM HTTP error {exc.code}: {body[:800]}") from exc
+            # Newer models (gpt-5.x, o1, o3) require max_completion_tokens instead of max_tokens.
+            # Detect this specific 400 and automatically retry with the correct param name.
+            if exc.code == 400 and "max_tokens" in body and "max_completion_tokens" in body:
+                payload.pop("max_tokens", None)
+                payload["max_completion_tokens"] = self.max_tokens
+                try:
+                    raw = _do_request(payload)
+                except error.HTTPError as exc2:
+                    body2 = exc2.read().decode("utf-8", errors="ignore")
+                    raise RuntimeError(f"LLM HTTP error {exc2.code}: {body2[:800]}") from exc2
+                except Exception as exc2:
+                    raise RuntimeError(f"LLM request failed: {exc2}") from exc2
+            else:
+                raise RuntimeError(f"LLM HTTP error {exc.code}: {body[:800]}") from exc
         except Exception as exc:
             raise RuntimeError(f"LLM request failed: {exc}") from exc
 
