@@ -1,0 +1,103 @@
+{
+  "project_state": "Greenfield",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "Greenfield",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "telecommunications",
+    "secondary_domain": "",
+    "subdomain": "OSS (Network Operations)",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "OSS (Network Operations)"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "OSS (Network Operations)": 1
+      }
+    },
+    "domain_signals": [
+      "service"
+    ],
+    "business_entities": [
+      "OSS (Network Operations)"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "FCC",
+      "Telecommunications Act",
+      "CPNI",
+      "Net Neutrality",
+      "CALEA",
+      "PDPA"
+    ],
+    "domain_test_focus": [
+      "CDR mediation and rating accuracy",
+      "prepaid balance deduction and top-up",
+      "roaming charge calculation",
+      "number porting integrity",
+      "SIM swap fraud detection",
+      "billing cycle cutover accuracy",
+      "data throttling threshold enforcement",
+      "churn prediction model inputs",
+      "dunning workflow sequencing",
+      "revenue assurance reconciliation"
+    ],
+    "reasoning": "Detected domain=telecommunications, subdomain=OSS (Network Operations) via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 2
+  },
+  "epic_title": "",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "epic_title": ""
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "offline",
+    "execution_mode_used": "offline",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "",
+      "api_key": "",
+      "base_url": "",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": true,
+      "ssl_verify": true
+    },
+    "llm_meta": {
+      "requested": false,
+      "used": false,
+      "fallback_reason": "",
+      "generator_source": "offline_rules"
+    },
+    "generator_source": "offline_rules",
+    "max_test_count": 200
+  }
+}

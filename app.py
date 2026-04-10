@@ -41,27 +41,29 @@ with st.sidebar:
         ["UI", "API", "Database", "ETL"],
         default=["UI", "API", "Database", "ETL"],
     )
-    selected_types = st.multiselect(
-        "Primary test suite",
-        ["Functional", "Smoke", "EndToEnd"],
-        default=["Functional", "Smoke", "EndToEnd"],
-        help="Functional: business rules & AC coverage (default). Smoke: post-deploy health checks. EndToEnd: multi-system flow tests.",
+    selected_test_types = st.multiselect(
+        "Test types",
+        ["Functional", "Non-Functional"],
+        default=["Functional", "Non-Functional"],
+        help="Functional: business rules and AC coverage. Non-Functional: Security, Performance, Compatibility tests.",
     )
-    selected_nf_types = st.multiselect(
-        "Non-functional types",
-        ["Performance", "Security", "Accessibility", "Compatibility"],
+    selected_nf_subtypes = st.multiselect(
+        "Non-functional subtypes",
+        ["Security", "Performance", "Compatibility"],
         default=["Security"],
-        help="Non-functional test cases are generated after functional tests for each AC.",
+        help="Which non-functional subtypes to generate. Active when Non-Functional test type is selected.",
     )
     selected_exec_tags = st.multiselect(
         "Execution tags",
-        ["Regression", "UAT", "Parity", "Migration"],
-        default=["Regression"],
-        help="Secondary tags applied to tests. Regression = re-run after changes. These are never primary classifications.",
+        ["Smoke", "E2E", "Integration", "Regression", "UAT", "Parity", "Migration"],
+        default=["Smoke", "Regression"],
+        help="Execution tags applied to tests. Smoke: post-deploy health checks. E2E: cross-system flow. Integration: cross-service. Regression: re-run after changes.",
     )
-    selected_types_combined = selected_types + selected_nf_types
+    selected_types_combined = (["Functional"] if "Functional" in selected_test_types else []) + selected_nf_subtypes
     temperature = st.number_input("Temperature", min_value=0.0, max_value=1.5, value=0.2, step=0.05)
     max_tokens = st.number_input("Max tokens", min_value=256, max_value=64000, value=8192, step=128)
+    if max_tokens < 4096:
+        st.warning("⚠️ Max tokens is below 4096. Test case generation (A5) requires at least 4096 tokens per AC — the value will be raised automatically to 4096 during generation.")
     max_per_ac = st.number_input("Max tests per AC", min_value=6, max_value=15, value=10, step=1,
         help="Maximum test cases kept per acceptance criterion after optimization. Range 6–15.")
     max_test_count = st.number_input("Max test count (global cap)", min_value=10, max_value=2000, value=200, step=10,
@@ -453,8 +455,8 @@ if "casegen_result" in st.session_state:
                         _ttl = _tc.get("title", _tcid)
                         _l   = _tc.get("test_case_layer", "—")
                         _p   = _tc.get("priority", "—")
-                        _sc  = _tc.get("scenario_type", "—")
-                        _sut = _tc.get("test_suite", "")
+                        _sc   = _tc.get("scenario_type", "—")
+                        _ttype = _tc.get("test_type", "Functional")
                         _pcol = _prio_colour(_p)
                         _lcol = _layer_colour(_l)
                         _icon = _scenario_icon(_sc)
@@ -466,7 +468,7 @@ if "casegen_result" in st.session_state:
                             f'<span class="rtm-pill" style="background:{_lcol}22;color:{_lcol};border:1px solid {_lcol}55;">{_l}</span>'
                             f'<span class="rtm-pill" style="background:{_pcol}22;color:{_pcol};border:1px solid {_pcol}55;">{_p}</span>'
                             f'<span class="rtm-pill" style="background:#f0f0f0;color:#444;border:1px solid #ccc;">{_icon} {_sc}</span>'
-                            f'<span class="rtm-pill" style="background:#f0f8ff;color:#2c5f8a;border:1px solid #bbd;">{_sut}</span>'
+                            f'<span class="rtm-pill" style="background:#f0f8ff;color:#2c5f8a;border:1px solid #bbd;">{_ttype}</span>'
                             f'</div></div>'
                         )
                     _detail += '</div>'
@@ -661,11 +663,11 @@ if "casegen_result" in st.session_state:
         # ── Row 2: Test Suite (h-bar) + Scenario Type (h-bar) ────────────────
         col3, col4 = st.columns(2)
         with col3:
-            st.markdown("**Test Cases by Test Suite / Type**")
-            if not tc_df.empty and "TestSuite" in tc_df.columns:
-                s_df = tc_df["TestSuite"].value_counts().reset_index()
-                s_df.columns = ["Suite", "Count"]
-                st.altair_chart(_hbar(s_df, "Count", "Suite", "set2"), use_container_width=True)
+            st.markdown("**Test Cases by Test Type**")
+            if not tc_df.empty and "TestType" in tc_df.columns:
+                s_df = tc_df["TestType"].value_counts().reset_index()
+                s_df.columns = ["Type", "Count"]
+                st.altair_chart(_hbar(s_df, "Count", "Type", "set2"), use_container_width=True)
         with col4:
             st.markdown("**Test Cases by Scenario Type**")
             if not tc_df.empty and "ScenarioType" in tc_df.columns:

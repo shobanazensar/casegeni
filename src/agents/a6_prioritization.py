@@ -80,7 +80,7 @@ def _score_test_case(tc: dict, project_state: str) -> tuple[int, str]:
     tags = {t.lower() for t in tc.get("tags", [])}
     layer = tc.get("test_case_layer", "")
     scenario = tc.get("scenario_type", "")
-    suite = tc.get("test_suite", "")
+    exec_tags = set(tc.get("execution_tags") or [])
     nft = (tc.get("non_functional_type") or "").lower()
     reasons: list[str] = []
 
@@ -95,7 +95,7 @@ def _score_test_case(tc: dict, project_state: str) -> tuple[int, str]:
 
     # 2. Functional Criticality (0–2)
     fc = 0
-    if suite in {"Smoke", "EndToEnd"}:
+    if "Smoke" in exec_tags or "E2E" in exec_tags or "Integration" in exec_tags:
         fc = 2
     elif any(k in ac or k in title for k in _CRITICALITY_KEYWORDS):
         fc = 1
@@ -124,7 +124,7 @@ def _score_test_case(tc: dict, project_state: str) -> tuple[int, str]:
     br = 0
     if any(k in ac or k in title for k in _BLAST_RADIUS_KEYWORDS):
         br = 1
-    if suite == "EndToEnd":
+    if "E2E" in exec_tags or "Integration" in exec_tags:
         br = min(br + 1, 2)
     if br:
         reasons.append(f"blast-radius={br}")
@@ -133,7 +133,7 @@ def _score_test_case(tc: dict, project_state: str) -> tuple[int, str]:
     dp = 0
     if scenario in {"Negative", "Exception Handling"}:
         dp += 1
-    if project_state == "Legacy":
+    if project_state == "Brownfield":
         dp += 1
     if any(k in ac or k in title for k in _DEFECT_PROBABILITY_KEYWORDS):
         dp = min(dp + 1, 2)

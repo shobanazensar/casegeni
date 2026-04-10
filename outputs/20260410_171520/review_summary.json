@@ -1,0 +1,226 @@
+{
+  "avg_reviewer_score": 4.53,
+  "grades": {
+    "Excellent": 8,
+    "Good": 7,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.33,
+    "Database": 4.38,
+    "UI": 4.7
+  },
+  "scores_by_profile": {
+    "API": 4.33,
+    "Database": 4.38,
+    "UI_Business": 4.7
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.27,
+      "completeness": 4.63,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 4.8,
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "diagnostic_value": 3.0,
+      "defect_detection": 3.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.8,
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.41,
+      "actionability": 4.6,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "security_awareness: Security evidence is limited (6)",
+    "completeness: Missing execution detail or contains quality violations (1)",
+    "diagnostic_value: Needs stronger diagnostics (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Customer profile update succeeds when name and primary phone are provided",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Blank name field shows required-field validation and blocks save",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Blank primary phone field shows required-field validation and blocks save",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Whitespace-only name is rejected on customer profile save",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC1",
+      "title": "Whitespace-only primary phone is rejected on customer profile save",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC1",
+      "title": "API rejects update when both mandatory fields are missing",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC2",
+      "title": "Allow customer to keep the same email during self-update without uniqueness error",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Update customer email to a unique active email and save successfully",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST1-AC2",
+      "title": "Allow update when the same email exists only on an inactive customer record",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.38,
+      "humanReview": "No",
+      "feedback": "diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST1-AC2",
+      "title": "Reject update when the email field contains only whitespace",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST1-AC2",
+      "title": "Reject update when the email field is blank on save",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Reject update when another active customer already uses the target email",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST1-AC2",
+      "title": "Reject update when email format is invalid even before uniqueness evaluation",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST1-AC2",
+      "title": "Reject update when the target email exceeds the maximum supported length",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST1-AC2",
+      "title": "Reject activation when an inactive customer email collides with an active customer email",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

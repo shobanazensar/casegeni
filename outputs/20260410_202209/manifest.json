@@ -1,0 +1,109 @@
+{
+  "project_state": "Brownfield",
+  "state_driven_focus": "Impact analysis",
+  "domain_analysis": {
+    "project_state": "Brownfield",
+    "state_driven_focus": "Impact analysis",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "subdomain": "Order Management",
+    "confidence_score": 0.75,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Order Management"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "Order Management": 3
+      }
+    },
+    "domain_signals": [
+      "order",
+      "customer",
+      "fulfillment"
+    ],
+    "business_entities": [
+      "Order Management"
+    ],
+    "user_roles": [
+      "operations user",
+      "sales user"
+    ],
+    "likely_process_flows": [
+      "fulfillment can begin",
+      "downstream teams know the current state"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [
+      "pricing calculations",
+      "tax by jurisdiction",
+      "inventory sync",
+      "order fulfillment"
+    ],
+    "reasoning": "Detected domain=ecommerce_retail, subdomain=Order Management via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 2,
+    "ac_count": 2
+  },
+  "epic_title": "Order management modernization",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "epic_title": "Order management modernization"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "epic_title": "Order management modernization"
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "gpt-5.4-mini",
+      "api_key": "***",
+      "base_url": "https://qi-labs-resource.openai.azure.com/openai/v1/",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": false,
+      "ssl_verify": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://qi-labs-resource.openai.azure.com/openai/v1/",
+      "batch_count": 2,
+      "response_time_sec": 18.56,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Create order succeeds with order date, customer, and one line item\", \"test_case_layer\": \"UI\", \"test_type\": \"Functional\", \"scenario_type\": \"Positive\", \"execution_tags\": [\"Smoke\", \"E2E\", \"Regression\"], \"non_functional_type\": \"None\", \"preconditions\": [\"Application is deployed and accessible in the UAT environment.\", \"User account exists with role Sales_User and has create permission on Order Management.\", \"Customer record exists with Customer ID CUST-10045 and name John Smith.\", \"Product catalog contains SKU SKU-2001 with product name Wireless Mouse.\", \"Order number sequence is available for new order creation.\"], \"test_data\": [\"Order Date: 2026-04-10\", \"Customer ID: CUST-10045\", \"Customer Name: John Smith\", \"Line Item 1 SKU: SKU-2001\", \"Line Item 1 Quantity: 2\"], \"steps\": [\"Open the Create Order screen.\", \"Enter order date 2026-04-10.\", \"Select customer CUST-10045.\", \"Add line item SKU-2001 with quantity 2.\", \"Click the Save button.\"], \"expected_result\": \"The order is created successfully. A new order number is displayed. The saved order contains order date 2026-04-10, customer CUST-10045, and exactly one line item for SKU-2001 quantity ",
+      "strategy": "per_ac_generation",
+      "max_tokens_used": 8192
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "project_state": "Greenfield",
+  "state_driven_focus": "Discovery",
+  "domain_analysis": {
+    "project_state": "Greenfield",
+    "state_driven_focus": "Discovery",
+    "primary_domain": "telecommunications",
+    "secondary_domain": "",
+    "subdomain": "OSS (Network Operations)",
+    "confidence_score": 0.35,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "OSS (Network Operations)"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "OSS (Network Operations)": 1
+      }
+    },
+    "domain_signals": [
+      "service"
+    ],
+    "business_entities": [
+      "OSS (Network Operations)"
+    ],
+    "user_roles": [
+      "customer service agent"
+    ],
+    "likely_process_flows": [
+      "contact information stays accurate"
+    ],
+    "applicable_regulations": [
+      "FCC",
+      "Telecommunications Act",
+      "CPNI",
+      "Net Neutrality",
+      "CALEA",
+      "PDPA"
+    ],
+    "domain_test_focus": [
+      "CDR mediation and rating accuracy",
+      "prepaid balance deduction and top-up",
+      "roaming charge calculation",
+      "number porting integrity",
+      "SIM swap fraud detection",
+      "billing cycle cutover accuracy",
+      "data throttling threshold enforcement",
+      "churn prediction model inputs",
+      "dunning workflow sequencing",
+      "revenue assurance reconciliation"
+    ],
+    "reasoning": "Detected domain=telecommunications, subdomain=OSS (Network Operations) via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 1,
+    "ac_count": 2
+  },
+  "epic_title": "",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "User updates customer profile",
+      "epic_title": ""
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Smoke",
+      "EndToEnd",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "gpt-5.4-mini",
+      "api_key": "***",
+      "base_url": "https://qi-labs-resource.openai.azure.com/openai/v1/",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": false,
+      "ssl_verify": false
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "gpt-5.4-mini",
+      "base_url": "https://qi-labs-resource.openai.azure.com/openai/v1/",
+      "batch_count": 2,
+      "response_time_sec": 25.11,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Customer profile update succeeds when name and primary phone are provided\", \"test_case_layer\": \"UI\", \"scenario_type\": \"Positive\", \"test_suite\": \"Functional\", \"execution_tags\": [\"Regression\"], \"classification_rationale\": \"Functional is appropriate because this test validates the single business rule that mandatory fields are accepted in the customer profile update flow.\", \"non_functional_type\": \"Smoke\", \"preconditions\": [\"Application is deployed and accessible in the UAT environment.\", \"User account exists with role Customer_Service_Agent and has edit permission on Customer Profile Management.\", \"Customer record exists with Customer ID CUST-10045 and current values Name: Jane Miller, Primary Phone: +1-555-0147, Email: jane.miller@telecom-example.com.\", \"Customer profile edit form is configured to require Name and Primary Phone before save.\"], \"test_data\": [\"Customer ID: CUST-10045\", \"Name: Jane Miller\", \"Primary Phone: +1-555-0147\"], \"steps\": [\"Open Customer ID CUST-10045 in the customer profile edit screen.\", \"Enter Name as Jane Miller.\", \"Enter Primary Phone as +1-555-0147.\", \"Click the Save button.\"], \"expected_result\": \"The profile ",
+      "strategy": "per_ac_generation",
+      "max_tokens_used": 8192
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}

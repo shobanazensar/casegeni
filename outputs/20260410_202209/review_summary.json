@@ -1,0 +1,202 @@
+{
+  "avg_reviewer_score": 4.5,
+  "grades": {
+    "Excellent": 4,
+    "Good": 9,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.41,
+    "Database": 4.68,
+    "UI": 4.68
+  },
+  "scores_by_profile": {
+    "API": 4.41,
+    "Database": 4.68,
+    "UI_Business": 4.68
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.42,
+      "completeness": 5.0,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 4.8,
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "diagnostic_value": 4.6,
+      "defect_detection": 4.5,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.8,
+      "correctness": 4.5,
+      "completeness": 5.0,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.27,
+      "actionability": 4.6,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "security_awareness: Security evidence is limited (9)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Create order succeeds with order date, customer, and one line item",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.63,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Order creation is rejected when customer is blank whitespace",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Order creation is rejected when no line items are provided",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Order creation is rejected when order date is missing",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC1",
+      "title": "Order creation accepts exactly one valid line item",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.68,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC1",
+      "title": "Order creation is rejected when order date format is invalid",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC1",
+      "title": "Order creation rejects null required fields in request payload",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST2-AC1",
+      "title": "Allow permitted order status change from Pending to Confirmed",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST2-AC1",
+      "title": "Reject invalid direct transition from Pending to Shipped",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST2-AC1",
+      "title": "Reject backward transition from Shipped to Pending",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST2-AC1",
+      "title": "Reject no-op status update when target status matches current status",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST2-AC1",
+      "title": "Reject conflicting concurrent status updates when only one transition is valid",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST2-AC1",
+      "title": "Reject stale-state update when order has already advanced to a newer status",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

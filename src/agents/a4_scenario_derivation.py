@@ -218,14 +218,16 @@ class A4ScenarioDerivation(AgentBase):
         return results
 
     def _online_derive(self, requirements: list[dict], domain_context: dict, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, progress_callback=None) -> list[dict]:
-        # Use a lower max_tokens for A4 — blueprints are compact (no steps/expected results).
-        # Cap at 1500 to stay well within bridge limits; one call per AC keeps payloads small.
+        # A4 blueprints are compact. With the optimised output spec (redundant
+        # identity fields stripped from each blueprint), 15 blueprints per AC
+        # cost ~100-150 tokens each = 1500-2500 tokens. 3000 gives safe headroom.
+        _A4_MAX_TOKENS = 3000
         client = LLMClient(
             model=llm_config.get("model", ""),
             api_key=llm_config.get("api_key", ""),
             base_url=llm_config.get("base_url", ""),
             temperature=llm_config.get("temperature", 0.2),
-            max_tokens=min(llm_config.get("max_tokens", 1500), 1500),
+            max_tokens=min(llm_config.get("max_tokens", _A4_MAX_TOKENS), _A4_MAX_TOKENS),
             use_json_format=llm_config.get("use_json_format", True),
             ssl_verify=llm_config.get("ssl_verify", True),
         )
@@ -247,10 +249,13 @@ class A4ScenarioDerivation(AgentBase):
             "- Downstream/sync AC: include sync-triggered, correct-payload, no-sync-on-failure, failure-resilience, race-condition variants.\n"
             "- Only use layers present in allowed_layers.\n"
             "- Keep each blueprint atomic — one scenario per blueprint, no test steps.\n"
-            "- Every blueprint must include: story_id, story_title, ac_id, ac_text, domain, module, submodule, "
+            "- Generate at most 15 blueprints per AC. Prioritise distinct, high-value variants over exhaustive lists.\n"
+            "- Each blueprint must include ONLY these fields: "
             "seed_type (Positive|Negative|Edge Case|Exception Handling), focus, title_hint, "
             "scenario_key (snake_case), layer_candidates (array, one item from allowed_layers), "
             "functional_test_type, non_functional_type, risk_tags.\n"
+            "- Do NOT repeat story_id, story_title, ac_id, ac_text, domain, module or submodule "
+            "inside each blueprint — they are already known from the input context.\n"
         )
 
         all_blueprints: list[dict] = []
@@ -259,6 +264,16 @@ class A4ScenarioDerivation(AgentBase):
 
         for req in requirements:
             story_id = req["story_id"]
+            # Wire retry notifications into the progress bar for this AC.
+            if progress_callback:
+                _ac_label = req["ac_id"]
+                _total = total
+                _done_ref = [completed]
+                def _make_retry_cb(label: str, done_ref: list, tot: int):
+                    def _cb(attempt: int, err: str) -> None:
+                        progress_callback(done_ref[0], tot, f"⚠️ Retrying {label} (attempt {attempt}): {err[:80]}")
+                    return _cb
+                client.on_retry = _make_retry_cb(_ac_label, _done_ref, _total)
             user_msg = json.dumps({
                 "story_id": story_id,
                 "story_title": req["story_title"],
@@ -272,9 +287,8 @@ class A4ScenarioDerivation(AgentBase):
                 "allowed_layers": selected_layers,
                 "selected_test_types": selected_test_types,
                 "output_instructions": [
-                    "Return JSON with a single key 'scenario_blueprints' containing an array.",
-                    "Generate all meaningful scenario variants for this single AC.",
-                    "Do not truncate — include every distinct variant the AC implies.",
+                    "Return JSON with a single key 'scenario_blueprints' containing an array (max 15 items).",
+                    "Generate the most distinct, high-value scenario variants for this single AC. Do not pad.",
                 ],
             }, indent=2)
 
@@ -283,15 +297,11 @@ class A4ScenarioDerivation(AgentBase):
                 raw = payload.get("scenario_blueprints", [])
                 if not isinstance(raw, list):
                     raw = []
-            except Exception:
-                # Fallback to offline derivation for this AC on LLM error
-                raw = []
-                for bp in self._derive_for_requirement(req, domain_context, selected_layers, selected_test_types):
-                    all_blueprints.append(bp)
-                completed += 1
-                if progress_callback:
-                    progress_callback(completed, total, f"A4 {completed}/{total}: {req['ac_id']} (offline fallback)")
-                continue
+            except Exception as exc:
+                # Propagate the LLM error immediately — no offline fallback.
+                # The LLMClient already applied exponential-backoff retries for
+                # transient 429/5xx errors before raising here.
+                raise RuntimeError(f"LLM failed for {req['story_id']}/{req['ac_id']}: {exc}") from exc
 
             for bp in raw:
                 bp.setdefault("story_id", story_id)

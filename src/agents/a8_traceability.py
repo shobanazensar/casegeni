@@ -78,7 +78,7 @@ class A8Traceability(AgentBase):
                     "title": tc.get("title", ""),
                     "testCaseLayer": tc.get("test_case_layer", ""),
                     "scenarioType": tc.get("scenario_type", ""),
-                    "testSuite": tc.get("test_suite", ""),
+                    "testType": tc.get("test_type", "Functional"),
                     "nonFunctionalType": tc.get("non_functional_type", ""),
                     "priority": tc.get("priority", ""),
                     "automatable": AUTO_ICON.get(tc.get("automated", "May be"), "⚠️"),

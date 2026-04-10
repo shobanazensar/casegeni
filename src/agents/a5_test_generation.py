@@ -191,28 +191,74 @@ class A5TestGeneration(AgentBase):
         if not merged.get("test_case_layer"):
             merged["test_case_layer"] = bp["layer_candidates"][0]
         merged.setdefault("functional_test_type", bp.get("functional_test_type", "Functional"))
-        merged.setdefault("non_functional_type", bp.get("non_functional_type", ""))
+        # ── Watch-point fix: NF classification must be consistent ─────────────
+        # Blueprint's non_functional_type is the ground truth (set by A4 domain rules).
+        # The LLM may return scenario_type=Positive for a Security test — override here
+        # before the schema guardrail ever sees the dict.
+        _NF_SUBTYPES = {"Security", "Performance", "Compatibility"}
+        bp_nft = bp.get("non_functional_type", "")
+        effective_nft = (merged.get("non_functional_type") or "") or bp_nft
+        if effective_nft in _NF_SUBTYPES:
+            merged["non_functional_type"] = effective_nft
+            merged["test_type"] = "Non-Functional"
+            # Only override scenario_type if it didn't come back as a valid NF subtype
+            if merged.get("scenario_type") not in _NF_SUBTYPES:
+                merged["scenario_type"] = effective_nft
+        else:
+            merged["non_functional_type"] = ""
+            if merged.get("test_type") not in {"Functional", "Non-Functional"}:
+                merged["test_type"] = "Functional"
         return merged
 
-    def _online_generate_from_groups(self, blueprints: list[dict], document_text: str, llm_config: dict, fail_on_error: bool = True, progress_callback=None) -> tuple[list[dict], dict]:
+    @staticmethod
+    def _infer_execution_tags(merged: dict) -> None:
+        """Add Smoke / E2E / Integration execution tags based on content signals
+        when the LLM omitted them. Mutates merged in-place."""
+        title    = (merged.get("title") or "").lower()
+        expected = (merged.get("expected_result") or "").lower()
+        steps    = " ".join(merged.get("steps") or []).lower()
+        combined = f"{title} {expected} {steps}"
+        tags: set[str] = set(merged.get("execution_tags") or [])
+
+        _E2E_SIGNALS         = {"end-to-end", "e2e", "cross-system", "multi-system",
+                                 "across systems", "cross system", "hire-to-pay", "pay-to-ledger"}
+        _INTEGRATION_SIGNALS = {"downstream", "upstream", "integration", "etl", "sync",
+                                 "webhook", "external system", "api call", "cross-service"}
+        _SMOKE_SIGNALS       = {"health check", "smoke", "app launches", "core api",
+                                 "login works", "system is up", "service is running"}
+
+        if any(s in combined for s in _E2E_SIGNALS):
+            tags.add("E2E")
+        if any(s in combined for s in _INTEGRATION_SIGNALS):
+            tags.add("Integration")
+        if any(s in combined for s in _SMOKE_SIGNALS):
+            tags.add("Smoke")
+        if not tags:
+            tags = {"Regression"}  # always have at least one tag
+        merged["execution_tags"] = sorted(tags)
+
+    def _online_generate_from_groups(self, blueprints: list[dict], document_text: str, llm_config: dict, progress_callback=None) -> tuple[list[dict], dict]:
         # Use user-configured max_tokens (default 8192). Each rich test case costs ~550 tokens;
         # 4-8 test cases per AC requires ~2200-4400 tokens — 8192 gives safe headroom.
-        # Offline drafts are generated LAZILY — only on LLM failure for a specific AC.
+        # A5 generates full test cases (preconditions, test_data, steps, expected_result)
+        # for 4-8 cases per AC. Each case costs ~550 tokens; 8 cases across 4 layers = ~4400
+        # output tokens minimum. Enforce a floor of 4096 to prevent truncation regardless
+        # of what the user configured (A4 enforces a ceiling of 1500 for its compact blueprints).
+        _A5_MIN_TOKENS = 4096
+        configured_tokens = llm_config.get("max_tokens", 8192)
+        effective_tokens = max(configured_tokens, _A5_MIN_TOKENS)
         client = LLMClient(
             model=llm_config.get("model", ""),
             api_key=llm_config.get("api_key", ""),
             base_url=llm_config.get("base_url", ""),
             temperature=llm_config.get("temperature", 0.2),
-            max_tokens=llm_config.get("max_tokens", 8192),
+            max_tokens=effective_tokens,
             use_json_format=llm_config.get("use_json_format", True),
             ssl_verify=llm_config.get("ssl_verify", True),
         )
-        meta = {"requested": True, "used": False, "fallback_reason": "", "generator_source": "offline_rules", "model": llm_config.get("model", ""), "base_url": llm_config.get("base_url", ""), "batch_count": 0, "response_time_sec": 0.0, "raw_preview": "", "strategy": "per_ac_generation"}
+        meta = {"requested": True, "used": False, "fallback_reason": "", "generator_source": "offline_rules", "model": llm_config.get("model", ""), "base_url": llm_config.get("base_url", ""), "batch_count": 0, "response_time_sec": 0.0, "raw_preview": "", "strategy": "per_ac_generation", "max_tokens_used": effective_tokens}
         if not client.is_configured():
-            meta["fallback_reason"] = "LLM configuration incomplete"
-            if fail_on_error:
-                raise ValueError(meta["fallback_reason"])
-            return [self._offline_generate_one(bp) for bp in blueprints], meta
+            raise ValueError("LLM configuration incomplete — model and base_url are required for online mode.")
 
         # --- Group blueprints by (story_id, ac_id) — no pre-built drafts ---
         ac_groups: dict[tuple[str, str], dict] = {}
@@ -236,16 +282,19 @@ class A5TestGeneration(AgentBase):
             "MANDATORY COVERAGE RULE — for EVERY AC without exception:\n"
             "  - Always include at least one Positive (scenario_type: Positive) test case — the success/happy-path scenario that proves the AC works end-to-end.\n"
             "  - Never skip the positive case even when the AC is primarily about validation or rejection.\n\n"
-            "TEST SUITE CLASSIFICATION (MANDATORY — assign exactly ONE per test case):\n"
-            "  - Smoke: system health verification ONLY — app launches, login works, core API responds. No business rule validation.\n"
-            "  - Functional: validates a single feature, rule, or acceptance criterion. This is the DEFAULT for all business logic tests.\n"
-            "  - EndToEnd: validates a COMPLETE business flow crossing multiple systems/modules (e.g. Hire→Payroll→Payslip). Do NOT use for single-module tests.\n"
-            "  NEVER use Regression, Sanity, or any other value as test_suite. Regression belongs in execution_tags only.\n\n"
-            "EXECUTION TAGS (optional array — can be empty or contain one or more):\n"
-            "  Allowed values: Regression, UAT, Parity, Migration.\n"
-            "  Apply Regression when the test should re-run after code changes or fixes.\n\n"
-            "CLASSIFICATION RATIONALE: one sentence explaining why the test_suite was chosen.\n\n"
-            "NON-FUNCTIONAL TESTS: generate non-functional tests (Performance, Security, etc.) AFTER all functional tests for the AC.\n\n"
+            "TEST TYPE CLASSIFICATION (MANDATORY — assign exactly ONE per test case):\n"
+            "  - Functional: validates business rules, ACs, or functional requirements. DEFAULT for all business-logic tests.\n"
+            "  - Non-Functional: validates quality attributes. Use for Security, Performance, and Compatibility tests only.\n\n"
+            "SCENARIO TYPE — set based on test_type:\n"
+            "  - If test_type is Functional: scenario_type must be exactly one of: Positive, Negative, Edge Case, Exception Handling.\n"
+            "  - If test_type is Non-Functional: scenario_type must be exactly one of: Security, Performance, Compatibility.\n\n"
+            "EXECUTION TAGS (optional array — can be empty or contain one or more from the allowed list):\n"
+            "  Allowed values: Smoke, E2E, Integration, Regression, UAT, Parity, Migration.\n"
+            "  - Smoke: post-deploy health verification of core system paths.\n"
+            "  - E2E: end-to-end flow spanning multiple systems or modules.\n"
+            "  - Integration: cross-service or cross-system integration verification.\n"
+            "  - Regression: re-run after code changes. Apply to most functional tests.\n\n"
+            "NON-FUNCTIONAL TESTS: generate Non-Functional test cases (Security, Performance, Compatibility) AFTER all Functional tests for the AC.\n\n"
             "GOLDEN PRINCIPLES — every test case MUST follow all of these:\n"
             "PRECONDITIONS — state only, never actions:\n"
             "  - Describe system state, user role with exact permissions, config, and required data BEFORE execution.\n"
@@ -258,7 +307,6 @@ class A5TestGeneration(AgentBase):
             "  - BAD: 'Verify salary is calculated'. GOOD: 'Click the Save button.'\n"
             "EXPECTED RESULTS — assertive, measurable, present-tense:\n"
             "  - BAD: 'System works as expected'. GOOD: 'HTTP 400 is returned. Response body contains field-level error: Name is required.'\n"
-            "scenario_type must be exactly one of: Positive, Negative, Edge Case, Exception Handling.\n"
             "test_case_layer must be exactly one of the layers in allowed_layers.\n"
             "Use each layer only when it adds unique verification value. All array fields must be JSON arrays."
         )
@@ -273,6 +321,17 @@ class A5TestGeneration(AgentBase):
             grp_bps = ac_data["blueprints"]
             allowed_layers = sorted({bp["layer_candidates"][0] for bp in grp_bps})
 
+            # Wire retry notifications into the progress bar for this AC.
+            if progress_callback:
+                _label = ac_id
+                _done_ref = [completed]
+                _total_ref = total_acs
+                def _make_retry_cb(label: str, done_ref: list, tot: int):
+                    def _cb(attempt: int, err: str) -> None:
+                        progress_callback(done_ref[0], tot, f"⚠️ Retrying {label} (attempt {attempt}): {err[:80]}")
+                    return _cb
+                client.on_retry = _make_retry_cb(_label, _done_ref, _total_ref)
+
             user = json.dumps({
                 "story_id": story_id,
                 "story_title": ac_data["story_title"],
@@ -284,12 +343,11 @@ class A5TestGeneration(AgentBase):
                 "generation_rules": [
                     "Return JSON with a single key 'test_cases' containing an array.",
                     "Every test case must set 'ac_id' to the ac_id value provided above.",
-                    "Generate 4-8 test cases per AC. Always start with at least one Positive (happy-path) test case. Then cover Negative, Edge Case, and Exception Handling variants. Non-functional tests (Security, Performance) come last. Do not pad — every test must add distinct coverage.",
-                    "scenario_type must be exactly one of: Positive, Negative, Edge Case, Exception Handling.",
-                    "test_suite must be exactly one of: Smoke, Functional, EndToEnd. Default to Functional for all business-rule tests. Use Smoke only for health checks. Use EndToEnd only when the test crosses multiple systems.",
-                    "execution_tags: array of zero or more from: Regression, UAT, Parity, Migration. Apply Regression for tests that should re-run after changes.",
-                    "classification_rationale: one sentence explaining the test_suite choice.",
-                    "Each test case must include: ac_id, title, test_case_layer (from allowed_layers), scenario_type, test_suite, execution_tags (array), classification_rationale, non_functional_type, preconditions (array), test_data (array), steps (array), expected_result (string).",
+                    "Generate 4-8 test cases per AC. Always start with at least one Positive (happy-path) test case. Then cover Negative, Edge Case, and Exception Handling variants. Non-Functional tests (Security, Performance, Compatibility) come last. Do not pad — every test must add distinct coverage.",
+                    "test_type must be exactly one of: Functional, Non-Functional. Default to Functional for all business-logic tests.",
+                    "scenario_type depends on test_type: if Functional use one of Positive, Negative, Edge Case, Exception Handling; if Non-Functional use one of Security, Performance, Compatibility.",
+                    "execution_tags: array of zero or more from: Smoke, E2E, Integration, Regression, UAT, Parity, Migration.",
+                    "Each test case must include: ac_id, title, test_case_layer (from allowed_layers), test_type, scenario_type, execution_tags (array), non_functional_type, preconditions (array), test_data (array), steps (array), expected_result (string).",
                     "Titles must be concrete and outcome-specific. BAD: 'Validate AC-01'. GOOD: 'Blank name field returns inline validation error on Save'.",
                     "PRECONDITIONS: system state and user role only. Never actions, never vague.",
                     "TEST DATA: concrete values and identifiers. Never placeholders.",
@@ -324,33 +382,30 @@ class A5TestGeneration(AgentBase):
                     merged["module"] = base_bp["module"]
                     merged["submodule"] = base_bp.get("submodule", "")
                     merged["source"] = "online_llm"
-                    # Map functional_test_type → test_suite if LLM used old field name
-                    if not merged.get("test_suite") and merged.get("functional_test_type"):
-                        merged["test_suite"] = merged["functional_test_type"]
+                    self._infer_execution_tags(merged)
                     improved_out.append(merged)
                 out.extend(improved_out)
                 any_llm_success = True
 
             except Exception as exc:
-                # Per-AC fallback: generate offline drafts on demand for this AC only
-                meta["fallback_reason"] = f"{ac_id}: {exc}"
-                out.extend(self._offline_generate_one(bp) for bp in grp_bps)
+                # Propagate the LLM error immediately — no offline fallback.
+                # The LLMClient already applied exponential-backoff retries for
+                # transient 429/5xx errors before raising here.
+                raise RuntimeError(f"LLM failed for {story_id}/{ac_id}: {exc}") from exc
 
             completed += 1
             if progress_callback:
                 progress_callback(completed, total_acs, f"A5 {completed}/{total_acs}: {ac_id}")
 
         meta["response_time_sec"] = round(time.time() - started, 2)
-        if any_llm_success:
-            meta["used"] = True
-            meta["generator_source"] = "online_llm"
+        meta["used"] = True
+        meta["generator_source"] = "online_llm"
         return out, meta
 
     def execute(self, scenario_blueprints: list[dict], document_text: str, execution_mode: str, llm_config: dict, progress_callback=None) -> dict:
         llm_meta = {"requested": execution_mode == "online", "used": False, "fallback_reason": "", "generator_source": "offline_rules"}
         if execution_mode == "online":
-            # Offline drafts are generated lazily inside the online path (only on per-AC LLM failure)
-            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, document_text, llm_config, fail_on_error=True, progress_callback=progress_callback)
+            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, document_text, llm_config, progress_callback=progress_callback)
         else:
             tests = [self._offline_generate_one(bp) for bp in scenario_blueprints]
         for idx, tc in enumerate(tests, start=1):

@@ -36,12 +36,11 @@ class A7Optimization(AgentBase):
 
         optimized = sorted(per_ac_selected, key=rank)[:max_test_count]
         for tc in optimized:
-            # Preserve test_suite if already set by A5 LLM; default to Functional
-            ts = tc.get("test_suite", "")
-            if ts not in {"Smoke", "Functional", "EndToEnd"}:
-                ts = "Functional"
-            tc["test_suite"] = ts
-            tc["suite"] = ts  # backward-compat alias
+            # Preserve test_type if already set by A5 LLM; default to Functional.
+            tt = tc.get("test_type", "")
+            if tt not in {"Functional", "Non-Functional"}:
+                tt = "Functional"
+            tc["test_type"] = tt
             # Ensure execution_tags default to Regression if not already assigned
             if not tc.get("execution_tags"):
                 tc["execution_tags"] = ["Regression"]
@@ -82,9 +81,9 @@ class A7Optimization(AgentBase):
                 "reduction_percent": round(((before - len(optimized)) / before) * 100, 2) if before else 0,
                 "deduplication_reduction_percent": dedup_pct,
                 "priority_scoring_reduction_percent": rank_pct,
-                "smoke_count": sum(1 for x in optimized if x.get("test_suite") == "Smoke"),
-                "functional_count": sum(1 for x in optimized if x.get("test_suite") == "Functional"),
-                "endtoend_count": sum(1 for x in optimized if x.get("test_suite") == "EndToEnd"),
+                "smoke_count": sum(1 for x in optimized if "Smoke" in (x.get("execution_tags") or [])),
+                "functional_count": sum(1 for x in optimized if x.get("test_type") == "Functional"),
+                "non_functional_count": sum(1 for x in optimized if x.get("test_type") == "Non-Functional"),
                 "critical_coverage_preserved": "Yes" if all(any(o["test_case_id"] == p["test_case_id"] for o in optimized) for p in p12[: min(len(p12), len(optimized))]) else "No",
             },
         }

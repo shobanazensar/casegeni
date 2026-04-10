@@ -1,0 +1,126 @@
+{
+  "avg_reviewer_score": 4.13,
+  "grades": {
+    "Excellent": 0,
+    "Good": 7,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.13
+  },
+  "scores_by_profile": {
+    "API": 4.05,
+    "NonFunctional": 4.18
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.27,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 4.5,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.0,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    }
+  },
+  "major_common_issues": [
+    "measurement_clarity: Measurement criteria are vague (4)",
+    "environment_readiness: Environment needs are under-specified (4)",
+    "completeness: Missing execution detail or contains quality violations (3)",
+    "security_awareness: Security evidence is limited (3)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Valid order creation with required fields",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.96,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation (no customer)",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Order creation with invalid date",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST2-AC1",
+      "title": "Error handling when updating order status with invalid data",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST2-AC1",
+      "title": "Invalid state transition from 'New' to 'Cancelled'",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST2-AC1",
+      "title": "No state transition when order status is unchanged",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST2-AC1",
+      "title": "Valid state transition from 'New' to 'In Progress'",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

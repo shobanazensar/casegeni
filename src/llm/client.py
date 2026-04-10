@@ -2,8 +2,16 @@ from __future__ import annotations
 import json
 import re
 import ssl
+import time
 from urllib import request, error
 from typing import Any
+
+# HTTP status codes that indicate a transient server-side problem and are safe to retry.
+# 400 (bad request / config error), 401 (auth), 403 (forbidden) are NOT retried —
+# they represent permanent caller mistakes that a retry cannot fix.
+_RETRYABLE_HTTP_CODES: frozenset[int] = frozenset({429, 500, 502, 503, 504})
+_MAX_RETRIES: int = 1       # 1 retry (2 total attempts); delay: 1s
+_RETRY_BASE_DELAY: float = 1.0  # seconds; doubles each attempt: 1s → 2s → …
 
 
 class LLMClient:
@@ -14,6 +22,10 @@ class LLMClient:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.timeout = timeout
+        # Optional callback invoked before each retry sleep.
+        # Signature: on_retry(attempt: int, error_message: str) -> None
+        # Set by callers (A4/A5) to surface retry notices to the UI.
+        self.on_retry: object = None  # Callable[[int, str], None] | None
         # Some local models (Ollama, LM Studio) may not support the
         # response_format={"type":"json_object"} parameter. Set this to
         # False for those providers; the client will then rely on prompt
@@ -140,35 +152,66 @@ class LLMClient:
             with request.urlopen(r, timeout=self.timeout, context=ssl_ctx) as resp:
                 return json.loads(resp.read().decode("utf-8"))
 
-        try:
-            raw = _do_request(payload)
-        except error.HTTPError as exc:
-            body = exc.read().decode("utf-8", errors="ignore")
-            # Newer models (gpt-5.x, o1, o3) require max_completion_tokens instead of max_tokens.
-            # Detect this specific 400 and automatically retry with the correct param name.
-            if exc.code == 400 and "max_tokens" in body and "max_completion_tokens" in body:
-                payload.pop("max_tokens", None)
-                payload["max_completion_tokens"] = self.max_tokens
-                try:
-                    raw = _do_request(payload)
-                except error.HTTPError as exc2:
-                    body2 = exc2.read().decode("utf-8", errors="ignore")
-                    raise RuntimeError(f"LLM HTTP error {exc2.code}: {body2[:800]}") from exc2
-                except Exception as exc2:
-                    raise RuntimeError(f"LLM request failed: {exc2}") from exc2
-            else:
-                raise RuntimeError(f"LLM HTTP error {exc.code}: {body[:800]}") from exc
-        except Exception as exc:
-            raise RuntimeError(f"LLM request failed: {exc}") from exc
+        # ── Retry loop with exponential backoff ───────────────────────────────
+        # Retries on transient server errors (429, 5xx) and network failures only.
+        # Permanent errors (400, 401, 403) raise immediately — retrying won't help.
+        last_exc: Exception | None = None
+        raw: Any = None
+        for attempt in range(_MAX_RETRIES + 1):
+            try:
+                raw = _do_request(payload)
+                last_exc = None
+                break  # success
+            except error.HTTPError as exc:
+                body = exc.read().decode("utf-8", errors="ignore")
+                # Newer models (gpt-5.x, o1, o3) require max_completion_tokens instead of
+                # max_tokens. Detect this specific 400 and correct the param name once.
+                if exc.code == 400 and "max_tokens" in body and "max_completion_tokens" in body:
+                    payload.pop("max_tokens", None)
+                    payload["max_completion_tokens"] = self.max_tokens
+                    try:
+                        raw = _do_request(payload)
+                        last_exc = None
+                        break
+                    except error.HTTPError as exc2:
+                        body2 = exc2.read().decode("utf-8", errors="ignore")
+                        raise RuntimeError(f"LLM HTTP error {exc2.code}: {body2[:800]}") from exc2
+                    except Exception as exc2:
+                        raise RuntimeError(f"LLM request failed: {exc2}") from exc2
+                last_exc = RuntimeError(f"LLM HTTP error {exc.code}: {body[:800]}")
+                if exc.code not in _RETRYABLE_HTTP_CODES or attempt >= _MAX_RETRIES:
+                    raise last_exc from exc
+                if callable(self.on_retry):
+                    self.on_retry(attempt + 1, str(last_exc))
+                time.sleep(_RETRY_BASE_DELAY * (2 ** attempt))
+            except Exception as exc:
+                last_exc = RuntimeError(f"LLM request failed: {exc}")
+                if attempt >= _MAX_RETRIES:
+                    raise last_exc from exc
+                if callable(self.on_retry):
+                    self.on_retry(attempt + 1, str(last_exc))
+                time.sleep(_RETRY_BASE_DELAY * (2 ** attempt))
+        if last_exc is not None:
+            raise last_exc
 
+        # ── Parse response — inside retry scope so transient empty/garbled
+        # responses are retried; token-limit truncations fail immediately. ─────
         content, finish_reason = self._extract_text_content(raw)
+
+        # Token-limit truncation is a permanent config error — retrying with
+        # identical params will produce the same truncated output every time.
+        if finish_reason == "length":
+            raise RuntimeError(
+                f"LLM response was truncated (finish_reason=length). "
+                f"The current max_tokens setting ({self.max_tokens}) is too low for this request. "
+                f"Increase max_tokens in the LLM configuration and retry."
+            )
+
         json_text = self._extract_balanced_json(content)
         try:
             return json.loads(json_text)
         except Exception as exc:
             hint = ""
-            if finish_reason == "length":
-                hint = " Output appears truncated. Increase max tokens or reduce batch size."
-            elif json_text and json_text.lstrip().startswith(("{", "[")):
-                hint = " Response looks like partial JSON. Reduce batch size or increase max tokens."
-            raise ValueError(f"LLM returned non-JSON content: {json_text[:800]}.{hint}") from exc
+            if json_text and json_text.lstrip().startswith(("{", "[")):
+                hint = " Response looks like partial JSON — reduce batch size or increase max_tokens."
+            raise ValueError(f"LLM returned non-JSON content: {json_text[:400]}.{hint}") from exc

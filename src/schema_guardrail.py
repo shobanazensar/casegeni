@@ -15,10 +15,9 @@ TEST_CASE_SCHEMA_DEFAULTS = {
     "module": "",
     "submodule": "",
     "test_case_layer": "UI",
+    "test_type": "Functional",
     "scenario_type": "Positive",
-    "test_suite": "Functional",
     "execution_tags": [],
-    "classification_rationale": "",
     "non_functional_type": "",
     "priority": "P2",
     "automation_hint": "May be",
@@ -33,14 +32,14 @@ TEST_CASE_SCHEMA_DEFAULTS = {
     "review_profile": "",
     "reviewer_grade": "",
     "reviewer_score": 0.0,
-    "suite": "Functional",
 }
 
 VALID_LAYERS = {"UI", "API", "Database", "ETL"}
 VALID_SCENARIO_TYPES = {"Positive", "Negative", "Edge Case", "Exception Handling"}
-VALID_TEST_SUITES = {"Smoke", "Functional", "EndToEnd", ""}
-VALID_NON_FUNCTIONAL_TYPES = {"Performance", "Security", "Accessibility", "Compatibility", ""}
-VALID_EXECUTION_TAGS = {"Regression", "UAT", "Parity", "Migration"}
+VALID_NF_SCENARIO_TYPES = {"Security", "Performance", "Compatibility"}
+VALID_TEST_TYPES = {"Functional", "Non-Functional"}
+VALID_NON_FUNCTIONAL_TYPES = {"Performance", "Security", "Compatibility", ""}
+VALID_EXECUTION_TAGS = {"Smoke", "E2E", "Integration", "Regression", "UAT", "Parity", "Migration"}
 VALID_PRIORITIES = {"P0", "P1", "P2", "P3"}
 VALID_AUTOMATED = {"Yes", "No", "May be", "Maybe"}
 
@@ -102,53 +101,57 @@ def apply_schema_guardrail(test_case: dict, index: int = 0) -> dict:
         "ui": "UI", "api": "API",
         "e2e": "API", "end to end": "API", "end-to-end": "API",
     })
-    tc["scenario_type"] = _norm_set(tc.get("scenario_type"), VALID_SCENARIO_TYPES, "Positive", {
-        "positive": "Positive",
-        "happy path": "Positive",
-        "happy_path": "Positive",
-        "valid": "Positive",
-        "valid input": "Positive",
-        "success": "Positive",
-        "negative": "Negative",
-        "invalid": "Negative",
-        "invalid input": "Negative",
-        "validation": "Negative",
-        "error": "Negative",
-        "failure": "Negative",
-        "role-based": "Negative",
-        "authorization": "Negative",
-        "edge": "Edge Case",
-        "edge case": "Edge Case",
-        "edge_case": "Edge Case",
-        "boundary": "Edge Case",
-        "boundary value": "Edge Case",
-        "boundary_value": "Edge Case",
-        "alternate": "Edge Case",
-        "exception": "Exception Handling",
-        "exception handling": "Exception Handling",
-        "exception_handling": "Exception Handling",
-        "error handling": "Exception Handling",
-        "error_handling": "Exception Handling",
+    # Normalise non_functional_type first — it drives test_type and scenario_type for NF tests.
+    tc["non_functional_type"] = _norm_set(tc.get("non_functional_type"), VALID_NON_FUNCTIONAL_TYPES, "", {
+        "performance": "Performance", "security": "Security", "compatibility": "Compatibility",
     })
-    # Accept test_suite (new) or functional_test_type (old field) as input source
-    raw_suite = tc.get("test_suite") or tc.get("functional_test_type") or ""
-    tc["test_suite"] = _norm_set(raw_suite, VALID_TEST_SUITES, "Functional", {
-        "functional": "Functional",
-        "smoke": "Smoke",
-        "endtoend": "EndToEnd", "end to end": "EndToEnd", "end-to-end": "EndToEnd",
-        "e2e": "EndToEnd", "e2e flow": "EndToEnd",
-        "sanity": "Functional", "regression": "Functional",
-    })
+    # Derive test_type: explicit "Non-Functional" in dict OR presence of non_functional_type wins.
+    if _ensure_string(tc.get("test_type")) == "Non-Functional" or tc["non_functional_type"]:
+        tc["test_type"] = "Non-Functional"
+        # For NF tests scenario_type == the NF subtype (Security / Performance / Compatibility).
+        tc["scenario_type"] = _norm_set(
+            tc.get("scenario_type") or tc["non_functional_type"],
+            VALID_NF_SCENARIO_TYPES, "Security",
+            {"security": "Security", "performance": "Performance", "compatibility": "Compatibility"},
+        )
+        tc["non_functional_type"] = tc["scenario_type"]  # keep in sync
+    else:
+        tc["test_type"] = "Functional"
+        tc["non_functional_type"] = ""
+        tc["scenario_type"] = _norm_set(tc.get("scenario_type"), VALID_SCENARIO_TYPES, "Positive", {
+            "positive": "Positive",
+            "happy path": "Positive",
+            "happy_path": "Positive",
+            "valid": "Positive",
+            "valid input": "Positive",
+            "success": "Positive",
+            "negative": "Negative",
+            "invalid": "Negative",
+            "invalid input": "Negative",
+            "validation": "Negative",
+            "error": "Negative",
+            "failure": "Negative",
+            "role-based": "Negative",
+            "authorization": "Negative",
+            "edge": "Edge Case",
+            "edge case": "Edge Case",
+            "edge_case": "Edge Case",
+            "boundary": "Edge Case",
+            "boundary value": "Edge Case",
+            "boundary_value": "Edge Case",
+            "alternate": "Edge Case",
+            "exception": "Exception Handling",
+            "exception handling": "Exception Handling",
+            "exception_handling": "Exception Handling",
+            "error handling": "Exception Handling",
+            "error_handling": "Exception Handling",
+        })
     tc["execution_tags"] = [
         t.strip() for t in _ensure_list(tc.get("execution_tags"))
         if isinstance(t, str) and t.strip() in VALID_EXECUTION_TAGS
     ]
     if not tc["execution_tags"]:
         tc["execution_tags"] = ["Regression"]  # default all tests to Regression tag
-    tc["classification_rationale"] = _ensure_string(tc.get("classification_rationale"))
-    tc["non_functional_type"] = _norm_set(tc.get("non_functional_type"), VALID_NON_FUNCTIONAL_TYPES, "", {
-        "performance": "Performance", "security": "Security", "accessibility": "Accessibility", "compatibility": "Compatibility"
-    })
     tc["priority"] = _norm_set(tc.get("priority"), VALID_PRIORITIES, "P2", {"blocker": "P0", "critical": "P0", "must test": "P0", "high": "P1", "medium": "P2", "low": "P3"})
     automated = _ensure_string(tc.get("automated") or tc.get("automation_hint") or "May be")
     tc["automation_hint"] = _norm_set(automated, VALID_AUTOMATED, "May be", {"maybe": "May be", "yes": "Yes", "no": "No"})
@@ -166,7 +169,6 @@ def apply_schema_guardrail(test_case: dict, index: int = 0) -> dict:
         tc["reviewer_score"] = float(tc.get("reviewer_score") or 0.0)
     except Exception:
         tc["reviewer_score"] = 0.0
-    tc["suite"] = tc["test_suite"]  # backward-compat alias — suite == test_suite
     return tc
 
 

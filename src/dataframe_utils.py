@@ -6,7 +6,7 @@ from typing import Any
 
 DISPLAY_COLUMNS = [
     "test_case_id", "story_id", "ac_id", "title", "domain", "module", "test_case_layer",
-    "scenario_type", "test_suite", "execution_tags",
+    "test_type", "scenario_type", "execution_tags",
     "priority", "automated",
     "preconditions", "test_data", "steps", "expected_result",
 ]
@@ -19,8 +19,8 @@ CAMEL_CASE_HEADERS = {
     "domain": "Domain",
     "module": "Module",
     "test_case_layer": "TestCaseLayer",
+    "test_type": "TestType",
     "scenario_type": "ScenarioType",
-    "test_suite": "TestSuite",
     "execution_tags": "ExecutionTags",
     "priority": "Priority",
     "automated": "Automated",
@@ -44,7 +44,14 @@ def normalize_cell_for_dataframe(value: Any) -> str:
 def test_cases_to_dataframe(test_cases: list[dict]) -> pd.DataFrame:
     rows = []
     for tc in test_cases or []:
-        row = {k: normalize_cell_for_dataframe(v) for k, v in tc.items() if k in DISPLAY_COLUMNS}
+        row = {}
+        for k in DISPLAY_COLUMNS:
+            v = tc.get(k)
+            if k == "execution_tags":
+                # execution_tags are comma-delimited per spec
+                row[k] = ", ".join(str(t) for t in v) if isinstance(v, list) else str(v or "")
+            else:
+                row[k] = normalize_cell_for_dataframe(v)
         rows.append(row)
     df = pd.DataFrame(rows)
     for col in DISPLAY_COLUMNS:

@@ -1,0 +1,144 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00003"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "ac_id": "ST2-AC1",
+      "ac_text": "Only valid state transitions are allowed.",
+      "mapped_test_cases": [
+        "TC00007",
+        "TC00005",
+        "TC00006",
+        "TC00004"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 2,
+    "covered_acs": 2,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00001",
+      "title": "Valid order creation with required fields",
+      "testCaseLayer": "API",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00002",
+      "title": "Invalid order creation (no customer)",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00003",
+      "title": "Order creation with invalid date",
+      "testCaseLayer": "API",
+      "scenarioType": "Exception Handling",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00007",
+      "title": "Error handling when updating order status with invalid data",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00005",
+      "title": "Invalid state transition from 'New' to 'Cancelled'",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00006",
+      "title": "No state transition when order status is unchanged",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00004",
+      "title": "Valid state transition from 'New' to 'In Progress'",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    }
+  ]
+}

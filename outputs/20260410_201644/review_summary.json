@@ -1,0 +1,524 @@
+{
+  "avg_reviewer_score": 4.29,
+  "grades": {
+    "Excellent": 8,
+    "Good": 32,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [
+    "TC00013",
+    "TC00014",
+    "TC00028",
+    "TC00029",
+    "TC00043",
+    "TC00044",
+    "TC00058",
+    "TC00059"
+  ],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.29,
+    "Database": 4.37,
+    "ETL": 4.05,
+    "UI": 4.4
+  },
+  "scores_by_profile": {
+    "API": 4.29,
+    "Database": 4.37,
+    "ETL_Integration": 4.05,
+    "UI_Business": 4.4
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.03,
+      "completeness": 4.71,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 3.9,
+      "correctness": 4.0,
+      "completeness": 4.81,
+      "diagnostic_value": 4.6,
+      "defect_detection": 4.15,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "ETL_Integration": {
+      "data_integrity": 3.9,
+      "transformation_accuracy": 3.0,
+      "completeness": 4.75,
+      "defect_detection": 4.15,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 4.1,
+      "correctness": 3.67,
+      "completeness": 4.71,
+      "business_outcome_focus": 4.5,
+      "defect_detection": 4.03,
+      "actionability": 4.6,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "security_awareness: Security evidence is limited (12)",
+    "data_integrity: Data integrity checks are weak (8)",
+    "transformation_accuracy: Transformation checks are weak (8)",
+    "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening (5)",
+    "clarity: Needs clearer title or steps (3)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC1",
+      "title": "Happy path: ST1-AC1 completed successfully via UI with valid data",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    },
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Update succeeds with all required fields populated",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.33,
+      "humanReview": "No",
+      "feedback": "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC1",
+      "title": "Alternative valid input: ST1-AC1 succeeds with alternate valid data via API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC1",
+      "title": "Happy path: ST1-AC1 completed successfully via API with valid data",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.21,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST1-AC1",
+      "title": "Database | Positive — Order Management | ST1-AC1",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.11,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST1-AC1",
+      "title": "ETL | Positive — Order Management | ST1-AC1",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.81,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Blank required field is blocked with inline validation",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.71,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "API rejects request with missing required field",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.43,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Rejected request does not persist partial data",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.68,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST1-AC1",
+      "title": "ETL | Negative — Order Management | ST1-AC1",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "Yes",
+      "feedback": "transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00018",
+      "acId": "ST1-AC2",
+      "title": "Happy path: ST1-AC2 completed successfully via UI with valid data",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST1-AC2",
+      "title": "Validate ST1-AC2",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.37,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps"
+    },
+    {
+      "testCaseId": "TC00020",
+      "acId": "ST1-AC2",
+      "title": "Alternative valid input: ST1-AC2 succeeds with alternate valid data via API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00019",
+      "acId": "ST1-AC2",
+      "title": "Happy path: ST1-AC2 completed successfully via API with valid data",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.21,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00025",
+      "acId": "ST1-AC2",
+      "title": "Database | Positive — Invalid Product Code | ST1-AC2",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.11,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak"
+    },
+    {
+      "testCaseId": "TC00028",
+      "acId": "ST1-AC2",
+      "title": "ETL | Positive — Invalid Product Code | ST1-AC2",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.81,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00022",
+      "acId": "ST1-AC2",
+      "title": "UI | Negative — Invalid Product Code | ST1-AC2",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.5,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00017",
+      "acId": "ST1-AC2",
+      "title": "Reject invalid processing for ST1-AC2",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.36,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00026",
+      "acId": "ST1-AC2",
+      "title": "Database | Negative — Invalid Product Code | ST1-AC2",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.61,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00029",
+      "acId": "ST1-AC2",
+      "title": "ETL | Negative — Invalid Product Code | ST1-AC2",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "Yes",
+      "feedback": "transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00033",
+      "acId": "ST2-AC1",
+      "title": "Happy path: ST2-AC1 completed successfully via UI with valid data",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    },
+    {
+      "testCaseId": "TC00031",
+      "acId": "ST2-AC1",
+      "title": "Validate ST2-AC1",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.37,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps"
+    },
+    {
+      "testCaseId": "TC00035",
+      "acId": "ST2-AC1",
+      "title": "Alternative valid input: ST2-AC1 succeeds with alternate valid data via API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00034",
+      "acId": "ST2-AC1",
+      "title": "Happy path: ST2-AC1 completed successfully via API with valid data",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.21,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00040",
+      "acId": "ST2-AC1",
+      "title": "Database | Positive — Order Management | ST2-AC1",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.11,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak"
+    },
+    {
+      "testCaseId": "TC00043",
+      "acId": "ST2-AC1",
+      "title": "ETL | Positive — Order Management | ST2-AC1",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.81,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00037",
+      "acId": "ST2-AC1",
+      "title": "UI | Negative — Order Management | ST2-AC1",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.5,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00032",
+      "acId": "ST2-AC1",
+      "title": "Reject invalid processing for ST2-AC1",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.36,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00041",
+      "acId": "ST2-AC1",
+      "title": "Database | Negative — Order Management | ST2-AC1",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.61,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00044",
+      "acId": "ST2-AC1",
+      "title": "ETL | Negative — Order Management | ST2-AC1",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "Yes",
+      "feedback": "transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00048",
+      "acId": "ST2-AC2",
+      "title": "Happy path: ST2-AC2 completed successfully via UI with valid data",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "correctness: Expected result is too vague — must be specific, measurable, and assertable; Layer expectations need tightening"
+    },
+    {
+      "testCaseId": "TC00046",
+      "acId": "ST2-AC2",
+      "title": "Validate ST2-AC2",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.37,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps"
+    },
+    {
+      "testCaseId": "TC00050",
+      "acId": "ST2-AC2",
+      "title": "Alternative valid input: ST2-AC2 succeeds with alternate valid data via API",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00049",
+      "acId": "ST2-AC2",
+      "title": "Happy path: ST2-AC2 completed successfully via API with valid data",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.21,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00055",
+      "acId": "ST2-AC2",
+      "title": "Database | Positive — Cancelled Order | ST2-AC2",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 4.11,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak"
+    },
+    {
+      "testCaseId": "TC00058",
+      "acId": "ST2-AC2",
+      "title": "ETL | Positive — Cancelled Order | ST2-AC2",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 3.81,
+      "humanReview": "Yes",
+      "feedback": "data_integrity: Data integrity checks are weak; transformation_accuracy: Transformation checks are weak"
+    },
+    {
+      "testCaseId": "TC00052",
+      "acId": "ST2-AC2",
+      "title": "UI | Negative — Cancelled Order | ST2-AC2",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Excellent",
+      "score": 4.5,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00047",
+      "acId": "ST2-AC2",
+      "title": "Reject invalid processing for ST2-AC2",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.36,
+      "humanReview": "No",
+      "feedback": "security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00056",
+      "acId": "ST2-AC2",
+      "title": "Database | Negative — Cancelled Order | ST2-AC2",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Excellent",
+      "score": 4.61,
+      "humanReview": "No",
+      "feedback": ""
+    },
+    {
+      "testCaseId": "TC00059",
+      "acId": "ST2-AC2",
+      "title": "ETL | Negative — Cancelled Order | ST2-AC2",
+      "layer": "ETL",
+      "profile": "ETL_Integration",
+      "grade": "Good",
+      "score": 4.29,
+      "humanReview": "Yes",
+      "feedback": "transformation_accuracy: Transformation checks are weak"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}
