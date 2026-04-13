@@ -1,0 +1,301 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00003",
+        "TC00004"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Invalid product codes must be rejected.",
+      "mapped_test_cases": [
+        "TC00007",
+        "TC00005",
+        "TC00006",
+        "TC00008"
+      ],
+      "removed_test_cases": [
+        {
+          "id": "TC00009",
+          "title": "Max-length product code is rejected",
+          "layer": "UI",
+          "priority": "P2",
+          "scenario": "Security",
+          "reason": "Duplicate — identical scenario/layer/outcome already represented by a retained test"
+        }
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "ac_id": "ST2-AC1",
+      "ac_text": "Only valid state transitions are allowed.",
+      "mapped_test_cases": [
+        "TC00010",
+        "TC00011",
+        "TC00012"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "ac_id": "ST2-AC2",
+      "ac_text": "Cancelled orders cannot move to shipped.",
+      "mapped_test_cases": [
+        "TC00015",
+        "TC00016",
+        "TC00013",
+        "TC00014"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 4,
+    "covered_acs": 4,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00001",
+      "title": "Valid order creation with single line item",
+      "testCaseLayer": "UI",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00002",
+      "title": "Invalid order creation missing customer",
+      "testCaseLayer": "UI",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00003",
+      "title": "Invalid order creation missing product",
+      "testCaseLayer": "UI",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00004",
+      "title": "Order creation with invalid product code",
+      "testCaseLayer": "UI",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00007",
+      "title": "Blank product code is rejected",
+      "testCaseLayer": "UI",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00005",
+      "title": "Invalid product code is rejected",
+      "testCaseLayer": "UI",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00006",
+      "title": "Valid product code is accepted",
+      "testCaseLayer": "UI",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00008",
+      "title": "Whitespace-only product code is rejected",
+      "testCaseLayer": "UI",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00010",
+      "title": "Only valid state transitions are allowed: Positive",
+      "testCaseLayer": "UI",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00011",
+      "title": "Only valid state transitions are allowed: Negative",
+      "testCaseLayer": "UI",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00012",
+      "title": "Only valid state transitions are allowed: Edge Case",
+      "testCaseLayer": "UI",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00015",
+      "title": "Order with invalid status cannot move",
+      "testCaseLayer": "UI",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00016",
+      "title": "Error handling for cancelled order move",
+      "testCaseLayer": "UI",
+      "scenarioType": "Exception Handling",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00013",
+      "title": "Cancelled order cannot move to shipped",
+      "testCaseLayer": "UI",
+      "scenarioType": "Performance",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Performance",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00014",
+      "title": "Valid order cannot move to cancelled",
+      "testCaseLayer": "UI",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    }
+  ]
+}

@@ -1,0 +1,1493 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Valid order creation with single line item",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Product ID: PROD-10001",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Click the Save button"
+    ],
+    "expected_result": "HTTP 201 is returned. Response body contains order ID and confirmation message.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Required fields",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.98,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; defect-probability=1",
+    "risk_score": 2,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Invalid order creation missing customer",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer ID: (empty)",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Product ID: PROD-10001",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Click the Save button"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains error message: 'Customer is required'.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Required fields",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Invalid order creation missing product",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Product ID: (empty)",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Click the Save button"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains error message: 'Product is required'.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Required fields",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Order creation with invalid product code",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Product ID: PROD-99999",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Click the Save button"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains error message: 'Invalid product code'.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Required fields",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; defect-probability=1",
+    "risk_score": 2,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Invalid product code is rejected",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Invalid product code: ABC123"
+    ],
+    "steps": [
+      "Enter invalid product code ABC123"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Invalid product code",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Invalid product code",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "InvalidInput"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; data-risk=2; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Valid product code is accepted",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Valid product code: PROD-12345"
+    ],
+    "steps": [
+      "Enter valid product code PROD-12345"
+    ],
+    "expected_result": "HTTP 200 is returned. Order is successfully created",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Invalid product code",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "InvalidInput"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified",
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.96,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; data-risk=2; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Blank product code is rejected",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Blank product code:"
+    ],
+    "steps": [
+      "Leave product code field blank"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Product code is required",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Invalid product code",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "InvalidInput"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; data-risk=2; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Whitespace-only product code is rejected",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100",
+      "Whitespace-only product code:"
+    ],
+    "steps": [
+      "Enter whitespace-only product code"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Product code is invalid",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Invalid product code",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "InvalidInput"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; data-risk=2; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00010",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Only valid state transitions are allowed: Positive",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Operations and has edit permission on Order Status module."
+    ],
+    "test_data": [
+      "{\"customer_id\": \"CUST-10045\", \"order_status\": \"New\"}"
+    ],
+    "steps": [
+      "Click the Update Order Status button."
+    ],
+    "expected_result": "HTTP 200 is returned. Response body contains order status updated successfully.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Edge Case",
+      "State Transition",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "Invalid State Transition"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.98,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "defect-probability=2",
+    "risk_score": 2,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Only valid state transitions are allowed: Negative",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Operations and has edit permission on Order Status module."
+    ],
+    "test_data": [
+      "{\"customer_id\": \"CUST-10045\", \"order_status\": \"Cancelled\"}"
+    ],
+    "steps": [
+      "Click the Update Order Status button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains order status cannot be updated from Cancelled to Shipped.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Edge Case",
+      "State Transition",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "Invalid State Transition"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "defect-probability=2",
+    "risk_score": 2,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00012",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Only valid state transitions are allowed: Edge Case",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment.",
+      "User account exists with role Operations and has edit permission on Order Status module."
+    ],
+    "test_data": [
+      "{\"customer_id\": \"CUST-10045\", \"order_status\": \"Shipped\"}"
+    ],
+    "steps": [
+      "Click the Update Order Status button."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains order status cannot be updated from Shipped to New.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Edge Case",
+      "State Transition",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "Invalid State Transition"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "defect-probability=2",
+    "risk_score": 2,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00015",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Order with invalid status cannot move",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "{\"Customer ID\": \"CUST-10045\", \"Name\": \"John Smith\", \"Phone\": \"+1-555-0100\"}"
+    ],
+    "steps": [
+      "Enter invalid order status"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Invalid order status",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Functional",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "defect-probability=1",
+    "risk_score": 1,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Error handling for cancelled order move",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "{\"Customer ID\": \"CUST-10045\", \"Name\": \"John Smith\", \"Phone\": \"+1-555-0100\"}"
+    ],
+    "steps": [
+      "Click the Cancel button"
+    ],
+    "expected_result": "HTTP 500 is returned. Response body contains error message: Unable to cancel order due to internal error",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Functional",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "defect-probability=2",
+    "risk_score": 2,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Cancelled order cannot move to shipped",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Performance",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Performance",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "{\"Customer ID\": \"CUST-10045\", \"Name\": \"John Smith\", \"Phone\": \"+1-555-0100\"}"
+    ],
+    "steps": [
+      "Click the Cancel button"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Order status cannot be changed to Shipped",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Functional",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "defect-probability=1",
+    "risk_score": 1,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00014",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Valid order cannot move to cancelled",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "{\"Customer ID\": \"CUST-10045\", \"Name\": \"John Smith\", \"Phone\": \"+1-555-0100\"}"
+    ],
+    "steps": [
+      "Click the Save button"
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains field-level error: Order status cannot be changed to Cancelled",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Functional",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "High"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "data-risk=2; defect-probability=1",
+    "risk_score": 3,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  }
+]

@@ -1,0 +1,192 @@
+{
+  "avg_reviewer_score": 3.87,
+  "grades": {
+    "Excellent": 0,
+    "Good": 14,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "UI": 3.87
+  },
+  "scores_by_profile": {
+    "UI_Business": 3.87
+  },
+  "profile_dimension_summary": {
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 3.0,
+      "correctness": 4.5,
+      "completeness": 2.8,
+      "business_outcome_focus": 3.43,
+      "defect_detection": 4.3,
+      "actionability": 3.0,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "clarity: Needs clearer title or steps (14)",
+    "completeness: Missing execution detail or contains quality violations (14)",
+    "actionability: Needs stronger data or step detail (14)",
+    "business_outcome_focus: Outcome is too generic (10)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Valid order creation with required fields",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.76,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation - missing customer",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation - missing order date",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation - no line items",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC1",
+      "title": "Valid order creation with single line item",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Valid product code saves order successfully",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Invalid product code returns error",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Blank product code returns error",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC2",
+      "title": "Whitespace-only product code returns error",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST2-AC1",
+      "title": "Valid state transition: shipped to delivered",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST2-AC1",
+      "title": "Invalid state transition: cancelled to shipped",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST2-AC2",
+      "title": "Order can be cancelled",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST2-AC2",
+      "title": "Cancelled order cannot move to shipped",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST2-AC2",
+      "title": "Edge case: cancelled order with no shipping details",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

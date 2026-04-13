@@ -41,9 +41,12 @@ class A7Optimization(AgentBase):
             if tt not in {"Functional", "Non-Functional"}:
                 tt = "Functional"
             tc["test_type"] = tt
-            # Ensure execution_tags default to Regression if not already assigned
+            # Leave execution_tags as-is; the pipeline normalises them to the
+            # user-selected set after the full generation chain completes.
+            # Only set a bare default here if tags are completely absent so that
+            # downstream formatters never encounter a missing field.
             if not tc.get("execution_tags"):
-                tc["execution_tags"] = ["Regression"]
+                tc["execution_tags"] = []
 
         optimized_ids = {tc["test_case_id"] for tc in optimized}
 

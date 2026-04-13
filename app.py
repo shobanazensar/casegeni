@@ -59,7 +59,12 @@ with st.sidebar:
         default=["Smoke", "Regression"],
         help="Execution tags applied to tests. Smoke: post-deploy health checks. E2E: cross-system flow. Integration: cross-service. Regression: re-run after changes.",
     )
-    selected_types_combined = (["Functional"] if "Functional" in selected_test_types else []) + selected_nf_subtypes
+    # Only include NF subtypes when the "Non-Functional" test type checkbox is actually checked.
+    # Without this guard, NF subtypes bleed through even when Non-Functional is deselected.
+    selected_types_combined = (
+        (["Functional"] if "Functional" in selected_test_types else []) +
+        (selected_nf_subtypes if "Non-Functional" in selected_test_types else [])
+    )
     temperature = st.number_input("Temperature", min_value=0.0, max_value=1.5, value=0.2, step=0.05)
     max_tokens = st.number_input("Max tokens", min_value=256, max_value=64000, value=8192, step=128)
     if max_tokens < 4096:
@@ -215,6 +220,7 @@ if run_clicked:
         reviewer_mode=reviewer_mode,
         selected_layers=selected_layers,
         selected_test_types=selected_types_combined,
+        selected_exec_tags=selected_exec_tags,
         llm_config={
             "model": llm_model,
             "api_key": api_key,

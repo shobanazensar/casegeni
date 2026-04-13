@@ -1,0 +1,332 @@
+{
+  "avg_reviewer_score": 4.1,
+  "grades": {
+    "Excellent": 0,
+    "Good": 24,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [
+    "TC00023",
+    "TC00027"
+  ],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.11,
+    "Database": 4.01,
+    "ETL": 4.04,
+    "UI": 4.12
+  },
+  "scores_by_profile": {
+    "API": 4.03,
+    "Database": 3.85,
+    "NonFunctional": 4.14
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.33,
+      "defect_detection": 4.3,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "Database": {
+      "data_integrity": 3.0,
+      "correctness": 3.5,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "defect_detection": 4.5,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 4.3,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.0,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.12,
+      "traceability": 5.0
+    }
+  },
+  "major_common_issues": [
+    "measurement_clarity: Measurement criteria are vague (16)",
+    "environment_readiness: Environment needs are under-specified (16)",
+    "completeness: Missing execution detail or contains quality violations (8)",
+    "security_awareness: Security evidence is limited (7)",
+    "correctness: API case uses UI-only language; Layer expectations need tightening (2)",
+    "data_integrity: Data integrity checks are weak (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation (missing date)",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Order creation with invalid customer",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Valid order creation with required fields",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC2",
+      "title": "Valid product code creates order",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.72,
+      "humanReview": "No",
+      "feedback": "correctness: API case uses UI-only language; Layer expectations need tightening; completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Invalid product code returns error",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Blank product code returns error",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC3",
+      "title": "Tax calculated for taxable products",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.96,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC3",
+      "title": "Tax exemption for non-taxable products",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST1-AC3",
+      "title": "Tax calculation for multiple taxable products",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST1-AC3",
+      "title": "Error handling for invalid tax rates",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST1-AC4",
+      "title": "Order creation failure with invalid data",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST1-AC4",
+      "title": "Order creation with invalid product code",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST1-AC4",
+      "title": "Successful order creation with valid data",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00017",
+      "acId": "ST2-AC1",
+      "title": "Invalid state transition from 'New' to 'Cancelled'",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00019",
+      "acId": "ST2-AC1",
+      "title": "Security: Unauthorized access to update order status",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST2-AC1",
+      "title": "Valid state transition from 'New' to 'In Progress'",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00020",
+      "acId": "ST2-AC2",
+      "title": "Cancelled order cannot be shipped",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00021",
+      "acId": "ST2-AC2",
+      "title": "Un-cancelled order can be shipped",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.0,
+      "humanReview": "No",
+      "feedback": "correctness: API case uses UI-only language; Layer expectations need tightening; measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00022",
+      "acId": "ST2-AC2",
+      "title": "Cancelled order with multiple items cannot be shipped",
+      "layer": "Database",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00023",
+      "acId": "ST2-AC2",
+      "title": "Invalid order status cannot be shipped",
+      "layer": "ETL",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.04,
+      "humanReview": "Yes",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00026",
+      "acId": "ST2-AC3",
+      "title": "Order status update with duplicate data",
+      "layer": "Database",
+      "profile": "Database",
+      "grade": "Good",
+      "score": 3.85,
+      "humanReview": "No",
+      "feedback": "data_integrity: Data integrity checks are weak; completeness: Missing execution detail or contains quality violations"
+    },
+    {
+      "testCaseId": "TC00024",
+      "acId": "ST2-AC3",
+      "title": "Successful status update with valid data",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00025",
+      "acId": "ST2-AC3",
+      "title": "Failed status update with invalid data",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00027",
+      "acId": "ST2-AC3",
+      "title": "Order status update with network failure",
+      "layer": "ETL",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.04,
+      "humanReview": "Yes",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

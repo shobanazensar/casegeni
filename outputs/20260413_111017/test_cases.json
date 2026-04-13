@@ -1,0 +1,5122 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Create order succeeds when order date, customer, and one line item are provided",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "E2E",
+      "Regression",
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045 and name John Smith.",
+      "Product record exists with Product Code SKU-1001 and description Wireless Mouse.",
+      "Order number sequence is available for new order creation."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Line Item 1: Product Code SKU-1001, Quantity 2, Unit Price 25.00"
+    ],
+    "steps": [
+      "Open the Create Order screen.",
+      "Enter order date 2026-04-13.",
+      "Select customer CUST-10045.",
+      "Add line item SKU-1001 with quantity 2 and unit price 25.00.",
+      "Click the Save button."
+    ],
+    "expected_result": "Order is created successfully. A new order number is displayed. The saved order contains order date 2026-04-13, customer CUST-10045, and one line item for SKU-1001.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Mandatory field presence",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "happy_path",
+      "field_validation",
+      "order_creation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; blast-radius=1; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Whitespace-only customer value is rejected in the order form",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Order creation screen is available.",
+      "Product record exists with Product Code SKU-1001."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer Value: three spaces",
+      "Line Item 1: Product Code SKU-1001, Quantity 1, Unit Price 25.00"
+    ],
+    "steps": [
+      "Open the Create Order screen.",
+      "Enter order date 2026-04-13.",
+      "Enter three spaces in the customer field.",
+      "Add line item SKU-1001 with quantity 1 and unit price 25.00.",
+      "Click the Save button."
+    ],
+    "expected_result": "Customer field is rejected as invalid. Inline validation is shown for customer. The order is not saved.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Mandatory field presence",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "happy_path",
+      "field_validation",
+      "order_creation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Order creation is rejected when no line items are present",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression",
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045.",
+      "Order creation screen is available."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Line Items: none"
+    ],
+    "steps": [
+      "Open the Create Order screen.",
+      "Enter order date 2026-04-13.",
+      "Select customer CUST-10045.",
+      "Click the Save button."
+    ],
+    "expected_result": "Inline validation indicates at least one line item is required. The order is not created and no order number is generated.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Mandatory field presence",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "happy_path",
+      "field_validation",
+      "order_creation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; defect-probability=2",
+    "risk_score": 4,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Blank order date is rejected on create order request",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application API is deployed and reachable in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management API.",
+      "Customer record exists with Customer ID CUST-10045.",
+      "Product record exists with Product Code SKU-1001."
+    ],
+    "test_data": [
+      "Order Date: null",
+      "Customer ID: CUST-10045",
+      "Line Item 1: Product Code SKU-1001, Quantity 1, Unit Price 25.00"
+    ],
+    "steps": [
+      "Submit the create order API request with order date set to null.",
+      "Include customer CUST-10045 in the request.",
+      "Include one line item for SKU-1001 in the request."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains a field-level validation error for order date. No order record is created.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Mandatory field presence",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "happy_path",
+      "field_validation",
+      "order_creation"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=2",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Empty line item array is rejected by the create order API",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application API is deployed and reachable in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management API.",
+      "Customer record exists with Customer ID CUST-10045."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Line Items Array: []"
+    ],
+    "steps": [
+      "Submit the create order API request with order date 2026-04-13.",
+      "Include customer CUST-10045 in the request.",
+      "Set the line items array to empty."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains a validation error stating at least one line item is required. No order record is persisted.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Mandatory field presence",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "happy_path",
+      "field_validation",
+      "order_creation"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=1",
+    "risk_score": 5,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC1",
+    "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+    "title": "Order creation fails atomically when required field validation fails",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application API is deployed and reachable in the UAT environment.",
+      "Database access is available for verification in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management API.",
+      "Customer record exists with Customer ID CUST-10045.",
+      "Product record exists with Product Code SKU-1001."
+    ],
+    "test_data": [
+      "Order Date: null",
+      "Customer ID: CUST-10045",
+      "Line Item 1: Product Code SKU-1001, Quantity 1, Unit Price 25.00"
+    ],
+    "steps": [
+      "Submit the create order API request with order date set to null.",
+      "Include customer CUST-10045 in the request.",
+      "Include one line item for SKU-1001 in the request.",
+      "Query the orders table for a new record associated with the request."
+    ],
+    "expected_result": "The request is rejected with HTTP 400. No new row exists in the orders table for the failed request. No related line item rows are inserted.",
+    "tags": [
+      "ecommerce_retail",
+      "UI",
+      "Positive",
+      "Mandatory field presence",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "happy_path",
+      "field_validation",
+      "order_creation"
+    ],
+    "review_feedback": [
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.45,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; blast-radius=1; defect-probability=2",
+    "risk_score": 5,
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00009",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Blank product code is rejected in the order entry UI",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression",
+      "Smoke",
+      "UAT"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045 and status Active.",
+      "Product catalog contains active product code P-10001 with description 'Wireless Mouse' and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: ''",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Open the create order screen.",
+      "Enter the order date 2026-04-13 and customer ID CUST-10045.",
+      "Leave the product code field blank.",
+      "Click the Save button."
+    ],
+    "expected_result": "The product code field displays an inline validation error stating that product code is required and invalid. The order is not submitted and no order record is created.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "format-invalid",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "input-validation",
+      "api-contract",
+      "data-integrity"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; data-risk=2; defect-probability=1",
+    "risk_score": 5,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00010",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Whitespace-only product code is rejected after trimming",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045 and status Active.",
+      "Product catalog contains active product code P-10001 with description 'Wireless Mouse' and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: '   '",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Open the create order screen.",
+      "Enter the order date 2026-04-13 and customer ID CUST-10045.",
+      "Enter three space characters in the product code field.",
+      "Click the Save button."
+    ],
+    "expected_result": "The product code field displays an inline validation error after trimming whitespace. The order is not submitted and no order record is created.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "format-invalid",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "input-validation",
+      "api-contract",
+      "data-integrity"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; data-risk=2; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Valid product code is accepted when creating an order line item",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "E2E",
+      "Regression",
+      "Smoke"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Product catalog contains active product code P-10001 with description 'Wireless Mouse' and status Active.",
+      "Customer record exists with Customer ID CUST-10045 and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: P-10001",
+      "Quantity: 2"
+    ],
+    "steps": [
+      "Submit the create-order API request with the order date, customer ID, and one line item containing product code P-10001.",
+      "Capture the API response.",
+      "Query the order persistence store for the created order record."
+    ],
+    "expected_result": "HTTP 201 is returned. The response body contains the created order identifier and line item product code P-10001. The order record is persisted with product code P-10001 and no validation error is returned.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "format-invalid",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "input-validation",
+      "api-contract",
+      "data-integrity"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Malformed product code is rejected at the API boundary",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045 and status Active.",
+      "Product catalog contains active product code P-10001 with description 'Wireless Mouse' and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: PROD#001",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Submit the create-order API request with product code PROD#001.",
+      "Capture the API response.",
+      "Query the order persistence store for any order created from the request."
+    ],
+    "expected_result": "HTTP 400 is returned. The response body contains a field-level validation error for product code stating that the value is invalid. No order record is created in the persistence store.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "format-invalid",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "input-validation",
+      "api-contract",
+      "data-integrity"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00011",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Unauthorized user cannot submit an order with an invalid product code",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Read_Only_User and has no create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045 and status Active.",
+      "Product catalog contains active product code P-10001 with description 'Wireless Mouse' and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: BAD-777",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Submit the create-order API request using the Read_Only_User credentials.",
+      "Capture the API response.",
+      "Query the order persistence store for any order created from the request."
+    ],
+    "expected_result": "HTTP 403 is returned. The response body indicates access is denied. No validation processing for product code occurs and no order record is created.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "format-invalid",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "input-validation",
+      "api-contract",
+      "data-integrity"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; integration-risk=1; data-risk=2; defect-probability=2",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00012",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Overlong product code is rejected without persistence",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045 and status Active.",
+      "Product catalog contains active product code P-10001 with description 'Wireless Mouse' and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: P-12345678901234567890",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Submit the create-order API request with the overlong product code P-12345678901234567890.",
+      "Capture the API response.",
+      "Query the order header and order line tables for any inserted rows."
+    ],
+    "expected_result": "HTTP 400 is returned. The response body contains a product code length validation error. No rows are inserted into the order header or order line tables.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "format-invalid",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "input-validation",
+      "api-contract",
+      "data-integrity"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00013",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Invalid product codes must be rejected.",
+    "title": "Invalid product code submission is not stored in the database",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045 and status Active.",
+      "Product catalog contains active product code P-10001 with description 'Wireless Mouse' and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: INVALID-999",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Submit the create-order API request with product code INVALID-999.",
+      "Capture the API response.",
+      "Query the order header table for a record linked to Customer ID CUST-10045.",
+      "Query the order line table for a record containing product code INVALID-999."
+    ],
+    "expected_result": "HTTP 400 is returned. No order header row is created for the request. No order line row exists with product code INVALID-999.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Negative",
+      "format-invalid",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "input-validation",
+      "api-contract",
+      "data-integrity"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00014",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Tax is calculated for a standard taxable product in the order API",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "E2E",
+      "Regression",
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the Order Management API is accessible.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Tax configuration is enabled for jurisdiction US-CA with tax rate 8.25%.",
+      "Customer record exists with Customer ID CUST-10045 and shipping address 100 Market St, San Francisco, CA 94105.",
+      "Product record exists with Product Code TAX-1001, product name Standard Taxable Widget, taxable flag set to true, and unit price 100.00 USD."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: TAX-1001",
+      "Quantity: 2",
+      "Unit Price: 100.00 USD",
+      "Jurisdiction: US-CA",
+      "Expected Tax Rate: 8.25%",
+      "Expected Tax Amount: 16.50 USD"
+    ],
+    "steps": [
+      "Submit a create-order API request with the specified customer, order date, and taxable line item.",
+      "Capture the order creation response payload.",
+      "Query the created order by the returned order identifier."
+    ],
+    "expected_result": "HTTP 201 is returned. The response contains the created order with line item tax calculated at 16.50 USD for the taxable product. The persisted order record stores tax amount 16.50 USD and total amount 216.50 USD.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00021",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Tax calculation remains accurate for a high-rate jurisdiction taxable product",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the Order Management API is accessible.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Tax configuration is enabled for jurisdiction US-TX with tax rate 8.50%.",
+      "Customer record exists with Customer ID CUST-40088 and shipping address 500 Commerce Blvd, Austin, TX 78701.",
+      "Product record exists with Product Code TAX-5005, taxable flag set to true, and unit price 200.00 USD."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-40088",
+      "Product Code: TAX-5005",
+      "Quantity: 2",
+      "Unit Price: 200.00 USD",
+      "Jurisdiction: US-TX",
+      "Expected Tax Rate: 8.50%",
+      "Expected Tax Amount: 34.00 USD"
+    ],
+    "steps": [
+      "Submit a create-order API request with the taxable product and high-rate jurisdiction.",
+      "Capture the order creation response payload.",
+      "Query the created order by the returned order identifier."
+    ],
+    "expected_result": "HTTP 201 is returned. The response contains tax amount 34.00 USD for the taxable product. The persisted order record stores the correct jurisdictional tax and the order total equals 434.00 USD.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=1; integration-risk=1; defect-probability=2",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00016",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Whitespace-only product code is rejected before tax calculation",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the Order Management API is accessible.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Tax service is available and configured for jurisdiction US-CA.",
+      "Customer record exists with Customer ID CUST-10045.",
+      "No order exists with external reference ORD-WS-3001."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: '   '",
+      "Quantity: 1",
+      "External Reference: ORD-WS-3001"
+    ],
+    "steps": [
+      "Submit a create-order API request with the whitespace-only product code.",
+      "Capture the API response body.",
+      "Query the order store for external reference ORD-WS-3001."
+    ],
+    "expected_result": "HTTP 400 is returned. The response contains a product code validation error. No order record is created and no tax calculation is persisted.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=2",
+    "risk_score": 8,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00018",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Tax is not calculated for a non-taxable product",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the Order Management API is accessible.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Tax configuration is enabled for jurisdiction US-CA with tax rate 8.25%.",
+      "Customer record exists with Customer ID CUST-10045.",
+      "Product record exists with Product Code NTX-2001, product name Non-Taxable Service Plan, taxable flag set to false, and unit price 50.00 USD."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: NTX-2001",
+      "Quantity: 4",
+      "Unit Price: 50.00 USD",
+      "Expected Tax Amount: 0.00 USD"
+    ],
+    "steps": [
+      "Submit a create-order API request with the non-taxable product line item.",
+      "Capture the order creation response payload.",
+      "Query the created order by the returned order identifier."
+    ],
+    "expected_result": "HTTP 201 is returned. The response contains tax amount 0.00 USD for the non-taxable product. The persisted order record stores zero tax for the line item and the order total equals the pre-tax subtotal.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=2",
+    "risk_score": 8,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00015",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Blank product code does not calculate tax on order creation",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the Order Create screen is accessible.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Customer record exists with Customer ID CUST-10045.",
+      "Order form is configured to require at least one line item.",
+      "No draft order exists for Customer ID CUST-10045."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: blank",
+      "Quantity: 1"
+    ],
+    "steps": [
+      "Enter the specified order date and customer.",
+      "Add a line item with a blank product code and quantity 1.",
+      "Click the Save button."
+    ],
+    "expected_result": "The order is not created. A field-level validation message is displayed for Product Code. No tax amount is calculated or persisted for the invalid line item.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; defect-probability=1",
+    "risk_score": 3,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00019",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Mixed cart calculates tax only for taxable line items",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "E2E",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the Order Management API is accessible.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Tax configuration is enabled for jurisdiction US-CA with tax rate 8.25%.",
+      "Customer record exists with Customer ID CUST-30012.",
+      "Product record exists with Product Code TAX-1001, taxable flag set to true, and unit price 100.00 USD.",
+      "Product record exists with Product Code NTX-2001, taxable flag set to false, and unit price 50.00 USD."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-30012",
+      "Taxable Product Code: TAX-1001",
+      "Non-Taxable Product Code: NTX-2001",
+      "Taxable Quantity: 1",
+      "Non-Taxable Quantity: 2",
+      "Expected Tax Amount for Taxable Line: 8.25 USD",
+      "Expected Tax Amount for Non-Taxable Line: 0.00 USD",
+      "Expected Order Tax Total: 8.25 USD"
+    ],
+    "steps": [
+      "Submit a create-order API request with one taxable line item and one non-taxable line item.",
+      "Capture the order creation response payload.",
+      "Query the created order by the returned order identifier."
+    ],
+    "expected_result": "HTTP 201 is returned. The taxable line item contains tax amount 8.25 USD. The non-taxable line item contains tax amount 0.00 USD. The order-level tax total is 8.25 USD and only taxable items contribute to tax.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00017",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Maximum-length taxable product data calculates tax and persists correctly",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Migration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the database is accessible for verification.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Tax configuration is enabled for jurisdiction US-NY with tax rate 8.875%.",
+      "Customer record exists with Customer ID CUST-20077.",
+      "Product record exists with Product Code TAX-99999999999999999999, taxable flag set to true, and unit price 9999.99 USD."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-20077",
+      "Product Code: TAX-99999999999999999999",
+      "Product Name: Ultra Premium Taxable Component XXXXXXXXXXXXXXXXXXXX",
+      "Quantity: 3",
+      "Unit Price: 9999.99 USD",
+      "Expected Tax Rate: 8.875%",
+      "Expected Tax Amount: 2662.50 USD"
+    ],
+    "steps": [
+      "Create an order with the specified maximum-length taxable product data.",
+      "Capture the returned order identifier.",
+      "Query the order and order_line_item database records for the returned order identifier."
+    ],
+    "expected_result": "The order is created successfully. The database stores the taxable line item with the full product code and product name. The persisted tax amount is 2662.50 USD and the order total reflects tax inclusion.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.45,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; defect-probability=1",
+    "risk_score": 3,
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00020",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Tax should be calculated for taxable products.",
+    "title": "Tax service timeout is handled without persisting a partial taxable order",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in the UAT environment and the Order Management API is accessible.",
+      "User account exists with role Sales_User and has create permission on Order Management.",
+      "Tax service endpoint is configured to return a timeout after 5 seconds for the test tenant.",
+      "Customer record exists with Customer ID CUST-10045.",
+      "Product record exists with Product Code TAX-1001, taxable flag set to true, and unit price 100.00 USD.",
+      "No order exists with external reference ORD-TIMEOUT-9001."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Product Code: TAX-1001",
+      "Quantity: 1",
+      "External Reference: ORD-TIMEOUT-9001"
+    ],
+    "steps": [
+      "Submit a create-order API request for the taxable product while the tax service timeout condition is active.",
+      "Capture the API response.",
+      "Query the order store for external reference ORD-TIMEOUT-9001."
+    ],
+    "expected_result": "HTTP 503 is returned. The response indicates tax calculation dependency failure. No order record is persisted and no partial tax values are stored.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "valid taxable product tax calculation",
+      "ST1-AC3"
+    ],
+    "risk_tags": [
+      "calculation_accuracy",
+      "tax_rules",
+      "happy_path"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=2",
+    "risk_score": 8,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00022",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Order creation event must be available to downstream integrations.",
+    "title": "Successful order creation publishes integration event with correct order reference",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "E2E",
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment and the Order Management API is available.",
+      "User account exists with role Sales_User and permission Create_Order in Order Management.",
+      "Order event publisher is enabled and downstream integration endpoint is configured to receive order creation events.",
+      "Customer record exists with Customer ID CUST-10045 and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-10045",
+      "Line Item 1: Product Code SKU-RED-001, Quantity 2, Unit Price 19.99"
+    ],
+    "steps": [
+      "Submit the order creation request with the specified order date, customer, and line item.",
+      "Capture the returned order identifier.",
+      "Query the downstream event subscription or message broker for the order creation event."
+    ],
+    "expected_result": "HTTP 201 is returned with a persisted order identifier. One order creation event is available to downstream integrations. The event payload contains the created order identifier, Customer ID CUST-10045, order date 2026-04-13, and line item SKU-RED-001 with quantity 2.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Downstream event is emitted after successful order creation",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "downstream_sync",
+      "event_delivery",
+      "integration_contract"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.29,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00023",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Order creation event must be available to downstream integrations.",
+    "title": "Published order creation event contains exact persisted order data",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment and database access is available for read-only verification.",
+      "User account exists with role Sales_User and permission Create_Order in Order Management.",
+      "Order event publication is enabled for successful order creation.",
+      "Customer record exists with Customer ID CUST-20077 and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-20077",
+      "Line Item 1: Product Code SKU-BLU-014, Quantity 1, Unit Price 49.50"
+    ],
+    "steps": [
+      "Create an order using the specified order date, customer, and line item.",
+      "Capture the generated order ID.",
+      "Read the stored order record and the corresponding event payload record for the created order."
+    ],
+    "expected_result": "The stored order record and the event payload record contain matching values for order date 2026-04-13, Customer ID CUST-20077, and line item SKU-BLU-014 with quantity 1 and unit price 49.50. The event is linked to the same order ID in the database.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Downstream event is emitted after successful order creation",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "downstream_sync",
+      "event_delivery",
+      "integration_contract"
+    ],
+    "review_feedback": [],
+    "review_profile": "Database",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.62,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=1",
+    "risk_score": 5,
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00024",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Order creation event must be available to downstream integrations.",
+    "title": "Validation failure prevents order creation event from being published",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment and the Order Management API is available.",
+      "User account exists with role Sales_User and permission Create_Order in Order Management.",
+      "Event publisher is enabled and downstream integration endpoint is available.",
+      "Customer record exists with Customer ID CUST-30088 and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-30088",
+      "Line Item 1: Product Code SKU-GRN-009, Quantity 0, Unit Price 12.00"
+    ],
+    "steps": [
+      "Submit the order creation request with quantity 0 for the line item.",
+      "Capture the API response.",
+      "Check the downstream event subscription or message broker for any order creation event for the request."
+    ],
+    "expected_result": "HTTP 400 is returned with a field-level validation error for line item quantity. No order record is created. No order creation event is available to downstream integrations for the failed request.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Downstream event is emitted after successful order creation",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "downstream_sync",
+      "event_delivery",
+      "integration_contract"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=2; blast-radius=1; defect-probability=2",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00025",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Order creation event must be available to downstream integrations.",
+    "title": "Boundary order values still publish a single order creation event",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment and the Order Management API is available.",
+      "User account exists with role Sales_User and permission Create_Order in Order Management.",
+      "Event publisher is enabled and downstream integration endpoint is configured.",
+      "Customer record exists with Customer ID CUST-40012 and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-40012",
+      "Line Item 1: Product Code SKU-MAX-999, Quantity 999, Unit Price 9999.99"
+    ],
+    "steps": [
+      "Submit the order creation request with the boundary quantity and unit price values.",
+      "Capture the returned order identifier.",
+      "Inspect the downstream event stream for the created order."
+    ],
+    "expected_result": "HTTP 201 is returned. Exactly one order creation event is available to downstream integrations. The event payload contains quantity 999 and unit price 9999.99 without truncation or serialization errors.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Downstream event is emitted after successful order creation",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "downstream_sync",
+      "event_delivery",
+      "integration_contract"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00027",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Order creation event must be available to downstream integrations.",
+    "title": "Order creation event remains available under concurrent successful creates",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment and the Order Management API is available.",
+      "Two user accounts exist with role Sales_User and permission Create_Order in Order Management.",
+      "Event publisher is enabled and downstream integration endpoint is configured.",
+      "Customer records exist with Customer ID CUST-60011 and Customer ID CUST-60012, both Active."
+    ],
+    "test_data": [
+      "Order 1 Date: 2026-04-13, Customer ID: CUST-60011, Line Item: Product Code SKU-ORG-101, Quantity 1, Unit Price 25.00",
+      "Order 2 Date: 2026-04-13, Customer ID: CUST-60012, Line Item: Product Code SKU-ORG-102, Quantity 2, Unit Price 30.00"
+    ],
+    "steps": [
+      "Submit the first order creation request.",
+      "Submit the second order creation request.",
+      "Inspect the downstream event stream for both created orders."
+    ],
+    "expected_result": "Both requests return HTTP 201. Two distinct order creation events are available to downstream integrations. Each event is published once and is correlated to its respective order ID without duplication or loss.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Downstream event is emitted after successful order creation",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "downstream_sync",
+      "event_delivery",
+      "integration_contract"
+    ],
+    "review_feedback": [
+      "diagnostic_value: Needs stronger diagnostics",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.19,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00026",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Order creation event must be available to downstream integrations.",
+    "title": "Transient downstream publish failure does not block order creation completion",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "E2E",
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment and the Order Management API is available.",
+      "User account exists with role Sales_User and permission Create_Order in Order Management.",
+      "Downstream event endpoint is configured to return a transient 503 error for the first publish attempt.",
+      "Customer record exists with Customer ID CUST-50021 and status Active."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer ID: CUST-50021",
+      "Line Item 1: Product Code SKU-YEL-021, Quantity 3, Unit Price 15.75"
+    ],
+    "steps": [
+      "Submit the order creation request with the specified data.",
+      "Capture the API response.",
+      "Inspect the order status and event delivery status after the transient failure."
+    ],
+    "expected_result": "HTTP 201 is returned and the order is created successfully. The system records the event delivery failure for retry or recovery handling. The order creation outcome remains available to downstream integrations through the configured recovery mechanism.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Downstream event is emitted after successful order creation",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "downstream_sync",
+      "event_delivery",
+      "integration_contract"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=2; blast-radius=1; defect-probability=2",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00028",
+    "story_id": "ST1",
+    "story_title": "Create order",
+    "ac_id": "ST1-AC4",
+    "ac_text": "Order creation event must be available to downstream integrations.",
+    "title": "Order creation event publication supports high-volume API throughput",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Performance",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "Performance",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment with performance monitoring enabled.",
+      "User account exists with role Sales_User and permission Create_Order in Order Management.",
+      "Event publisher and downstream integration endpoint are available.",
+      "Test data set contains 100 active customer records from CUST-70001 through CUST-70100."
+    ],
+    "test_data": [
+      "Order Date: 2026-04-13",
+      "Customer IDs: CUST-70001 through CUST-70100",
+      "Line Item Template: Product Code SKU-PERF-001, Quantity 1, Unit Price 10.00"
+    ],
+    "steps": [
+      "Submit 100 valid order creation requests within the configured test window.",
+      "Capture API response times for each request.",
+      "Inspect the downstream event stream for all 100 created orders."
+    ],
+    "expected_result": "All 100 requests complete successfully within the defined performance threshold for the environment. Each successful order creation produces exactly one downstream event. No event loss, duplication, or backlog breach is observed during the test window.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Downstream event is emitted after successful order creation",
+      "ST1-AC4"
+    ],
+    "risk_tags": [
+      "downstream_sync",
+      "event_delivery",
+      "integration_contract"
+    ],
+    "review_feedback": [],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.61,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 4.8,
+        "reason": "Measurement target is clear",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00029",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Allow valid order status transition from Pending to Confirmed",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "E2E",
+      "Regression",
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and has update permission on Order Management.",
+      "Order ID ORD-100245 exists for Customer ID CUST-10045 with current status Pending.",
+      "Order ORD-100245 has no blocking holds, cancellations, or fulfillment locks."
+    ],
+    "test_data": [
+      "Order ID: ORD-100245",
+      "Current status: Pending",
+      "Target status: Confirmed",
+      "Customer ID: CUST-10045"
+    ],
+    "steps": [
+      "Submit the order status update request for Order ID ORD-100245 with target status Confirmed."
+    ],
+    "expected_result": "HTTP 200 is returned. Order ORD-100245 status is updated to Confirmed. The persisted order record shows current_status = Confirmed and previous_status = Pending.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid forward state transition from an allowed current status to the next permitted status",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "happy_path",
+      "state_machine"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "diagnostic_value: Needs stronger diagnostics",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.72,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=2",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00030",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Reject skipped transition from Pending directly to Shipped",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and has update permission on Order Management.",
+      "Order ID ORD-100246 exists for Customer ID CUST-10046 with current status Pending.",
+      "Order ORD-100246 is not in a terminal state and has no fulfillment completion record."
+    ],
+    "test_data": [
+      "Order ID: ORD-100246",
+      "Current status: Pending",
+      "Target status: Shipped",
+      "Customer ID: CUST-10046"
+    ],
+    "steps": [
+      "Submit the order status update request for Order ID ORD-100246 with target status Shipped."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains a validation error indicating the transition from Pending to Shipped is not allowed. Order ORD-100246 remains in status Pending.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid forward state transition from an allowed current status to the next permitted status",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "happy_path",
+      "state_machine"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "integration-risk=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00031",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Reject backward transition from Confirmed to Pending",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and has update permission on Order Management.",
+      "Order ID ORD-100247 exists for Customer ID CUST-10047 with current status Confirmed.",
+      "Order ORD-100247 has not been cancelled and has no reversal workflow enabled."
+    ],
+    "test_data": [
+      "Order ID: ORD-100247",
+      "Current status: Confirmed",
+      "Target status: Pending",
+      "Customer ID: CUST-10047"
+    ],
+    "steps": [
+      "Submit the order status update request for Order ID ORD-100247 with target status Pending."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains a validation error indicating backward transition from Confirmed to Pending is not allowed. Order ORD-100247 remains in status Confirmed.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid forward state transition from an allowed current status to the next permitted status",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "happy_path",
+      "state_machine"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "integration-risk=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00034",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Reject transition from unknown current status value",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and has update permission on Order Management.",
+      "Order ID ORD-100250 exists in the test database with status value NULL due to seeded data corruption.",
+      "Order ORD-100250 is available for status update requests."
+    ],
+    "test_data": [
+      "Order ID: ORD-100250",
+      "Current status: NULL",
+      "Target status: Confirmed",
+      "Customer ID: CUST-10050"
+    ],
+    "steps": [
+      "Submit the order status update request for Order ID ORD-100250 with target status Confirmed."
+    ],
+    "expected_result": "HTTP 422 is returned. Response body contains a validation error indicating the current status is unknown or invalid. No status change is persisted for Order ORD-100250.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid forward state transition from an allowed current status to the next permitted status",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "happy_path",
+      "state_machine"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "integration-risk=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00035",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Reject transition to unknown target status value",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and has update permission on Order Management.",
+      "Order ID ORD-100251 exists for Customer ID CUST-10051 with current status Confirmed.",
+      "Order ORD-100251 has no active fulfillment or cancellation lock."
+    ],
+    "test_data": [
+      "Order ID: ORD-100251",
+      "Current status: Confirmed",
+      "Target status: AwaitingPickup",
+      "Customer ID: CUST-10051"
+    ],
+    "steps": [
+      "Submit the order status update request for Order ID ORD-100251 with target status AwaitingPickup."
+    ],
+    "expected_result": "HTTP 422 is returned. Response body contains a validation error indicating AwaitingPickup is not a recognized order status. Order ORD-100251 remains in status Confirmed.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid forward state transition from an allowed current status to the next permitted status",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "happy_path",
+      "state_machine"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "integration-risk=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00032",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Reject no-op transition when target status matches current status",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and has update permission on Order Management.",
+      "Order ID ORD-100248 exists for Customer ID CUST-10048 with current status Packed.",
+      "Order ORD-100248 has no pending status change request."
+    ],
+    "test_data": [
+      "Order ID: ORD-100248",
+      "Current status: Packed",
+      "Target status: Packed",
+      "Customer ID: CUST-10048"
+    ],
+    "steps": [
+      "Submit the order status update request for Order ID ORD-100248 with target status Packed."
+    ],
+    "expected_result": "HTTP 409 is returned. Response body contains a validation error indicating the new status matches the current status. Order ORD-100248 remains in status Packed.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid forward state transition from an allowed current status to the next permitted status",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "happy_path",
+      "state_machine"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "integration-risk=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00033",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC1",
+    "ac_text": "Only valid state transitions are allowed.",
+    "title": "Reject transition from terminal Delivered status to any new status",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "E2E",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and has update permission on Order Management.",
+      "Order ID ORD-100249 exists for Customer ID CUST-10049 with current status Delivered.",
+      "Order ORD-100249 is marked as terminal and has no reopen policy configured."
+    ],
+    "test_data": [
+      "Order ID: ORD-100249",
+      "Current status: Delivered",
+      "Target status: Cancelled",
+      "Customer ID: CUST-10049"
+    ],
+    "steps": [
+      "Submit the order status update request for Order ID ORD-100249 with target status Cancelled."
+    ],
+    "expected_result": "HTTP 409 is returned. Response body contains a validation error indicating Delivered is a terminal status and no further transitions are allowed. Order ORD-100249 remains in status Delivered.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid forward state transition from an allowed current status to the next permitted status",
+      "ST2-AC1"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "happy_path",
+      "state_machine"
+    ],
+    "review_feedback": [
+      "completeness: Missing execution detail or contains quality violations",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.1,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=2",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00037",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Blank status value does not bypass cancelled-to-shipped restriction",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20482 and current status Cancelled.",
+      "Status update form is configured to require a non-blank target status value."
+    ],
+    "test_data": [
+      "Order ID: ORD-20482",
+      "Current status: Cancelled",
+      "Requested status: blank",
+      "Customer ID: CUST-10046"
+    ],
+    "steps": [
+      "Open the order status update form for Order ID ORD-20482.",
+      "Enter a blank value in the target status field.",
+      "Click the Save button."
+    ],
+    "expected_result": "Inline validation error is displayed for the target status field. No status change request is accepted. Order ID ORD-20482 remains in Cancelled status.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid transition blocked by business rule enforcement",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "state_transition",
+      "order_status",
+      "regression"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.12,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "data-risk=2; defect-probability=1",
+    "risk_score": 3,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 3.6,
+        "reason": "Somewhat scenario-specific",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00036",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Cancelled order remains blocked from shipping status update",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "E2E",
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20481, Customer ID CUST-10045, and current status Cancelled.",
+      "Order status transition rules are enabled and configured to prevent Cancelled to Shipped transitions."
+    ],
+    "test_data": [
+      "Order ID: ORD-20481",
+      "Current status: Cancelled",
+      "Requested status: Shipped",
+      "Customer ID: CUST-10045"
+    ],
+    "steps": [
+      "Submit a status update request for Order ID ORD-20481 with status Shipped.",
+      "Retrieve the order details for Order ID ORD-20481."
+    ],
+    "expected_result": "HTTP 409 is returned for the status update request. Response body contains the business rule message indicating cancelled orders cannot move to shipped. Order ID ORD-20481 remains in Cancelled status in the persisted record.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid transition blocked by business rule enforcement",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "state_transition",
+      "order_status",
+      "regression"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00038",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Whitespace-only status input is rejected for cancelled order",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20483 and current status Cancelled.",
+      "API input normalization trims leading and trailing whitespace before status validation."
+    ],
+    "test_data": [
+      "Order ID: ORD-20483",
+      "Current status: Cancelled",
+      "Requested status: three spaces",
+      "Customer ID: CUST-10047"
+    ],
+    "steps": [
+      "Submit a status update request for Order ID ORD-20483 with a whitespace-only status value.",
+      "Retrieve the order details for Order ID ORD-20483."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains a field-level validation error for status. Order ID ORD-20483 remains in Cancelled status and no Shipped transition is recorded.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid transition blocked by business rule enforcement",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "state_transition",
+      "order_status",
+      "regression"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "integration-risk=1; data-risk=2; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00039",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Malformed status value is rejected before transition logic runs",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20484 and current status Cancelled.",
+      "API accepts only predefined status values: New, Processing, Packed, Shipped, Delivered, Cancelled."
+    ],
+    "test_data": [
+      "Order ID: ORD-20484",
+      "Current status: Cancelled",
+      "Requested status: SHIP-123",
+      "Customer ID: CUST-10048"
+    ],
+    "steps": [
+      "Submit a status update request for Order ID ORD-20484 with status SHIP-123.",
+      "Retrieve the order details for Order ID ORD-20484."
+    ],
+    "expected_result": "HTTP 400 is returned. Response body contains an invalid status value error. Order ID ORD-20484 remains in Cancelled status and no downstream status transition event is created.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid transition blocked by business rule enforcement",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "state_transition",
+      "order_status",
+      "regression"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.3,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 4.2,
+        "reason": "Environment prerequisites are acknowledged",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00040",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Authorized user still cannot ship a cancelled order",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "E2E",
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20485 and current status Cancelled.",
+      "Authorization is valid for the user and the order belongs to the same tenant."
+    ],
+    "test_data": [
+      "Order ID: ORD-20485",
+      "Current status: Cancelled",
+      "Requested status: Shipped",
+      "Customer ID: CUST-10049"
+    ],
+    "steps": [
+      "Submit a status update request for Order ID ORD-20485 with status Shipped.",
+      "Retrieve the order audit history for Order ID ORD-20485."
+    ],
+    "expected_result": "HTTP 409 is returned. Response body indicates the cancelled-to-shipped transition is not allowed. Order ID ORD-20485 remains in Cancelled status and the audit history records the rejected attempt.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid transition blocked by business rule enforcement",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "state_transition",
+      "order_status",
+      "regression"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00041",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Unauthenticated request is denied before cancelled-to-shipped validation",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "No authenticated session exists for the request.",
+      "Order record exists with Order ID ORD-20486 and current status Cancelled.",
+      "API requires a valid access token for order status updates."
+    ],
+    "test_data": [
+      "Order ID: ORD-20486",
+      "Current status: Cancelled",
+      "Requested status: Shipped",
+      "Customer ID: CUST-10050"
+    ],
+    "steps": [
+      "Submit a status update request for Order ID ORD-20486 without an access token.",
+      "Retrieve the order details for Order ID ORD-20486."
+    ],
+    "expected_result": "HTTP 401 is returned. Response body indicates authentication is required. Order ID ORD-20486 remains in Cancelled status and no status transition is processed.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid transition blocked by business rule enforcement",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "state_transition",
+      "order_status",
+      "regression"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "integration-risk=1; data-risk=2; defect-probability=1",
+    "risk_score": 4,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00042",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC2",
+    "ac_text": "Cancelled orders cannot move to shipped.",
+    "title": "Cross-tenant attempt to ship a cancelled order is blocked",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed and accessible in the UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update for Tenant T-100.",
+      "Order record exists with Order ID ORD-20487, Tenant T-200, and current status Cancelled.",
+      "API enforces tenant isolation on order status updates."
+    ],
+    "test_data": [
+      "Order ID: ORD-20487",
+      "Tenant: T-200",
+      "Current status: Cancelled",
+      "Requested status: Shipped",
+      "Customer ID: CUST-10051"
+    ],
+    "steps": [
+      "Submit a status update request for Order ID ORD-20487 with status Shipped using the Tenant T-100 user context.",
+      "Retrieve the order details for Order ID ORD-20487."
+    ],
+    "expected_result": "HTTP 403 is returned. Response body indicates access is denied due to tenant isolation. Order ID ORD-20487 remains in Cancelled status and no cross-tenant update is persisted.",
+    "tags": [
+      "ecommerce_retail",
+      "API",
+      "Positive",
+      "Valid transition blocked by business rule enforcement",
+      "ST2-AC2"
+    ],
+    "risk_tags": [
+      "business_rule",
+      "state_transition",
+      "order_status",
+      "regression"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; data-risk=2; blast-radius=1; defect-probability=1",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00047",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC3",
+    "ac_text": "Status updates must be visible in reporting and notifications.",
+    "title": "Authorized operations user updates status and downstream visibility is created",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "E2E",
+      "Integration",
+      "UAT"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed in UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20485 and current status Packed.",
+      "Reporting and notification integrations are active for order status events."
+    ],
+    "test_data": [
+      "Order ID: ORD-20485",
+      "Current status: Packed",
+      "New status: Dispatched",
+      "User role: Operations_User"
+    ],
+    "steps": [
+      "Open the order details for Order ID ORD-20485.",
+      "Select the status value Dispatched.",
+      "Click the Save button.",
+      "Open the reporting record for Order ID ORD-20485.",
+      "Open the notification history for Order ID ORD-20485."
+    ],
+    "expected_result": "The order status is updated to Dispatched. The reporting record shows Order ID ORD-20485 with status Dispatched. The notification history contains a status update event for Order ID ORD-20485 with status Dispatched.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Reporting visibility after a successful status update is reflected in downstream reporting data",
+      "ST2-AC3"
+    ],
+    "risk_tags": [
+      "reporting_accuracy",
+      "eventual_consistency",
+      "downstream_propagation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.63,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=1",
+    "risk_score": 5,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00043",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC3",
+    "ac_text": "Status updates must be visible in reporting and notifications.",
+    "title": "Successful order status update appears in reporting and notification records",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "E2E",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20481 and current status Packed.",
+      "Reporting pipeline is enabled and notification service is configured for order status events.",
+      "Downstream reporting dataset contains no status update for Order ID ORD-20481 with status Shipped."
+    ],
+    "test_data": [
+      "Order ID: ORD-20481",
+      "Previous status: Packed",
+      "New status: Shipped",
+      "Notification recipient group: Fulfillment_Team",
+      "Reporting batch date: 2026-04-13"
+    ],
+    "steps": [
+      "Submit an order status update request for Order ID ORD-20481 with status Shipped.",
+      "Query the reporting dataset for Order ID ORD-20481.",
+      "Query the notification event store for Order ID ORD-20481."
+    ],
+    "expected_result": "HTTP 200 is returned for the status update request. The order status is persisted as Shipped. The reporting dataset contains Order ID ORD-20481 with status Shipped. The notification event store contains one status update event for Order ID ORD-20481 with status Shipped.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Reporting visibility after a successful status update is reflected in downstream reporting data",
+      "ST2-AC3"
+    ],
+    "risk_tags": [
+      "reporting_accuracy",
+      "eventual_consistency",
+      "downstream_propagation"
+    ],
+    "review_feedback": [
+      "diagnostic_value: Needs stronger diagnostics",
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=1; blast-radius=1; defect-probability=1",
+    "risk_score": 5,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00044",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC3",
+    "ac_text": "Status updates must be visible in reporting and notifications.",
+    "title": "Blank status update is rejected and creates no reporting or notification visibility",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Regression",
+      "UAT"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed in UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20482 and current status Packed.",
+      "Reporting dataset and notification event store contain no status update for Order ID ORD-20482."
+    ],
+    "test_data": [
+      "Order ID: ORD-20482",
+      "Current status: Packed",
+      "Submitted status value:",
+      "Expected validation message: Status is required"
+    ],
+    "steps": [
+      "Enter a blank value in the status field for Order ID ORD-20482.",
+      "Click the Save button.",
+      "Open the reporting record for Order ID ORD-20482.",
+      "Open the notification history for Order ID ORD-20482."
+    ],
+    "expected_result": "The UI displays the validation message 'Status is required'. No status update is saved for Order ID ORD-20482. The reporting record remains unchanged with status Packed. No notification event is created for Order ID ORD-20482.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Reporting visibility after a successful status update is reflected in downstream reporting data",
+      "ST2-AC3"
+    ],
+    "risk_tags": [
+      "reporting_accuracy",
+      "eventual_consistency",
+      "downstream_propagation"
+    ],
+    "review_feedback": [],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Excellent",
+    "reviewer_score": 4.71,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; defect-probability=2",
+    "risk_score": 3,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 4.8,
+        "reason": "Steps are readable and specific",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 4.6,
+        "reason": "Execution is actionable",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00045",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC3",
+    "ac_text": "Status updates must be visible in reporting and notifications.",
+    "title": "Maximum-length status value is stored and propagated to reporting and notifications",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "Database",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20483 and current status Packed.",
+      "Database column for order status supports a maximum length of 20 characters.",
+      "Reporting and notification integrations are active."
+    ],
+    "test_data": [
+      "Order ID: ORD-20483",
+      "Current status: Packed",
+      "New status: AwaitingCarrierPickup",
+      "Status length: 20 characters"
+    ],
+    "steps": [
+      "Persist the status update for Order ID ORD-20483 with status AwaitingCarrierPickup.",
+      "Read the order status row for Order ID ORD-20483 from the database.",
+      "Read the reporting record for Order ID ORD-20483.",
+      "Read the notification event for Order ID ORD-20483."
+    ],
+    "expected_result": "The database stores the full status value AwaitingCarrierPickup for Order ID ORD-20483. The reporting record contains the same 20-character status value. The notification event contains the same 20-character status value. No truncation or data corruption is present.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Reporting visibility after a successful status update is reflected in downstream reporting data",
+      "ST2-AC3"
+    ],
+    "risk_tags": [
+      "reporting_accuracy",
+      "eventual_consistency",
+      "downstream_propagation"
+    ],
+    "review_feedback": [
+      "diagnostic_value: Needs stronger diagnostics"
+    ],
+    "review_profile": "Database",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.45,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; defect-probability=1",
+    "risk_score": 2,
+    "review_scores": {
+      "data_integrity": {
+        "score": 4.8,
+        "reason": "Validates stored state or audit accuracy",
+        "weight": 20
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 3.0,
+        "reason": "Needs stronger diagnostics",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00046",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC3",
+    "ac_text": "Status updates must be visible in reporting and notifications.",
+    "title": "Malformed status payload is rejected before persistence and downstream propagation",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "Integration",
+      "Regression"
+    ],
+    "non_functional_type": "",
+    "priority": "P1",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment.",
+      "User account exists with role Operations_User and permission Order Status Update.",
+      "Order record exists with Order ID ORD-20484 and current status Packed.",
+      "Reporting dataset and notification event store contain no status update for Order ID ORD-20484."
+    ],
+    "test_data": [
+      "Order ID: ORD-20484",
+      "Current status: Packed",
+      "Request payload status field: {\"code\":123}",
+      "Expected error code: INVALID_STATUS_FORMAT"
+    ],
+    "steps": [
+      "Submit an order status update request for Order ID ORD-20484 with a malformed status payload.",
+      "Inspect the API response body.",
+      "Query the order record for Order ID ORD-20484.",
+      "Query the reporting dataset for Order ID ORD-20484.",
+      "Query the notification event store for Order ID ORD-20484."
+    ],
+    "expected_result": "HTTP 400 is returned. The response body contains error code INVALID_STATUS_FORMAT. The order status remains Packed in persistence. No reporting record is created. No notification event is created.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Reporting visibility after a successful status update is reflected in downstream reporting data",
+      "ST2-AC3"
+    ],
+    "risk_tags": [
+      "reporting_accuracy",
+      "eventual_consistency",
+      "downstream_propagation"
+    ],
+    "review_feedback": [
+      "security_awareness: Security evidence is limited"
+    ],
+    "review_profile": "API",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.43,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; integration-risk=2; blast-radius=1; defect-probability=2",
+    "risk_score": 7,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 20
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 20
+      },
+      "completeness": {
+        "score": 5.0,
+        "reason": "Has preconditions, steps, test data, and expected result",
+        "weight": 15
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 15
+      },
+      "security_awareness": {
+        "score": 2.8,
+        "reason": "Security evidence is limited",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 5
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00048",
+    "story_id": "ST2",
+    "story_title": "Update order status",
+    "ac_id": "ST2-AC3",
+    "ac_text": "Status updates must be visible in reporting and notifications.",
+    "title": "Unauthorized user cannot update status and no reporting or notification record is created",
+    "domain": "ecommerce_retail",
+    "module": "Order Management",
+    "submodule": "",
+    "test_case_layer": "API",
+    "test_type": "Non-Functional",
+    "scenario_type": "Security",
+    "execution_tags": [
+      "Regression"
+    ],
+    "non_functional_type": "Security",
+    "priority": "P2",
+    "automation_hint": "Yes",
+    "automated": "Yes",
+    "preconditions": [
+      "Application is deployed in UAT environment.",
+      "User account exists with role Customer_Service_Agent and no permission Order Status Update.",
+      "Order record exists with Order ID ORD-20486 and current status Packed.",
+      "Reporting dataset and notification event store contain no status update for Order ID ORD-20486."
+    ],
+    "test_data": [
+      "Order ID: ORD-20486",
+      "Current status: Packed",
+      "Requested status: Shipped",
+      "User role: Customer_Service_Agent"
+    ],
+    "steps": [
+      "Submit an order status update request for Order ID ORD-20486 with status Shipped using the Customer_Service_Agent account.",
+      "Inspect the API response body.",
+      "Query the order record for Order ID ORD-20486.",
+      "Query the reporting dataset for Order ID ORD-20486.",
+      "Query the notification event store for Order ID ORD-20486."
+    ],
+    "expected_result": "HTTP 403 is returned. The response body indicates access is denied. The order status remains Packed. No reporting record is created. No notification event is created.",
+    "tags": [
+      "ecommerce_retail",
+      "ETL",
+      "Positive",
+      "Reporting visibility after a successful status update is reflected in downstream reporting data",
+      "ST2-AC3"
+    ],
+    "risk_tags": [
+      "reporting_accuracy",
+      "eventual_consistency",
+      "downstream_propagation"
+    ],
+    "review_feedback": [
+      "measurement_clarity: Measurement criteria are vague",
+      "environment_readiness: Environment needs are under-specified"
+    ],
+    "review_profile": "NonFunctional",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.18,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=1; integration-risk=1; data-risk=2; defect-probability=2",
+    "risk_score": 6,
+    "review_scores": {
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "risk_coverage": {
+        "score": 4.8,
+        "reason": "Covers important risk patterns",
+        "weight": 20
+      },
+      "measurement_clarity": {
+        "score": 2.8,
+        "reason": "Measurement criteria are vague",
+        "weight": 15
+      },
+      "environment_readiness": {
+        "score": 3.0,
+        "reason": "Environment needs are under-specified",
+        "weight": 10
+      },
+      "diagnostic_value": {
+        "score": 4.6,
+        "reason": "Provides diagnostic evidence",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 10
+      },
+      "reusability": {
+        "score": 4.2,
+        "reason": "Reusable across data variations",
+        "weight": 10
+      },
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 10
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  }
+]

@@ -1,0 +1,217 @@
+{
+  "avg_reviewer_score": 4.03,
+  "grades": {
+    "Excellent": 0,
+    "Good": 15,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "UI": 4.03
+  },
+  "scores_by_profile": {
+    "NonFunctional": 4.09,
+    "UI_Business": 3.99
+  },
+  "profile_dimension_summary": {
+    "NonFunctional": {
+      "correctness": 4.5,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.0,
+      "diagnostic_value": 4.33,
+      "maintainability": 4.5,
+      "reusability": 3.6,
+      "traceability": 5.0
+    },
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 3.0,
+      "correctness": 4.5,
+      "completeness": 2.8,
+      "business_outcome_focus": 4.17,
+      "defect_detection": 4.34,
+      "actionability": 3.0,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "clarity: Needs clearer title or steps (9)",
+    "completeness: Missing execution detail or contains quality violations (9)",
+    "actionability: Needs stronger data or step detail (9)",
+    "measurement_clarity: Measurement criteria are vague (6)",
+    "environment_readiness: Environment needs are under-specified (6)",
+    "business_outcome_focus: Outcome is too generic (2)",
+    "diagnostic_value: Needs stronger diagnostics (1)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Valid order creation with single line item",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation missing customer",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation missing product",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "Order creation with invalid product code",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Blank product code is rejected",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC2",
+      "title": "Invalid product code is rejected",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Valid product code is accepted",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 3.96,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified; diagnostic_value: Needs stronger diagnostics"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Whitespace-only product code is rejected",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST2-AC1",
+      "title": "Only valid state transitions are allowed: Positive",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST2-AC1",
+      "title": "Only valid state transitions are allowed: Negative",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00012",
+      "acId": "ST2-AC1",
+      "title": "Only valid state transitions are allowed: Edge Case",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00015",
+      "acId": "ST2-AC2",
+      "title": "Order with invalid status cannot move",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00016",
+      "acId": "ST2-AC2",
+      "title": "Error handling for cancelled order move",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00013",
+      "acId": "ST2-AC2",
+      "title": "Cancelled order cannot move to shipped",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00014",
+      "acId": "ST2-AC2",
+      "title": "Valid order cannot move to cancelled",
+      "layer": "UI",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.12,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

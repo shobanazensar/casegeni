@@ -1,0 +1,170 @@
+{
+  "avg_reviewer_score": 4.11,
+  "grades": {
+    "Excellent": 0,
+    "Good": 11,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "API": 4.11
+  },
+  "scores_by_profile": {
+    "API": 4.05,
+    "NonFunctional": 4.18
+  },
+  "profile_dimension_summary": {
+    "API": {
+      "correctness": 4.5,
+      "defect_detection": 4.27,
+      "completeness": 2.8,
+      "diagnostic_value": 4.6,
+      "security_awareness": 2.8,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    },
+    "NonFunctional": {
+      "correctness": 4.5,
+      "risk_coverage": 4.8,
+      "measurement_clarity": 2.8,
+      "environment_readiness": 3.0,
+      "diagnostic_value": 4.6,
+      "maintainability": 4.5,
+      "reusability": 4.2,
+      "traceability": 5.0
+    }
+  },
+  "major_common_issues": [
+    "completeness: Missing execution detail or contains quality violations (6)",
+    "security_awareness: Security evidence is limited (6)",
+    "measurement_clarity: Measurement criteria are vague (5)",
+    "environment_readiness: Environment needs are under-specified (5)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Valid order creation with single line item",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.96,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation with missing order date",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Invalid order creation with invalid order date",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC2",
+      "title": "Valid product code is accepted",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 3.96,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC2",
+      "title": "Invalid product code returns error",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Blank product code returns error",
+      "layer": "API",
+      "profile": "API",
+      "grade": "Good",
+      "score": 4.1,
+      "humanReview": "No",
+      "feedback": "completeness: Missing execution detail or contains quality violations; security_awareness: Security evidence is limited"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Security: Invalid product code is rejected",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00010",
+      "acId": "ST2-AC1",
+      "title": "Edge case: state transition from 'In Progress' to 'Shipped'",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST2-AC1",
+      "title": "Invalid state transition from 'New' to 'Cancelled'",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00011",
+      "acId": "ST2-AC1",
+      "title": "Security: invalid state transition from 'New' to 'In Progress' with malicious user",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST2-AC1",
+      "title": "Valid state transition from 'New' to 'In Progress'",
+      "layer": "API",
+      "profile": "NonFunctional",
+      "grade": "Good",
+      "score": 4.18,
+      "humanReview": "No",
+      "feedback": "measurement_clarity: Measurement criteria are vague; environment_readiness: Environment needs are under-specified"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}

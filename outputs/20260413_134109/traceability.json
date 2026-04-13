@@ -1,0 +1,186 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "US 1: Login via SSO",
+      "ac_id": "ST1-AC1",
+      "ac_text": "User authenticates using corporate SSO",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00003",
+        "TC00004"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "US 1: Login via SSO",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Unauthorized users are denied access",
+      "mapped_test_cases": [
+        "TC00005",
+        "TC00006",
+        "TC00007",
+        "TC00008"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "US 1: Login via SSO",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Successful login lands user on ZenTravel homepage",
+      "mapped_test_cases": [
+        "TC00009"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 3,
+    "covered_acs": 3,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "User authenticates using corporate SSO",
+      "testCaseId": "TC00001",
+      "title": "Successful SSO login",
+      "testCaseLayer": "UI",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "User authenticates using corporate SSO",
+      "testCaseId": "TC00002",
+      "title": "Invalid SSO credentials",
+      "testCaseLayer": "UI",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "User authenticates using corporate SSO",
+      "testCaseId": "TC00003",
+      "title": "Expired SSO token",
+      "testCaseLayer": "UI",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "User authenticates using corporate SSO",
+      "testCaseId": "TC00004",
+      "title": "SSO login with unknown error",
+      "testCaseLayer": "UI",
+      "scenarioType": "Exception Handling",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Unauthorized users are denied access",
+      "testCaseId": "TC00005",
+      "title": "Authorized user granted access",
+      "testCaseLayer": "UI",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Unauthorized users are denied access",
+      "testCaseId": "TC00006",
+      "title": "Unauthorized user denied access",
+      "testCaseLayer": "UI",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Unauthorized users are denied access",
+      "testCaseId": "TC00007",
+      "title": "Expired token denied access",
+      "testCaseLayer": "UI",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Unauthorized users are denied access",
+      "testCaseId": "TC00008",
+      "title": "Error handling for unauthorized access",
+      "testCaseLayer": "UI",
+      "scenarioType": "Exception Handling",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "acText": "Successful login lands user on ZenTravel homepage",
+      "testCaseId": "TC00009",
+      "title": "Successful login lands user on ZenTravel homepage",
+      "testCaseLayer": "UI",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": "Missing negative/risk coverage; Missing edge case coverage"
+    }
+  ]
+}

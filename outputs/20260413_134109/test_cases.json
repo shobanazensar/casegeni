@@ -1,0 +1,893 @@
+[
+  {
+    "test_case_id": "TC00001",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC1",
+    "ac_text": "User authenticates using corporate SSO",
+    "title": "Successful SSO login",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100"
+    ],
+    "steps": [
+      "Click the SSO login button"
+    ],
+    "expected_result": "An inline validation error appears beneath the Name field: Name is required. The Save button remains disabled",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Positive",
+      "Auth",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.98,
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2",
+    "risk_score": 4,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00002",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC1",
+    "ac_text": "User authenticates using corporate SSO",
+    "title": "Invalid SSO credentials",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Invalid Customer ID: CUST-10046",
+      "Invalid Name: John Doe",
+      "Invalid Phone: +1-555-0101"
+    ],
+    "steps": [
+      "Enter invalid credentials and click the SSO login button"
+    ],
+    "expected_result": "Error message appears: Invalid credentials. The Save button remains disabled",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Positive",
+      "Auth",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; defect-probability=1",
+    "risk_score": 3,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00003",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC1",
+    "ac_text": "User authenticates using corporate SSO",
+    "title": "Expired SSO token",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Expired Customer ID: CUST-10047",
+      "Expired Name: John Smith",
+      "Expired Phone: +1-555-0102"
+    ],
+    "steps": [
+      "Attempt to log in with expired SSO token"
+    ],
+    "expected_result": "Error message appears: SSO token has expired. The Save button remains disabled",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Positive",
+      "Auth",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; data-risk=2",
+    "risk_score": 4,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00004",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC1",
+    "ac_text": "User authenticates using corporate SSO",
+    "title": "SSO login with unknown error",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment",
+      "User account exists with role Customer_Service_Agent and has edit permission on Customer Profile module"
+    ],
+    "test_data": [
+      "Unknown Customer ID: CUST-10048",
+      "Unknown Name: John Smith",
+      "Unknown Phone: +1-555-0103"
+    ],
+    "steps": [
+      "Attempt to log in with unknown error"
+    ],
+    "expected_result": "Error message appears: Unknown error occurred. The Save button remains disabled",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Positive",
+      "Auth",
+      "ST1-AC1"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 4.05,
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2; defect-probability=1",
+    "risk_score": 5,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00005",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Unauthorized users are denied access",
+    "title": "Authorized user granted access",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P3",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Customer ID: CUST-10045",
+      "Name: John Smith",
+      "Phone: +1-555-0100"
+    ],
+    "steps": [
+      "Click the Login button."
+    ],
+    "expected_result": "The user is logged in and lands on the ZenTravel homepage.",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Negative",
+      "Unauthorized",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.76,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; defect-probability=1",
+    "risk_score": 3,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00006",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Unauthorized users are denied access",
+    "title": "Unauthorized user denied access",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Negative",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Invalid Customer ID: CUST-99999",
+      "Invalid Name: John Doe",
+      "Invalid Phone: +1-555-9999"
+    ],
+    "steps": [
+      "Enter invalid credentials and click the Login button."
+    ],
+    "expected_result": "An error message appears: 'Invalid credentials. Please try again.'",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Negative",
+      "Unauthorized",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; defect-probability=2",
+    "risk_score": 4,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00007",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Unauthorized users are denied access",
+    "title": "Expired token denied access",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Edge Case",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Expired token: CUST-10045-token-expired"
+    ],
+    "steps": [
+      "Enter expired token and click the Login button."
+    ],
+    "expected_result": "An error message appears: 'Token has expired. Please log in again.'",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Negative",
+      "Unauthorized",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; data-risk=2; defect-probability=1",
+    "risk_score": 5,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00008",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC2",
+    "ac_text": "Unauthorized users are denied access",
+    "title": "Error handling for unauthorized access",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Exception Handling",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Invalid Customer ID: CUST-99999"
+    ],
+    "steps": [
+      "Enter invalid credentials and click the Login button."
+    ],
+    "expected_result": "An error message appears: 'Invalid credentials. Please try again.'",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Negative",
+      "Unauthorized",
+      "ST1-AC2"
+    ],
+    "risk_tags": [
+      "Low"
+    ],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "business_outcome_focus: Outcome is too generic",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.83,
+    "functional_test_type": "",
+    "source": "online_llm",
+    "priority_reason": "functional-criticality=2; defect-probability=2",
+    "risk_score": 4,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 3.0,
+        "reason": "Outcome is too generic",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 4.5,
+        "reason": "Designed to catch failures or misbehavior",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  },
+  {
+    "test_case_id": "TC00009",
+    "story_id": "ST1",
+    "story_title": "US 1: Login via SSO",
+    "ac_id": "ST1-AC3",
+    "ac_text": "Successful login lands user on ZenTravel homepage",
+    "title": "Successful login lands user on ZenTravel homepage",
+    "domain": "identity_access_management",
+    "module": "Authentication & SSO",
+    "submodule": "",
+    "test_case_layer": "UI",
+    "test_type": "Functional",
+    "scenario_type": "Positive",
+    "execution_tags": [
+      "Smoke"
+    ],
+    "non_functional_type": "",
+    "priority": "P2",
+    "automation_hint": "Maybe",
+    "automated": "Maybe",
+    "preconditions": [
+      "Application is deployed and accessible in UAT environment."
+    ],
+    "test_data": [
+      "Valid corporate SSO credentials"
+    ],
+    "steps": [
+      "Enter valid corporate SSO credentials"
+    ],
+    "expected_result": "An inline validation error does not appear. The Save button remains enabled.",
+    "tags": [
+      "identity_access_management",
+      "UI",
+      "Positive",
+      "Successful login",
+      "ST1-AC3"
+    ],
+    "risk_tags": [],
+    "review_feedback": [
+      "clarity: Needs clearer title or steps",
+      "completeness: Missing execution detail or contains quality violations",
+      "actionability: Needs stronger data or step detail"
+    ],
+    "review_profile": "UI_Business",
+    "reviewer_grade": "Good",
+    "reviewer_score": 3.98,
+    "functional_test_type": "Functional",
+    "source": "online_llm",
+    "priority_reason": "business-impact=2; functional-criticality=2",
+    "risk_score": 4,
+    "review_scores": {
+      "traceability": {
+        "score": 5.0,
+        "reason": "Strong traceability",
+        "weight": 20
+      },
+      "clarity": {
+        "score": 3.0,
+        "reason": "Needs clearer title or steps",
+        "weight": 15
+      },
+      "correctness": {
+        "score": 4.5,
+        "reason": "Layer behavior is largely correct",
+        "weight": 15
+      },
+      "completeness": {
+        "score": 2.8,
+        "reason": "Missing execution detail or contains quality violations",
+        "weight": 10
+      },
+      "business_outcome_focus": {
+        "score": 4.5,
+        "reason": "Outcome is business-observable",
+        "weight": 15
+      },
+      "defect_detection": {
+        "score": 3.8,
+        "reason": "Primarily happy-path coverage",
+        "weight": 10
+      },
+      "actionability": {
+        "score": 3.0,
+        "reason": "Needs stronger data or step detail",
+        "weight": 10
+      },
+      "maintainability": {
+        "score": 4.5,
+        "reason": "Readable and maintainable",
+        "weight": 5
+      }
+    },
+    "human_intervention_needed": false,
+    "intervention_reason": ""
+  }
+]

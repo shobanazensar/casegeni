@@ -1,0 +1,493 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+      "mapped_test_cases": [
+        "TC00002",
+        "TC00004",
+        "TC00001"
+      ],
+      "removed_test_cases": [
+        {
+          "id": "TC00003",
+          "title": "Order creation with multiple line items",
+          "layer": "API",
+          "priority": "P3",
+          "scenario": "Performance",
+          "reason": "Duplicate — identical scenario/layer/outcome already represented by a retained test"
+        }
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Invalid product codes must be rejected.",
+      "mapped_test_cases": [
+        "TC00005",
+        "TC00006",
+        "TC00007"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC3",
+      "ac_text": "Tax should be calculated for taxable products.",
+      "mapped_test_cases": [
+        "TC00008",
+        "TC00009",
+        "TC00010",
+        "TC00011"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC4",
+      "ac_text": "Order creation event must be available to downstream integrations.",
+      "mapped_test_cases": [
+        "TC00013",
+        "TC00015",
+        "TC00012"
+      ],
+      "removed_test_cases": [
+        {
+          "id": "TC00014",
+          "title": "Order creation with large quantity",
+          "layer": "API",
+          "priority": "P2",
+          "scenario": "Performance",
+          "reason": "Duplicate — identical scenario/layer/outcome already represented by a retained test"
+        }
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "ac_id": "ST2-AC1",
+      "ac_text": "Only valid state transitions are allowed.",
+      "mapped_test_cases": [
+        "TC00017",
+        "TC00019",
+        "TC00016"
+      ],
+      "removed_test_cases": [
+        {
+          "id": "TC00018",
+          "title": "Invalid state transition from 'In Progress' to 'New'",
+          "layer": "API",
+          "priority": "P2",
+          "scenario": "Security",
+          "reason": "Duplicate — identical scenario/layer/outcome already represented by a retained test"
+        }
+      ],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "ac_id": "ST2-AC2",
+      "ac_text": "Cancelled orders cannot move to shipped.",
+      "mapped_test_cases": [
+        "TC00020",
+        "TC00021",
+        "TC00022",
+        "TC00023"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "ac_id": "ST2-AC3",
+      "ac_text": "Status updates must be visible in reporting and notifications.",
+      "mapped_test_cases": [
+        "TC00026",
+        "TC00024",
+        "TC00025",
+        "TC00027"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 7,
+    "covered_acs": 7,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00002",
+      "title": "Invalid order creation (missing date)",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00004",
+      "title": "Order creation with invalid customer",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00001",
+      "title": "Valid order creation with required fields",
+      "testCaseLayer": "API",
+      "scenarioType": "Performance",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Performance",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00005",
+      "title": "Valid product code creates order",
+      "testCaseLayer": "API",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00006",
+      "title": "Invalid product code returns error",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00007",
+      "title": "Blank product code returns error",
+      "testCaseLayer": "API",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "acText": "Tax should be calculated for taxable products.",
+      "testCaseId": "TC00008",
+      "title": "Tax calculated for taxable products",
+      "testCaseLayer": "API",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "acText": "Tax should be calculated for taxable products.",
+      "testCaseId": "TC00009",
+      "title": "Tax exemption for non-taxable products",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "acText": "Tax should be calculated for taxable products.",
+      "testCaseId": "TC00010",
+      "title": "Tax calculation for multiple taxable products",
+      "testCaseLayer": "API",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC3",
+      "acText": "Tax should be calculated for taxable products.",
+      "testCaseId": "TC00011",
+      "title": "Error handling for invalid tax rates",
+      "testCaseLayer": "API",
+      "scenarioType": "Exception Handling",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "acText": "Order creation event must be available to downstream integrations.",
+      "testCaseId": "TC00013",
+      "title": "Order creation failure with invalid data",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "acText": "Order creation event must be available to downstream integrations.",
+      "testCaseId": "TC00015",
+      "title": "Order creation with invalid product code",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC4",
+      "acText": "Order creation event must be available to downstream integrations.",
+      "testCaseId": "TC00012",
+      "title": "Successful order creation with valid data",
+      "testCaseLayer": "API",
+      "scenarioType": "Performance",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Performance",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00017",
+      "title": "Invalid state transition from 'New' to 'Cancelled'",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00019",
+      "title": "Security: Unauthorized access to update order status",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00016",
+      "title": "Valid state transition from 'New' to 'In Progress'",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00020",
+      "title": "Cancelled order cannot be shipped",
+      "testCaseLayer": "UI",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00021",
+      "title": "Un-cancelled order can be shipped",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00022",
+      "title": "Cancelled order with multiple items cannot be shipped",
+      "testCaseLayer": "Database",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC2",
+      "acText": "Cancelled orders cannot move to shipped.",
+      "testCaseId": "TC00023",
+      "title": "Invalid order status cannot be shipped",
+      "testCaseLayer": "ETL",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC3",
+      "acText": "Status updates must be visible in reporting and notifications.",
+      "testCaseId": "TC00026",
+      "title": "Order status update with duplicate data",
+      "testCaseLayer": "Database",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P3",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC3",
+      "acText": "Status updates must be visible in reporting and notifications.",
+      "testCaseId": "TC00024",
+      "title": "Successful status update with valid data",
+      "testCaseLayer": "UI",
+      "scenarioType": "Performance",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Performance",
+      "priority": "P3",
+      "automatable": "⚠️",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC3",
+      "acText": "Status updates must be visible in reporting and notifications.",
+      "testCaseId": "TC00025",
+      "title": "Failed status update with invalid data",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC3",
+      "acText": "Status updates must be visible in reporting and notifications.",
+      "testCaseId": "TC00027",
+      "title": "Order status update with network failure",
+      "testCaseLayer": "ETL",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    }
+  ]
+}

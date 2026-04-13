@@ -19,10 +19,16 @@ class A3Requirements(AgentBase):
             "definition of done", "dod", "constraints", "constraint", "checklist",
             "expected results", "expected result", "success criteria", "success criterion",
             "given-when-then", "given when then",
+            "acs", "ac",
+            "test conditions", "test condition", "test criteria", "test criterion",
+            "verify that", "validation criteria", "validation criterion",
         ])
-        # Build regex: normalise spaces→\s+ and hyphens→[- ] inside each term
+        # Build regex: normalise spaces→\s+ and hyphens→[\s\-]+ inside each term.
+        # Split on whitespace/hyphens first, escape each word separately, then rejoin,
+        # so re.escape never mangles the separator characters.
         def _kw_to_pattern(kw: str) -> str:
-            return re.sub(r"[ \-]+", r"[\\s\\-]+", re.escape(kw))
+            parts = re.split(r"[ \-]+", kw)
+            return r"[\s\-]+".join(re.escape(p) for p in parts)
         _ac_alts = "|".join(_kw_to_pattern(k) for k in _ac_kws)
         self._AC_SECTION_HEADERS = re.compile(
             r"^(" + _ac_alts + r")\s*:?\s*$", flags=re.I
@@ -39,7 +45,7 @@ class A3Requirements(AgentBase):
                                     ["story", "user story", "epic", "feature", "scenario"])
         _boundary_alts = "|".join(re.escape(k).replace(r"\ ", r"\s+") for k in _boundary)
         self._STORY_BOUNDARY = re.compile(
-            r"^(" + _boundary_alts + r"|us[\s-]?\d+|#{1,4})\s*[:\s]", flags=re.I
+            r"^(" + _boundary_alts + r"|us[\s-]?\d+|user\s+story[\s-]?\d+|story[\s-]?\d+|st[\s-]?\d+|#{1,4})\s*[:\s]", flags=re.I
         )
 
     # ------------------------------------------------------------------
@@ -48,14 +54,17 @@ class A3Requirements(AgentBase):
 
     # Class-level defaults (used if __init__ is bypassed, e.g. in tests)
     _AC_SECTION_HEADERS = re.compile(
-        r"^(acceptance\s+criteri[ao]n?|conditions?|criteria|requirements?|"
+        r"^(acceptance\s+criteri[ao]n?(?:s)?|conditions?|criteria|requirements?|"
         r"definition\s+of\s+done|dod|constraints?|checklist|expected\s+results?|"
-        r"success\s+criteria|given[- ]when[- ]then)\s*:?\s*$",
+        r"success\s+criter(?:ia|ion)|given[- ]when[- ]then|"
+        r"acs?|test\s+conditions?|test\s+criter(?:ia|ion)|"
+        r"verify\s+that|validation\s+criter(?:ia|ion))\s*:?\s*$",
         flags=re.I,
     )
     _BDD_PREFIX = re.compile(r"^(given|when|then|and|but)\b", flags=re.I)
     _STORY_BOUNDARY = re.compile(
-        r"^(story|user\s+story|epic|feature|scenario|us[\s-]?\d+|#{1,4})\s*[:\s]",
+        r"^(story[\s-]?\d*|user\s+story[\s-]?\d*|epic[\s-]?\d*|feature|scenario|"
+        r"us[\s-]?\d+|st[\s-]?\d+|#{1,4})\s*[:\s]",
         flags=re.I,
     )
 
@@ -98,14 +107,29 @@ class A3Requirements(AgentBase):
                 if self._STORY_BOUNDARY.match(line):
                     break
 
-                # ACn: format
-                if re.match(r"^ac\d+\s*:\s*", line, flags=re.I):
-                    ac_lines.append(re.sub(r"^ac\d+\s*:\s*", "", line, flags=re.I).strip())
+                # ACn: / AC n: / AC-n: / AC.n: formats
+                if re.match(r"^ac[\s.\-]?\d+\s*:\s*", line, flags=re.I):
+                    ac_lines.append(re.sub(r"^ac[\s.\-]?\d+\s*:\s*", "", line, flags=re.I).strip())
                     continue
 
-                # Numbered: "1. " / "1) " / "1: "
+                # Numbered: "1. " / "1) " / "1: " / "1- "
                 if re.match(r"^\d+[\).:-]\s+", line):
                     ac_lines.append(re.sub(r"^\d+[\).:-]\s*", "", line).strip())
+                    continue
+
+                # Parenthesis-only: "(1) " / "(2) "
+                if re.match(r"^\(\d+\)\s+", line):
+                    ac_lines.append(re.sub(r"^\(\d+\)\s*", "", line).strip())
+                    continue
+
+                # Alpha list: "a. " / "b) " (single letter only, to avoid matching sentences)
+                if re.match(r"^[a-z][\).:]\s+", line, flags=re.I):
+                    ac_lines.append(re.sub(r"^[a-z][\).:]\s*", "", line, flags=re.I).strip())
+                    continue
+
+                # Roman numerals: "i. " / "ii. " / "iii. " / "iv. " / "v. " etc.
+                if re.match(r"^(?:i{1,3}|iv|vi{0,3}|ix|xi{0,3}|x)[\).:]\s+", line, flags=re.I):
+                    ac_lines.append(re.sub(r"^[^\s.]+[\).:]\s*", "", line).strip())
                     continue
 
                 # Bullet: "- " / "* " / "• "
@@ -125,8 +149,8 @@ class A3Requirements(AgentBase):
         if ac_lines:
             return ac_lines
 
-        # Fallback 1: inline "AC1: text" anywhere in the block
-        inline = re.findall(r"AC\d+\s*:\s*(.+)", block, flags=re.I)
+        # Fallback 1: inline "AC1: / AC 1: / AC-1: / AC.1: text" anywhere in the block
+        inline = re.findall(r"AC[\s.\-]?\d+\s*:\s*(.+)", block, flags=re.I)
         if inline:
             return [x.strip() for x in inline]
 
@@ -139,6 +163,11 @@ class A3Requirements(AgentBase):
         bullets = re.findall(r"^[-*\u2022]\s+(.+)", block, flags=re.M)
         if bullets:
             return [x.strip() for x in bullets]
+
+        # Fallback 3b: numbered list anywhere in the block
+        numbered = re.findall(r"^\d+[\).:-]\s+(.+)", block, flags=re.M)
+        if numbered:
+            return [x.strip() for x in numbered]
 
         # Fallback 4: "must" / "should" lines (bare or with "system/user" prefix)
         must_re = re.compile(
@@ -165,9 +194,9 @@ class A3Requirements(AgentBase):
             if len(parsed) > 1:
                 return parsed
 
-        # 2. Standard: "User Story: ..." or "Story: ..."
-        blocks = re.split(r"(?=(?:User\s+Story|Story)\s*:)", text, flags=re.I)
-        parsed = [b.strip() for b in blocks if re.search(r"(?:User\s+Story|Story)\s*:", b, flags=re.I)]
+        # 2. Standard: "User Story: ..." / "Story: ..." / "User Story 1: ..." / "Story 1: ..."
+        blocks = re.split(r"(?=(?:User\s+Story|Story)[\s-]?\d*\s*:)", text, flags=re.I)
+        parsed = [b.strip() for b in blocks if re.search(r"(?:User\s+Story|Story)[\s-]?\d*\s*:", b, flags=re.I)]
         if parsed:
             return parsed
 
@@ -178,19 +207,36 @@ class A3Requirements(AgentBase):
             if parsed:
                 return parsed
 
-        # 4. Jira/ID style: "US-123:", "US 1:", "US1:"
-        if re.search(r"^US[\s-]?\d+\s*:", text, flags=re.I | re.M):
-            blocks = re.split(r"(?=^US[\s-]?\d+\s*:)", text, flags=re.I | re.M)
-            parsed = [b.strip() for b in blocks if re.search(r"^US[\s-]?\d+\s*:", b, flags=re.I | re.M)]
+        # 4. Jira/ID style: "US-123:", "US 1:", "US1:", "ST-1:", "ST1:"
+        if re.search(r"^(?:US|ST)[\s-]?\d+\s*:", text, flags=re.I | re.M):
+            blocks = re.split(r"(?=^(?:US|ST)[\s-]?\d+\s*:)", text, flags=re.I | re.M)
+            parsed = [b.strip() for b in blocks if re.search(r"^(?:US|ST)[\s-]?\d+\s*:", b, flags=re.I | re.M)]
             if parsed:
                 return parsed
 
         # 5. Numbered story list: "1. As a ..." / "1) As a ..."
-        if re.search(r"^\d+[\).]\s+(?:As\s+an?\b|The\s+system|When\s+)", text, flags=re.I | re.M):
+        if re.search(r"^\d+[\).\]]\s+(?:As\s+an?\b|The\s+system|When\s+)", text, flags=re.I | re.M):
             blocks = re.split(r"(?=^\d+[\).]\s+)", text, flags=re.M)
             parsed = [b.strip() for b in blocks if b.strip()]
             if len(parsed) > 1:
                 return parsed
+
+        # 5b. Plain numbered list (e.g. "1. Login feature") — only when most blocks contain an AC header,
+        #     to avoid treating numbered prose as story boundaries.
+        _ac_hdr_re = re.compile(
+            r"^(?:acceptance\s+criteri[ao]n?(?:s)?|acs?|conditions?|criteria|requirements?|"
+            r"definition\s+of\s+done|dod|constraints?|checklist|expected\s+results?|"
+            r"success\s+criter(?:ia|ion)|test\s+conditions?|test\s+criter(?:ia|ion)|"
+            r"verify\s+that|validation\s+criter(?:ia|ion))\s*:?\s*$",
+            flags=re.I | re.M,
+        )
+        if re.search(r"^\d+[\).\]]\s+\S", text, flags=re.M):
+            candidate_blocks = re.split(r"(?=^\d+[\).\]]\s+)", text, flags=re.M)
+            candidate_blocks = [b.strip() for b in candidate_blocks if b.strip()]
+            if len(candidate_blocks) > 1:
+                blocks_with_ac = sum(1 for b in candidate_blocks if _ac_hdr_re.search(b))
+                if blocks_with_ac > 0 and blocks_with_ac >= len(candidate_blocks) // 2:
+                    return candidate_blocks
 
         # 6. Single "As a" narrative or any plain text – treat as one story
         return [text]
@@ -201,16 +247,16 @@ class A3Requirements(AgentBase):
 
     def _extract_story_title(self, block: str, idx: int) -> str:
         """Extract a story title from a block, supporting many formats."""
-        # Standard – only use if there is actual title text on the same line after the colon
-        m = re.search(r"(?:User\s+Story|Story)\s*:[ \t]*(.+)", block, flags=re.I)
+        # Standard with optional number: "User Story: / User Story 1: / Story: / Story 1: / Story-1:"
+        m = re.search(r"(?:User\s+Story|Story)[\s-]?\d*\s*:[ \t]*(.+)", block, flags=re.I)
         if m and m.group(1).strip():
             return m.group(1).strip()
         # Gherkin
         m = re.search(r"(?:Feature|Scenario)\s*:[ \t]*(.+)", block, flags=re.I)
         if m and m.group(1).strip():
             return m.group(1).strip()
-        # Jira ID: "US-123: Title"
-        m = re.search(r"(US[\s-]?\d+)\s*:[ \t]*(.+)", block, flags=re.I)
+        # Jira-style: "US-123: Title" or "ST-1: Title" or "ST1: Title"
+        m = re.search(r"((?:US|ST)[\s-]?\d+)\s*:[ \t]*(.+)", block, flags=re.I)
         if m and m.group(2).strip():
             return f"{m.group(1).strip()}: {m.group(2).strip()}"
         # Markdown heading: "## Title" or "### 1. Title"
@@ -241,9 +287,12 @@ class A3Requirements(AgentBase):
 
         # Load key aliases from config (fallback to hardcoded defaults)
         _aliases = self.config.get("json_input_key_aliases", {
-            "title": ["title", "story_title", "name", "summary"],
-            "epic_title": ["epic", "epic_title"],
-            "acceptance_criteria": ["acceptance_criteria", "criteria", "ac", "conditions"],
+            "title": ["title", "story_title", "name", "summary", "user_story", "description", "heading"],
+            "epic_title": ["epic", "epic_title", "epic_name", "epic_summary"],
+            "acceptance_criteria": [
+                "acceptance_criteria", "criteria", "ac", "conditions",
+                "acs", "ac_list", "criteria_list", "acceptance_conditions",
+            ],
         })
 
         def _pick(item: dict, aliases_key: str, fallback=None):
@@ -313,7 +362,11 @@ class A3Requirements(AgentBase):
         document_text = self._strip_markup(document_text)
 
         # --- Text / Markdown / Gherkin / plain input ---
-        epic_match = re.search(r"Epic\s*:\s*(.+)", document_text, flags=re.I)
+        # Matches: "Epic:", "Epic 1:", "Epic-1:", "EPIC-1:", "Epic Title:", "Epic Name:", "Epic Summary:"
+        epic_match = re.search(
+            r"Epic\s*(?:Title|Name|Summary|[\w-]*\d+)?\s*:\s*(.+)",
+            document_text, flags=re.I
+        )
         epic_title = epic_match.group(1).strip() if epic_match else ""
 
         story_blocks = self._split_into_story_blocks(document_text)

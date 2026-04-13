@@ -1,0 +1,110 @@
+{
+  "project_state": "Brownfield",
+  "state_driven_focus": "Impact analysis",
+  "domain_analysis": {
+    "project_state": "Brownfield",
+    "state_driven_focus": "Impact analysis",
+    "primary_domain": "ecommerce_retail",
+    "secondary_domain": "",
+    "subdomain": "Order Management",
+    "confidence_score": 0.99,
+    "application_or_product": "Requirement Driven Product",
+    "module_or_submodules": [
+      "Order Management"
+    ],
+    "module_detection_meta": {
+      "source": "keyword_scored",
+      "confidence": 0.7,
+      "scored_modules": {
+        "Order Management": 3
+      }
+    },
+    "domain_signals": [
+      "order",
+      "product",
+      "customer",
+      "fulfillment"
+    ],
+    "business_entities": [
+      "Order Management"
+    ],
+    "user_roles": [
+      "operations user",
+      "sales user"
+    ],
+    "likely_process_flows": [
+      "fulfillment can begin",
+      "downstream teams know the current state"
+    ],
+    "applicable_regulations": [
+      "PCI-DSS",
+      "tax compliance",
+      "consumer protection",
+      "ADA accessibility"
+    ],
+    "domain_test_focus": [
+      "pricing calculations",
+      "tax by jurisdiction",
+      "inventory sync",
+      "order fulfillment"
+    ],
+    "reasoning": "Detected domain=ecommerce_retail, subdomain=Order Management via rule-based keyword scoring. Module detection source='keyword_scored' (confidence=0.7)."
+  },
+  "requirements_summary": {
+    "story_count": 2,
+    "ac_count": 4
+  },
+  "epic_title": "Order management modernization",
+  "stories": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "epic_title": "Order management modernization"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "epic_title": "Order management modernization"
+    }
+  ],
+  "run_config": {
+    "execution_mode_requested": "online",
+    "execution_mode_used": "online",
+    "reviewer_mode_requested": "offline",
+    "reviewer_mode_used": "offline",
+    "selected_layers": [
+      "UI",
+      "API",
+      "Database",
+      "ETL"
+    ],
+    "selected_test_types": [
+      "Functional",
+      "Security"
+    ],
+    "llm_config": {
+      "model": "llama3:8b",
+      "api_key": "***",
+      "base_url": "http://localhost:11434/v1",
+      "temperature": 0.2,
+      "max_tokens": 8192,
+      "use_json_format": true,
+      "ssl_verify": true
+    },
+    "llm_meta": {
+      "requested": true,
+      "used": true,
+      "fallback_reason": "",
+      "generator_source": "online_llm",
+      "model": "llama3:8b",
+      "base_url": "http://localhost:11434/v1",
+      "batch_count": 4,
+      "response_time_sec": 279.04,
+      "raw_preview": "{\"test_cases\": [{\"ac_id\": \"ST1-AC1\", \"title\": \"Valid order creation with required fields\", \"test_case_layer\": \"API\", \"test_type\": \"Functional\", \"scenario_type\": \"Positive\", \"execution_tags\": [], \"non_functional_type\": \"None\", \"preconditions\": [\"Application is deployed and accessible in UAT environment\", \"User account exists with role Sales and has edit permission on Order Management module\"], \"test_data\": [{\"order_date\": \"2023-01-01\", \"customer\": \"CUST-10045\", \"line_items\": [{\"product_code\": \"PROD-10001\", \"quantity\": 2}]}], \"steps\": [\"Click the Create Order button\"], \"expected_result\": \"HTTP 201 is returned. Response body contains order ID and status\"}, {\"ac_id\": \"ST1-AC1\", \"title\": \"Invalid order creation with missing required fields\", \"test_case_layer\": \"API\", \"test_type\": \"Functional\", \"scenario_type\": \"Negative\", \"execution_tags\": [], \"non_functional_type\": \"None\", \"preconditions\": [\"Application is deployed and accessible in UAT environment\", \"User account exists with role Sales and has edit permission on Order Management module\"], \"test_data\": [{\"order_date\": \"\", \"customer\": \"\", \"line_items\": []}], \"steps\": [\"Click the Create Order button\"], \"expected_result\": \"HTTP 400 is ret",
+      "strategy": "per_ac_generation",
+      "max_tokens_used": 8192
+    },
+    "generator_source": "online_llm",
+    "max_test_count": 200
+  }
+}

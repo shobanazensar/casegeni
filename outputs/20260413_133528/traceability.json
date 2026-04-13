@@ -1,0 +1,218 @@
+{
+  "matrix": [
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC1",
+      "ac_text": "Required fields order date, customer, and at least one line item must be present.",
+      "mapped_test_cases": [
+        "TC00001",
+        "TC00002",
+        "TC00003"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST1",
+      "story_title": "Create order",
+      "ac_id": "ST1-AC2",
+      "ac_text": "Invalid product codes must be rejected.",
+      "mapped_test_cases": [
+        "TC00004",
+        "TC00005",
+        "TC00006",
+        "TC00007"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    },
+    {
+      "story_id": "ST2",
+      "story_title": "Update order status",
+      "ac_id": "ST2-AC1",
+      "ac_text": "Only valid state transitions are allowed.",
+      "mapped_test_cases": [
+        "TC00010",
+        "TC00009",
+        "TC00011",
+        "TC00008"
+      ],
+      "removed_test_cases": [],
+      "coverage": "Covered"
+    }
+  ],
+  "summary": {
+    "total_acs": 3,
+    "covered_acs": 3,
+    "traceability_coverage_percent": 100.0,
+    "uncovered_count": 0
+  },
+  "readable": [
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00001",
+      "title": "Valid order creation with single line item",
+      "testCaseLayer": "API",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00002",
+      "title": "Invalid order creation with missing order date",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC1",
+      "acText": "Required fields order date, customer, and at least one line item must be present.",
+      "testCaseId": "TC00003",
+      "title": "Invalid order creation with invalid order date",
+      "testCaseLayer": "API",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00004",
+      "title": "Valid product code is accepted",
+      "testCaseLayer": "API",
+      "scenarioType": "Positive",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00005",
+      "title": "Invalid product code returns error",
+      "testCaseLayer": "API",
+      "scenarioType": "Negative",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00006",
+      "title": "Blank product code returns error",
+      "testCaseLayer": "API",
+      "scenarioType": "Edge Case",
+      "testType": "Functional",
+      "nonFunctionalType": "",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST1",
+      "acId": "ST1-AC2",
+      "acText": "Invalid product codes must be rejected.",
+      "testCaseId": "TC00007",
+      "title": "Security: Invalid product code is rejected",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": ""
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00010",
+      "title": "Edge case: state transition from 'In Progress' to 'Shipped'",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00009",
+      "title": "Invalid state transition from 'New' to 'Cancelled'",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00011",
+      "title": "Security: invalid state transition from 'New' to 'In Progress' with malicious user",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    },
+    {
+      "storyId": "ST2",
+      "acId": "ST2-AC1",
+      "acText": "Only valid state transitions are allowed.",
+      "testCaseId": "TC00008",
+      "title": "Valid state transition from 'New' to 'In Progress'",
+      "testCaseLayer": "API",
+      "scenarioType": "Security",
+      "testType": "Non-Functional",
+      "nonFunctionalType": "Security",
+      "priority": "P2",
+      "automatable": "✅",
+      "coverage": "Covered",
+      "gapNotes": "Missing edge case coverage"
+    }
+  ]
+}

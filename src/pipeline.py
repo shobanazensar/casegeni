@@ -39,7 +39,7 @@ class TestCasePipeline:
         self.a9 = A9Reviewer(self.base_dir)
         self.a10 = A10Dashboard(self.base_dir)
 
-    def run(self, document_text: str, output_dir: str, execution_mode: str, reviewer_mode: str, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, max_test_count: int, max_per_ac: int = 10, progress_callback=None) -> dict:
+    def run(self, document_text: str, output_dir: str, execution_mode: str, reviewer_mode: str, selected_layers: list[str], selected_test_types: list[str], llm_config: dict, max_test_count: int, max_per_ac: int = 10, selected_exec_tags: list[str] | None = None, progress_callback=None) -> dict:
         execution_mode = _normalize_mode(execution_mode)
         reviewer_mode = _normalize_mode(reviewer_mode)
         llm_config = dict(llm_config or {})
@@ -60,6 +60,41 @@ class TestCasePipeline:
         req = self.a3.execute(document_text)
         state.update(req)
 
+        # ── Validate A3 output before proceeding ─────────────────────────────
+        _story_count = req["summary"]["story_count"]
+        _ac_count    = req["summary"]["ac_count"]
+        if _story_count == 0:
+            raise ValueError(
+                "No user stories could be identified in the input.\n"
+                "Parsed: 0 stories, 0 acceptance criteria.\n\n"
+                "Expected formats for stories:\n"
+                "  • User Story: <title>  |  Story: <title>  |  Story 1: <title>\n"
+                "  • US-123: <title>  |  ST-1: <title>\n"
+                "  • ## <markdown heading>\n"
+                "  • Feature: <title>  (Gherkin)\n"
+                "  • Numbered list: 1. As a user ...  |  1. <title> (when followed by an AC section)\n"
+                "  • JSON array: [{\"title\": \"...\", \"acceptance_criteria\": [...]}]\n\n"
+                "Please reformat your input and retry."
+            )
+        if _ac_count == 0:
+            raise ValueError(
+                f"Stories were found ({_story_count} story block(s)) but no acceptance criteria "
+                f"could be extracted from any of them.\n\n"
+                "Expected formats for acceptance criteria sections:\n"
+                "  Header keywords (on a line by itself):\n"
+                "    Acceptance Criteria / ACs / AC / Conditions / Requirements /\n"
+                "    Definition of Done / Checklist / Test Conditions / Verify that:\n"
+                "  Line formats beneath the header:\n"
+                "    AC1: text  |  AC 1: text  |  AC-1: text\n"
+                "    1. text  |  1) text  |  (1) text\n"
+                "    - text  |  * text  |  a. text  |  i. text\n"
+                "    [ ] text  |  Given / When / Then (BDD)\n"
+                "  Fallback (no header needed):\n"
+                "    Inline AC1:/AC-1: anywhere in the block\n"
+                "    Bullet points, BDD lines, or lines starting with 'must'/'should'\n\n"
+                "Please add acceptance criteria to your stories and retry."
+            )
+
         # Build offset progress wrappers so A4 (0–50 %) and A5 (50–100 %) share one bar.
         n_acs = len(req["requirements"]) or 1
         total_steps = n_acs * 2
@@ -74,7 +109,7 @@ class TestCasePipeline:
 
         scn = self.a4.execute(req["requirements"], state["domain_analysis"], selected_layers, selected_test_types, execution_mode=execution_mode, llm_config=llm_config, progress_callback=_a4_progress if execution_mode == "online" else None)
         state.update(scn)
-        gen = self.a5.execute(scn["scenario_blueprints"], document_text, execution_mode, llm_config, progress_callback=_a5_progress if execution_mode == "online" else None)
+        gen = self.a5.execute(scn["scenario_blueprints"], document_text, execution_mode, llm_config, selected_exec_tags=selected_exec_tags, selected_test_types=selected_test_types, progress_callback=_a5_progress if execution_mode == "online" else None)
         gen["test_cases"] = apply_schema_guardrail_bulk(gen["test_cases"])
         state["llm_meta"] = gen.get("llm_meta", {})
 
@@ -89,6 +124,46 @@ class TestCasePipeline:
         review = self.a9.execute(opt["test_cases_after_optimization"], reviewer_mode, trace["traceability_summary"])
         state["test_cases"] = apply_schema_guardrail_bulk(review["reviewed_test_cases"])
         state["review_summary"] = review["review_summary"]
+
+        # ── Hard filter: remove test cases outside selected layers / test types ──────
+        # Catches any cases that leaked through online generation (LLM doesn't always
+        # obey restrictions). Applied before sorting/dashboard so counts are accurate.
+        _NF_SUBTYPE_NAMES = {"Security", "Performance", "Accessibility", "Compatibility"}
+        _selected_layers_set = set(selected_layers) if selected_layers else None
+        _nf_allowed = {t for t in (selected_test_types or []) if t in _NF_SUBTYPE_NAMES}
+        _functional_wanted = "Functional" in (selected_test_types or [])
+        _filtered: list[dict] = []
+        for _tc in state["test_cases"]:
+            _layer = _tc.get("test_case_layer", "")
+            if _selected_layers_set and _layer not in _selected_layers_set:
+                continue
+            _tt  = _tc.get("test_type", "Functional")
+            _nft = _tc.get("non_functional_type", "")
+            if _nft in _NF_SUBTYPE_NAMES:
+                # Non-Functional test — keep only if its subtype was requested
+                if _nft not in _nf_allowed:
+                    continue
+            elif _tt == "Non-Functional":
+                # Tagged NF but no recognised subtype — drop unless any NF subtype is allowed
+                if not _nf_allowed:
+                    continue
+            else:
+                # Functional test — keep only if Functional was requested
+                if not _functional_wanted:
+                    continue
+            _filtered.append(_tc)
+        state["test_cases"] = _filtered
+
+        # ── Restrict execution_tags to the user-selected set ───────────────────
+        # If selected_exec_tags was provided, clamp each test case's execution_tags
+        # to only the chosen values. Tests with no overlap get the first selected
+        # tag as a fallback so they are never left tag-less.
+        if selected_exec_tags:
+            _allowed = set(selected_exec_tags)
+            _default_tag = selected_exec_tags[0]
+            for _tc in state["test_cases"]:
+                _kept = [t for t in (_tc.get("execution_tags") or []) if t in _allowed]
+                _tc["execution_tags"] = _kept if _kept else [_default_tag]
 
         _SCENARIO_ORDER = {"Positive": 0, "Smoke": 0, "Sanity": 1, "Negative": 2, "Edge Case": 3, "Exception Handling": 4}
         _LAYER_ORDER = {"UI": 0, "API": 1, "Database": 2, "ETL": 3}
@@ -126,6 +201,7 @@ class TestCasePipeline:
             "reviewer_mode_used": state["review_summary"].get("reviewer_mode_used", "offline_rules"),
             "selected_layers": selected_layers,
             "selected_test_types": selected_test_types,
+            "selected_exec_tags": selected_exec_tags or [],
             "llm_config": {**llm_config, "api_key": "***" if llm_config.get("api_key") else ""},
             "llm_meta": state.get("llm_meta", {}),
             "generator_source": state.get("llm_meta", {}).get("generator_source", "offline_rules"),

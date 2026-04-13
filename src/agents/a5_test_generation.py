@@ -211,9 +211,13 @@ class A5TestGeneration(AgentBase):
         return merged
 
     @staticmethod
-    def _infer_execution_tags(merged: dict) -> None:
+    def _infer_execution_tags(merged: dict, allowed_tags: list[str] | None = None) -> None:
         """Add Smoke / E2E / Integration execution tags based on content signals
-        when the LLM omitted them. Mutates merged in-place."""
+        when the LLM omitted them. Mutates merged in-place.
+
+        allowed_tags: if provided, only tags from this list will be added and the
+        default fallback uses the first entry instead of always 'Regression'.
+        """
         title    = (merged.get("title") or "").lower()
         expected = (merged.get("expected_result") or "").lower()
         steps    = " ".join(merged.get("steps") or []).lower()
@@ -233,11 +237,21 @@ class A5TestGeneration(AgentBase):
             tags.add("Integration")
         if any(s in combined for s in _SMOKE_SIGNALS):
             tags.add("Smoke")
-        if not tags:
-            tags = {"Regression"}  # always have at least one tag
+
+        # If an allowed-set is defined, restrict inferred tags to that set first.
+        if allowed_tags:
+            _allowed_set = set(allowed_tags)
+            tags = tags & _allowed_set
+            if not tags:
+                # Default to the first user-selected tag (no longer always 'Regression')
+                tags = {allowed_tags[0]}
+        else:
+            if not tags:
+                tags = {"Regression"}  # legacy default when no selection provided
+
         merged["execution_tags"] = sorted(tags)
 
-    def _online_generate_from_groups(self, blueprints: list[dict], document_text: str, llm_config: dict, progress_callback=None) -> tuple[list[dict], dict]:
+    def _online_generate_from_groups(self, blueprints: list[dict], document_text: str, llm_config: dict, selected_exec_tags: list[str] | None = None, selected_test_types: list[str] | None = None, progress_callback=None) -> tuple[list[dict], dict]:
         # Use user-configured max_tokens (default 8192). Each rich test case costs ~550 tokens;
         # 4-8 test cases per AC requires ~2200-4400 tokens — 8192 gives safe headroom.
         # A5 generates full test cases (preconditions, test_data, steps, expected_result)
@@ -276,25 +290,41 @@ class A5TestGeneration(AgentBase):
 
         doc_excerpt = document_text[:600].strip()
 
+        # Pre-compute selection-aware values used in prompts
+        _NF_NAMES = {"Security", "Performance", "Accessibility", "Compatibility"}
+        _nf_selected = [t for t in (selected_test_types or []) if t in _NF_NAMES]
+        _functional_selected = "Functional" in (selected_test_types or ["Functional"])
+        _allowed_test_types = (["Functional"] if _functional_selected else []) + (["Non-Functional"] if _nf_selected else [])
+        _nf_prompt_line = (
+            f"NON-FUNCTIONAL TESTS: after all Functional tests, also generate Non-Functional test cases "
+            f"for ONLY these selected subtypes: {_nf_selected}. Generate ZERO tests for any other NF subtype.\n\n"
+            if _nf_selected
+            else "NON-FUNCTIONAL TESTS: do NOT generate any Non-Functional test cases — none were selected by the user.\n\n"
+        )
+
         system = (
             "You are a senior enterprise QA architect. Return strict JSON only — no markdown, no prose, no explanation outside the JSON. "
             "Generate business-specific, execution-ready test cases for one acceptance criterion.\n\n"
             "MANDATORY COVERAGE RULE — for EVERY AC without exception:\n"
             "  - Always include at least one Positive (scenario_type: Positive) test case — the success/happy-path scenario that proves the AC works end-to-end.\n"
             "  - Never skip the positive case even when the AC is primarily about validation or rejection.\n\n"
-            "TEST TYPE CLASSIFICATION (MANDATORY — assign exactly ONE per test case):\n"
+            f"TEST TYPE CLASSIFICATION (MANDATORY — assign exactly ONE per test case — ONLY from this list: {_allowed_test_types}):\n"
             "  - Functional: validates business rules, ACs, or functional requirements. DEFAULT for all business-logic tests.\n"
-            "  - Non-Functional: validates quality attributes. Use for Security, Performance, and Compatibility tests only.\n\n"
+            "  - Non-Functional: validates quality attributes (Security, Performance, Accessibility, Compatibility ONLY).\n\n"
             "SCENARIO TYPE — set based on test_type:\n"
             "  - If test_type is Functional: scenario_type must be exactly one of: Positive, Negative, Edge Case, Exception Handling.\n"
-            "  - If test_type is Non-Functional: scenario_type must be exactly one of: Security, Performance, Compatibility.\n\n"
-            "EXECUTION TAGS (optional array — can be empty or contain one or more from the allowed list):\n"
-            "  Allowed values: Smoke, E2E, Integration, Regression, UAT, Parity, Migration.\n"
+            f"  - If test_type is Non-Functional: scenario_type must be exactly one of the SELECTED NF subtypes: {_nf_selected or ['none — do not generate NF tests']}.\n\n"
+            f"EXECUTION TAGS (optional array — only assign from this user-selected list: {selected_exec_tags or ['Smoke', 'E2E', 'Integration', 'Regression', 'UAT', 'Parity', 'Migration']}).\n"
+            "  Never include a tag that is not in the user-selected list above.\n"
             "  - Smoke: post-deploy health verification of core system paths.\n"
             "  - E2E: end-to-end flow spanning multiple systems or modules.\n"
             "  - Integration: cross-service or cross-system integration verification.\n"
-            "  - Regression: re-run after code changes. Apply to most functional tests.\n\n"
-            "NON-FUNCTIONAL TESTS: generate Non-Functional test cases (Security, Performance, Compatibility) AFTER all Functional tests for the AC.\n\n"
+            "  - Regression: re-run after code changes.\n\n"
+            "LAYER-SPECIFIC EXPECTED RESULT RULES (MANDATORY):\n"
+            "  - test_case_layer=UI: expected_result must describe VISIBLE UI feedback only — screen messages, form validation errors, page state changes, navigation behaviour. NEVER include HTTP status codes, JSON response bodies, or API-level details in UI test expected results.\n"
+            "  - test_case_layer=API: expected_result should include the HTTP status code and key response body details.\n"
+            "  - test_case_layer=Database: expected_result should describe the database state (rows inserted/updated, column values, audit entries).\n\n"
+        ) + _nf_prompt_line + (
             "GOLDEN PRINCIPLES — every test case MUST follow all of these:\n"
             "PRECONDITIONS — state only, never actions:\n"
             "  - Describe system state, user role with exact permissions, config, and required data BEFORE execution.\n"
@@ -306,7 +336,10 @@ class A5TestGeneration(AgentBase):
             "STEPS — one action per step, verb-first, no assertions:\n"
             "  - BAD: 'Verify salary is calculated'. GOOD: 'Click the Save button.'\n"
             "EXPECTED RESULTS — assertive, measurable, present-tense:\n"
-            "  - BAD: 'System works as expected'. GOOD: 'HTTP 400 is returned. Response body contains field-level error: Name is required.'\n"
+            "  - BAD: 'System works as expected'.\n"
+            "  - GOOD (UI layer): 'An inline validation error appears beneath the Name field: Name is required. The Save button remains disabled.'\n"
+            "  - GOOD (API layer): 'HTTP 400 is returned. Response body contains field-level error: {\"field\": \"name\", \"message\": \"Name is required\"}.'\n"
+            "  - GOOD (Database layer): 'The name column in the users table is updated to the submitted value. A corresponding audit row is inserted with old_value and new_value populated.'\n"
             "test_case_layer must be exactly one of the layers in allowed_layers.\n"
             "Use each layer only when it adds unique verification value. All array fields must be JSON arrays."
         )
@@ -343,10 +376,11 @@ class A5TestGeneration(AgentBase):
                 "generation_rules": [
                     "Return JSON with a single key 'test_cases' containing an array.",
                     "Every test case must set 'ac_id' to the ac_id value provided above.",
-                    "Generate 4-8 test cases per AC. Always start with at least one Positive (happy-path) test case. Then cover Negative, Edge Case, and Exception Handling variants. Non-Functional tests (Security, Performance, Compatibility) come last. Do not pad — every test must add distinct coverage.",
-                    "test_type must be exactly one of: Functional, Non-Functional. Default to Functional for all business-logic tests.",
-                    "scenario_type depends on test_type: if Functional use one of Positive, Negative, Edge Case, Exception Handling; if Non-Functional use one of Security, Performance, Compatibility.",
-                    "execution_tags: array of zero or more from: Smoke, E2E, Integration, Regression, UAT, Parity, Migration.",
+                    f"Generate 4-8 test cases per AC. Always start with at least one Positive (happy-path) test case. Then cover Negative, Edge Case, and Exception Handling variants.{' Non-Functional tests (' + ', '.join(_nf_selected) + ') come last.' if _nf_selected else ' Do NOT generate any Non-Functional tests.'} Do not pad — every test must add distinct coverage.",
+                    f"test_type must be exactly one of: {_allowed_test_types}. Default to Functional for all business-logic tests.",
+                    f"scenario_type depends on test_type: if Functional use one of Positive, Negative, Edge Case, Exception Handling; if Non-Functional use one of the selected NF subtypes: {_nf_selected or ['NONE — do not generate NF tests']}.",
+                    f"Non-Functional subtypes allowed: {_nf_selected if _nf_selected else 'NONE — generate zero Non-Functional test cases'}.",
+                    f"execution_tags: array of zero or more tags — ONLY use values from this allowed list: {selected_exec_tags or ['Smoke', 'E2E', 'Integration', 'Regression', 'UAT', 'Parity', 'Migration']}.",
                     "Each test case must include: ac_id, title, test_case_layer (from allowed_layers), test_type, scenario_type, execution_tags (array), non_functional_type, preconditions (array), test_data (array), steps (array), expected_result (string).",
                     "Titles must be concrete and outcome-specific. BAD: 'Validate AC-01'. GOOD: 'Blank name field returns inline validation error on Save'.",
                     "PRECONDITIONS: system state and user role only. Never actions, never vague.",
@@ -382,7 +416,15 @@ class A5TestGeneration(AgentBase):
                     merged["module"] = base_bp["module"]
                     merged["submodule"] = base_bp.get("submodule", "")
                     merged["source"] = "online_llm"
-                    self._infer_execution_tags(merged)
+                    self._infer_execution_tags(merged, allowed_tags=selected_exec_tags)
+                    # ── UI-layer guard: strip HTTP status codes from expected results ──
+                    if merged.get("test_case_layer") == "UI":
+                        import re as _re
+                        _er = merged.get("expected_result") or ""
+                        # Remove leading "HTTP NNN ..." or "NNN status code..." patterns
+                        _er = _re.sub(r'\bHTTP\s+[1-5]\d{2}\b[^.;]*[.;]?\s*', '', _er, flags=_re.IGNORECASE)
+                        _er = _re.sub(r'\b[1-5]\d{2}\s+(?:status\s+code|response)[^.;]*[.;]?\s*', '', _er, flags=_re.IGNORECASE)
+                        merged["expected_result"] = _er.strip() or _er
                     improved_out.append(merged)
                 out.extend(improved_out)
                 any_llm_success = True
@@ -402,10 +444,10 @@ class A5TestGeneration(AgentBase):
         meta["generator_source"] = "online_llm"
         return out, meta
 
-    def execute(self, scenario_blueprints: list[dict], document_text: str, execution_mode: str, llm_config: dict, progress_callback=None) -> dict:
+    def execute(self, scenario_blueprints: list[dict], document_text: str, execution_mode: str, llm_config: dict, selected_exec_tags: list[str] | None = None, selected_test_types: list[str] | None = None, progress_callback=None) -> dict:
         llm_meta = {"requested": execution_mode == "online", "used": False, "fallback_reason": "", "generator_source": "offline_rules"}
         if execution_mode == "online":
-            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, document_text, llm_config, progress_callback=progress_callback)
+            tests, llm_meta = self._online_generate_from_groups(scenario_blueprints, document_text, llm_config, selected_exec_tags=selected_exec_tags, selected_test_types=selected_test_types, progress_callback=progress_callback)
         else:
             tests = [self._offline_generate_one(bp) for bp in scenario_blueprints]
         for idx, tc in enumerate(tests, start=1):

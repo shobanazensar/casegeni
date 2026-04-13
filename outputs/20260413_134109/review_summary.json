@@ -1,0 +1,137 @@
+{
+  "avg_reviewer_score": 3.93,
+  "grades": {
+    "Excellent": 0,
+    "Good": 9,
+    "Acceptable": 0,
+    "Poor": 0
+  },
+  "tests_needing_human_review": [],
+  "traceability_coverage_percent": 100.0,
+  "scores_by_layer": {
+    "UI": 3.93
+  },
+  "scores_by_profile": {
+    "UI_Business": 3.93
+  },
+  "profile_dimension_summary": {
+    "UI_Business": {
+      "traceability": 5.0,
+      "clarity": 3.0,
+      "correctness": 4.5,
+      "completeness": 2.8,
+      "business_outcome_focus": 3.83,
+      "defect_detection": 4.27,
+      "actionability": 3.0,
+      "maintainability": 4.5
+    }
+  },
+  "major_common_issues": [
+    "clarity: Needs clearer title or steps (9)",
+    "completeness: Missing execution detail or contains quality violations (9)",
+    "actionability: Needs stronger data or step detail (9)",
+    "business_outcome_focus: Outcome is too generic (4)"
+  ],
+  "reviewer_table": [
+    {
+      "testCaseId": "TC00001",
+      "acId": "ST1-AC1",
+      "title": "Successful SSO login",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00002",
+      "acId": "ST1-AC1",
+      "title": "Invalid SSO credentials",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00003",
+      "acId": "ST1-AC1",
+      "title": "Expired SSO token",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00004",
+      "acId": "ST1-AC1",
+      "title": "SSO login with unknown error",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 4.05,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00005",
+      "acId": "ST1-AC2",
+      "title": "Authorized user granted access",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.76,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00006",
+      "acId": "ST1-AC2",
+      "title": "Unauthorized user denied access",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00007",
+      "acId": "ST1-AC2",
+      "title": "Expired token denied access",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00008",
+      "acId": "ST1-AC2",
+      "title": "Error handling for unauthorized access",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.83,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; business_outcome_focus: Outcome is too generic; actionability: Needs stronger data or step detail"
+    },
+    {
+      "testCaseId": "TC00009",
+      "acId": "ST1-AC3",
+      "title": "Successful login lands user on ZenTravel homepage",
+      "layer": "UI",
+      "profile": "UI_Business",
+      "grade": "Good",
+      "score": 3.98,
+      "humanReview": "No",
+      "feedback": "clarity: Needs clearer title or steps; completeness: Missing execution detail or contains quality violations; actionability: Needs stronger data or step detail"
+    }
+  ],
+  "reviewer_mode_used": "offline"
+}
